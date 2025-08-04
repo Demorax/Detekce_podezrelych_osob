@@ -4,81 +4,140 @@ import numpy as np
 from tqdm import tqdm
 from ultralytics import YOLO
 
-# Configure these base paths
-FRAMES_DIR = 'frames_0.5'
+# --- Configuration ---
+FRAMES_DIR   = 'frames_0.5'
 SKELETON_DIR = 'skeletons_yolo_11_new'
-MODEL_PATH = 'yolo11x-pose.pt'
+MODEL_PATH   = 'yolo11x-pose.pt'
 
-# Initialize model once
-model = YOLO(MODEL_PATH)
+# Ensure base output folder exists
+os.makedirs(SKELETON_DIR, exist_ok=True)
+
+# Load YOLOv8 Pose model once
+tmp_model = YOLO(MODEL_PATH)
 
 
-def process_folder(frames_dir: str, skeleton_dir: str, model) -> tuple:
+def enhance_image(img):
+    """
+    Enhance image contrast and brightness for better detection.
+    """
+    lab = cv2.cvtColor(img, cv2.COLOR_BGR2LAB)
+    l, a, b = cv2.split(lab)
+    clahe = cv2.createCLAHE(clipLimit=3.0, tileGridSize=(8, 8))
+    l = clahe.apply(l)
+    enhanced = cv2.merge([l, a, b])
+    return cv2.cvtColor(enhanced, cv2.COLOR_LAB2BGR)
+
+
+def remove_duplicate_skeletons(keypoints, threshold=50):
+    """
+    Remove duplicate detections based on centroid distance threshold.
+    """
+    if len(keypoints) <= 1:
+        return keypoints
+
+    centroids = []
+    valid_idx = []
+    for i, sk in enumerate(keypoints):
+        if not np.isnan(sk).all():
+            c = np.nanmean(sk, axis=0)
+            if not np.isnan(c).any():
+                centroids.append(c)
+                valid_idx.append(i)
+    if not centroids:
+        return keypoints
+
+    centroids = np.array(centroids)
+    unique_mask = np.ones(len(centroids), dtype=bool)
+    for i in range(len(centroids)):
+        if not unique_mask[i]:
+            continue
+        for j in range(i+1, len(centroids)):
+            if unique_mask[j] and np.linalg.norm(centroids[i] - centroids[j]) < threshold:
+                unique_mask[j] = False
+
+    unique_inds = [valid_idx[i] for i in range(len(valid_idx)) if unique_mask[i]]
+    return keypoints[unique_inds]
+
+
+def detect_with_multiple_settings(img, model):
+    """
+    Attempt detection on original and enhanced images with various configs, combine unique keypoints.
+    """
+    all_kps = []
+    enhanced = enhance_image(img)
+    configs = [
+        {'conf': 0.25, 'imgsz': 640},
+        {'conf': 0.3,  'imgsz': 1280},
+        {'conf': 0.35, 'imgsz': 1024, 'iou': 0.4},
+    ]
+    for cfg in configs:
+        for im in (img, enhanced):
+            res = model(im, verbose=False, **cfg)
+            data = res[0].keypoints.data
+            if data.numel() > 0:
+                kps = data.cpu().numpy()[:, :, :2]
+                all_kps.append(kps)
+    if not all_kps:
+        return np.full((1, 17, 2), np.nan, dtype=np.float32)
+    combined = np.vstack(all_kps)
+    return remove_duplicate_skeletons(combined)
+
+
+def process_folder(frames_dir, skeleton_dir, model):
+    """
+    Process .jpg frames in a single folder, save keypoints, and report stats.
+    Returns (total_frames, detected_frames).
+    """
     os.makedirs(skeleton_dir, exist_ok=True)
     files = sorted(f for f in os.listdir(frames_dir) if f.endswith('.jpg'))
 
-    total_frames = 0
+    total_frames = len(files)
     detected_frames = 0
+    total_people = 0
 
-    for fname in tqdm(files, desc=f"Processing {os.path.basename(frames_dir)}"):
-        img_path = os.path.join(frames_dir, fname)
-        img = cv2.imread(img_path)
+    for fname in tqdm(files, desc=f"Folder {os.path.basename(frames_dir)}"):
+        path = os.path.join(frames_dir, fname)
+        img = cv2.imread(path)
         if img is None:
             continue
-
-        results = model(img, verbose=False)
-        kp_data = results[0].keypoints.data
-
-        if kp_data.numel() == 0:
-            # No persons detected: fill with NaNs
-            keypoints = np.full((1, 17, 2), np.nan, dtype=np.float32)
-        else:
-            people = kp_data.cpu().numpy()  # shape: (num_people, 17, 3)
-            keypoints = people[:, :, :2]    # only X,Y coords
+        kps = detect_with_multiple_settings(img, model)
+        if not np.isnan(kps).all():
             detected_frames += 1
-
-        total_frames += 1
+            total_people += len(kps)
         out_path = os.path.join(skeleton_dir, fname.replace('.jpg', '.npy'))
-        np.save(out_path, keypoints)
+        np.save(out_path, kps)
 
-    if total_frames > 0:
-        rate = 100 * detected_frames / total_frames
-        print(f"Folder {os.path.basename(frames_dir)}: {detected_frames}/{total_frames} frames detected ({rate:.1f}%)")
-    else:
-        print(f"Folder {os.path.basename(frames_dir)}: no .jpg files found.")
-
+    rate = 100 * detected_frames / total_frames if total_frames else 0
+    avg_people = total_people / total_frames if total_frames else 0
+    print(f"{os.path.basename(frames_dir)}: {detected_frames}/{total_frames} detected ({rate:.1f}%), avg people/frame {avg_people:.1f}")
     return total_frames, detected_frames
 
 
-def process_all(frames_root: str, skeleton_root: str, model) -> None:
-
-    os.makedirs(skeleton_root, exist_ok=True)
-
+def process_all(frames_root, skeleton_root, model):
+    """
+    Process every subfolder under frames_root and aggregate overall stats.
+    """
     total_all = 0
     detected_all = 0
 
-    for video_id in os.listdir(frames_root):
-        in_dir = os.path.join(frames_root, video_id)
+    for vid in os.listdir(frames_root):
+        in_dir = os.path.join(frames_root, vid)
         if not os.path.isdir(in_dir):
             continue
-
-        out_dir = os.path.join(skeleton_root, video_id)
+        out_dir = os.path.join(skeleton_root, vid)
         t, d = process_folder(in_dir, out_dir, model)
         total_all += t
         detected_all += d
 
-    if total_all > 0:
-        overall_rate = 100 * detected_all / total_all
-        print(f"\nOverall detection rate: {detected_all}/{total_all} ({overall_rate:.1f}%)")
-    else:
-        print("\nNo folders processed.")
+    overall = 100 * detected_all / total_all if total_all else 0
+    print(f"\nOverall: {detected_all}/{total_all} detected ({overall:.1f}% )")
 
 
 if __name__ == '__main__':
-    # Pro vse 001, 002
-    #process_all(FRAMES_DIR, SKELETON_DIR, model)
+    # Default: process all subfolders
+    #process_all(FRAMES_DIR, SKELETON_DIR, tmp_model)
 
-    # Pouze pro 001
-    specific_in = os.path.join(FRAMES_DIR, '001')
-    specific_out = os.path.join(SKELETON_DIR, '001')
-    process_folder(specific_in, specific_out, model)
+    # To process a single folder e.g. '001':
+    single_in = os.path.join(FRAMES_DIR, '001')
+    single_out = os.path.join(SKELETON_DIR, '001')
+    process_folder(single_in, single_out, tmp_model)
