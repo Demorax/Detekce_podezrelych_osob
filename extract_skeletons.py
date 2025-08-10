@@ -61,28 +61,36 @@ def remove_duplicate_skeletons(keypoints, threshold=50):
 
 def detect_with_multiple_settings(img, model):
     """
-    Optimized for speed while maintaining good accuracy
+    Optimized for good balance of speed and accuracy
     """
     all_kps = []
 
     # Only 2 passes - original and one enhanced
     enhanced = enhance_image(img)
 
-    # Just 2 most effective configs
+    # 3 strategic configs for maximum coverage
     configs = [
-        {'conf': 0.20, 'imgsz': 1024},  # Good balance
-        {'conf': 0.25, 'imgsz': 1280},  # Slightly higher for enhanced
+        {'conf': 0.18, 'imgsz': 1280, 'iou': 0.35},  # Lower conf for more detections
+        {'conf': 0.22, 'imgsz': 1024},  # Balanced
+        {'conf': 0.20, 'imgsz': 1536},  # Higher res for small people
     ]
 
-    # Process original with first config
+    # Process original with config 1
     res = model(img, verbose=False, **configs[0])
     data = res[0].keypoints.data
     if data.numel() > 0:
         kps = data.cpu().numpy()[:, :, :2]
         all_kps.append(kps)
 
-    # Process enhanced with second config
+    # Process enhanced with config 2
     res = model(enhanced, verbose=False, **configs[1])
+    data = res[0].keypoints.data
+    if data.numel() > 0:
+        kps = data.cpu().numpy()[:, :, :2]
+        all_kps.append(kps)
+
+    # One more pass with high resolution on original
+    res = model(img, verbose=False, **configs[2])
     data = res[0].keypoints.data
     if data.numel() > 0:
         kps = data.cpu().numpy()[:, :, :2]
@@ -92,7 +100,9 @@ def detect_with_multiple_settings(img, model):
         return np.full((1, 17, 2), np.nan, dtype=np.float32)
 
     combined = np.vstack(all_kps)
-    return remove_duplicate_skeletons(combined, threshold=40)
+
+    # Slightly tighter threshold since we have more detections
+    return remove_duplicate_skeletons(combined, threshold=35)
 
 
 def process_folder(frames_dir, skeleton_dir, model):
