@@ -61,26 +61,38 @@ def remove_duplicate_skeletons(keypoints, threshold=50):
 
 def detect_with_multiple_settings(img, model):
     """
-    Attempt detection on original and enhanced images with various configs, combine unique keypoints.
+    Optimized for speed while maintaining good accuracy
     """
     all_kps = []
+
+    # Only 2 passes - original and one enhanced
     enhanced = enhance_image(img)
+
+    # Just 2 most effective configs
     configs = [
-        {'conf': 0.25, 'imgsz': 640},
-        {'conf': 0.3,  'imgsz': 1280},
-        {'conf': 0.35, 'imgsz': 1024, 'iou': 0.4},
+        {'conf': 0.20, 'imgsz': 1024},  # Good balance
+        {'conf': 0.25, 'imgsz': 1280},  # Slightly higher for enhanced
     ]
-    for cfg in configs:
-        for im in (img, enhanced):
-            res = model(im, verbose=False, **cfg)
-            data = res[0].keypoints.data
-            if data.numel() > 0:
-                kps = data.cpu().numpy()[:, :, :2]
-                all_kps.append(kps)
+
+    # Process original with first config
+    res = model(img, verbose=False, **configs[0])
+    data = res[0].keypoints.data
+    if data.numel() > 0:
+        kps = data.cpu().numpy()[:, :, :2]
+        all_kps.append(kps)
+
+    # Process enhanced with second config
+    res = model(enhanced, verbose=False, **configs[1])
+    data = res[0].keypoints.data
+    if data.numel() > 0:
+        kps = data.cpu().numpy()[:, :, :2]
+        all_kps.append(kps)
+
     if not all_kps:
         return np.full((1, 17, 2), np.nan, dtype=np.float32)
+
     combined = np.vstack(all_kps)
-    return remove_duplicate_skeletons(combined)
+    return remove_duplicate_skeletons(combined, threshold=40)
 
 
 def process_folder(frames_dir, skeleton_dir, model):
