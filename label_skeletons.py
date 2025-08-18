@@ -43,6 +43,19 @@ class SinglePersonTracker:
         self.tracked_path = []  # List of (frame_num, person_idx) tuples
         self.current_skeleton_idx = 0
         self.tracking_confirmed = {}  # frame_num: bool
+        self.connections = [
+            (0, 1), (0, 2), (1, 3), (2, 4),  # Head
+            (5, 6), (5, 7), (7, 9), (6, 8), (8, 10),  # Arms
+            (5, 11), (6, 12), (11, 13), (13, 15), (12, 14), (14, 16),  # Legs
+            (11, 12)  # Hip
+        ]
+        # Colors for different people (BGR format for OpenCV)
+        self.person_colors = [
+            (255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 255, 0),
+            (255, 0, 255), (0, 255, 255), (128, 255, 0), (255, 128, 0),
+            (128, 0, 255), (255, 128, 128), (128, 255, 128), (128, 128, 255),
+            (255, 255, 128), (255, 128, 255), (128, 255, 255), (64, 128, 255)
+        ]
 
         # Labeling state
         self.labels = {"segments": []}
@@ -55,6 +68,9 @@ class SinglePersonTracker:
         self.needs_confirmation = False
         self.confirmation_threshold = 100  # pixels
         self.reselect_frame = None  # Frame where we're reselecting
+
+        # Footer panel (space under the video for labels/instructions)
+        self.footer_height = 160  # pixels
 
     def load_skeletons(self):
         """Load all skeleton files for the video"""
@@ -111,6 +127,7 @@ class SinglePersonTracker:
         # Start with selected person in first frame
         first_frame = self.skeleton_frames[0]
         first_skeleton = self.skeletons[first_frame][self.selected_person_idx]
+        # FIX: correct attribute name (was self.tracke_path)
         self.tracked_path.append((first_frame, self.selected_person_idx))
         self.tracking_confirmed[first_frame] = True
 
@@ -189,61 +206,55 @@ class SinglePersonTracker:
         print(f"Re-tracked from frame {current_frame} onwards")
 
     def draw_frame(self, frame, skeleton_frame_num):
-        """Draw current frame with annotations"""
+        """Draw current frame with annotations and add a footer area under the video."""
         overlay = frame.copy()
+        h, w = overlay.shape[:2]
 
         if skeleton_frame_num not in self.skeletons:
-            return overlay
+            # Even if no skeletons, still create footer canvas to keep layout consistent
+            canvas = np.zeros((h + self.footer_height, w, 3), dtype=np.uint8)
+            canvas[:h] = overlay
+            self.draw_ui(canvas, skeleton_frame_num, video_h=h)
+            return canvas
 
         people = self.skeletons[skeleton_frame_num]
 
-        if self.mode == "select" or self.mode == "reselect" or self.mode == "select_new":
-            # Draw all people for selection with clear visibility
+        if self.mode in ["select", "reselect", "select_new"]:
+            # Draw all people for selection
             for idx, person in enumerate(people):
                 if person.shape == (17, 2) and not np.isnan(person).all():
-                    # Make selection more visible
-                    if self.mode == "reselect":
-                        color = (0, 255, 255)  # Yellow for all in reselect mode
-                    elif self.mode == "select_new":
-                        color = (255, 0, 255)  # Magenta for new person selection
-                    else:
-                        color = (0, 255, 0) if idx == self.selected_person_idx else (255, 255, 255)
+                    # Use rainbow colors for each person
+                    color = self.person_colors[idx % len(self.person_colors)]
 
-                    self.draw_skeleton(overlay, person, color, thickness=3)
+                    # Draw skeleton
+                    self.draw_skeleton(overlay, person, color, thickness=2)
 
+                    # Get centroid
                     centroid = self.get_person_centroid(person)
                     if centroid is not None:
-                        # Draw large, highly visible numbers
-                        text = f"{idx}"
+                        # Draw person label with nice background
+                        label = f'Person {idx}'
                         font = cv2.FONT_HERSHEY_SIMPLEX
-                        font_scale = 3.0  # Much larger
-                        thickness = 4
+                        font_scale = 0.7
+                        thickness = 2
 
-                        # Get text size for background
-                        (text_width, text_height), baseline = cv2.getTextSize(text, font, font_scale, thickness)
+                        # Get text size
+                        (text_width, text_height), baseline = cv2.getTextSize(
+                            label, font, font_scale, thickness)
 
-                        # Position above the person
-                        text_x = int(centroid[0] - text_width // 2)
-                        text_y = int(centroid[1] - 30)
-
-                        # Draw white background rectangle with border
-                        padding = 15
+                        # Draw background rectangle
                         cv2.rectangle(overlay,
-                                      (text_x - padding, text_y - text_height - padding),
-                                      (text_x + text_width + padding, text_y + padding),
-                                      (255, 255, 255), -1)
-                        cv2.rectangle(overlay,
-                                      (text_x - padding, text_y - text_height - padding),
-                                      (text_x + text_width + padding, text_y + padding),
-                                      (0, 0, 0), 3)
+                                      (int(centroid[0]) - text_width // 2 - 5,
+                                       int(centroid[1]) - 55),
+                                      (int(centroid[0]) + text_width // 2 + 5,
+                                       int(centroid[1]) - 35),
+                                      color, -1)
 
-                        # Draw black text
-                        cv2.putText(overlay, text,
-                                    (text_x, text_y),
-                                    font, font_scale, (0, 0, 0), thickness)
-
-                        # Also draw a circle around the person for clarity
-                        cv2.circle(overlay, (int(centroid[0]), int(centroid[1])), 50, color, 3)
+                        # Draw text
+                        cv2.putText(overlay, label,
+                                    (int(centroid[0]) - text_width // 2,
+                                     int(centroid[1]) - 40),
+                                    font, font_scale, (255, 255, 255), thickness)
 
         elif self.mode in ["track", "label"]:
             # Find current person in tracked path
@@ -253,18 +264,11 @@ class SinglePersonTracker:
                     current_person_idx = person_idx
                     break
 
-            # Draw all people dimmed
+            # Draw all people with their colors
             for idx, person in enumerate(people):
                 if person.shape == (17, 2) and not np.isnan(person).all():
-                    color = (100, 100, 100)
-                    self.draw_skeleton(overlay, person, color)
-
-            # Highlight tracked person
-            if current_person_idx is not None and current_person_idx >= 0:
-                if current_person_idx < len(people):
-                    person = people[current_person_idx]
-                    if person.shape == (17, 2) and not np.isnan(person).all():
-                        # Color based on confirmation status
+                    if idx == current_person_idx:
+                        # Tracked person - use special color based on status
                         if skeleton_frame_num in self.tracking_confirmed:
                             if self.tracking_confirmed[skeleton_frame_num]:
                                 color = (0, 255, 0)  # Green for confirmed
@@ -272,46 +276,74 @@ class SinglePersonTracker:
                                 color = (0, 255, 255)  # Yellow for needs confirmation
                         else:
                             color = (0, 0, 255)  # Red for lost
+                        thickness = 3
+                    else:
+                        # Other people - dimmed
+                        color = (100, 100, 100)
+                        thickness = 1
 
-                        self.draw_skeleton(overlay, person, color, thickness=3)
+                    self.draw_skeleton(overlay, person, color, thickness)
 
+                    # Add label for tracked person
+                    if idx == current_person_idx:
                         centroid = self.get_person_centroid(person)
                         if centroid is not None:
-                            cv2.putText(overlay, "TRACKED",
-                                        (int(centroid[0]) - 50, int(centroid[1]) - 20),
-                                        cv2.FONT_HERSHEY_SIMPLEX, 1.0, color, 3)
+                            label = "TRACKED"
+                            font = cv2.FONT_HERSHEY_SIMPLEX
+                            font_scale = 0.7
+                            thickness = 2
 
-        self.draw_ui(overlay, skeleton_frame_num)
-        return overlay
+                            (text_width, text_height), _ = cv2.getTextSize(
+                                label, font, font_scale, thickness)
+
+                            # Background
+                            cv2.rectangle(overlay,
+                                          (int(centroid[0]) - text_width // 2 - 5,
+                                           int(centroid[1]) - 55),
+                                          (int(centroid[0]) + text_width // 2 + 5,
+                                           int(centroid[1]) - 35),
+                                          color, -1)
+
+                            cv2.putText(overlay, label,
+                                        (int(centroid[0]) - text_width // 2,
+                                         int(centroid[1]) - 40),
+                                        font, font_scale, (255, 255, 255), thickness)
+
+        # Compose final canvas with footer under the video
+        canvas = np.zeros((h + self.footer_height, w, 3), dtype=np.uint8)
+        canvas[:h] = overlay
+
+        # Draw UI (top bar stays over video, labels/instructions go to footer)
+        self.draw_ui(canvas, skeleton_frame_num, video_h=h)
+        return canvas
 
     def draw_skeleton(self, img, keypoints, color, thickness=2):
-        """Draw skeleton connections"""
-        connections = [
-            (0, 1), (0, 2), (1, 3), (2, 4),  # Head
-            (5, 6), (5, 7), (7, 9), (6, 8), (8, 10),  # Arms
-            (5, 11), (6, 12), (11, 13), (13, 15), (12, 14), (14, 16),  # Legs
-            (11, 12)  # Hip
-        ]
+        """Draw skeleton connections like in test_skeletons.py"""
+        # Draw connections
+        for connection in self.connections:
+            pt1_idx, pt2_idx = connection
+            if pt1_idx < len(keypoints) and pt2_idx < len(keypoints):
+                pt1 = keypoints[pt1_idx]
+                pt2 = keypoints[pt2_idx]
 
-        for conn in connections:
-            if conn[0] < len(keypoints) and conn[1] < len(keypoints):
-                pt1 = keypoints[conn[0]]
-                pt2 = keypoints[conn[1]]
                 if not (np.isnan(pt1).any() or np.isnan(pt2).any()):
-                    cv2.line(img, (int(pt1[0]), int(pt1[1])),
-                             (int(pt2[0]), int(pt2[1])), color, thickness)
+                    cv2.line(img,
+                             (int(pt1[0]), int(pt1[1])),
+                             (int(pt2[0]), int(pt2[1])),
+                             color, thickness)
 
-        # Draw joints
-        joint_radius = max(3, thickness)
+        # Draw joints with white edge like in test version
         for point in keypoints:
             if not np.isnan(point).any():
-                cv2.circle(img, (int(point[0]), int(point[1])), joint_radius, color, -1)
+                cv2.circle(img, (int(point[0]), int(point[1])), 5, color, -1)
+                cv2.circle(img, (int(point[0]), int(point[1])), 6, (255, 255, 255), 1)
 
-    def draw_ui(self, img, skeleton_frame_num):
-        """Draw UI information"""
+    def draw_ui(self, img, skeleton_frame_num, video_h):
+        """Draw UI information. Top bar overlays the video, instructions/labels live in footer below."""
         h, w = img.shape[:2]
 
-        # Top info bar
+        # ----- Top bar (over video) -----
+        # Draw solid black background for top bar
         cv2.rectangle(img, (0, 0), (w, 100), (0, 0, 0), -1)
 
         # Frame info
@@ -322,7 +354,7 @@ class SinglePersonTracker:
         # Mode info
         mode_text = f"Mode: {self.mode.upper()}"
         if self.mode == "select":
-            mode_text += " - Press number key to select person"
+            mode_text += " - Press number/letter to select person"
         elif self.mode == "reselect":
             mode_text += f" - Select correct person for frame {self.current_skeleton_idx + 1}"
         elif self.mode == "select_new":
@@ -334,31 +366,31 @@ class SinglePersonTracker:
 
         cv2.putText(img, mode_text, (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 1)
 
+        # ----- Footer panel (under video) -----
+        footer_top = video_h
+        footer_bottom = video_h + self.footer_height
+        cv2.rectangle(img, (0, footer_top), (w, footer_bottom), (0, 0, 0), -1)
+
         # Behavior labeling info
         if self.is_labeling and self.current_behavior is not None:
             cv2.putText(img,
                         f"Labeling: {self.behaviors[self.current_behavior]} (from frame {self.labeling_start_frame})",
-                        (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 255), 1)
-
-        # Tracking confirmation status
-        if self.mode in ["track", "label"] and skeleton_frame_num in self.tracking_confirmed:
-            if not self.tracking_confirmed[skeleton_frame_num]:
-                cv2.putText(img, "NEEDS CONFIRMATION! Press Y to confirm, N to select correct person",
-                            (10, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 255), 1)
+                        (10, footer_top + 30), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 255), 2)
 
         # Instructions
+        instructions = []
         if self.mode == "select":
             instructions = [
                 "SELECT PERSON TO TRACK:",
                 "0-9: Select person 0-9",
-                "A-Z: Select person 10-35 (A=10, B=11, ... Z=35)",
+                "A-Z/a-z: Select person 10-35 (A=10, B=11, ... Z=35)",
                 "ESC: Exit"
             ]
         elif self.mode == "reselect":
             instructions = [
                 "RE-SELECT CORRECT PERSON:",
                 "0-9: Select person 0-9",
-                "A-Z: Select person 10-35",
+                "A-Z/a-z: Select person 10-35",
                 "ESC: Cancel re-selection"
             ]
         elif self.mode == "track":
@@ -385,22 +417,23 @@ class SinglePersonTracker:
                 "ESC: Exit"
             ]
 
-        y_offset = h - len(instructions) * 20 - 10
+        # Draw instructions text in footer (left side)
+        y_offset = footer_top + 60
         for i, text in enumerate(instructions):
-            cv2.putText(img, text, (10, y_offset + i * 20),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
-
-        # Show labeled segments
-        if len(self.labels["segments"]) > 0:
-            cv2.putText(img, "Labeled segments:", (w - 300, 20),
+            cv2.putText(img, text, (10, y_offset + i * 22),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
 
-            y = 40
+        # Show labeled segments (right side in footer)
+        if len(self.labels["segments"]) > 0:
+            cv2.putText(img, "Labeled segments (last 5):", (w - 360, footer_top + 30),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.55, (255, 255, 255), 1)
+
+            y = footer_top + 55
             for segment in self.labels["segments"][-5:]:  # Show last 5
-                text = f"Frames {segment['start']}-{segment['end']}: {self.behaviors[segment['behavior']]}"
-                cv2.putText(img, text, (w - 300, y),
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 0), 1)
-                y += 20
+                text = f"{segment['start']}-{segment['end']}: {self.behaviors[segment['behavior']]}"
+                cv2.putText(img, text, (w - 360, y),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.48, (255, 255, 0), 1)
+                y += 22
 
     def run(self):
         """Main loop"""
@@ -411,6 +444,18 @@ class SinglePersonTracker:
         cv2.resizeWindow("Single Person Tracker", 1400, 900)
 
         while True:
+            if self.n_skeleton_frames == 0:
+                # No skeleton data available
+                ret, frame = self.cap.read()
+                if not ret:
+                    break
+                display_frame = self.draw_frame(frame, 0)
+                cv2.imshow("Single Person Tracker", display_frame)
+                key = cv2.waitKey(30 if not paused else 0) & 0xFF
+                if key == 27:
+                    break
+                continue
+
             # Get current skeleton frame
             current_skeleton_frame = self.skeleton_frames[self.current_skeleton_idx]
 
@@ -434,14 +479,24 @@ class SinglePersonTracker:
 
             key = cv2.waitKey(30 if not paused else 0) & 0xFF
 
+            # Helper: map key to person index (supports 0-9 and A-Z/a-z -> 10..35)
+            def key_to_person_idx(k):
+                if ord('0') <= k <= ord('9'):
+                    return k - ord('0')
+                if ord('A') <= k <= ord('Z'):
+                    return 10 + (k - ord('A'))
+                if ord('a') <= k <= ord('z'):
+                    return 10 + (k - ord('a'))
+                return None
+
             # Global controls
             if key == 27:  # ESC
                 break
 
             # Mode-specific controls
             if self.mode == "select":
-                if ord('0') <= key <= ord('9'):
-                    person_idx = key - ord('0')
+                person_idx = key_to_person_idx(key)
+                if person_idx is not None:
                     people = self.skeletons[current_skeleton_frame]
                     if person_idx < len(people):
                         self.selected_person_idx = person_idx
@@ -451,8 +506,8 @@ class SinglePersonTracker:
                         self.current_skeleton_idx = 0
 
             elif self.mode == "reselect":
-                if ord('0') <= key <= ord('9'):
-                    person_idx = key - ord('0')
+                person_idx = key_to_person_idx(key)
+                if person_idx is not None:
                     people = self.skeletons[current_skeleton_frame]
                     if person_idx < len(people):
                         # Update tracking for this frame
@@ -471,8 +526,8 @@ class SinglePersonTracker:
                     self.mode = "track"
 
             elif self.mode == "select_new":
-                if ord('0') <= key <= ord('9'):
-                    person_idx = key - ord('0')
+                person_idx = key_to_person_idx(key)
+                if person_idx is not None:
                     people = self.skeletons[current_skeleton_frame]
                     if person_idx < len(people):
                         # Clear previous tracking from this point forward
@@ -569,7 +624,7 @@ class SinglePersonTracker:
         while f"{video_name}_person_{person_save_id}_tracking.json" in existing_files:
             person_save_id += 1
 
-        # Save tracked path with labels
+        # Save traced path with labels
         output_data = {
             "video": video_name,
             "selected_person_idx": self.selected_person_idx,

@@ -181,8 +181,8 @@ def show_skeleton_on_image_cv2(image_path, skeleton_path, save_path=None):
 # Example usage
 if __name__ == "__main__":
     # Example paths
-    image_path = "frames_0.5/001/001_0050.jpg"
-    skeleton_path = "skeletons_yolo_11/001/001_0050.npy"
+    image_path = "frames_0.5/001/001_0055.jpg"
+    skeleton_path = "skeletons_yolo_11_new/001/001_0055.npy"
 
     # Using matplotlib version (better for Jupyter notebooks)
-    show_skeleton_on_image(image_path, skeleton_path, save_path="skeleton_visualization.png")
+    show_skeleton_on_image(image_path, skeleton_path, save_path="test_55_2.png")
