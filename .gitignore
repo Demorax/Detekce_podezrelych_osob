@@ -1,0 +1,10 @@
+# Model weights
+*.pth
+*.bin
+*.onnx
+*.pb
+models/vitpose/vitpose_huge.pth
+
+# Other large files
+*.tar.gz
+*.zip
