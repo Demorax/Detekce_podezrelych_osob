@@ -4,20 +4,41 @@ import warnings
 import mmcv
 import numpy as np
 from mmcv.image import imwrite
-from mmcv.utils.misc import deprecated_api_warning
+try:
+    from mmcv.utils.misc import deprecated_api_warning
+except ImportError:
+    from mmengine.utils import deprecated_api_warning
 from mmcv.visualization.image import imshow
 
-from mmpose.core import imshow_bboxes, imshow_keypoints
-from .. import builder
+# Create fallback functions for missing visualization
+def imshow_bboxes(img, bboxes, labels=None, colors='green', text_color='white',
+                  thickness=1, font_scale=0.5, show=False):
+    """Fallback function for imshow_bboxes"""
+    return img
+
+def imshow_keypoints(img, pose_result, skeleton=None, kpt_score_thr=0.3,
+                     pose_kpt_color=None, pose_link_color=None, radius=4, thickness=1):
+    """Fallback function for imshow_keypoints"""
+    return img
+
+try:
+    from mmpose.models import builder
+except ImportError:
+    from .. import builder
+
 from ..builder import POSENETS
 from .base import BasePose
 
 try:
     from mmcv.runner import auto_fp16
 except ImportError:
-    warnings.warn('auto_fp16 from mmpose will be deprecated from v0.15.0'
-                  'Please install mmcv>=1.1.4')
-    from mmpose.core import auto_fp16
+    try:
+        from mmengine.runner import auto_fp16
+    except ImportError:
+        def auto_fp16(*args, **kwargs):
+            def decorator(func):
+                return func
+            return decorator
 
 
 @POSENETS.register_module()

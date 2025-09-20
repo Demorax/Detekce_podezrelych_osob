@@ -9,7 +9,15 @@ try:
 
     def build_model_from_cfg(cfg, registry, default_args=None):
         """Build model from config."""
-        return registry.build(cfg, default_args=default_args)
+        if isinstance(cfg, dict):
+            cfg_copy = cfg.copy()
+            obj_type = cfg_copy.pop('type')
+            if hasattr(registry, '_module_dict') and obj_type in registry._module_dict:
+                obj_cls = registry._module_dict[obj_type]
+                return obj_cls(**cfg_copy)
+            else:
+                raise KeyError(f'{obj_type} is not in the registry')
+        raise TypeError('cfg must be a dict')
 
 
     # Create registries
@@ -56,7 +64,16 @@ except ImportError:
 
 
         def build_model_from_cfg(cfg, registry, default_args=None):
-            return registry.build(cfg, default_args)
+            """Build model from config."""
+            if isinstance(cfg, dict):
+                cfg_copy = cfg.copy()
+                obj_type = cfg_copy.pop('type')
+                if obj_type in registry._module_dict:
+                    obj_cls = registry._module_dict[obj_type]
+                    return obj_cls(**cfg_copy)
+                else:
+                    raise KeyError(f'{obj_type} is not in the registry')
+            raise TypeError('cfg must be a dict')
 
 
         MODELS = Registry('models', build_func=build_model_from_cfg)

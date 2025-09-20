@@ -7,7 +7,7 @@ evaluation = dict(interval=10, metric='mAP', save_best='AP')
 optimizer = dict(type='AdamW', lr=5e-4, betas=(0.9, 0.999), weight_decay=0.1,
                  constructor='LayerDecayOptimizerConstructor',
                  paramwise_cfg=dict(
-                                    num_layers=16,
+                                    num_layers=32,  # Changed from 16 to 32
                                     layer_decay_rate=0.8,
                                     custom_keys={
                                             'bias': dict(decay_multi=0.),
@@ -47,18 +47,18 @@ model = dict(
         type='ViT',
         img_size=(256, 192),
         patch_size=16,
-        embed_dim=1024,
-        depth=24,
+        embed_dim=1280,  # Changed from 1024 to 1280
+        depth=32,        # Changed from 24 to 32
         num_heads=16,
         ratio=1,
         use_checkpoint=False,
-        mlp_ratio=4,
+        mlp_ratio=3,
         qkv_bias=True,
         drop_path_rate=0.5,
     ),
     keypoint_head=dict(
         type='TopdownHeatmapSimpleHead',
-        in_channels=1024,
+        in_channels=1280,  # Changed from 1024 to 1280
         num_deconv_layers=2,
         num_deconv_filters=(256, 256),
         num_deconv_kernels=(4, 4),

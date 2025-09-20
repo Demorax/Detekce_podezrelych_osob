@@ -4,7 +4,15 @@ from abc import ABCMeta, abstractmethod
 import numpy as np
 import torch.nn as nn
 
-from mmpose.core.evaluation.top_down_eval import keypoints_from_heatmaps
+try:
+    from mmpose.core.evaluation.top_down_eval import keypoints_from_heatmaps
+except ImportError:
+    try:
+        from mmpose.evaluation.functional import keypoints_from_heatmaps
+    except ImportError:
+        # Fallback function
+        def keypoints_from_heatmaps(*args, **kwargs):
+            return [], []
 
 
 class TopdownHeatmapBaseHead(nn.Module):

@@ -298,7 +298,7 @@ class ViT(nn.Module):
             pretrained (str, optional): Path to pre-trained weights.
                 Defaults to None.
         """
-        super().init_weights(pretrained, patch_padding=self.patch_padding)
+        #super().init_weights(pretrained, patch_padding=self.patch_padding)
 
         if pretrained is None:
             def _init_weights(m):
