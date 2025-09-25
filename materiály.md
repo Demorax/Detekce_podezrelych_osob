@@ -19,6 +19,10 @@ zakomentovano
 
 super().init_weights(pretrained, patch_padding=self.patch_padding)
 
+# Super Resolution
+- https://github.com/aswintechguy/Deep-Learning-Projects/tree/main/Super%20Resolution%20-%20OpenCV
+- nebo https://github.com/Saafke/EDSR_Tensorflow/tree/master/models
+
 ## Opencv s cudou
 :: 1) Remove CPU wheels if present
 pip uninstall -y opencv-python opencv-contrib-python opencv-python-headless opencv-contrib-python-headless
