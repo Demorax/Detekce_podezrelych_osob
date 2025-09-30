@@ -1,5 +1,5 @@
-# Migrated ViTPose configuration for MMPose 1.x/3.x
-# Based on your original config but updated to new format
+# ViTPose configuration for MMPose 1.x
+# Fixed version with proper test_dataloader configuration
 
 # Default scope
 default_scope = 'mmpose'
@@ -9,7 +9,7 @@ default_hooks = dict(
     timer=dict(type='IterTimerHook'),
     logger=dict(type='LoggerHook', interval=50),
     param_scheduler=dict(type='ParamSchedulerHook'),
-    checkpoint=dict(type='CheckpointHook', interval=10, save_best='coco/AP', rule='greater'),
+    checkpoint=dict(type='CheckpointHook', interval=10),
     sampler_seed=dict(type='DistSamplerSeedHook'),
     visualization=dict(type='PoseVisualizationHook', enable=False),
 )
@@ -29,12 +29,85 @@ visualizer = dict(
     name='visualizer'
 )
 
-# Data configuration
-dataset_type = 'CocoDataset'  # Use standard CocoDataset for compatibility
+# Dataset configuration
+dataset_type = 'CocoDataset'
 data_mode = 'topdown'
 data_root = 'data/coco/'
 
-# Dataset metainfo for CrowdPose (14 keypoints)
+# Codec configuration - defines how keypoints are encoded/decoded
+codec = dict(
+    type='MSRAHeatmap',
+    input_size=(192, 256),
+    heatmap_size=(48, 64),
+    sigma=2
+)
+
+# Model configuration
+model = dict(
+    type='TopdownPoseEstimator',
+    data_preprocessor=dict(
+        type='PoseDataPreprocessor',
+        mean=[123.675, 116.28, 103.53],
+        std=[58.395, 57.12, 57.375],
+        bgr_to_rgb=True
+    ),
+    backbone=dict(
+        type='ViT',
+        img_size=(256, 192),
+        patch_size=16,
+        embed_dim=1280,
+        depth=32,
+        num_heads=16,
+        ratio=1,
+        use_checkpoint=False,
+        mlp_ratio=4,
+        qkv_bias=True,
+        drop_path_rate=0.3,
+    ),
+    head=dict(
+        type='HeatmapHead',
+        in_channels=1280,
+        out_channels=14,  # CrowdPose has 14 keypoints
+        deconv_out_channels=(256, 256),
+        deconv_kernel_sizes=(4, 4),
+        final_layer=dict(kernel_size=1),
+        loss=dict(type='KeypointMSELoss', use_target_weight=True)
+    ),
+    test_cfg=dict(
+        flip_test=True,
+        flip_mode='heatmap',
+        shift_heatmap=True,
+    )
+)
+
+# Data pipelines
+train_pipeline = [
+    dict(type='LoadImage'),
+    dict(type='GetBBoxCenterScale'),
+    dict(type='RandomFlip', direction='horizontal'),
+    dict(type='RandomHalfBody'),
+    dict(type='RandomBBoxTransform'),
+    dict(type='TopdownAffine', input_size=codec['input_size']),
+    dict(type='GenerateTarget', encoder=codec),
+    dict(type='PackPoseInputs')
+]
+
+val_pipeline = [
+    dict(type='LoadImage'),
+    dict(type='GetBBoxCenterScale'),
+    dict(type='TopdownAffine', input_size=codec['input_size']),
+    dict(type='PackPoseInputs')
+]
+
+# CRITICAL: Test pipeline for inference (this is what was missing!)
+test_pipeline = [
+    dict(type='LoadImage'),
+    dict(type='GetBBoxCenterScale'),
+    dict(type='TopdownAffine', input_size=codec['input_size']),
+    dict(type='PackPoseInputs')
+]
+
+# Dataset info for CrowdPose
 dataset_info = dict(
     dataset_name='crowdpose',
     paper_info=dict(
@@ -84,71 +157,6 @@ dataset_info = dict(
     sigmas=[0.079, 0.079, 0.072, 0.072, 0.062, 0.062, 0.107, 0.107, 0.087, 0.087, 0.089, 0.089, 0.079, 0.079]
 )
 
-# Codec configuration
-codec = dict(
-    type='MSRAHeatmap',
-    input_size=(192, 256),
-    heatmap_size=(48, 64),
-    sigma=2
-)
-
-# Model configuration - Updated to new format
-model = dict(
-    type='TopdownPoseEstimator',
-    data_preprocessor=dict(
-        type='PoseDataPreprocessor',
-        mean=[123.675, 116.28, 103.53],
-        std=[58.395, 57.12, 57.375],
-        bgr_to_rgb=True
-    ),
-    backbone=dict(
-        type='ViT',
-        img_size=(256, 192),
-        patch_size=16,
-        embed_dim=1280,
-        depth=32,
-        num_heads=16,
-        ratio=1,
-        use_checkpoint=False,
-        mlp_ratio=4,
-        qkv_bias=True,
-        drop_path_rate=0.3,
-    ),
-    head=dict(
-        type='HeatmapHead',
-        in_channels=1280,
-        out_channels=14,  # CrowdPose has 14 keypoints
-        deconv_out_channels=(256, 256),
-        deconv_kernel_sizes=(4, 4),
-        final_layer=dict(kernel_size=1),
-        loss=dict(type='KeypointMSELoss', use_target_weight=True)
-    ),
-    test_cfg=dict(
-        flip_test=True,
-        flip_mode='heatmap',
-        shift_heatmap=True,
-    )
-)
-
-# Data pipeline
-train_pipeline = [
-    dict(type='LoadImage'),
-    dict(type='GetBBoxCenterScale'),
-    dict(type='RandomFlip', direction='horizontal'),
-    dict(type='RandomHalfBody'),
-    dict(type='RandomBBoxTransform'),
-    dict(type='TopdownAffine', input_size=codec['input_size']),
-    dict(type='GenerateTarget', encoder=codec),
-    dict(type='PackPoseInputs')
-]
-
-val_pipeline = [
-    dict(type='LoadImage'),
-    dict(type='GetBBoxCenterScale'),
-    dict(type='TopdownAffine', input_size=codec['input_size']),
-    dict(type='PackPoseInputs')
-]
-
 # Data loaders
 train_dataloader = dict(
     batch_size=64,
@@ -184,8 +192,9 @@ val_dataloader = dict(
     )
 )
 
+# CRITICAL: This is what inference_topdown is looking for!
 test_dataloader = dict(
-    batch_size=32,
+    batch_size=1,  # For inference, typically use batch_size=1
     num_workers=2,
     persistent_workers=True,
     drop_last=False,
@@ -194,10 +203,10 @@ test_dataloader = dict(
         type=dataset_type,
         data_root=data_root,
         data_mode=data_mode,
-        ann_file='annotations/person_keypoints_val2017.json',
-        data_prefix=dict(img='val2017/'),
+        ann_file='annotations/person_keypoints_val2017.json',  # Can be dummy for inference
+        data_prefix=dict(img='val2017/'),  # Can be dummy for inference
         test_mode=True,
-        pipeline=val_pipeline,
+        pipeline=test_pipeline,  # Uses the test_pipeline we defined
         metainfo=dataset_info
     )
 )
@@ -209,11 +218,13 @@ val_evaluator = dict(
 )
 test_evaluator = val_evaluator
 
-# Learning rate and optimizer
+# Training config
 train_cfg = dict(max_epochs=210, val_interval=10)
 
+# Optimizer
 optim_wrapper = dict(optimizer=dict(type='Adam', lr=5e-4))
 
+# Learning rate scheduler
 param_scheduler = [
     dict(
         type='LinearLR', begin=0, end=500, start_factor=0.001,
@@ -231,7 +242,7 @@ param_scheduler = [
 # Automatically scale LR based on the actual training batch size
 auto_scale_lr = dict(base_batch_size=512)
 
-# Log config
+# Log processor
 log_processor = dict(
     type='LogProcessor',
     window_size=50,
