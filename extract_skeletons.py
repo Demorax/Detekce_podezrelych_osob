@@ -10,7 +10,7 @@ import mmpose.models
 from mmpose.apis import init_model, inference_topdown
 from mmpose.structures import PoseDataSample
 
-# --- Configuration ---
+# --- Konfigurace ---
 FRAMES_DIR = 'frames_0.5'
 FRAMES_UPSCALED_DIR = 'frames_0.5_upscaled'
 SKELETON_DIR = 'skeletons_yolo_11_new'
@@ -20,19 +20,19 @@ YOLO_MODEL_DETECTION = 'models/yolo/yolo11x.pt'
 SUPER_RESOLUTION_MODEL_PATH = 'models/super_resolution'
 VITPOSE_MODEL_PATH = 'models/vitpose'
 
-# Ensure base output folders exist
+# Zajištění existence výstupních složek
 os.makedirs(FRAMES_UPSCALED_DIR, exist_ok=True)
 os.makedirs(SKELETON_UPSCALED_DIR, exist_ok=True)
 
-# Load YOLOv8 Pose model once
+# Načtení YOLOv11 Pose modelu jednou
 tmp_model = YOLO(MODEL_PATH)
 
-# Models
+# Modely
 _DETECTION_MODEL = None
 _VITPOSE_MODEL = None
 _DATASET_INFO = None
 
-# --- Super-resolution setup ---
+# --- Nastavení super-resolution ---
 _SR_NET = None
 _SR_SCALE = 4
 _SR_PB = os.path.join(SUPER_RESOLUTION_MODEL_PATH, "ESPCN_x4.pb")
@@ -40,13 +40,13 @@ _SR_PB = os.path.join(SUPER_RESOLUTION_MODEL_PATH, "ESPCN_x4.pb")
 
 def init_yolo_vitpose_models():
     """
-    Initialize YOLO detection model and ViTPose model for MMPose 1.3.2
+    Inicializace YOLO detekčního modelu a ViTPose modelu pro MMPose 1.3.2
     """
     global _DETECTION_MODEL, _VITPOSE_MODEL, _DATASET_INFO
 
     if _DETECTION_MODEL is None:
         _DETECTION_MODEL = YOLO(YOLO_MODEL_DETECTION)
-        print("YOLO detection model loaded")
+        print("YOLO detekční model načten")
 
     if _VITPOSE_MODEL is None:
         try:
@@ -54,19 +54,19 @@ def init_yolo_vitpose_models():
             checkpoint_file = os.path.join(VITPOSE_MODEL_PATH, 'vitpose_huge.pth')
 
             if not os.path.exists(checkpoint_file):
-                print(f"ViTPose checkpoint not found: {checkpoint_file}")
+                print(f"ViTPose checkpoint nenalezen: {checkpoint_file}")
                 return
 
             if not os.path.exists(config_file):
-                print(f"Config file not found: {config_file}")
+                print(f"Konfigurační soubor nenalezen: {config_file}")
                 return
 
-            # For MMPose 1.3.2 - use the new MMPoseInferencer API
+            # Pro MMPose 1.3.2 - použití nového MMPoseInferencer API
             from mmpose.apis import MMPoseInferencer
 
             device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
-            # Initialize with config and checkpoint
+            # Inicializace s konfigurací a checkpointem
             _VITPOSE_MODEL = MMPoseInferencer(
                 pose2d=config_file,
                 pose2d_weights=checkpoint_file,
@@ -74,26 +74,26 @@ def init_yolo_vitpose_models():
                 scope='mmpose'
             )
 
-            print("ViTPose model loaded successfully with MMPose 1.3.2 API")
-            _DATASET_INFO = None  # Not needed with new API
+            print("ViTPose model úspěšně načten s MMPose 1.3.2 API")
+            _DATASET_INFO = None  # Není potřeba s novým API
 
         except Exception as e:
-            print(f"Failed to load ViTPose: {e}")
-            print("Trying alternative approach...")
+            print(f"Nepodařilo se načíst ViTPose: {e}")
+            print("Zkouším alternativní přístup...")
 
-            # Alternative: Use pre-built ViTPose model name
+            # Alternativa: Použití vestavěného názvu ViTPose modelu
             try:
                 from mmpose.apis import MMPoseInferencer
 
-                # Try using a pre-defined model name instead
+                # Zkusíme použít předefinovaný název modelu
                 _VITPOSE_MODEL = MMPoseInferencer(
-                    pose2d='human',  # Use default human pose model
+                    pose2d='human',  # Použití výchozího modelu pro lidskou pózu
                     device='cuda' if torch.cuda.is_available() else 'cpu'
                 )
-                print("ViTPose loaded with default human pose model")
+                print("ViTPose načten s výchozím modelem pro lidskou pózu")
 
             except Exception as e2:
-                print(f"Alternative approach also failed: {e2}")
+                print(f"Alternativní přístup také selhal: {e2}")
                 _VITPOSE_MODEL = None
 
     return _DETECTION_MODEL, _VITPOSE_MODEL
@@ -101,7 +101,7 @@ def init_yolo_vitpose_models():
 
 def init_super_resolution():
     """
-    Initialize super-resolution model with proper error handling
+    Inicializace super-resolution modelu s ošetřením chyb
     """
     global _SR_NET
 
@@ -109,33 +109,33 @@ def init_super_resolution():
         return _SR_NET
 
     try:
-        # Check if dnn_superres is available
+        # Kontrola dostupnosti dnn_superres
         if hasattr(cv2, 'dnn_superres'):
             sr = cv2.dnn_superres.DnnSuperResImpl_create()
         else:
-            print("dnn_superres not available in your OpenCV build")
+            print("dnn_superres není dostupné ve vaší verzi OpenCV")
             return None
 
-        # Load model
+        # Načtení modelu
         sr.readModel(_SR_PB)
         sr.setModel('espcn', _SR_SCALE)
 
-        # Set backend (CPU for compatibility)
+        # Nastavení backendu (CPU pro kompatibilitu)
         sr.setPreferableBackend(cv2.dnn.DNN_BACKEND_OPENCV)
         sr.setPreferableTarget(cv2.dnn.DNN_TARGET_CPU)
 
-        print("Super-resolution model initialized successfully (CPU backend)")
+        print("Super-resolution model úspěšně inicializován (CPU backend)")
         _SR_NET = sr
         return sr
 
     except Exception as e:
-        print(f"Failed to initialize super-resolution: {e}")
+        print(f"Nepodařilo se inicializovat super-resolution: {e}")
         return None
 
 
 def apply_super_resolution(img, max_size=1500):
     """
-    Apply super-resolution to image with size limits for performance
+    Aplikace super-resolution na obrázek s omezením velikosti kvůli výkonu
     """
     sr = init_super_resolution()
     if sr is None:
@@ -144,45 +144,45 @@ def apply_super_resolution(img, max_size=1500):
     try:
         h, w = img.shape[:2]
 
-        # Don't super-resolve very large images (too slow)
+        # Nezvětšovat velmi velké obrázky (příliš pomalé)
         if h > max_size or w > max_size:
             scale = min(max_size / h, max_size / w)
             new_h, new_w = int(h * scale), int(w * scale)
             img_resized = cv2.resize(img, (new_w, new_h))
 
-            # Apply super-resolution to smaller image
+            # Aplikace super-resolution na menší obrázek
             sr_result = sr.upsample(img_resized)
 
-            # Resize back to original size
+            # Změna zpět na původní velikost
             final_result = cv2.resize(sr_result, (w, h))
             return final_result
         else:
-            # Apply super-resolution directly
+            # Přímá aplikace super-resolution
             return sr.upsample(img)
 
     except Exception as e:
-        print(f"Super-resolution failed: {e}")
+        print(f"Super-resolution selhalo: {e}")
         return img
 
 
 def create_upscaled_frames(input_folder, output_folder):
     """
-    Create upscaled versions of all frames in a folder
+    Vytvoření zvětšených verzí všech snímků ve složce
     """
     os.makedirs(output_folder, exist_ok=True)
 
     files = sorted([f for f in os.listdir(input_folder) if f.endswith('.jpg')])
 
-    print(f"Creating upscaled frames for {os.path.basename(input_folder)}...")
+    print(f"Vytváření zvětšených snímků pro {os.path.basename(input_folder)}...")
 
-    # Initialize super-resolution once
+    # Inicializace super-resolution jednou
     init_super_resolution()
 
-    for fname in tqdm(files, desc=f"Upscaling {os.path.basename(input_folder)}"):
+    for fname in tqdm(files, desc=f"Zvětšování {os.path.basename(input_folder)}"):
         input_path = os.path.join(input_folder, fname)
         output_path = os.path.join(output_folder, fname)
 
-        # Skip if already exists
+        # Přeskočení, pokud již existuje
         if os.path.exists(output_path):
             continue
 
@@ -190,28 +190,29 @@ def create_upscaled_frames(input_folder, output_folder):
         if img is None:
             continue
 
-        # Apply super-resolution or high-quality upscaling
+        # Aplikace super-resolution nebo vysoce kvalitního zvětšení
         upscaled_img = apply_super_resolution(img)
 
-        # Save upscaled image
+        # Uložení zvětšeného obrázku
         cv2.imwrite(output_path, upscaled_img)
 
-    print(f"Completed upscaling for {os.path.basename(input_folder)}")
+    print(f"Zvětšování dokončeno pro {os.path.basename(input_folder)}")
 
 
 def enhanced_detection_pipeline(img, model):
     """
-    Enhanced detection pipeline optimized for upscaled images
+    Vylepšená detekční pipeline optimalizovaná pro zvětšené obrázky
+    Používá TOP-DOWN přístup: nejdřív detekce osob, pak extrakce skeletonu
     """
     all_kps = []
 
-    # For upscaled images, we can use more aggressive settings
+    # Pro zvětšené obrázky můžeme použít agresivnější nastavení
     enhanced_imgs = []
 
-    # 1. Original upscaled image
+    # 1. Původní zvětšený obrázek
     enhanced_imgs.append(img)
 
-    # 2. CLAHE enhancement on upscaled image
+    # 2. CLAHE vylepšení na zvětšeném obrázku
     lab = cv2.cvtColor(img, cv2.COLOR_BGR2LAB)
     l, a, b = cv2.split(lab)
     clahe = cv2.createCLAHE(clipLimit=2.5, tileGridSize=(8, 8))
@@ -220,36 +221,36 @@ def enhanced_detection_pipeline(img, model):
     enhanced1 = cv2.cvtColor(enhanced1, cv2.COLOR_LAB2BGR)
     enhanced_imgs.append(enhanced1)
 
-    # 3. Histogram equalization
+    # 3. Histogramová ekvalizace
     yuv = cv2.cvtColor(img, cv2.COLOR_BGR2YUV)
     yuv[:, :, 0] = cv2.equalizeHist(yuv[:, :, 0])
     enhanced2 = cv2.cvtColor(yuv, cv2.COLOR_YUV2BGR)
     enhanced_imgs.append(enhanced2)
 
-    # 4. Gamma correction
+    # 4. Gamma korekce
     gamma = 0.8
     enhanced3 = np.power(img / 255.0, gamma) * 255.0
     enhanced3 = enhanced3.astype(np.uint8)
     enhanced_imgs.append(enhanced3)
 
-    # Higher confidence configs for upscaled images (better quality detections)
+    # Vyšší konfidence pro zvětšené obrázky (lepší kvalita detekcí)
     configs = [
-        {'conf': 0.25, 'imgsz': 1280, 'iou': 0.45},  # High confidence, good balance
-        {'conf': 0.20, 'imgsz': 1024, 'iou': 0.4},   # Medium-high confidence
-        {'conf': 0.30, 'imgsz': 1536, 'iou': 0.5},   # High confidence, high res
-        {'conf': 0.35, 'imgsz': 1792, 'iou': 0.55},  # Very high confidence, very high res
-        {'conf': 0.15, 'imgsz': 2048, 'iou': 0.35},  # Moderate confidence, max res (catch distant people)
+        {'conf': 0.25, 'imgsz': 1280, 'iou': 0.45},  # Vysoká konfidence, dobrá vyváženost
+        {'conf': 0.20, 'imgsz': 1024, 'iou': 0.4},   # Středně vysoká konfidence
+        {'conf': 0.30, 'imgsz': 1536, 'iou': 0.5},   # Vysoká konfidence, vysoké rozlišení
+        {'conf': 0.35, 'imgsz': 1792, 'iou': 0.55},  # Velmi vysoká konfidence, velmi vysoké rozlišení
+        {'conf': 0.15, 'imgsz': 2048, 'iou': 0.35},  # Střední konfidence, max rozlišení (zachycení vzdálených osob)
     ]
 
-    # Process each enhanced image
+    # Zpracování každého vylepšeného obrázku
     for img_idx, enhanced_img in enumerate(enhanced_imgs):
-        if img_idx == 0:  # Original upscaled
-            config_indices = [0, 2]  # High confidence, good coverage
+        if img_idx == 0:  # Původní zvětšený
+            config_indices = [0, 2]  # Vysoká konfidence, dobré pokrytí
         elif img_idx == 1:  # CLAHE
-            config_indices = [1, 3]  # Medium-high and very high confidence
-        elif img_idx == 2:  # Histogram equalized
-            config_indices = [0, 4]  # High confidence + distant people coverage
-        else:  # Gamma corrected
+            config_indices = [1, 3]  # Středně vysoká a velmi vysoká konfidence
+        elif img_idx == 2:  # Histogramově ekvalizovaný
+            config_indices = [0, 4]  # Vysoká konfidence + pokrytí vzdálených osob
+        else:  # Gamma korigovaný
             config_indices = [1]
 
         for config_idx in config_indices:
@@ -260,7 +261,7 @@ def enhanced_detection_pipeline(img, model):
                     kps = data.cpu().numpy()[:, :, :2]
                     all_kps.append(kps)
             except Exception as e:
-                print(f"Detection failed for enhancement {img_idx}, config {config_idx}: {e}")
+                print(f"Detekce selhala pro vylepšení {img_idx}, config {config_idx}: {e}")
                 continue
 
     if not all_kps:
@@ -268,18 +269,18 @@ def enhanced_detection_pipeline(img, model):
 
     combined = np.vstack(all_kps)
 
-    # Enhanced duplicate removal for crowds
-    return remove_duplicate_skeletons_advanced(combined, threshold=12)  # Even tighter for crowds
+    # Vylepšené odstranění duplikátů pro davy
+    return remove_duplicate_skeletons_advanced(combined, threshold=12)  # Ještě přísnější pro davy
 
 
 def remove_duplicate_skeletons_advanced(keypoints, threshold=15):
     """
-    Enhanced duplicate removal with skeleton similarity check - optimized for crowds
+    Vylepšené odstranění duplikátů s kontrolou podobnosti skeletonu - optimalizováno pro davy
     """
     if len(keypoints) <= 1:
         return keypoints
 
-    # Calculate centroids and features
+    # Výpočet centroidů a příznaků
     centroids = []
     valid_idx = []
     skeleton_features = []
@@ -291,24 +292,24 @@ def remove_duplicate_skeletons_advanced(keypoints, threshold=15):
                 centroids.append(c)
                 valid_idx.append(i)
 
-                # Calculate skeleton features for similarity check
+                # Výpočet příznaků skeletu pro kontrolu podobnosti
                 features = []
 
-                # Shoulder width
+                # Šířka ramen
                 if not np.isnan(sk[5:7]).any():
                     shoulder_width = np.linalg.norm(sk[5] - sk[6])
                 else:
                     shoulder_width = 0
                 features.append(shoulder_width)
 
-                # Hip width
+                # Šířka boků
                 if not np.isnan(sk[11:13]).any():
                     hip_width = np.linalg.norm(sk[11] - sk[12])
                 else:
                     hip_width = 0
                 features.append(hip_width)
 
-                # Torso height (shoulders to hips)
+                # Výška trupu (ramena k bokům)
                 if not (np.isnan(sk[5:7]).any() or np.isnan(sk[11:13]).any()):
                     shoulder_center = np.mean(sk[5:7], axis=0)
                     hip_center = np.mean(sk[11:13], axis=0)
@@ -333,14 +334,14 @@ def remove_duplicate_skeletons_advanced(keypoints, threshold=15):
             if unique_mask[j]:
                 centroid_dist = np.linalg.norm(centroids[i] - centroids[j])
 
-                # Check skeleton similarity
+                # Kontrola podobnosti skeletu
                 if skeleton_features[i].sum() > 0 and skeleton_features[j].sum() > 0:
                     feature_dist = np.linalg.norm(skeleton_features[i] - skeleton_features[j])
                     feature_similarity = feature_dist / max(np.linalg.norm(skeleton_features[i]), 1)
                 else:
                     feature_similarity = 0
 
-                # Remove duplicate if close centroid AND similar skeleton
+                # Odstranění duplikátu pokud blízký centroid A podobný skeleton
                 if centroid_dist < threshold and (centroid_dist < threshold * 0.7 or feature_similarity < 0.25):
                     unique_mask[j] = False
 
@@ -350,7 +351,7 @@ def remove_duplicate_skeletons_advanced(keypoints, threshold=15):
 
 def process_upscaled_folder(frames_dir, skeleton_dir, model):
     """
-    Process upscaled frames for skeleton detection
+    Zpracování zvětšených snímků pro detekci skeletonu
     """
     os.makedirs(skeleton_dir, exist_ok=True)
     files = sorted(f for f in os.listdir(frames_dir) if f.endswith('.jpg'))
@@ -359,13 +360,13 @@ def process_upscaled_folder(frames_dir, skeleton_dir, model):
     detected_frames = 0
     total_people = 0
 
-    for fname in tqdm(files, desc=f"Detecting skeletons in {os.path.basename(frames_dir)}"):
+    for fname in tqdm(files, desc=f"Detekce skeletů v {os.path.basename(frames_dir)}"):
         path = os.path.join(frames_dir, fname)
         img = cv2.imread(path)
         if img is None:
             continue
 
-        # Use enhanced detection pipeline for upscaled images
+        # Použití vylepšené detekční pipeline pro zvětšené obrázky
         kps = enhanced_detection_pipeline(img, model)
 
         if not np.isnan(kps).all():
@@ -378,120 +379,120 @@ def process_upscaled_folder(frames_dir, skeleton_dir, model):
     rate = 100 * detected_frames / total_frames if total_frames else 0
     avg_people = total_people / total_frames if total_frames else 0
     print(
-        f"{os.path.basename(frames_dir)}: {detected_frames}/{total_frames} detected ({rate:.1f}%), avg people/frame {avg_people:.1f}")
+        f"{os.path.basename(frames_dir)}: {detected_frames}/{total_frames} detekováno ({rate:.1f}%), průměr osob/snímek {avg_people:.1f}")
     return total_frames, detected_frames
 
 
 def process_video_with_upscaling(video_name):
     """
-    Complete pipeline: create upscaled frames -> detect skeletons
+    Kompletní pipeline: vytvoření zvětšených snímků -> detekce skeletů
     """
-    print(f"\n=== Processing {video_name} with upscaling ===")
+    print(f"\n=== Zpracování {video_name} se zvětšením ===")
 
-    # Paths
+    # Cesty
     input_frames = os.path.join(FRAMES_DIR, video_name)
     upscaled_frames = os.path.join(FRAMES_UPSCALED_DIR, video_name)
     upscaled_skeletons = os.path.join(SKELETON_UPSCALED_DIR, video_name)
 
     if not os.path.exists(input_frames):
-        print(f"Input folder not found: {input_frames}")
+        print(f"Vstupní složka nenalezena: {input_frames}")
         return
 
-    # Step 1: Create upscaled frames
-    print("Step 1: Creating upscaled frames...")
+    # Krok 1: Vytvoření zvětšených snímků
+    print("Krok 1: Vytváření zvětšených snímků...")
     start_time = time.time()
     create_upscaled_frames(input_frames, upscaled_frames)
     upscale_time = time.time() - start_time
-    print(f"Upscaling completed in {upscale_time:.2f} seconds")
+    print(f"Zvětšování dokončeno za {upscale_time:.2f} sekund")
 
-    # Step 2: Detect skeletons in upscaled frames
-    print("Step 2: Detecting skeletons in upscaled frames...")
+    # Krok 2: Detekce skeletů ve zvětšených snímcích
+    print("Krok 2: Detekce skeletů ve zvětšených snímcích...")
     start_time = time.time()
     total, detected = process_upscaled_folder(upscaled_frames, upscaled_skeletons, tmp_model)
     detection_time = time.time() - start_time
-    print(f"Skeleton detection completed in {detection_time:.2f} seconds")
+    print(f"Detekce skeletů dokončena za {detection_time:.2f} sekund")
 
-    print(f"Total processing time: {upscale_time + detection_time:.2f} seconds")
-    print(f"Results saved to: {upscaled_skeletons}")
+    print(f"Celkový čas zpracování: {upscale_time + detection_time:.2f} sekund")
+    print(f"Výsledky uloženy do: {upscaled_skeletons}")
 
 
 def process_single_image_skeleton_detection(img_path, model, save_skeleton=True, save_visualization=True):
     """
-    Process a single image for skeleton detection
+    Zpracování jednoho obrázku pro detekci skeletonu
 
     Args:
-        img_path: Path to the image file
+        img_path: Cesta k souboru obrázku
         model: YOLO pose model
-        save_skeleton: Whether to save skeleton data as .npy
-        save_visualization: Whether to save visualization image
+        save_skeleton: Zda uložit data skeletu jako .npy
+        save_visualization: Zda uložit vizualizaci obrázku
 
     Returns:
-        keypoints: Detected keypoints array
+        keypoints: Pole detekovaných klíčových bodů
     """
-    print(f"\n=== Processing single image: {img_path} ===")
+    print(f"\n=== Zpracování jednoho obrázku: {img_path} ===")
 
     if not os.path.exists(img_path):
-        print(f"Error: Image not found at {img_path}")
+        print(f"Chyba: Obrázek nenalezen na {img_path}")
         return None
 
-    # Load image
+    # Načtení obrázku
     img = cv2.imread(img_path)
     if img is None:
-        print(f"Error: Could not load image from {img_path}")
+        print(f"Chyba: Nepodařilo se načíst obrázek z {img_path}")
         return None
 
-    print(f"Image loaded: {img.shape}")
+    print(f"Obrázek načten: {img.shape}")
 
-    # Step 1: Detect skeletons
+    # Krok 1: Detekce skeletů
     start_time = time.time()
     keypoints = enhanced_detection_pipeline(img, model)
     detection_time = time.time() - start_time
 
     num_people = len(keypoints) if not np.isnan(keypoints).all() else 0
-    print(f"Detection completed in {detection_time:.2f} seconds")
-    print(f"Found {num_people} people")
+    print(f"Detekce dokončena za {detection_time:.2f} sekund")
+    print(f"Nalezeno {num_people} osob")
 
-    # Step 2: Save results
+    # Krok 2: Uložení výsledků
     base_name = os.path.splitext(os.path.basename(img_path))[0]
 
     if save_skeleton:
-        # Save skeleton data
+        # Uložení dat skeletu
         skeleton_output_dir = os.path.join(SKELETON_UPSCALED_DIR, 'single_tests')
         os.makedirs(skeleton_output_dir, exist_ok=True)
         skeleton_file = os.path.join(skeleton_output_dir, f"{base_name}_skeletons.npy")
         np.save(skeleton_file, keypoints)
-        print(f"Skeleton data saved to: {skeleton_file}")
+        print(f"Data skeletu uložena do: {skeleton_file}")
 
     if save_visualization:
-        # Create and save visualization
+        # Vytvoření a uložení vizualizace
         vis_img = visualize_skeletons_on_image(img, keypoints)
         vis_output_dir = os.path.join(SKELETON_UPSCALED_DIR, 'visualizations')
         os.makedirs(vis_output_dir, exist_ok=True)
         vis_file = os.path.join(vis_output_dir, f"{base_name}_visualization.jpg")
         cv2.imwrite(vis_file, vis_img)
-        print(f"Visualization saved to: {vis_file}")
+        print(f"Vizualizace uložena do: {vis_file}")
 
     return keypoints
 
 
 def visualize_skeletons_on_image(img, keypoints):
     """
-    Draw skeletons on image for visualization
+    Vykreslení skeletů na obrázek pro vizualizaci
     """
     if np.isnan(keypoints).all():
         return img
 
     img_vis = img.copy()
 
-    # COCO skeleton connections
+    # COCO skeleton spojení
     connections = [
-        (0, 1), (0, 2), (1, 3), (2, 4),  # Head
-        (5, 6), (5, 7), (7, 9), (6, 8), (8, 10),  # Arms
-        (5, 11), (6, 12), (11, 13), (13, 15), (12, 14), (14, 16),  # Legs
-        (11, 12)  # Hip
+        (0, 1), (0, 2), (1, 3), (2, 4),  # Hlava
+        (5, 6), (5, 7), (7, 9), (6, 8), (8, 10),  # Paže
+        (5, 11), (6, 12), (11, 13), (13, 15), (12, 14), (14, 16),  # Nohy
+        (11, 12)  # Boky
     ]
 
-    # Colors for different people
+    # Barvy pro různé osoby
     colors = [
         (255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 255, 0),
         (255, 0, 255), (0, 255, 255), (128, 255, 0), (255, 128, 0),
@@ -504,7 +505,7 @@ def visualize_skeletons_on_image(img, keypoints):
 
         color = colors[person_idx % len(colors)]
 
-        # Draw connections
+        # Vykreslení spojení
         for connection in connections:
             pt1_idx, pt2_idx = connection
             if pt1_idx < len(skeleton) and pt2_idx < len(skeleton):
@@ -517,24 +518,24 @@ def visualize_skeletons_on_image(img, keypoints):
                              (int(pt2[0]), int(pt2[1])),
                              color, 3)
 
-        # Draw joints
+        # Vykreslení kloubů
         for joint_idx, joint in enumerate(skeleton):
             if not np.isnan(joint).any():
                 cv2.circle(img_vis, (int(joint[0]), int(joint[1])), 6, color, -1)
                 cv2.circle(img_vis, (int(joint[0]), int(joint[1])), 7, (255, 255, 255), 2)
 
-        # Add person label
+        # Přidání popisku osoby
         centroid = np.nanmean(skeleton, axis=0)
         if not np.isnan(centroid).any():
-            label = f'Person {person_idx}'
+            label = f'Osoba {person_idx}'
             font = cv2.FONT_HERSHEY_SIMPLEX
             font_scale = 0.8
             thickness = 2
 
-            # Get text size for background
+            # Získání velikosti textu pro pozadí
             (text_width, text_height), baseline = cv2.getTextSize(label, font, font_scale, thickness)
 
-            # Draw background rectangle
+            # Vykreslení obdélníku pozadí
             cv2.rectangle(img_vis,
                           (int(centroid[0]) - text_width // 2 - 5,
                            int(centroid[1]) - 60),
@@ -542,14 +543,14 @@ def visualize_skeletons_on_image(img, keypoints):
                            int(centroid[1]) - 35),
                           color, -1)
 
-            # Draw text
+            # Vykreslení textu
             cv2.putText(img_vis, label,
                         (int(centroid[0]) - text_width // 2,
                          int(centroid[1]) - 40),
                         font, font_scale, (255, 255, 255), thickness)
 
-    # Add title
-    title = f"Skeleton Detection - {len(keypoints)} person(s) detected"
+    # Přidání nadpisu
+    title = f"Detekce skeletů - detekováno {len(keypoints)} osob"
     cv2.putText(img_vis, title, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (255, 255, 255), 2)
     cv2.putText(img_vis, title, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 0, 0), 3)
 
@@ -558,22 +559,22 @@ def visualize_skeletons_on_image(img, keypoints):
 
 def test_single_upscaled_image(img_name):
     """
-    Test skeleton detection on a single upscaled image
+    Test detekce skeletu na jednom zvětšeném obrázku
 
     Args:
-        img_name: Relative path from FRAMES_UPSCALED_DIR (e.g., '001/001_0076.jpg')
+        img_name: Relativní cesta od FRAMES_UPSCALED_DIR (např. '001/001_0076.jpg')
     """
-    print(f"\n=== Testing single upscaled image: {img_name} ===")
+    print(f"\n=== Testování jednoho zvětšeného obrázku: {img_name} ===")
 
-    # Full path to upscaled image
+    # Plná cesta ke zvětšenému obrázku
     img_path = os.path.join(FRAMES_UPSCALED_DIR, img_name)
 
     if not os.path.exists(img_path):
-        print(f"Error: Upscaled image not found at {img_path}")
-        print(f"Make sure you've run the upscaling step first or check the path")
+        print(f"Chyba: Zvětšený obrázek nenalezen na {img_path}")
+        print(f"Ujistěte se, že jste nejdřív spustili krok zvětšování nebo zkontrolujte cestu")
         return None
 
-    # Process the image
+    # Zpracování obrázku
     keypoints = process_single_image_skeleton_detection(
         img_path,
         tmp_model,
@@ -582,24 +583,23 @@ def test_single_upscaled_image(img_name):
     )
 
     if keypoints is not None:
-        print(f"\nResults summary:")
-        print(f"- Number of people detected: {len(keypoints)}")
-        print(f"- Keypoints shape: {keypoints.shape}")
-        print(f"- Valid detections: {np.sum(~np.isnan(keypoints).all(axis=(1, 2)))}")
+        print(f"\nShrnutí výsledků:")
+        print(f"- Počet detekovaných osob: {len(keypoints)}")
+        print(f"- Tvar klíčových bodů: {keypoints.shape}")
+        print(f"- Validní detekce: {np.sum(~np.isnan(keypoints).all(axis=(1, 2)))}")
 
     return keypoints
 
 
-# Replace your main section with this:
+# Hlavní sekce
 if __name__ == '__main__':
 
-    # Process video 001 with upscaling pipeline
-    #process_video_with_upscaling('001')
+    # Zpracování videa 001 s pipeline pro zvětšení
+    process_video_with_upscaling('001')
 
-    # Test single upscaled image
+    # Test jednoho zvětšeného obrázku
     img_to_process = '001/001_0076.jpg'
 
-    # Option 1: Test just the upscaled image
+    # Možnost 1: Test pouze zvětšeného obrázku
     #test_single_upscaled_image(img_to_process)
     #init_yolo_vitpose_models()
-
