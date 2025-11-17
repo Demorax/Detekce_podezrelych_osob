@@ -342,7 +342,7 @@ class ViT(nn.Module):
 
     def forward(self, x):
         x = self.forward_features(x)
-        return x
+        return (x,)  # Return tuple for MMPose compatibility
 
     def train(self, mode=True):
         """Convert the model into training mode."""

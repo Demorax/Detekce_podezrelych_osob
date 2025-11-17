@@ -71,7 +71,18 @@ model = dict(
         deconv_out_channels=(256, 256),
         deconv_kernel_sizes=(4, 4),
         final_layer=dict(kernel_size=1),
-        loss=dict(type='KeypointMSELoss', use_target_weight=True)
+        loss=dict(type='KeypointMSELoss', use_target_weight=True),
+        decoder=dict(
+            type='MSRAHeatmap',
+            input_size=(
+                256,
+                256,
+            ),
+            heatmap_size=(
+                64,
+                64,
+            ),
+            sigma=2),
     ),
     test_cfg=dict(
         flip_test=True,
