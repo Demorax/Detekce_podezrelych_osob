@@ -27,9 +27,12 @@ class RTDETRDetector:
         Inicializace RT-DETR modelu
 
         Args:
-            config_path: Cesta ke konfiguracnimu souboru
-            checkpoint_path: Cesta k modelu (checkpoint)
+            config_path: Cesta ke konfiguracnimu souboru (.yml)
+            checkpoint_path: Cesta k modelu (checkpoint .pth soubor)
             device: 'cuda' nebo 'cpu'
+
+        Returns:
+            None
         """
         self.device = device
 
@@ -128,6 +131,9 @@ class YOLODetector:
         Args:
             model_path: Cesta k YOLO modelu (.pt soubor)
             device: 'cuda' nebo 'cpu'
+
+        Returns:
+            None
         """
         from ultralytics import YOLO
 
@@ -135,7 +141,7 @@ class YOLODetector:
         self.model = YOLO(model_path)
         print(f"YOLO model nacten uspesne: {model_path}")
 
-    def detect(self, image_path, conf_threshold=0.6, person_class_id=0):
+    def detect(self, image_path, conf_threshold=0.6, person_class_id=0, imgsz=640):
         """
         Detekce osob na obrazku
 
@@ -143,6 +149,7 @@ class YOLODetector:
             image_path: Cesta k obrazku (nebo numpy array)
             conf_threshold: Prah spolehlivosti detekce
             person_class_id: COCO ID pro tridu 'osoba' (0)
+            imgsz: Velikost obrazku pro inferenci (default: 640)
 
         Returns:
             boxes: numpy array tvaru (N, 5) s [x1, y1, x2, y2, conf]
@@ -153,8 +160,8 @@ class YOLODetector:
         else:
             img = image_path
 
-        # Spusteni detekce
-        results = self.model(img, conf=conf_threshold, verbose=False)
+        # Spusteni detekce s explicitni velikosti obrazku
+        results = self.model(img, conf=conf_threshold, imgsz=imgsz, verbose=False)
 
         # Filtrovani pouze trid 'osoba'
         if results[0].boxes is not None:
@@ -249,11 +256,17 @@ def match_detections(boxes1, boxes2, iou_threshold=0.5):
     """
     Parovani detekci mezi dvema sadami boxu pomoci IoU
 
+    Args:
+        boxes1: numpy array tvaru (N, 5) - prvni sada boxu [x1, y1, x2, y2, conf]
+        boxes2: numpy array tvaru (M, 5) - druha sada boxu [x1, y1, x2, y2, conf]
+        iou_threshold: minimalni IoU pro sparovani (0-1)
+
     Returns:
-        matched: pocet sparovanych detekci
-        only_in_1: pocet detekci pouze v prvni sade
-        only_in_2: pocet detekci pouze v druhe sade
-        avg_iou: prumerne IoU sparovanych detekci
+        tuple: (matched, only_in_1, only_in_2, avg_iou)
+            - matched: pocet sparovanych detekci
+            - only_in_1: pocet detekci pouze v prvni sade
+            - only_in_2: pocet detekci pouze v druhe sade
+            - avg_iou: prumerne IoU sparovanych detekci
     """
     if len(boxes1) == 0 or len(boxes2) == 0:
         return 0, len(boxes1), len(boxes2), 0
@@ -288,7 +301,18 @@ def match_detections(boxes1, boxes2, iou_threshold=0.5):
 
 
 def visualize_detections(image_path, boxes, title="Detection", save_path=None):
-    """Vizualizace vysledku detekce"""
+    """
+    Vizualizace vysledku detekce
+
+    Args:
+        image_path: Cesta k obrazku
+        boxes: numpy array tvaru (N, 5) s [x1, y1, x2, y2, conf]
+        title: Nadpis grafu
+        save_path: Cesta pro ulozeni obrazku (None = neulozi se)
+
+    Returns:
+        None
+    """
     img = cv2.imread(image_path)
     img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
@@ -321,7 +345,16 @@ def visualize_detections(image_path, boxes, title="Detection", save_path=None):
 
 
 def print_statistics(name, stats):
-    """Vytiskne statistiky detekci"""
+    """
+    Vytiskne statistiky detekci
+
+    Args:
+        name: Nazev modelu (pro tisk)
+        stats: Slovnik se statistikami z calculate_statistics()
+
+    Returns:
+        None
+    """
     print(f"\n{name} Statistiky:")
     print(f"  Pocet detekci: {stats['count']}")
     if stats['count'] > 0:
@@ -335,7 +368,15 @@ def print_statistics(name, stats):
 
 
 def test_rtdetr():
-    """Test RT-DETR na testovacim obrazku"""
+    """
+    Test RT-DETR na testovacim obrazku
+
+    Args:
+        None
+
+    Returns:
+        boxes: numpy array s detekcemi tvaru (N, 5)
+    """
 
     # Cesty k souborum
     config_path = 'models/rtdetr/configs/rtdetrv2/rtdetrv2_r18vd_120e_coco.yml'
@@ -388,15 +429,18 @@ def plot_comparison_graphs(rtdetr_boxes, yolo_boxes, rtdetr_time, yolo_time,
     Vytvori grafy porovnavajici RT-DETR a YOLO
 
     Args:
-        rtdetr_boxes: RT-DETR detekce
-        yolo_boxes: YOLO detekce
-        rtdetr_time: Cas RT-DETR inference
-        yolo_time: Cas YOLO inference
-        rtdetr_stats: Statistiky RT-DETR
-        yolo_stats: Statistiky YOLO
+        rtdetr_boxes: RT-DETR detekce - numpy array tvaru (N, 5)
+        yolo_boxes: YOLO detekce - numpy array tvaru (M, 5)
+        rtdetr_time: Cas RT-DETR inference (sekundy)
+        yolo_time: Cas YOLO inference (sekundy)
+        rtdetr_stats: Statistiky RT-DETR (slovnik)
+        yolo_stats: Statistiky YOLO (slovnik)
         matched: Pocet sparovanych detekci
         only_rtdetr: Pocet detekci pouze v RT-DETR
         only_yolo: Pocet detekci pouze v YOLO
+
+    Returns:
+        None (ulozi grafy do souboru)
     """
     # Vytvoreni figure s vice subploty
     fig = plt.figure(figsize=(20, 12))
@@ -516,9 +560,17 @@ def plot_comparison_graphs(rtdetr_boxes, yolo_boxes, rtdetr_time, yolo_time,
 
 
 def compare_with_yolo():
-    """Porovnani RT-DETR s YOLO na stejnem obrazku"""
+    """
+    Porovnani RT-DETR s YOLO na stejnem obrazku
 
-    confidence_threshold = 0.5
+    Args:
+        None
+
+    Returns:
+        None (vytvori a ulozi vizualizace + grafy)
+    """
+
+    confidence_threshold = 0.3
     test_image = 'frames_0.5_upscaled/002/001_0076.jpg'
 
     if not os.path.exists(test_image):

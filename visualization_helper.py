@@ -24,9 +24,38 @@ def visualize_detections(img, boxes, skeletons=None, title="Detection Results", 
     ax.set_title(title, fontsize=16, weight='bold')
     ax.axis('off')
 
-    # Colors for different people
+    # Colors for different people - using more distinct colors
     num_detections = len(boxes) if boxes is not None else 0
-    colors = plt.cm.rainbow(np.linspace(0, 1, max(num_detections, 1)))
+
+    # Define a palette of distinct colors for better visualization
+    distinct_colors = [
+        (1.0, 0.0, 0.0),      # Red
+        (0.0, 0.5, 1.0),      # Blue
+        (0.0, 1.0, 0.0),      # Green
+        (1.0, 0.5, 0.0),      # Orange
+        (0.5, 0.0, 1.0),      # Purple
+        (1.0, 1.0, 0.0),      # Yellow
+        (0.0, 1.0, 1.0),      # Cyan
+        (1.0, 0.0, 1.0),      # Magenta
+        (0.5, 1.0, 0.0),      # Lime
+        (1.0, 0.0, 0.5),      # Pink
+        (0.0, 1.0, 0.5),      # Spring Green
+        (0.5, 0.5, 1.0),      # Light Blue
+        (1.0, 0.5, 0.5),      # Light Red
+        (0.5, 1.0, 0.5),      # Light Green
+        (1.0, 1.0, 0.5),      # Light Yellow
+        (0.5, 0.5, 0.5),      # Gray
+        (0.75, 0.25, 0.0),    # Brown
+        (0.0, 0.5, 0.5),      # Teal
+        (0.5, 0.0, 0.5),      # Dark Purple
+        (0.25, 0.75, 0.5),    # Sea Green
+    ]
+
+    # Use distinct colors first, then fall back to rainbow for many detections
+    if num_detections <= len(distinct_colors):
+        colors = distinct_colors[:num_detections]
+    else:
+        colors = plt.cm.rainbow(np.linspace(0, 1, num_detections))
 
     # Draw bounding boxes
     if boxes is not None and len(boxes) > 0:
@@ -35,14 +64,17 @@ def visualize_detections(img, boxes, skeletons=None, title="Detection Results", 
             conf = box[4] if len(box) > 4 else 0.0
 
             # Draw rectangle
+            # Handle both tuple colors and numpy array colors
+            edge_color = color if isinstance(color, tuple) else color[:3]
             rect = plt.Rectangle((x1, y1), x2 - x1, y2 - y1,
-                                fill=False, edgecolor=color[:3], linewidth=3, alpha=0.8)
+                                fill=False, edgecolor=edge_color, linewidth=3, alpha=0.8)
             ax.add_patch(rect)
 
             # Add label with confidence
             label = f'Person {idx}: {conf:.2f}'
+            face_color = color if isinstance(color, tuple) else color[:3]
             ax.text(x1, y1 - 10, label, fontsize=10, color='white', weight='bold',
-                   bbox=dict(boxstyle="round,pad=0.3", facecolor=color[:3], alpha=0.7))
+                   bbox=dict(boxstyle="round,pad=0.3", facecolor=face_color, alpha=0.7))
 
     # Draw skeletons if provided
     if skeletons is not None and len(skeletons) > 0:
@@ -66,6 +98,8 @@ def visualize_detections(img, boxes, skeletons=None, title="Detection Results", 
                 continue
 
             # Draw connections
+            # Handle both tuple colors and numpy array colors
+            line_color = color if isinstance(color, tuple) else color[:3]
             for connection in connections:
                 pt1_idx, pt2_idx = connection
 
@@ -81,12 +115,13 @@ def visualize_detections(img, boxes, skeletons=None, title="Detection Results", 
                 # Only draw if both keypoints have sufficient confidence
                 if score1 > 0.3 and score2 > 0.3:
                     ax.plot([pt1[0], pt2[0]], [pt1[1], pt2[1]],
-                           color=color[:3], linewidth=2, alpha=0.7)
+                           color=line_color, linewidth=2, alpha=0.7)
 
             # Draw keypoints
+            point_color = color if isinstance(color, tuple) else color[:3]
             for joint_idx, (joint, score) in enumerate(zip(keypoints, scores)):
                 if score > 0.3:  # Only draw confident keypoints
-                    ax.scatter(joint[0], joint[1], color=color[:3], s=60,
+                    ax.scatter(joint[0], joint[1], color=point_color, s=60,
                              edgecolors='white', linewidth=2, alpha=0.9, zorder=10)
 
     plt.tight_layout()
