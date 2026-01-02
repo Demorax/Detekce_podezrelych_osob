@@ -379,8 +379,14 @@ def test_rtdetr():
     """
 
     # Cesty k souborum
-    config_path = 'models/rtdetr/configs/rtdetrv2/rtdetrv2_r18vd_120e_coco.yml'
-    checkpoint_path = 'models/rtdetr/rtdetrv2_r18vd_120e_coco_rerun_48.1.pth'
+    # RT-DETR R101 (aktualne pouzivany - vyssi presnost pro vytvareni datasetu)
+    config_path = 'models/rtdetr/configs/rtdetrv2/rtdetrv2_r101vd_6x_coco.yml'
+    checkpoint_path = 'models/rtdetr/rtdetrv2_r101vd_6x_coco_from_paddle.pth'
+
+    # RT-DETR R18 (pro budouci real-time nasazeni - rychlejsi)
+    # config_path = 'models/rtdetr/configs/rtdetrv2/rtdetrv2_r18vd_120e_coco.yml'
+    # checkpoint_path = 'models/rtdetr/rtdetrv2_r18vd_120e_coco_rerun_48.1.pth'
+
     test_image = 'frames_0.5_upscaled/002/002_0000.jpg'
 
     if not os.path.exists(test_image):
@@ -570,7 +576,7 @@ def compare_with_yolo():
         None (vytvori a ulozi vizualizace + grafy)
     """
 
-    confidence_threshold = 0.3
+    confidence_threshold = 0.5
     test_image = 'frames_0.5_upscaled/002/001_0076.jpg'
 
     if not os.path.exists(test_image):
@@ -583,13 +589,22 @@ def compare_with_yolo():
 
     # RT-DETR detekce
     print("=" * 70)
-    print("RT-DETR Detekce")
+    print("RT-DETR Detekce (R101 - produkční model)")
     print("=" * 70)
+
+    # RT-DETR R101 (aktualne pouzivany - vyssi presnost)
     rtdetr_detector = RTDETRDetector(
-        'models/rtdetr/configs/rtdetrv2/rtdetrv2_r18vd_120e_coco.yml',
-        'models/rtdetr/rtdetrv2_r18vd_120e_coco_rerun_48.1.pth',
+        'models/rtdetr/configs/rtdetrv2/rtdetrv2_r101vd_6x_coco.yml',
+        'models/rtdetr/rtdetrv2_r101vd_6x_coco_from_paddle.pth',
         device=device
     )
+
+    # RT-DETR R18 (pro budouci real-time nasazeni - rychlejsi)
+    # rtdetr_detector = RTDETRDetector(
+    #     'models/rtdetr/configs/rtdetrv2/rtdetrv2_r18vd_120e_coco.yml',
+    #     'models/rtdetr/rtdetrv2_r18vd_120e_coco_rerun_48.1.pth',
+    #     device=device
+    # )
 
     start = time.time()
     rtdetr_boxes = rtdetr_detector.detect(test_image, conf_threshold=confidence_threshold)

@@ -49,3 +49,6 @@ xcopy /Y /I "C:\Program Files\cudnn-windows-x86_64-8.9.7.29_cuda12-archive\bin\c
 
 :: 6) Verify you’re importing the right cv2 now (should show cv2.pyd, CUDA True, device > 0)
 "%CONDA_PREFIX%\python.exe" -c "import cv2, numpy as np; print('cv2 file:', getattr(cv2,'__file__','<none>')); print('cv2 version:', getattr(cv2,'__version__','<no>')); print('CUDA?', 'CUDA' in cv2.getBuildInformation()); print('devices=', cv2.cuda.getCudaEnabledDeviceCount())"
+
+# RT-Detr v2
+- https://github.com/lyuwenyu/RT-DETR/tree/main/rtdetrv2_pytorch
