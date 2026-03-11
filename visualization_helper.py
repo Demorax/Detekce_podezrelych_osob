@@ -1,137 +1,158 @@
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
 
 
-def visualize_detections(img, boxes, skeletons=None, title="Detection Results", save_path=None, show=True):
+SUSPICIOUS_CLASS_IDS = {
+    24: 'backpack',
+    34: 'baseball bat',
+    44: 'knife',
+    76: 'scissors',
+}
+
+_ITEM_COLORS = {
+    24: (1.0, 0.6, 0.0),   # orange - backpack
+    34: (0.9, 0.1, 0.1),   # red - baseball bat
+    44: (0.8, 0.0, 0.8),   # magenta - knife
+    76: (0.1, 0.7, 0.9),   # cyan - scissors
+}
+
+
+def visualize_detections(img, boxes, skeletons=None, item_boxes=None,
+                         title="Detection Results", save_path=None, show=True):
     """
-    Visualize YOLO bounding boxes and optionally ViTPose skeleton keypoints.
+    Visualize bounding boxes, ViTPose skeletons, and suspicious items.
 
     Args:
         img: Input image (BGR format from cv2)
-        boxes: Array of bounding boxes with shape (N, 5+) where columns are [x1, y1, x2, y2, conf, ...]
-        skeletons: Optional array of skeleton keypoints with shape (N, num_keypoints, 3) where last dim is [x, y, score]
-        title: Title for the plot
-        save_path: Optional path to save the visualization
-        show: Whether to display the plot (default: True)
+        boxes: (N, 5+) person boxes [x1, y1, x2, y2, conf, ...]
+        skeletons: Optional (N, num_keypoints, 3) with [x, y, score]
+        item_boxes: Optional (M, 6) suspicious items [x1, y1, x2, y2, conf, class_id]
+        title: Plot title
+        save_path: Optional path to save
+        show: Whether to display
     """
-    # Convert BGR to RGB for matplotlib
     img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-
-    # Create figure
     fig, ax = plt.subplots(1, 1, figsize=(16, 12))
     ax.imshow(img_rgb)
     ax.set_title(title, fontsize=16, weight='bold')
     ax.axis('off')
 
-    # Colors for different people - using more distinct colors
     num_detections = len(boxes) if boxes is not None else 0
-
-    # Define a palette of distinct colors for better visualization
     distinct_colors = [
-        (1.0, 0.0, 0.0),      # Red
-        (0.0, 0.5, 1.0),      # Blue
-        (0.0, 1.0, 0.0),      # Green
-        (1.0, 0.5, 0.0),      # Orange
-        (0.5, 0.0, 1.0),      # Purple
-        (1.0, 1.0, 0.0),      # Yellow
-        (0.0, 1.0, 1.0),      # Cyan
-        (1.0, 0.0, 1.0),      # Magenta
-        (0.5, 1.0, 0.0),      # Lime
-        (1.0, 0.0, 0.5),      # Pink
-        (0.0, 1.0, 0.5),      # Spring Green
-        (0.5, 0.5, 1.0),      # Light Blue
-        (1.0, 0.5, 0.5),      # Light Red
-        (0.5, 1.0, 0.5),      # Light Green
-        (1.0, 1.0, 0.5),      # Light Yellow
-        (0.5, 0.5, 0.5),      # Gray
-        (0.75, 0.25, 0.0),    # Brown
-        (0.0, 0.5, 0.5),      # Teal
-        (0.5, 0.0, 0.5),      # Dark Purple
-        (0.25, 0.75, 0.5),    # Sea Green
+        (1.0, 0.0, 0.0),
+        (0.0, 0.5, 1.0),
+        (0.0, 1.0, 0.0),
+        (1.0, 0.5, 0.0),
+        (0.5, 0.0, 1.0),
+        (1.0, 1.0, 0.0),
+        (0.0, 1.0, 1.0),
+        (1.0, 0.0, 1.0),
+        (0.5, 1.0, 0.0),
+        (1.0, 0.0, 0.5),
+        (0.0, 1.0, 0.5),
+        (0.5, 0.5, 1.0),
+        (1.0, 0.5, 0.5),
+        (0.5, 1.0, 0.5),
+        (1.0, 1.0, 0.5),
+        (0.5, 0.5, 0.5),
+        (0.75, 0.25, 0.0),
+        (0.0, 0.5, 0.5),
+        (0.5, 0.0, 0.5),
+        (0.25, 0.75, 0.5),
     ]
 
-    # Use distinct colors first, then fall back to rainbow for many detections
     if num_detections <= len(distinct_colors):
         colors = distinct_colors[:num_detections]
     else:
         colors = plt.cm.rainbow(np.linspace(0, 1, num_detections))
 
-    # Draw bounding boxes
+    # Person bounding boxes
     if boxes is not None and len(boxes) > 0:
         for idx, (box, color) in enumerate(zip(boxes, colors)):
             x1, y1, x2, y2 = box[:4].astype(int)
             conf = box[4] if len(box) > 4 else 0.0
-
-            # Draw rectangle
-            # Handle both tuple colors and numpy array colors
             edge_color = color if isinstance(color, tuple) else color[:3]
             rect = plt.Rectangle((x1, y1), x2 - x1, y2 - y1,
-                                fill=False, edgecolor=edge_color, linewidth=3, alpha=0.8)
+                                  fill=False, edgecolor=edge_color, linewidth=3, alpha=0.8)
             ax.add_patch(rect)
-
-            # Add label with confidence
-            label = f'Person {idx}: {conf:.2f}'
             face_color = color if isinstance(color, tuple) else color[:3]
-            ax.text(x1, y1 - 10, label, fontsize=10, color='white', weight='bold',
-                   bbox=dict(boxstyle="round,pad=0.3", facecolor=face_color, alpha=0.7))
+            ax.text(x1, y1 - 10, f'Person {idx}: {conf:.2f}', fontsize=10,
+                    color='white', weight='bold',
+                    bbox=dict(boxstyle="round,pad=0.3", facecolor=face_color, alpha=0.7))
 
-    # Draw skeletons if provided
+    # Suspicious item boxes
+    if item_boxes is not None and len(item_boxes) > 0:
+        legend_patches = []
+        seen_classes = set()
+        for item in item_boxes:
+            x1, y1, x2, y2, conf, cls_id = item
+            x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
+            cls_id = int(cls_id)
+            name = SUSPICIOUS_CLASS_IDS.get(cls_id, f'item_{cls_id}')
+            color = _ITEM_COLORS.get(cls_id, (1.0, 0.8, 0.0))
+
+            rect = plt.Rectangle((x1, y1), x2 - x1, y2 - y1,
+                                  fill=True, facecolor=color, edgecolor=color,
+                                  linewidth=2, alpha=0.25)
+            ax.add_patch(rect)
+            rect_border = plt.Rectangle((x1, y1), x2 - x1, y2 - y1,
+                                        fill=False, edgecolor=color, linewidth=2.5, alpha=0.9,
+                                        linestyle='--')
+            ax.add_patch(rect_border)
+            ax.text(x1, y2 + 14, f'{name} {conf:.2f}', fontsize=9,
+                    color='white', weight='bold',
+                    bbox=dict(boxstyle="round,pad=0.2", facecolor=color, alpha=0.85))
+
+            if cls_id not in seen_classes:
+                legend_patches.append(mpatches.Patch(color=color, label=name))
+                seen_classes.add(cls_id)
+
+        if legend_patches:
+            ax.legend(handles=legend_patches, loc='upper right', fontsize=10,
+                      framealpha=0.7, facecolor='black', labelcolor='white')
+
+    # Skeletons
     if skeletons is not None and len(skeletons) > 0:
-        # COCO skeleton connections (17 keypoints format)
         connections = [
-            (0, 1), (0, 2), (1, 3), (2, 4),  # Head
-            (5, 6), (5, 7), (7, 9), (6, 8), (8, 10),  # Arms
-            (5, 11), (6, 12), (11, 13), (13, 15), (12, 14), (14, 16),  # Legs
-            (11, 12)  # Hip
+            (0, 1), (0, 2), (1, 3), (2, 4),
+            (5, 6), (5, 7), (7, 9), (6, 8), (8, 10),
+            (5, 11), (6, 12), (11, 13), (13, 15), (12, 14), (14, 16),
+            (11, 12)
         ]
 
         for person_idx, (skeleton, color) in enumerate(zip(skeletons, colors)):
-            # Handle different skeleton formats
-            if skeleton.shape[-1] == 3:  # (num_keypoints, 3) with scores
+            if skeleton.shape[-1] == 3:
                 keypoints = skeleton[:, :2]
                 scores = skeleton[:, 2]
-            elif skeleton.shape[-1] == 2:  # (num_keypoints, 2) without scores
+            elif skeleton.shape[-1] == 2:
                 keypoints = skeleton
                 scores = np.ones(len(skeleton))
             else:
                 continue
 
-            # Draw connections
-            # Handle both tuple colors and numpy array colors
             line_color = color if isinstance(color, tuple) else color[:3]
-            for connection in connections:
-                pt1_idx, pt2_idx = connection
-
-                # Check if indices are valid for this skeleton
+            for pt1_idx, pt2_idx in connections:
                 if pt1_idx >= len(keypoints) or pt2_idx >= len(keypoints):
                     continue
-
-                pt1 = keypoints[pt1_idx]
-                pt2 = keypoints[pt2_idx]
-                score1 = scores[pt1_idx]
-                score2 = scores[pt2_idx]
-
-                # Only draw if both keypoints have sufficient confidence
-                if score1 > 0.3 and score2 > 0.3:
+                if scores[pt1_idx] > 0.3 and scores[pt2_idx] > 0.3:
+                    pt1, pt2 = keypoints[pt1_idx], keypoints[pt2_idx]
                     ax.plot([pt1[0], pt2[0]], [pt1[1], pt2[1]],
-                           color=line_color, linewidth=2, alpha=0.7)
+                            color=line_color, linewidth=2, alpha=0.7)
 
-            # Draw keypoints
             point_color = color if isinstance(color, tuple) else color[:3]
-            for joint_idx, (joint, score) in enumerate(zip(keypoints, scores)):
-                if score > 0.3:  # Only draw confident keypoints
+            for joint, score in zip(keypoints, scores):
+                if score > 0.3:
                     ax.scatter(joint[0], joint[1], color=point_color, s=60,
-                             edgecolors='white', linewidth=2, alpha=0.9, zorder=10)
+                               edgecolors='white', linewidth=2, alpha=0.9, zorder=10)
 
     plt.tight_layout()
 
-    # Save if path provided
     if save_path:
         plt.savefig(save_path, dpi=150, bbox_inches='tight')
         print(f"Saved visualization to {save_path}")
 
-    # Show if requested
     if show:
         plt.show()
     else:
@@ -139,15 +160,5 @@ def visualize_detections(img, boxes, skeletons=None, title="Detection Results", 
 
 
 def visualize_skeletons_only(img, skeletons, title="Skeleton Detection", save_path=None, show=True):
-    """
-    Visualize only skeleton keypoints without bounding boxes.
-
-    Args:
-        img: Input image (BGR format from cv2)
-        skeletons: Array of skeleton keypoints with shape (N, num_keypoints, 2 or 3)
-        title: Title for the plot
-        save_path: Optional path to save the visualization
-        show: Whether to display the plot
-    """
     visualize_detections(img, boxes=None, skeletons=skeletons, title=title,
-                        save_path=save_path, show=show)
+                         save_path=save_path, show=show)
