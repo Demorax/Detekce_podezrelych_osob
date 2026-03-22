@@ -1,3 +1,5 @@
+> English version: [README_EN.md](README_EN.md)
+
 # Analýza pohybu osob ve videu s využitím neuronových sítí pro prostorově-temporální zpracování
 
 ## Cíl projektu
