@@ -21,17 +21,8 @@ nul
 .idea/
 logs/
 
-# Velká anotovaná demo videa (celá složka)
-demo_outputs/
+# External datasets (download separately, viz data/README.md) — příliš velké pro git
+data/
+# Note: data/AVA/annotations/ JE commited (jen ~50 MB CSV) — pokud potřeba, force-add ručně
 
-# External datasets (download separately, viz data/README.md)
-data/RWF-2000/RWF-2000/
-data/AVA/videos/
-data/NWPU_Campus/
-data/CAVIAR/
-data/ABODA/
-# Note: data/AVA/annotations/ JE commited (jen ~50 MB CSV)
-
-# Demo výstupy (velká anotovaná videa) — alerts JSON ber commitnout zvlášť pokud chceš
-demo_outputs/*.mp4
-reference_img/aboda_alerts/*.mp4
+# Pozn.: demo_outputs/ (anotovaná videa) a reference_img/ JSOU commitnuté (ukázky pro BP)
