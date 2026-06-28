@@ -1,10 +1,37 @@
-# Model weights
+# Model weights (commitujeme jen kód, ne binární váhy)
 *.pth
 *.bin
 *.onnx
 *.pb
+*.pt
+*.h5
+*.keras
 models/vitpose/vitpose_huge.pth
+best_lstm_behavior_model/
 
 # Other large files
 *.tar.gz
 *.zip
+
+# Python cache + temp + IDE
+__pycache__/
+*.pyc
+*.bak
+nul
+.idea/
+logs/
+
+# Velká anotovaná demo videa (celá složka)
+demo_outputs/
+
+# External datasets (download separately, viz data/README.md)
+data/RWF-2000/RWF-2000/
+data/AVA/videos/
+data/NWPU_Campus/
+data/CAVIAR/
+data/ABODA/
+# Note: data/AVA/annotations/ JE commited (jen ~50 MB CSV)
+
+# Demo výstupy (velká anotovaná videa) — alerts JSON ber commitnout zvlášť pokud chceš
+demo_outputs/*.mp4
+reference_img/aboda_alerts/*.mp4
