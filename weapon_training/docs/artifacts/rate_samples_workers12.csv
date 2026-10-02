@@ -1,0 +1,3 @@
+ts,iter,epoch,rate_s_it,gpu_mem_mib,avail_gb,swap_gb,si,so,load1
+18:42:51,330,3,,58185,20,4,0,0,2.17
+18:43:52,339,3,6.78,58185,20,4,0,0,2.44

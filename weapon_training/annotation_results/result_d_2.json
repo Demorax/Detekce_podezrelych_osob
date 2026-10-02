@@ -1,0 +1,414 @@
+[
+ {
+  "stem": "004d_00876",
+  "prelabel_verdicts": [
+   {
+    "box": [
+     3082,
+     724,
+     3226,
+     975
+    ],
+    "name": "melee",
+    "verdict": "reject",
+    "note": "staticky artefakt - svetla namalovana cara na asfaltu (3095,740)-(3200,920); overeno v framu 004d_01006, kde na tomtez miste neni zadna osoba a cara tam je stejne. Skutecna svisla tyc v teto oblasti je uvedena v missed."
+   },
+   {
+    "box": [
+     2624,
+     868,
+     2933,
+     999
+    ],
+    "name": "melee",
+    "verdict": "retighten",
+    "new_box": [
+     2632,
+     882,
+     2925,
+     988
+    ],
+    "note": "spravna detekce - dlouha bila tyc drzena osobou v tmavem tricku, sikmo dolu doprava; puvodni box mirne prilis velky"
+   },
+   {
+    "box": [
+     1005,
+     1078,
+     1063,
+     1154
+    ],
+    "name": "gun",
+    "verdict": "reject",
+    "note": "false positive - obnazene predlokti a pest osoby v tmavem + prazdny svetly asfalt"
+   }
+  ],
+  "missed": [
+   {
+    "approx_box": [
+     3204,
+     610,
+     3230,
+     918
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "svisla svetla tyc drzena osobou ve svetle kosili vpravo; prochazi pres hranici zdi a asfaltu (tedy 3D objekt pred pozadim), v framu 004d_01006 na stejnem miste neni"
+   }
+  ],
+  "ambiguous": [
+   {
+    "approx_box": [
+     2795,
+     700,
+     2875,
+     855
+    ],
+    "note": "ruzova diagonala nad hlavou osoby - vyhodnoceno jako zvednuta bosa paze (zuzuje se, odstin kuze), neanotovano"
+   }
+  ],
+  "empty": false
+ },
+ {
+  "stem": "004d_00901",
+  "prelabel_verdicts": [
+   {
+    "box": [
+     637,
+     1134,
+     698,
+     1194
+    ],
+    "name": "gun",
+    "verdict": "reject",
+    "note": "false positive - tmava sikma paze/rukav osoby v modrem na svetlem asfaltu, smeruje doleva-dolu (tedy ne stin, stiny padaji doprava-dolu); zadny objekt"
+   },
+   {
+    "box": [
+     1450,
+     637,
+     1612,
+     711
+    ],
+    "name": "melee",
+    "verdict": "retighten",
+    "new_box": [
+     1442,
+     640,
+     1603,
+     701
+    ],
+    "note": "spravna detekce - bila tyc drzena osobou v mentolovem tricku, pokracuje vpravo dolu za ruku (ruka kolem x=1455)"
+   },
+   {
+    "box": [
+     1742,
+     779,
+     1866,
+     902
+    ],
+    "name": "melee",
+    "verdict": "reject",
+    "note": "false positive - bosa spodni paze osoby v tmave modrem tricku s jasnou pesti na konci (1758-1790, 855-885); zuzuje se, odstin kuze"
+   }
+  ],
+  "missed": [],
+  "ambiguous": [
+   {
+    "approx_box": [
+     1690,
+     685,
+     1800,
+     722
+    ],
+    "note": "cervenavy podlouhly pruh vlevo od natazene paze osoby v tmave modrem; pri 8x zoomu vypada spis jako pohybova rozmazanina svihajici paze (mekke okraje, postupne vybledava) nez jako cerveny prut - neanotovano"
+   },
+   {
+    "approx_box": [
+     165,
+     670,
+     215,
+     720
+    ],
+    "note": "svetla diagonala v hustem chumlu vlevo; prilis male a prekryte, nelze rozhodnout tyc vs predlokti"
+   }
+  ],
+  "empty": false
+ },
+ {
+  "stem": "004d_00921",
+  "prelabel_verdicts": [
+   {
+    "box": [
+     1579,
+     805,
+     1792,
+     987
+    ],
+    "name": "melee",
+    "verdict": "retighten",
+    "new_box": [
+     1590,
+     832,
+     1775,
+     962
+    ],
+    "note": "spravna detekce - vyrazna bila tyc drzena osobou ve svetle kosili, sikmo dolu doleva; puvodni box ~1.35x prilis velky"
+   }
+  ],
+  "missed": [
+   {
+    "approx_box": [
+     845,
+     1148,
+     980,
+     1294
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "dlouhy tmavy prut mirici dolu doprava od boku osoby v bilem tricku; overeno na sousednim framu 004d_00926, kde se objekt posunul s osobou a vedle nej je videt jeho vlastni stin na zemi (tedy nejde o stin). Horni cast prutu je zakryta telem, anotovana jen volne viditelna cast."
+   },
+   {
+    "approx_box": [
+     745,
+     780,
+     848,
+     832
+    ],
+    "name": "melee",
+    "confidence": "medium",
+    "note": "syte cerveny podlouhly objekt vychazejici z pesti zvednute paze osoby (x~735-760 je ruka), s tmave rudou spickou u x=845 a ruzovou pohybovou stopou vpravo; silne rozmazany pohybem"
+   }
+  ],
+  "ambiguous": [
+   {
+    "approx_box": [
+     735,
+     545,
+     790,
+     575
+    ],
+    "note": "svetla skvrna na konci zvednute paze - pravdepodobne jen ruka/prsty, neanotovano"
+   }
+  ],
+  "empty": false
+ },
+ {
+  "stem": "004d_00941",
+  "prelabel_verdicts": [
+   {
+    "box": [
+     1089,
+     623,
+     1145,
+     780
+    ],
+    "name": "melee",
+    "verdict": "retighten",
+    "new_box": [
+     1110,
+     647,
+     1140,
+     727
+    ],
+    "note": "objekt tam je - jasne bily svisly pruh primo nad hlavou osoby (horni cast bile tyce/late), ale box byl ~2.3x prilis velky a zahrnoval hlavu"
+   }
+  ],
+  "missed": [
+   {
+    "approx_box": [
+     107,
+     975,
+     220,
+     1004
+    ],
+    "name": "melee",
+    "confidence": "medium",
+    "note": "cerveny/tmave ruzovy prut vodorovne v ruce osoby ve svetlem tricku vlevo dole; predlokti (odstin kuze) konci u x~218, prut pokracuje doleva a ma tmavou spicku u x=110"
+   }
+  ],
+  "ambiguous": [
+   {
+    "approx_box": [
+     46,
+     1120,
+     184,
+     1290
+    ],
+    "note": "tmavy tenky prut sikmo dolu doleva na svetlem asfaltu; niz je druha temer rovnobezna cara (150-400, 1352-1522) posunuta o cca (+220,+230), coz odpovida vztahu objekt/stin - ale horni konec neni videt spojeny s rukou, nelze rozhodnout, ktera z car je objekt"
+   },
+   {
+    "approx_box": [
+     241,
+     862,
+     277,
+     893
+    ],
+    "note": "svetla diagonala nad hlavou osoby; muze byt jen hrana osvetlene dlazby, prilis mala (~45 px)"
+   }
+  ],
+  "empty": false
+ },
+ {
+  "stem": "004d_00961",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [
+   {
+    "approx_box": [
+     140,
+     742,
+     165,
+     925
+    ],
+    "note": "velmi slaby ruzovo-fialovy svisly smouha nad rukama osoby v bilem vlevo; mohl by byt cerveny prut svihnuty svisle (stejna osoba mela cerveny prut ve 00941), ale kontrast je temer nulovy a okraje neostre"
+   }
+  ],
+  "empty": false
+ },
+ {
+  "stem": "004d_00986",
+  "prelabel_verdicts": [
+   {
+    "box": [
+     487,
+     995,
+     548,
+     1041
+    ],
+    "name": "gun",
+    "verdict": "reject",
+    "note": "false positive - obnazene predlokti osoby v bilem tricku natazene doprava (odstin kuze, zuzuje se, konci rukou)"
+   }
+  ],
+  "missed": [
+   {
+    "approx_box": [
+     537,
+     1290,
+     604,
+     1390
+    ],
+    "name": "melee",
+    "confidence": "medium",
+    "note": "tmavy tenky prut (~15 px sirky, konstantni) stoupajici sikmo nahoru doprava od ramene/ruky osoby vlevo dole; sirka je na predlokti prilis mala, zaoblena tupa spicka; smer nahoru-doprava vylucuje stin"
+   }
+  ],
+  "ambiguous": [
+   {
+    "approx_box": [
+     1404,
+     552,
+     1455,
+     728
+    ],
+    "note": "tmavy podlouhly pruh vedle osoby u x=1350 - pri 8x zoomu vypada jako noha druhe osoby v tmavych kalhotach zakoncena botou, ne jako tyc; neanotovano"
+   }
+  ],
+  "empty": false
+ },
+ {
+  "stem": "004d_01006",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004d_01026",
+  "prelabel_verdicts": [
+   {
+    "box": [
+     3075,
+     703,
+     3278,
+     1016
+    ],
+    "name": "melee",
+    "verdict": "reject",
+    "note": "staticky artefakt - svetla namalovana cara na asfaltu (3095,740)-(3195,915), stejna jako ve 004d_01006 a 004d_00876; zadny objekt"
+   },
+   {
+    "box": [
+     3086,
+     708,
+     3234,
+     987
+    ],
+    "name": "melee",
+    "verdict": "reject",
+    "note": "duplikat tehoz statickeho artefaktu (namalovana cara na asfaltu)"
+   }
+  ],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004d_01051",
+  "prelabel_verdicts": [],
+  "missed": [
+   {
+    "approx_box": [
+     1150,
+     948,
+     1310,
+     1002
+    ],
+    "name": "melee",
+    "confidence": "medium",
+    "note": "podlouhly objekt lezici na zemi na rozhrani svetla a stinu: svetly odlesk po delce (1180-1280, 950-978) + tmavy pruh pod nim; v 004d_01026 a 004d_01071 na tomto miste nic neni a v 004d_01046 je tentyz objekt posunuty o ~70 px doprava - jde tedy o realny pohybujici se objekt, ne o hranu stinu ani staticky artefakt"
+   }
+  ],
+  "ambiguous": [],
+  "empty": false
+ },
+ {
+  "stem": "004d_01071",
+  "prelabel_verdicts": [
+   {
+    "box": [
+     3289,
+     787,
+     3416,
+     1176
+    ],
+    "name": "melee",
+    "verdict": "reject",
+    "note": "false positive - prazdny tmavy asfalt u praveho okraje framu, jen okraj osoby v modrem za x=3390"
+   },
+   {
+    "box": [
+     3266,
+     715,
+     3416,
+     1160
+    ],
+    "name": "melee",
+    "verdict": "reject",
+    "note": "false positive - tentyz prazdny asfalt; v levem hornim rohu boxu dobiha znama staticka namalovana cara (3140-3200, 780-900)"
+   }
+  ],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004d_01091",
+  "prelabel_verdicts": [
+   {
+    "box": [
+     3114,
+     761,
+     3201,
+     912
+    ],
+    "name": "melee",
+    "verdict": "reject",
+    "note": "false positive - noha osoby v modrem tricku (dzinovina) plus prazdny asfalt vpravo od ni"
+   }
+  ],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ }
+]

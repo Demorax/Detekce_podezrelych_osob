@@ -1,0 +1,142 @@
+[
+ {
+  "stem": "001_001_0004",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0012",
+  "prelabel_verdicts": [
+    {"box": [1885,700,1981,887], "name": "melee",
+     "verdict": "reject",
+     "note": "obnazene predlokti osoby v tmavem tricku, od ramene (1875,745) dolu k ruce (1900,870); barva kuze, zuzuje se, konci prsty - klasicky FP"}
+  ],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0020",
+  "prelabel_verdicts": [
+    {"box": [1917,320,2067,434], "name": "melee",
+     "verdict": "reject",
+     "note": "box pokryva zada osoby v bilem triku + obnazene predlokti osoby v ruzovem; zadna tyc"}
+  ],
+  "missed": [],
+  "ambiguous": [
+    {"approx_box": [1990,352,2042,392],
+     "note": "svetla skvrna na konci predlokti osoby v ruzovem triku ve stinu; tvar neni tyc ani zbran, spis ruka na slunci nebo maly predmet - nelze rozhodnout"}
+  ],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0028",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0036",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0044",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0052",
+  "prelabel_verdicts": [
+    {"box": [1715,529,1826,603], "name": "melee",
+     "verdict": "reject",
+     "note": "vodorovne obnazene predlokti osoby v tmavem tricku (dvojice u x=1700); barva kuze, napojene na rameno, konci rukou u x=1815"}
+  ],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0060",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0068",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0076",
+  "prelabel_verdicts": [
+    {"box": [2381,583,2481,827], "name": "melee",
+     "verdict": "reject",
+     "note": "nohy osoby ve svetlych kalhotach + tmava taska u boku; zadna tyc"},
+    {"box": [1291,534,1388,627], "name": "melee",
+     "verdict": "reject",
+     "note": "stin nohy/chodidla osoby v cernem na hranici svetla a stinu; mekke okraje, vzdy tmavsi nez okoli, smer dolu-vpravo shodny s ostatnimi stiny"},
+    {"box": [2388,386,2525,693], "name": "melee",
+     "verdict": "reject",
+     "note": "bily rukav/trup osoby v bilem tricku ve stinu; cele telo, zadny predmet"},
+    {"box": [2428,389,2519,610], "name": "melee",
+     "verdict": "reject",
+     "note": "duplicitni detekce tehoz bileho rukavu/trupu, FP"}
+  ],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0084",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0092",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0100",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0108",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0116",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "002_002_0003",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ }
+]

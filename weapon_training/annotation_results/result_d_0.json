@@ -1,0 +1,452 @@
+[
+ {
+  "stem": "004d_00866",
+  "prelabel_verdicts": [
+   {
+    "box": [
+     3146,
+     982,
+     3414,
+     1164
+    ],
+    "name": "melee",
+    "verdict": "retighten",
+    "new_box": [
+     3159,
+     1002,
+     3416,
+     1128
+    ],
+    "note": "spravna detekce dlouhe bile tyce u praveho okraje, drzi ji osoba v modrem; box byl na vysku ~1.5x prilis velky, tyc je oriznuta okrajem framu"
+   },
+   {
+    "box": [
+     1674,
+     1188,
+     1736,
+     1269
+    ],
+    "name": "gun",
+    "verdict": "reject",
+    "note": "obnazene predlokti/pest dvou osob na svetlem asfaltu, zadny objekt"
+   }
+  ],
+  "missed": [],
+  "ambiguous": [],
+  "empty": false
+ },
+ {
+  "stem": "004d_00886",
+  "prelabel_verdicts": [
+   {
+    "box": [
+     2764,
+     624,
+     2870,
+     818
+    ],
+    "name": "melee",
+    "verdict": "retighten",
+    "new_box": [
+     2769,
+     629,
+     2855,
+     808
+    ],
+    "note": "spravna detekce bile tyce zdvizene osobou v kremove kosili; box mirne volny vpravo dole (hrot tyce 2771,632, ruka 2852,805)"
+   },
+   {
+    "box": [
+     1125,
+     1167,
+     1206,
+     1215
+    ],
+    "name": "gun",
+    "verdict": "reject",
+    "note": "obnazene predlokti + jeho stin na svetlem betonu"
+   }
+  ],
+  "missed": [
+   {
+    "approx_box": [
+     2133,
+     745,
+     2304,
+     826
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "vyrazna bila tyc drzena osobou v mentolovem tricku (2100-2180,900-1350); pest v (2140,755), tyc pokracuje doprava dolu na (2300,822)"
+   },
+   {
+    "approx_box": [
+     2273,
+     630,
+     2350,
+     692
+    ],
+    "name": "melee",
+    "confidence": "medium",
+    "note": "cerveny/ruzovy prut nad pesti osoby v dzinove kosili; overeno na sousednim framu 00891, kde se objekt pohybuje s osobou; predlokti pod pesti je jasne tmavsi/tanove"
+   }
+  ],
+  "ambiguous": [
+   {
+    "approx_box": [
+     1146,
+     684,
+     1228,
+     704
+    ],
+    "note": "kratky bily vodorovny objekt drzeny osobou v sedem u boku; pritomen i v 00881 a 00891 (pohybuje se s osobou), ale nelze rozlisit kratkou lat vs. igelitka/papir"
+   }
+  ],
+  "empty": false
+ },
+ {
+  "stem": "004d_00911",
+  "prelabel_verdicts": [
+   {
+    "box": [
+     2174,
+     653,
+     2252,
+     769
+    ],
+    "name": "melee",
+    "verdict": "retighten",
+    "new_box": [
+     2194,
+     651,
+     2253,
+     746
+    ],
+    "note": "spravna detekce svetle tyce zdvizene osobou v kremovem tricku (2150-2250,700-1000); box byl volny vlevo dole, spodni cast prelabelu uz je rameno/triko"
+   }
+  ],
+  "missed": [
+   {
+    "approx_box": [
+     1085,
+     612,
+     1136,
+     772
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "jasna bila tyc drzena osobou v mentolovem tricku (985-1111,743-965); hrot nahore (1090,614), pest dole (1125,768); sirka konstantni ~20px, jasne oddelena od paze"
+   }
+  ],
+  "ambiguous": [
+   {
+    "approx_box": [
+     778,
+     895,
+     874,
+     1010
+    ],
+    "note": "cerveny/ruzovy podlouhly objekt za pesti osoby v bilem tricku; v sousednim framu 00906 ma uprostred bily usek, coz odpovida spis pazi/rukavu nez prutu - nelze rozhodnout"
+   },
+   {
+    "approx_box": [
+     0,
+     765,
+     130,
+     1000
+    ],
+    "note": "POZOR staticky artefakt pozadi: svetly betonovy roh u leveho okraje framu. Overeno na framech 00951, 00976 a 01081 - je na identickem miste. Neanotovat."
+   }
+  ],
+  "empty": false
+ },
+ {
+  "stem": "004d_00931",
+  "prelabel_verdicts": [
+   {
+    "box": [
+     378,
+     464,
+     610,
+     607
+    ],
+    "name": "melee",
+    "verdict": "retighten",
+    "new_box": [
+     398,
+     476,
+     602,
+     592
+    ],
+    "note": "spravna detekce dlouhe bile tyce svisane osobou v ruzovem; hrot vpravo nahore (598,481), dolni konec u pesti (402,586)"
+   }
+  ],
+  "missed": [
+   {
+    "approx_box": [
+     1399,
+     662,
+     1533,
+     721
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "svetla tyc drzena nad hlavou osoby v kremovem tricku (1400-1530,690-1150); prochazi nad hlavou, oba konce volne; stin tyce je videt na betonu kolem (1600-1730,1330-1430)"
+   },
+   {
+    "approx_box": [
+     551,
+     1075,
+     739,
+     1097
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "tenka svetle seda tyc vpravo od osoby v bilem tricku, tesne nad zemi; pod ni je videt vlastni stin, tj. je to 3D objekt; v sousednich framech 00921 a 00941 na tomto miste nic neni (neni to staticky artefakt)"
+   },
+   {
+    "approx_box": [
+     318,
+     1019,
+     448,
+     1062
+    ],
+    "name": "melee",
+    "confidence": "medium",
+    "note": "tmave hneda tyc vlevo dole od stejne osoby v bilem, smeruje z ruky sikmo doleva dolu; neni to stin osoby (stiny padaji doprava dolu)"
+   }
+  ],
+  "ambiguous": [],
+  "empty": false
+ },
+ {
+  "stem": "004d_00951",
+  "prelabel_verdicts": [
+   {
+    "box": [
+     722,
+     902,
+     859,
+     1015
+    ],
+    "name": "melee",
+    "verdict": "retighten",
+    "new_box": [
+     716,
+     858,
+     836,
+     888
+    ],
+    "note": "objekt existuje, ale box je posunuty dolu na obnazene predlokti osoby v kremovem tricku; skutecna bila lat je o ~20 px vys (y 858-888), pod ni je videt jeji stin"
+   },
+   {
+    "box": [
+     1,
+     781,
+     115,
+     994
+    ],
+    "name": "melee",
+    "verdict": "reject",
+    "note": "staticky artefakt pozadi - osvetleny betonovy roh u leveho okraje framu; identicky ve framech 00911, 00976 i 01081"
+   }
+  ],
+  "missed": [],
+  "ambiguous": [
+   {
+    "approx_box": [
+     214,
+     1080,
+     311,
+     1120
+    ],
+    "note": "cervenoruzovy vodorovny pruh v pase osoby v bilem tricku (133-320,890-1530); muze byt cerveny prut drzeny u tela, ale stejne dobre pasek/spodni tricko"
+   },
+   {
+    "approx_box": [
+     488,
+     850,
+     560,
+     912
+    ],
+    "note": "maly tmavy zahnuty objekt na osvetlenem betonu; neni rovny jako tyc a je na temze miste i ve framu 00931 - spis odlozena bota/skvrna nez zbran"
+   }
+  ],
+  "empty": false
+ },
+ {
+  "stem": "004d_00976",
+  "prelabel_verdicts": [],
+  "missed": [
+   {
+    "approx_box": [
+     348,
+     1320,
+     455,
+     1482
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "tmava tyc drzena osobou v sedofialovem tricku vlevo dole (250-330,1330-1650); jde sikmo nahoru doprava z ruky v (350,1478); v sousednim framu 00981 stejna tyc jinde (jiz temer vodorovna), tzn. skutecny pohybujici se objekt"
+   }
+  ],
+  "ambiguous": [
+   {
+    "approx_box": [
+     297,
+     1019,
+     386,
+     1070
+    ],
+    "note": "tmave hnedy pruh vpravo od osoby v bilem tricku; spis obnazene predlokti (rozsireny konec u lokte, zuzuje se k zapesti) nez tyc - neanotovat bez dalsiho overeni"
+   },
+   {
+    "approx_box": [
+     298,
+     820,
+     386,
+     892
+    ],
+    "note": "tmave cervenohnedy pruh u osoby v olivovem tricku (338-443,650-850); na konci je videt svetla dlan, takze to je s vysokou pravdepodobnosti predlokti ve stinu, ne prut"
+   }
+  ],
+  "empty": false,
+  "note": "tmava skvrna v (882-950,768-824) je znamy staticky artefakt 'odlozena taska' ze specifikace (890-955,765-825) - neanotovano"
+ },
+ {
+  "stem": "004d_00996",
+  "prelabel_verdicts": [
+   {
+    "box": [
+     2019,
+     894,
+     2155,
+     1011
+    ],
+    "name": "melee",
+    "verdict": "reject",
+    "note": "vykopnuta noha osoby v bilem tricku (svetle kalhoty + tmava bota na konci), ne zbran"
+   }
+  ],
+  "missed": [
+   {
+    "approx_box": [
+     746,
+     872,
+     863,
+     908
+    ],
+    "name": "melee",
+    "confidence": "medium",
+    "note": "svetla tyc drzena obema rukama osobou v bilem tricku (640-800,830-1300) v pozici napraha; svetly pruh na tmavem asfaltu od (750,885) doprava; tmavy sikmy pruh pod nim (825-855,895-950) povazuji za stin"
+   },
+   {
+    "approx_box": [
+     742,
+     1432,
+     902,
+     1556
+    ],
+    "name": "melee",
+    "confidence": "medium",
+    "note": "tenka tmava tyc s ztlustlym koncem, miri sikmo doleva dolu z ruky osoby vpravo dole (900-1000,1450-1755); pravdepodobne tataz osoba, ktera drzela tyc ve framu 00976"
+   }
+  ],
+  "ambiguous": [
+   {
+    "approx_box": [
+     1309,
+     662,
+     1339,
+     688
+    ],
+    "note": "maly tmavy objekt v ruce osoby v tmavem (1330-1420,540-800); prilis maly a neostry na urceni"
+   }
+  ],
+  "empty": false
+ },
+ {
+  "stem": "004d_01016",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [
+   {
+    "approx_box": [
+     2348,
+     560,
+     2382,
+     603
+    ],
+    "note": "maly tmavy kompaktni objekt v prave ruce osoby v cernem tricku (2270-2340,430-700); neni podlouhly, nelze urcit (telefon / brasna / neco jineho)"
+   }
+  ],
+  "empty": false,
+  "note": "zadna potvrzena zbran; overeny cely frame (leva, stredni i prava cast). Tmave objekty v (815-860,890-945) a (880-950,760-825) jsou znamé staticke artefakty (prasklina, odlozena taska). Frame by sel pouzit jako pozadi, pokud se overi maly objekt v ruce v (2348-2382,560-603)."
+ },
+ {
+  "stem": "004d_01041",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true,
+  "note": "scena je uz temer prazdna, lide odbihaji. Zkontrolovan cely frame. Tmave objekty v (889-956,766-818) a (819-852,899-940) jsou znamé staticke artefakty (odlozena taska, prasklina). Tmavy pruh u (1350-1460,975-1000) je stin nohy bezici osoby na hrane betonu."
+ },
+ {
+  "stem": "004d_01061",
+  "prelabel_verdicts": [
+   {
+    "box": [
+     2537,
+     617,
+     2677,
+     753
+    ],
+    "name": "melee",
+    "verdict": "reject",
+    "note": "svetle modra nohavice/noha kracejici osoby v cernem tricku, na konci tmava bota"
+   },
+   {
+    "box": [
+     919,
+     518,
+     962,
+     579
+    ],
+    "name": "melee",
+    "verdict": "reject",
+    "note": "cast hlavy / zdvizene ruky bezici osoby v bilem tricku, zadny samostatny objekt"
+   }
+  ],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true,
+  "note": "scena uz je prazdna, lide odchazi. Zkontrolovan cely frame vcetne prave casti. Tmavy shluk v ruce osoby u praveho okraje (3258-3282,902-918) je pest, ne objekt."
+ },
+ {
+  "stem": "004d_01081",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [
+   {
+    "approx_box": [
+     403,
+     753,
+     450,
+     797
+    ],
+    "note": "hnedozluty kompaktni objekt u leve ruky osoby v bilem tricku (450-600,590-1000); neni podlouhly (47x44 px), spis brasna/svinute obleceni nez tyc"
+   },
+   {
+    "approx_box": [
+     556,
+     560,
+     596,
+     616
+    ],
+    "note": "ruzovy podlouhly tvar nad ramenem teze osoby; pri zoomu to vypada jako zdvizena obnazena paze s dlani, nikoli prut - neanotovat"
+   }
+  ],
+  "empty": false,
+  "note": "scena prazdna, zadna potvrzena zbran. Svetly sikmy pruh v (3150-3200,768-898) je znamy staticky artefakt 'namalovana cara na asfaltu' (3100-3210,730-920). Dale overeny staticke artefakty (889-956,766-818) taska a (815-859,892-936) prasklina."
+ }
+]

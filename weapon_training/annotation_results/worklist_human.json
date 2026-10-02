@@ -1,0 +1,310 @@
+[
+ {
+  "stem": "004_004_0030",
+  "kind": "ambiguous",
+  "approx_box": [
+   450,
+   1075,
+   560,
+   1170
+  ],
+  "note": "osoba v bordove halence s dlouhymi vlasy (telo cca 300-500 / 950-1400) ma natazenou pravou ruku; tmavy podlouhly utvar konstantni sirky ~12 px pokracuje az k (555,1160). Nelze rozhodnout tyc vs. predlokti/popruh tasky; ve stinu se samostatna linie tyce nepotvrdila"
+ },
+ {
+  "stem": "004_004_0066",
+  "kind": "ambiguous",
+  "approx_box": [
+   790,
+   1125,
+   910,
+   1270
+  ],
+  "note": "tmavy tenky pruh smerem dolu-vpravo u nohou osoby v bilem tricku; tonem odpovida stinu na svetlem betonu (mekke hrany, bez odlesku, stejny jas jako stinova masa osoby), ale nelze vyloucit tmavou tyc v ruce"
+ },
+ {
+  "stem": "004_004_0066",
+  "kind": "ambiguous",
+  "approx_box": [
+   1118,
+   950,
+   1205,
+   1015
+  ],
+  "note": "tenky sedy pruh na osvetlene zemi u hranice stinu; ve framech 0060 i 0072 na stejnych souradnicich neni, takze to neni staticke pozadi, ale nelze rozhodnout tyc lezici na zemi vs. stin nadzvednuteho predmetu"
+ },
+ {
+  "stem": "004_004_0031",
+  "kind": "ambiguous",
+  "approx_box": [
+   1665,
+   1310,
+   1704,
+   1334
+  ],
+  "note": "maly tmavy predmet v ruce osoby v cernem tricku (hlava ~1564-1640,1124-1195). Nejpravdepodobneji mobilni telefon, nelze rozhodnout."
+ },
+ {
+  "stem": "004_004_0043",
+  "kind": "ambiguous",
+  "approx_box": [
+   368,
+   565,
+   422,
+   589
+  ],
+  "note": "bily podlouhly utvar hned vpravo od predanotace, na urovni ramene osoby. Pomer stran jen ~2.5:1, na tyc prilis kratky/silny - spis bily limec/tricko nebo taska. Nelze rozhodnout."
+ },
+ {
+  "stem": "004_004_0055",
+  "kind": "ambiguous",
+  "approx_box": [
+   1474,
+   806,
+   1493,
+   1000
+  ],
+  "note": "svetly svisly pas ~19x194 px konstantni sirky mezi dvema osobami (osoba v bordovem tricku vpravo). Cast pasu je pleti zbarvena (moznost obnazene paze), cast sedava. Nelze rozhodnout tyc vs paze - podle specifikace neanotuji."
+ },
+ {
+  "stem": "004_004_0067",
+  "kind": "ambiguous",
+  "approx_box": [
+   160,
+   816,
+   224,
+   831
+  ],
+  "note": "tenky svetly vodorovny pruh (~64x15 px) nad osobou lezici/krcici na zemi. Silne rozmazano pohybem, muze byt tyc, bily rukav i obuv. Nelze rozhodnout."
+ },
+ {
+  "stem": "004_004_0067",
+  "kind": "ambiguous",
+  "approx_box": [
+   89,
+   855,
+   153,
+   886
+  ],
+  "note": "bily podlouhly utvar (~64x31 px) u zeme vedle cervenavych casti lezici osoby. Silne rozmazano pohybem, spis obuv nebo bile obleceni. Nelze rozhodnout."
+ },
+ {
+  "stem": "004_004_0073",
+  "kind": "ambiguous",
+  "approx_box": [
+   1330,
+   628,
+   1390,
+   648
+  ],
+  "note": "tenka svetle seda linie (~60x20 px, sila jen ~6 px) mezi hlavou a pazi bezici osoby v bilem tricku. Barva se lisi od kuze, sirka konstantni - mohla by to byt tenka tyc, ale pri teto sile a rozmazani nelze rozhodnout."
+ },
+ {
+  "stem": "004_004_0062",
+  "kind": "ambiguous",
+  "approx_box": [
+   3096,
+   728,
+   3215,
+   865
+  ],
+  "note": "zvednuta diagonala u osoby v modrem tricku vpravo naboru; dolni dve tretiny jsou zretelne kuze (paze), ale horni tenka sedozelena cast nad rukou (cca 3100-3130, 730-785) muze byt tenka tyc pokracujici za ruku - nelze rozhodnout"
+ },
+ {
+  "stem": "004_004_0062",
+  "kind": "ambiguous",
+  "approx_box": [
+   2740,
+   1190,
+   2885,
+   1305
+  ],
+  "note": "cervenohnedy podlouhly objekt/paze u osoby ve svetle kosili (hlava ~2755,1265); tvar je zakriveny (loket?), barva cervena az tmave hneda, na konci tmavy hrot (2855-2885,1275-1305) - nelze rozhodnout paze s necim v ruce vs. tyc s cervenou rukojeti"
+ },
+ {
+  "stem": "004_004_0068",
+  "kind": "ambiguous",
+  "approx_box": [
+   492,
+   900,
+   570,
+   951
+  ],
+  "note": "tmavy podlouhly mirne zahnuty objekt na osvetlenem betonu se zakulacenym levym koncem; prechodny (v 0026/0080 na temze miste nic), ale muze to byt stin nohy, obuv nebo kus tyce - nelze rozhodnout"
+ },
+ {
+  "stem": "004_004_0068",
+  "kind": "ambiguous",
+  "approx_box": [
+   248,
+   1070,
+   340,
+   1105
+  ],
+  "note": "cervenave/ruzove podlouhle cca 90x30 px vpravo od osoby v bilem tricku (torso 130-240, 890-1200), s tmavym koncem u (330,1100); muze to byt natazena paze/rukav nebo tyc s cervenou barvou - nelze rozhodnout"
+ },
+ {
+  "stem": "004_004_0068",
+  "kind": "ambiguous",
+  "approx_box": [
+   1360,
+   405,
+   1388,
+   578
+  ],
+  "note": "tmavy uzky svisly pruh (konstantni sirka ~28 px, delka ~173 px) u praveho boku osoby v modrem tricku u zdi, saha pod okraj tricka; pravdepodobne paze ve stinu, ale delka je na pazi velka - nelze rozhodnout"
+ },
+ {
+  "stem": "004_004_0074",
+  "kind": "ambiguous",
+  "approx_box": [
+   1627,
+   1010,
+   1647,
+   1066
+  ],
+  "note": "maly tmavy tenky svisly objekt (20x56 px) presne na hranici asfalt/beton, dole s malym tmavsim shlukem; prechodny (v 0080 na temze miste nic), ale prilis maly na rozhodnuti tyc vs. drobny odpadek/flaska"
+ },
+ {
+  "stem": "004_004_0063",
+  "kind": "ambiguous",
+  "approx_box": [
+   1108,
+   1078,
+   1170,
+   1100
+  ],
+  "note": "tenka tmava linka ~60x12 px vychazejici z ruky osoby v tmavem (telo ~1030-1110, 950-1300) doprava dolu po svetlem betonu. Mekke okraje a smer dolu-vpravo odpovidaji stinu, ale linka zacina presne u ruky, takze muze jit i o tenkou tmavou tyc. Nelze rozhodnout."
+ },
+ {
+  "stem": "004_004_0070",
+  "kind": "vyloucen_kontrolou",
+  "approx_box": [
+   415,
+   1348,
+   601,
+   1454
+  ],
+  "note": "tmavy zahnuty objekt na svetlem betonu - nelze rozhodnout tyc vs stin zdvizene paze. Napojuje se na tmavou masu u osoby a zuzuje se. Frame 0076 vylucuje staticky artefakt (prazdny beton), ale zbyva stin vs objekt. Podle spec 'kdyz nevis, nehadej' -> na cloveka."
+ },
+ {
+  "stem": "004_004_0070",
+  "kind": "ambiguous",
+  "approx_box": [
+   883,
+   765,
+   966,
+   823
+  ],
+  "note": "pohybove rozmazany tmavy objekt v letu nad asfaltem, ~83x58 px (poměr 1.4, tedy netycovity); muze jit o hozeny kamen/obuv/brasnu, nelze urcit tridu -> neanotovano"
+ },
+ {
+  "stem": "004_004_0041",
+  "kind": "ambiguous",
+  "approx_box": [
+   468,
+   598,
+   518,
+   618
+  ],
+  "note": "kratky svetly pruh (~50x20 px) u osoby v tmavem ve stinu; muze byt bily predmet v ruce, taska nebo odlesk obleceni - nelze rozhodnout"
+ },
+ {
+  "stem": "004_004_0065",
+  "kind": "ambiguous",
+  "approx_box": [
+   1636,
+   822,
+   1665,
+   841
+  ],
+  "note": "maly jasne bily predmet (~29x19 px) v ruce predklonene osoby v dzinach na (1590-1660, 780-840); muze byt kamen, kratka tyc nebo svetly predmet - prilis maly na rozhodnuti"
+ },
+ {
+  "stem": "001_001_0033",
+  "kind": "ambiguous",
+  "approx_box": [
+   1535,
+   935,
+   1572,
+   990
+  ],
+  "note": "sklonena osoba u (1500,900) drzi v ruce tmavy kompaktni predmet (cca 37x55 px), nad nim svetly pruh; tvarove nejspis fotoaparat/brasna, nema siluetu zbrane - nelze rozhodnout"
+ },
+ {
+  "stem": "001_001_0027",
+  "kind": "ambiguous",
+  "approx_box": [
+   3288,
+   1080,
+   3410,
+   1250
+  ],
+  "note": "tmavy tenky diagonalni pruh u praveho okraje; mekke hrany, plynule prechazi do stinove masy osoby, smer shodny se stiny ostatnich objektu (dolu-vpravo) -> vyhodnoceno jako stin, neanotovano"
+ },
+ {
+  "stem": "001_001_0067",
+  "kind": "ambiguous",
+  "approx_box": [
+   1440,
+   730,
+   1620,
+   830
+  ],
+  "note": "tmavy predmet na zemi = odlozeny batoh (stejne misto i ve framech 0075 a 0115, staticky), neni zbran"
+ },
+ {
+  "stem": "001_001_0083",
+  "kind": "ambiguous",
+  "approx_box": [
+   2818,
+   838,
+   2905,
+   1010
+  ],
+  "note": "hnedy obdelnikovy predmet u osoby v tmavem tricku; pri sirsim vyrezu je videt popruh pres rameno -> brasna/taska, ne zbran"
+ },
+ {
+  "stem": "001_001_0020",
+  "kind": "ambiguous",
+  "approx_box": [
+   1990,
+   352,
+   2042,
+   392
+  ],
+  "note": "svetla skvrna na konci predlokti osoby v ruzovem triku ve stinu; tvar neni tyc ani zbran, spis ruka na slunci nebo maly predmet - nelze rozhodnout"
+ },
+ {
+  "stem": "001_001_0117",
+  "kind": "ambiguous",
+  "approx_box": [
+   1288,
+   552,
+   1400,
+   608
+  ],
+  "note": "tmavy podlouhly pruh na hranici svetla/stinu kolem (1290-1400,552-608) plus tmava skvrna nad nim ve stinu; jde nejspis o maly predmet (pták/odpadek) a jeho stin - vzdy tmavsi nez okoli, mekke hrany, smer shodny se stiny sceny (dolu-vpravo). Nelze rozeznat detail."
+ },
+ {
+  "stem": "002_002_0004",
+  "kind": "ambiguous",
+  "approx_box": [
+   2340,
+   935,
+   2378,
+   973
+  ],
+  "note": "maly tmavy kompaktni predmet v prave ruce osoby v cernem tricku jdouci od kamery (2400,750-1100); tvar ctvercovy/obdelnikovy, nejspis mobil nebo penezenka, nema tvar zbrane - nelze s jistotou rozhodnout"
+ },
+ {
+  "stem": "001_001_0110",
+  "kind": "ambiguous",
+  "approx_box": [
+   175,
+   880,
+   312,
+   940
+  ],
+  "note": "tmavy podlouhly pruh vychazejici zpod cepici osoby v davu smerem dolu-vlevo; hodnotim jako STIN natazene paze (tmavsi nez okoli, mekke hrany, navazuje na stinovou masu, shodny smer se stiny ostatnich = dolu-vlevo), ale pri tomto rozliseni to nelze potvrdit na 100 %; NEANOTOVAT bez overeni"
+ }
+]

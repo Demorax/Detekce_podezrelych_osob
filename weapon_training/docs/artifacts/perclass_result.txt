@@ -1,0 +1,5 @@
+=== per-class (val split) ===
+  gun     P=0.818 R=0.759 mAP50=0.832 mAP50-95=0.566
+  knife   P=0.846 R=0.533 mAP50=0.589 mAP50-95=0.363
+  melee   P=0.803 R=0.699 mAP50=0.785 mAP50-95=0.485
+  ALL     mAP50=0.735 mAP50-95=0.471

@@ -1,0 +1,24 @@
+=== MED domain-gap test ===
+váhy:      runs/detect/runs/weapons/weapons_sgd_lr005/weights/best.pt
+framů:     208  (conf>=0.25, imgsz=960)
+framů s detekcí: 17 (8.2%)
+detekcí celkem:  17
+
+--- podle třídy ---
+  melee   n=15    conf prum=0.408 min=0.259 max=0.684
+  gun     n=2     conf prum=0.331 min=0.309 max=0.353
+
+--- podle confidence ---
+  0.25-0.4: 9
+  0.4-0.6: 7
+  0.6-0.8: 1
+  0.8-1.0: 0
+
+--- podle videa ---
+  004: 9
+  001: 7
+  002: 1
+
+POZOR K INTERPRETACI: MED videa téměř neobsahují zbraně, takže většina
+detekcí jsou pravděpodobně FALSE POSITIVES. Vysoký počet detekcí = špatná
+zpráva, ne dobrá. Klíčové je podívat se na anotované obrázky.

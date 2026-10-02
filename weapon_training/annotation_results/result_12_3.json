@@ -1,0 +1,39 @@
+[
+ {"stem":"001_001_0003","prelabel_verdicts":[],"missed":[],"ambiguous":[],"empty":true},
+ {"stem":"001_001_0011","prelabel_verdicts":[],"missed":[],"ambiguous":[],"empty":true},
+ {"stem":"001_001_0019","prelabel_verdicts":[],"missed":[],"ambiguous":[],"empty":true},
+ {"stem":"001_001_0027","prelabel_verdicts":[],"missed":[],
+  "ambiguous":[{"approx_box":[3288,1080,3410,1250],
+   "note":"tmavy tenky diagonalni pruh u praveho okraje; mekke hrany, plynule prechazi do stinove masy osoby, smer shodny se stiny ostatnich objektu (dolu-vpravo) -> vyhodnoceno jako stin, neanotovano"}],
+  "empty":true},
+ {"stem":"001_001_0035","prelabel_verdicts":[
+   {"box":[1680,684,1818,797],"name":"melee","verdict":"reject",
+    "note":"obnazena paze osoby v tmavem tricku s kapci; sirka se plynule zuzuje od ramene (1655,690) k ruce (1805,785), barva kuze bez zmeny odstinu, za rukou nic nepokracuje, konec tupy"}],
+  "missed":[],"ambiguous":[],"empty":true},
+ {"stem":"001_001_0043","prelabel_verdicts":[],"missed":[],"ambiguous":[],"empty":true},
+ {"stem":"001_001_0051","prelabel_verdicts":[],"missed":[],"ambiguous":[],"empty":true},
+ {"stem":"001_001_0059","prelabel_verdicts":[
+   {"box":[216,813,476,1042],"name":"gun","verdict":"reject",
+    "note":"false positive: hlavy a ramena skupiny lidi ve stinu (jeden v bile kosili), zadny objekt; overeno pri zoomu 4x"}],
+  "missed":[],"ambiguous":[],"empty":true},
+ {"stem":"001_001_0067","prelabel_verdicts":[],"missed":[],
+  "ambiguous":[{"approx_box":[1440,730,1620,830],
+   "note":"tmavy predmet na zemi = odlozeny batoh (stejne misto i ve framech 0075 a 0115, staticky), neni zbran"}],
+  "empty":true},
+ {"stem":"001_001_0075","prelabel_verdicts":[
+   {"box":[2525,572,2666,667],"name":"melee","verdict":"reject",
+    "note":"osoba v bile kosili se zkrizenyma holyma pazema/rukama pred telem (2540-2620, 620-700); box pokryva hlavu, rameno a paze, zadny objekt"}],
+  "missed":[],"ambiguous":[],"empty":true},
+ {"stem":"001_001_0083","prelabel_verdicts":[],"missed":[],
+  "ambiguous":[{"approx_box":[2818,838,2905,1010],
+   "note":"hnedy obdelnikovy predmet u osoby v tmavem tricku; pri sirsim vyrezu je videt popruh pres rameno -> brasna/taska, ne zbran"}],
+  "empty":true},
+ {"stem":"001_001_0091","prelabel_verdicts":[],"missed":[],"ambiguous":[],"empty":true},
+ {"stem":"001_001_0099","prelabel_verdicts":[],"missed":[],"ambiguous":[],"empty":true},
+ {"stem":"001_001_0107","prelabel_verdicts":[],"missed":[],"ambiguous":[],"empty":true},
+ {"stem":"001_001_0115","prelabel_verdicts":[],"missed":[],"ambiguous":[],"empty":true},
+ {"stem":"002_002_0002","prelabel_verdicts":[
+   {"box":[1925,751,2024,897],"name":"melee","verdict":"reject",
+    "note":"box pokryva mezeru mezi dvema osobami (svetly asfalt) a holou pazi osoby v bezove kosili (1955-2010, 800-870); zadny objekt"}],
+  "missed":[],"ambiguous":[],"empty":true}
+]

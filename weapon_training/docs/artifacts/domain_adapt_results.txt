@@ -1,0 +1,9 @@
+[11:53:13] === vychozi model ===
+RESULT [vychozi] MED val: mAP50=0.1376 mAP50-95=0.0685 | melee: P=0.842 R=0.100 AP50=0.138
+RESULT [vychozi] puvodni val: mAP50=0.7769 mAP50-95=0.5246 | gun: P=0.875 R=0.824 AP50=0.890  knife: P=0.884 R=0.587 AP50=0.610  melee: P=0.871 R=0.764 AP50=0.830
+[11:55:36] === fine-tune ===
+[12:56:05] fine-tune exit=0
+[12:56:05] === po fine-tune (runs/detect/runs/weapons/med_domain_adapt/weights/last.pt) ===
+RESULT [fine-tune] MED val: mAP50=0.4975 mAP50-95=0.2572 | melee: P=0.970 R=0.400 AP50=0.498
+RESULT [fine-tune] puvodni val: mAP50=0.7452 mAP50-95=0.4767 | gun: P=0.836 R=0.814 AP50=0.867  knife: P=0.849 R=0.596 AP50=0.600  melee: P=0.871 R=0.708 AP50=0.768
+[12:58:28] HOTOVO

@@ -1,0 +1,43 @@
+[
+ {"stem": "001_001_0000", "prelabel_verdicts": [], "missed": [], "ambiguous": [], "empty": true},
+ {"stem": "001_001_0008", "prelabel_verdicts": [], "missed": [], "ambiguous": [], "empty": true},
+ {"stem": "001_001_0016", "prelabel_verdicts": [], "missed": [], "ambiguous": [], "empty": true},
+ {"stem": "001_001_0024", "prelabel_verdicts": [], "missed": [], "ambiguous": [], "empty": true},
+ {"stem": "001_001_0032", "prelabel_verdicts": [], "missed": [], "ambiguous": [], "empty": true},
+ {"stem": "001_001_0040", "prelabel_verdicts": [
+   {"box": [1771,953,2012,1071], "name": "melee", "verdict": "reject",
+    "note": "box pokryva botu osoby v bilych kalhotach, dlazbu a stin; zadny objekt"}
+  ], "missed": [], "ambiguous": [], "empty": true},
+ {"stem": "001_001_0048", "prelabel_verdicts": [
+   {"box": [1285,549,1387,628], "name": "melee", "verdict": "reject",
+    "note": "prazdny tmavy asfalt vedle osoby, jen hranice svetla a stinu"}
+  ], "missed": [], "ambiguous": [], "empty": true},
+ {"stem": "001_001_0056", "prelabel_verdicts": [], "missed": [], "ambiguous": [], "empty": true},
+ {"stem": "001_001_0064", "prelabel_verdicts": [], "missed": [], "ambiguous": [], "empty": true},
+ {"stem": "001_001_0072", "prelabel_verdicts": [
+   {"box": [2931,388,3027,536], "name": "melee", "verdict": "reject",
+    "note": "prazdny tmavy asfalt ve stinu, zadny objekt"}
+  ], "missed": [], "ambiguous": [], "empty": true},
+ {"stem": "001_001_0080", "prelabel_verdicts": [
+   {"box": [1863,568,2101,776], "name": "melee", "verdict": "reject",
+    "note": "osoba v bile kosili s hnedou brasnou pod pazi a popruhem pres telo; brasna ani popruh nejsou zbran"},
+   {"box": [1845,244,2037,476], "name": "melee", "verdict": "reject",
+    "note": "tmavy zastineny asfalt a nohy chodcu, zadny objekt"},
+   {"box": [1902,573,2104,692], "name": "melee", "verdict": "reject",
+    "note": "duplikat prvni detekce - hneda brasna/popruh osoby v bilem"}
+  ], "missed": [], "ambiguous": [], "empty": true},
+ {"stem": "001_001_0088", "prelabel_verdicts": [], "missed": [], "ambiguous": [], "empty": true},
+ {"stem": "001_001_0096", "prelabel_verdicts": [], "missed": [], "ambiguous": [], "empty": true},
+ {"stem": "001_001_0104", "prelabel_verdicts": [], "missed": [], "ambiguous": [], "empty": true},
+ {"stem": "001_001_0112", "prelabel_verdicts": [], "missed": [], "ambiguous": [], "empty": true},
+ {"stem": "002_001_0076", "prelabel_verdicts": [
+   {"box": [2381,583,2481,827], "name": "melee", "verdict": "reject",
+    "note": "obnazene predlokti a pest osoby v bilem tricku, klasicky FP"},
+   {"box": [1291,534,1388,627], "name": "melee", "verdict": "reject",
+    "note": "paze osoby v cernem a prazdny tmavy asfalt vpravo od ni"},
+   {"box": [2388,386,2525,693], "name": "melee", "verdict": "reject",
+    "note": "trup a obnazene paze dvou osob v bilych triku, zadny predmet"},
+   {"box": [2428,389,2519,610], "name": "melee", "verdict": "reject",
+    "note": "duplikat - obnazena paze osoby v bilem, zadny predmet"}
+  ], "missed": [], "ambiguous": [], "empty": true}
+]

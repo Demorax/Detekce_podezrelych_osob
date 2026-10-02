@@ -1,0 +1,390 @@
+[
+ {
+  "stem": "004d_00871",
+  "prelabel_verdicts": [
+   {
+    "box": [
+     2871,
+     918,
+     3243,
+     1059
+    ],
+    "name": "melee",
+    "verdict": "retighten",
+    "new_box": [
+     2881,
+     929,
+     3238,
+     1038
+    ],
+    "note": "spravna detekce dlouhe bile tyce nesene osobou v modrem; box byl mirne prilis velky, hlavne dole"
+   },
+   {
+    "box": [
+     1581,
+     1152,
+     1632,
+     1204
+    ],
+    "name": "gun",
+    "verdict": "reject",
+    "note": "false positive na obnazene predlokti/pesti osoby v kostkovane kosili"
+   }
+  ],
+  "missed": [
+   {
+    "approx_box": [
+     2585,
+     1124,
+     2696,
+     1187
+    ],
+    "name": "melee",
+    "confidence": "medium",
+    "note": "tmave vinovy/cerveny prut drzeny v pesti (pest na levem konci ~2560,1125); pri 8x s vyrovnanim kontrastu ma konstantni sirku ~20 px, tmavsi rounded konec vpravo, odstin jasne odlisny od ruzove kuze ruky"
+   }
+  ],
+  "ambiguous": [
+   {
+    "approx_box": [
+     3030,
+     758,
+     3068,
+     800
+    ],
+    "note": "velmi jasny bily podlouhly objekt v ruce osoby vpravo nahore (x~3100,y~750); muze byt kratka bila tyc, ale i preexponovana pest"
+   }
+  ],
+  "empty": false
+ },
+ {
+  "stem": "004d_00891",
+  "prelabel_verdicts": [
+   {
+    "box": [
+     1919,
+     722,
+     2076,
+     799
+    ],
+    "name": "melee",
+    "verdict": "retighten",
+    "new_box": [
+     1922,
+     729,
+     2073,
+     787
+    ],
+    "note": "spravne - bila tyc v zvednute ruce; box mirne volny"
+   },
+   {
+    "box": [
+     1303,
+     644,
+     1351,
+     708
+    ],
+    "name": "gun",
+    "verdict": "reject",
+    "note": "prazdny tmavy asfalt vedle nohy bezici osoby"
+   },
+   {
+    "box": [
+     980,
+     1188,
+     1096,
+     1334
+    ],
+    "name": "gun",
+    "verdict": "reject",
+    "note": "obnazene predlokti (zuzuje se od ramene k ruce) osoby v kostkovanem"
+   },
+   {
+    "box": [
+     1642,
+     990,
+     1830,
+     1187
+    ],
+    "name": "melee",
+    "verdict": "reject",
+    "note": "pri 8x zoomu s vyrovnanim kontrastu jde o dve predlokti/pesti dvou zapasicich osob a tmavy stin mezi nimi; zadny objekt s konstantni sirkou"
+   }
+  ],
+  "missed": [
+   {
+    "approx_box": [
+     2665,
+     726,
+     2705,
+     784
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "vyrazne bily podlouhly objekt (40x58) na konci natazene paze; pri 9x s vyrovnanim kontrastu ostre oddeleny od kuze zapesti, konstantni sirka ~22 px, jiny sklon nez paze"
+   }
+  ],
+  "ambiguous": [
+   {
+    "approx_box": [
+     2105,
+     1440,
+     2330,
+     1685
+    ],
+    "note": "dlouha tenka sedava cara na svetlem betonu, smer dolu-vpravo (shodny se smerem stinu), navazuje na stinovou masu osoby, ve framu 00871 na stejnem miste nic - hodnoceno jako stin tyce, neanotovano"
+   },
+   {
+    "approx_box": [
+     2855,
+     1245,
+     2880,
+     1400
+    ],
+    "note": "tenka tmava svisla cara na betonu vychazejici ze stinu bezici osoby - stin tyce, neanotovano"
+   }
+  ],
+  "empty": false
+ },
+ {
+  "stem": "004d_00916",
+  "prelabel_verdicts": [],
+  "missed": [
+   {
+    "approx_box": [
+     859,
+     575,
+     971,
+     691
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "jednoznacna bila tyc zvednuta nad hlavou osoby (x~880,y~700); jasne svetlejsi nez paze, konstantni sirka, presahuje ruku na obe strany"
+   }
+  ],
+  "ambiguous": [
+   {
+    "approx_box": [
+     200,
+     1288,
+     286,
+     1352
+    ],
+    "note": "tmavy podlouhly objekt v hustem chumlu osob vlevo dole; nelze odlisit od paze v tmavem rukavu"
+   },
+   {
+    "approx_box": [
+     286,
+     1372,
+     390,
+     1400
+    ],
+    "note": "tmavy vodorovny prut na svetlem betonu u chumlu osob; muze byt tyc i stin/pazi"
+   },
+   {
+    "approx_box": [
+     1045,
+     1120,
+     1145,
+     1330
+    ],
+    "note": "dlouha tenka tmava cara na betonu smerem dolu-vpravo - stin tyce/koncetiny, neanotovano"
+   }
+  ],
+  "empty": false
+ },
+ {
+  "stem": "004d_00936",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [
+   {
+    "approx_box": [
+     1283,
+     535,
+     1320,
+     692
+    ],
+    "note": "uzky svetle bezovy pruh (~18x155 px) svisle nad hlavou osoby v bezove kosili; konstantni sirka a odlesk mluvi pro tyc, ale delka presne odpovida zvednute pazi - nerozhodnuto"
+   }
+  ],
+  "empty": false
+ },
+ {
+  "stem": "004d_00956",
+  "prelabel_verdicts": [
+   {
+    "box": [
+     635,
+     747,
+     728,
+     822
+    ],
+    "name": "melee",
+    "verdict": "retighten",
+    "new_box": [
+     637,
+     752,
+     724,
+     814
+    ],
+    "note": "spravna detekce bile tyce u ramene osoby v bezove kosili; box mirne volny (zasahoval do limce kosile)"
+   }
+  ],
+  "missed": [],
+  "ambiguous": [],
+  "empty": false
+ },
+ {
+  "stem": "004d_00981",
+  "prelabel_verdicts": [
+   {
+    "box": [
+     2060,
+     442,
+     2142,
+     533
+    ],
+    "name": "melee",
+    "verdict": "reject",
+    "note": "stin osoby na zdi (mekke okraje, smer dolu-vpravo), zadny objekt"
+   }
+  ],
+  "missed": [],
+  "ambiguous": [
+   {
+    "approx_box": [
+     355,
+     1020,
+     527,
+     1042
+    ],
+    "note": "svetle hnedy vodorovny prut (~170x15 px) u osoby v bilem tricku vlevo dole; barva odpovida i holemu predlokti s pesti na pravem konci - nerozhodnuto"
+   },
+   {
+    "approx_box": [
+     818,
+     899,
+     862,
+     951
+    ],
+    "note": "tmavy podlouhly objekt na hranici betonu a asfaltu - odpovida overenemu statickemu artefaktu ze specifikace (805-845, 897-948, prasklina/spara), neanotovano"
+   }
+  ],
+  "empty": false
+ },
+ {
+  "stem": "004d_01001",
+  "prelabel_verdicts": [
+   {
+    "box": [
+     718,
+     804,
+     845,
+     852
+    ],
+    "name": "melee",
+    "verdict": "retighten",
+    "new_box": [
+     733,
+     819,
+     807,
+     841
+    ],
+    "note": "bily podlouhly objekt (~74x22) pod natazenou pazi bezici osoby v bilem; vyrazne jasnejsi nez kuze paze nad nim, ostre hrany, konstantni sirka - pravdepodobne bila tyc; box modelu byl 2x prilis velky"
+   }
+  ],
+  "missed": [],
+  "ambiguous": [
+   {
+    "approx_box": [
+     860,
+     1370,
+     1000,
+     1390
+    ],
+    "note": "slabe tmave skvrny na betonu, spis flek/prasklina + stin nohy, neanotovano"
+   }
+  ],
+  "empty": false
+ },
+ {
+  "stem": "004d_01021",
+  "prelabel_verdicts": [
+   {
+    "box": [
+     3096,
+     726,
+     3180,
+     876
+    ],
+    "name": "melee",
+    "verdict": "reject",
+    "note": "overeny staticky artefakt ze specifikace (004, 3100-3210 / 730-920) - svetla namalovana cara na asfaltu; vizualne potvrzeno na 5x zoomu"
+   }
+  ],
+  "missed": [],
+  "ambiguous": [
+   {
+    "approx_box": [
+     890,
+     765,
+     955,
+     825
+    ],
+    "note": "tmavy objekt na asfaltu = overeny staticky artefakt (odlozena taska), neanotovano"
+   },
+   {
+    "approx_box": [
+     2740,
+     545,
+     2795,
+     620
+    ],
+    "note": "tmavy podlouhly tvar u ramene osoby v cernem u zdi; tmave na tmavem, nelze odlisit rukav/pazi od tyce"
+   }
+  ],
+  "empty": false
+ },
+ {
+  "stem": "004d_01046",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [
+   {
+    "approx_box": [
+     890,
+     765,
+     955,
+     825
+    ],
+    "note": "staticky artefakt (odlozena taska) na asfaltu, neanotovano"
+   }
+  ],
+  "empty": true
+ },
+ {
+  "stem": "004d_01066",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004d_01086",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [
+   {
+    "approx_box": [
+     452,
+     554,
+     498,
+     608
+    ],
+    "note": "syte cerveny/ruzovy podlouhly utvar u hlavy osoby v bilem tricku vlevo; pomer stran jen ~1:1.2 a ve stinu na zemi neni zadny odpovidajici stin tyce - spis zvednuta pest/predlokti, neanotovano"
+   }
+  ],
+  "empty": false
+ }
+]

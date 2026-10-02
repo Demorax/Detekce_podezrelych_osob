@@ -1,0 +1,25 @@
+=== optimalni thresholdy z F1 krivky (val split) ===
+
+gun:
+  max F1  = 0.8507 pri conf=0.411  (P=0.858 R=0.843)
+  recall-friendly (F1 >= 97 % max): conf=0.276 (P=0.788 R=0.866 F1=0.825)
+    conf=0.25 -> P=0.771 R=0.869 F1=0.817
+    conf=0.35 -> P=0.831 R=0.852 F1=0.841
+    conf=0.45 -> P=0.869 R=0.828 F1=0.848
+    conf=0.55 -> P=0.906 R=0.793 F1=0.846
+
+knife:
+  max F1  = 0.7091 pri conf=0.388  (P=0.869 R=0.599)
+  recall-friendly (F1 >= 97 % max): conf=0.120 (P=0.771 R=0.621 F1=0.688)
+    conf=0.25 -> P=0.844 R=0.608 F1=0.706
+    conf=0.35 -> P=0.861 R=0.601 F1=0.708
+    conf=0.45 -> P=0.885 R=0.590 F1=0.708
+    conf=0.55 -> P=0.896 R=0.574 F1=0.700
+
+melee:
+  max F1  = 0.8168 pri conf=0.494  (P=0.886 R=0.758)
+  recall-friendly (F1 >= 97 % max): conf=0.317 (P=0.785 R=0.801 F1=0.793)
+    conf=0.25 -> P=0.740 R=0.808 F1=0.773
+    conf=0.35 -> P=0.806 R=0.792 F1=0.799
+    conf=0.45 -> P=0.862 R=0.767 F1=0.812
+    conf=0.55 -> P=0.907 R=0.718 F1=0.802

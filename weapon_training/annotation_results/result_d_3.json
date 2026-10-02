@@ -1,0 +1,136 @@
+[
+ {
+  "stem": "004d_00881",
+  "prelabel_verdicts": [
+   {"box": [1861,1349,1931,1414], "name": "gun", "verdict": "reject",
+    "note": "obnazene predlokti + pest osoby v bilem tricku, natazene doleva pres svetly asfalt; zadna zbran"},
+   {"box": [1859,1347,1955,1422], "name": "gun", "verdict": "reject",
+    "note": "duplicitni detekce tehoz predlokti"},
+   {"box": [3003,633,3081,948], "name": "melee", "verdict": "retighten",
+    "new_box": [3012,646,3070,900],
+    "note": "skutecna svetla tyc drzena osobou v kremove kosili (ruka na y~895); box byl siroky i vysoky navic"},
+   {"box": [2342,785,2560,954], "name": "melee", "verdict": "retighten",
+    "new_box": [2347,783,2532,940],
+    "note": "spravna detekce bile tyce (spicka 2349,785 -> pest 2500,935); box mirne prilis velky vpravo dole"}
+  ],
+  "missed": [],
+  "ambiguous": [
+   {"approx_box": [1254,689,1331,719],
+    "note": "bily podlouhly objekt v urovni pasu osoby v svetle sede mikine (x~1300); zakriveny a nekonstantni sirky - muze byt kratka tyc, rukav nebo taska; nelze rozhodnout"}
+  ],
+  "empty": false
+ },
+ {
+  "stem": "004d_00906",
+  "prelabel_verdicts": [
+   {"box": [2286,473,2432,759], "name": "melee", "verdict": "retighten",
+    "new_box": [2322,477,2422,655],
+    "note": "tyc tam je (zvednuta osobou v kremove kosili), ale box zasahuje az do paze/ramene; tyc konci na y~652, kde prechazi v ruzove predlokti"},
+   {"box": [2321,475,2429,678], "name": "melee", "verdict": "accept",
+    "note": "prakticky presny box na bilou tyc (odectene hranice 2322,477-2422,655)"}
+  ],
+  "missed": [
+   {"approx_box": [1261,626,1398,712], "name": "melee", "confidence": "high",
+    "note": "bila tyc zvednuta sikmo vzhuru osobou v mentolovem tricku; jasne jasnejsi a konstantni sirky nez ruzova paze, ktera ji krizi kolem (1290,670)"}
+  ],
+  "ambiguous": [],
+  "empty": false
+ },
+ {
+  "stem": "004d_00926",
+  "prelabel_verdicts": [
+   {"box": [565,468,687,719], "name": "melee", "verdict": "retighten",
+    "new_box": [610,477,684,558],
+    "note": "diagonala obsahuje paze i tyc; zlom (zmena smeru i barvy z ruzove kuze na sedobezovou) je na (612,553), anotovana jen cast za rukou"}
+  ],
+  "missed": [
+   {"approx_box": [1546,793,1662,910], "name": "melee", "confidence": "high",
+    "note": "bila tyc/pálka drzena osobou v kremove kosili, miri dolu doprava od pesti (1550,798) k (1660,908); zretelne bilejsi a sirsi nez ruzova paze nad ni"}
+  ],
+  "ambiguous": [],
+  "empty": false
+ },
+ {
+  "stem": "004d_00946",
+  "prelabel_verdicts": [
+   {"box": [437,511,607,586], "name": "melee", "verdict": "retighten",
+    "new_box": [445,524,556,561],
+    "note": "cerveno-hneda tyc drzena v pesti osoby ve svetle modre kosili (pest s bilym odleskem na 555-577,547-562), tyc miri doleva do prazdna - neni to nici paze; box byl ~3x prilis velky"}
+  ],
+  "missed": [
+   {"approx_box": [899,881,966,913], "name": "melee", "confidence": "medium",
+    "note": "bily podlouhly pruh vystupujici zpoza boku osoby v kremove kosili, miri dolu doleva; pravdepodobne tataz bila palka jako ve framu 00926"}
+  ],
+  "ambiguous": [
+   {"approx_box": [118,1075,215,1250],
+    "note": "tmavy tenky rovny prut u osoby v bilem vlevo dole; smer dolu-DOLEVA neodpovida smeru stinu, ale hrany jsou mekke; nelze rozhodnout tyc vs. stin"}
+  ],
+  "empty": false
+ },
+ {
+  "stem": "004d_00971",
+  "prelabel_verdicts": [
+   {"box": [309,1005,365,1066], "name": "gun", "verdict": "reject",
+    "note": "obnazene predlokti s pesti osoby ve svetle modrem tricku, natazene doprava"},
+   {"box": [233,505,325,595], "name": "melee", "verdict": "reject",
+    "note": "tmava paze v tmavem rukavu vychazejici z ramene, konci pesti; stejna barva jako obleceni"}
+  ],
+  "missed": [],
+  "ambiguous": [
+   {"approx_box": [487,678,505,750],
+    "note": "svisly bily pruh u ramene osoby v kremove kosili (ta v 00926/00946 nesla bilou palku); muze to byt horni konec tyce drzene svisle, nebo jen osvetlene rameno/limec"}
+  ],
+  "empty": false
+ },
+ {
+  "stem": "004d_00991",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true,
+  "note": "scena se vyprazdnila; jedine podlouhle/tmave objekty jsou overene staticke artefakty (890-960,765-820 odlozena taska a 815-865,895-945 spara v betonu) plus namalovana cara 3080-3200,700-850"
+ },
+ {
+  "stem": "004d_01011",
+  "prelabel_verdicts": [
+   {"box": [2494,963,2682,1201], "name": "melee", "verdict": "reject",
+    "note": "noha v bilych kalhotach + bota bezici osoby, ne tyc"},
+   {"box": [1118,561,1221,699], "name": "melee", "verdict": "reject",
+    "note": "prazdny asfalt, zadny objekt"}
+  ],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004d_01031",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004d_01056",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004d_01076",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004d_01096",
+  "prelabel_verdicts": [
+   {"box": [3122,759,3206,925], "name": "melee", "verdict": "reject",
+    "note": "overeny staticky artefakt - svetla namalovana cara na asfaltu (spec: 004 3100-3210,730-920); mekky, slaby, na stejnem miste i ve framech 00906/00946/01056/01076"}
+  ],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ }
+]

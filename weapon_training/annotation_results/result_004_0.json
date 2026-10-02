@@ -1,0 +1,140 @@
+[
+ {
+  "stem": "004_004_0000",
+  "prelabel_verdicts": [
+   {"box": [1756,496,1806,553], "name": "gun", "verdict": "reject",
+    "note": "trup osoby v tmavem obleceni u zdi, zadna zbran; pri 4x zoomu nic"},
+   {"box": [3098,695,3212,916], "name": "melee", "verdict": "reject",
+    "note": "znama staticka svetla namalovana linie na asfaltu (3100-3210,730-920); overeno i ve framech 0006/0012/0054/0060, kde tam nikdo nestoji"},
+   {"box": [1761,493,1817,553], "name": "gun", "verdict": "reject",
+    "note": "duplicitni detekce stejneho mista jako prvni box, opet jen trup osoby"},
+   {"box": [885,475,923,544], "name": "gun", "verdict": "reject",
+    "note": "tmava predklonena osoba, trup/paze, zadny objekt"}
+  ],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0006",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0012",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0018",
+  "prelabel_verdicts": [
+   {"box": [0,762,103,846], "name": "melee", "verdict": "reject",
+    "note": "levy okraj framu, trup/pas osoby v tmavem obleceni castecne mimo zaber; zadna tyc"}
+  ],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0024",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0030",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [
+   {"approx_box": [450,1075,560,1170],
+    "note": "osoba v bordove halence s dlouhymi vlasy (telo cca 300-500 / 950-1400) ma natazenou pravou ruku; tmavy podlouhly utvar konstantni sirky ~12 px pokracuje az k (555,1160). Nelze rozhodnout tyc vs. predlokti/popruh tasky; ve stinu se samostatna linie tyce nepotvrdila"}
+  ],
+  "empty": false
+ },
+ {
+  "stem": "004_004_0036",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0042",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0048",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0054",
+  "prelabel_verdicts": [
+   {"box": [908,765,967,832], "name": "gun", "verdict": "reject",
+    "note": "prazdny asfalt vpravo od osoby ve svetle kosili, pri 5x zoomu zadny objekt"},
+   {"box": [475,780,607,935], "name": "melee", "verdict": "reject",
+    "note": "obnazena paze osoby v tyrkysovem tricku natazena sikmo dolu-vlevo; zuzuje se, konci rukou, barva kuze - typicky FP"}
+  ],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0060",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0066",
+  "prelabel_verdicts": [
+   {"box": [1005,564,1111,625], "name": "melee", "verdict": "retighten",
+    "new_box": [997,562,1124,610],
+    "note": "spravna detekce: tmave cervena podlouhla tyc drzena vodorovne, se svetlym odleskem kolem x=1100; box modelu je prilis vysoky a kratky - objekt je uzsi (~20 px) a delsi"}
+  ],
+  "missed": [
+   {"approx_box": [1595,832,1656,966], "name": "melee", "confidence": "high",
+    "note": "jasna bila tyc v ruce osoby v kremove kosili (telo cca 1660-1780 / 700-1120); prechod paze-tyc u zapesti kolem (1600,835), tyc pak jde dolu-vpravo, konstantni sirka ~20 px, ostry konec u (1650,965)"},
+   {"approx_box": [666,719,846,764], "name": "melee", "confidence": "medium",
+    "note": "cervena/ruzova vodorovna tyc drzena osobou ve svetle modrem tricku (telo cca 570-660); zacina az za rukou (ruka ~640-665) a volne pokracuje ~180 px nad prazdny asfalt, takze to neni paze jine osoby; stejny typ objektu jako predanotace na (997,562)"}
+  ],
+  "ambiguous": [
+   {"approx_box": [790,1125,910,1270],
+    "note": "tmavy tenky pruh smerem dolu-vpravo u nohou osoby v bilem tricku; tonem odpovida stinu na svetlem betonu (mekke hrany, bez odlesku, stejny jas jako stinova masa osoby), ale nelze vyloucit tmavou tyc v ruce"},
+   {"approx_box": [1118,950,1205,1015],
+    "note": "tenky sedy pruh na osvetlene zemi u hranice stinu; ve framech 0060 i 0072 na stejnych souradnicich neni, takze to neni staticke pozadi, ale nelze rozhodnout tyc lezici na zemi vs. stin nadzvednuteho predmetu"}
+  ],
+  "empty": false
+ },
+ {
+  "stem": "004_004_0072",
+  "prelabel_verdicts": [
+   {"box": [873,765,916,815], "name": "melee", "verdict": "reject",
+    "note": "pokrcena paze/pest bezici osoby v bilem tricku (telo 940-1080 / 690-1050); zaoblena tmava skvrna ~35x40 px, nic podlouhleho"}
+  ],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0078",
+  "prelabel_verdicts": [
+   {"box": [3120,763,3194,909], "name": "melee", "verdict": "reject",
+    "note": "opet staticka namalovana diagonalni cara na asfaltu (3100-3210,730-920); osoba v modrem stoji vlevo od ni (x<3110), cara pokracuje i mimo ni a je i ve framech bez lidi"}
+  ],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ }
+]

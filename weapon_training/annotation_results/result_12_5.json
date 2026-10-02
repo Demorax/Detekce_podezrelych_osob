@@ -1,0 +1,216 @@
+[
+ {
+  "stem": "001_001_0005",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0013",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0021",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0029",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0037",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0045",
+  "prelabel_verdicts": [
+   {
+    "box": [
+     1200,
+     526,
+     1345,
+     688
+    ],
+    "name": "gun",
+    "verdict": "reject",
+    "note": "hlava a trup osoby prochazejici na hranici svetla a stinu, zadna zbran"
+   },
+   {
+    "box": [
+     1208,
+     552,
+     1315,
+     676
+    ],
+    "name": "gun",
+    "verdict": "reject",
+    "note": "duplicitni detekce te same osoby, zadny objekt"
+   }
+  ],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0053",
+  "prelabel_verdicts": [
+   {
+    "box": [
+     1821,
+     541,
+     1963,
+     628
+    ],
+    "name": "melee",
+    "verdict": "reject",
+    "note": "obnazene predlokti osoby v bilem tricku, konci rukou, odstin kuze, zuzuje se - klasicky FP"
+   }
+  ],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0061",
+  "prelabel_verdicts": [
+   {
+    "box": [
+     1567,
+     233,
+     1656,
+     327
+    ],
+    "name": "melee",
+    "verdict": "reject",
+    "note": "pazе/rukav osoby castecne orizle hornim okrajem framu, konci zaoblenou pesti, nic nepokracuje za ruku"
+   }
+  ],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0069",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0077",
+  "prelabel_verdicts": [
+   {
+    "box": [
+     2221,
+     564,
+     2347,
+     806
+    ],
+    "name": "melee",
+    "verdict": "reject",
+    "note": "obnazena paze a trup osoby v bilem tricku, diagonala je predlokti odstinu kuze, konci rukou"
+   },
+   {
+    "box": [
+     1293,
+     544,
+     1386,
+     626
+    ],
+    "name": "melee",
+    "verdict": "reject",
+    "note": "hranice svetla a stinu na asfaltu vedle osoby v cernem + jeji stin, zadny objekt"
+   }
+  ],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0085",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0093",
+  "prelabel_verdicts": [
+   {
+    "box": [
+     1566,
+     1331,
+     1714,
+     1457
+    ],
+    "name": "melee",
+    "verdict": "reject",
+    "note": "obnazena paze osoby v sedem tricku vychazejici z ramene, zuzuje se, konci pesti kolem (1680,1420); nic nepokracuje za ruku"
+   }
+  ],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0101",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0109",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0117",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [
+   {
+    "approx_box": [
+     1288,
+     552,
+     1400,
+     608
+    ],
+    "note": "tmavy podlouhly pruh na hranici svetla/stinu kolem (1290-1400,552-608) plus tmava skvrna nad nim ve stinu; jde nejspis o maly predmet (pták/odpadek) a jeho stin - vzdy tmavsi nez okoli, mekke hrany, smer shodny se stiny sceny (dolu-vpravo). Nelze rozeznat detail."
+   }
+  ],
+  "empty": true
+ },
+ {
+  "stem": "002_002_0004",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [
+   {
+    "approx_box": [
+     2340,
+     935,
+     2378,
+     973
+    ],
+    "note": "maly tmavy kompaktni predmet v prave ruce osoby v cernem tricku jdouci od kamery (2400,750-1100); tvar ctvercovy/obdelnikovy, nejspis mobil nebo penezenka, nema tvar zbrane - nelze s jistotou rozhodnout"
+   }
+  ],
+  "empty": true
+ }
+]

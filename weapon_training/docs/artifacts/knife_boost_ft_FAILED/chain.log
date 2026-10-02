@@ -1,0 +1,7 @@
+[23:05:00] cekam na dokonceni oversamplingu
+[23:05:20] train: 24688 img / 24688 lbl
+[23:05:20] val: 3503 img / 3503 lbl
+[23:05:20] test: 913 img / 913 lbl
+[23:05:20] kontrola OK, spoustim fine-tune z best.pt
+[23:05:20] vahy: runs/detect/runs/weapons/weapons_sgd_lr005/weights/best.pt
+[03:11:23] fine-tune ukoncen, exit=0

@@ -1,0 +1,131 @@
+[
+ {
+  "stem": "004_004_0004",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0010",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0016",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0022",
+  "prelabel_verdicts": [
+    {"box": [0,843,124,955], "name": "melee",
+     "verdict": "reject",
+     "note": "false positive u leveho okraje framu; v boxu je jen hranice svetla/stinu na zemi a bok osoby ve svetle kosili, zadny podlouhly objekt (zoom 4x)"}
+  ],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0028",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0034",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0040",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0046",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0052",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0058",
+  "prelabel_verdicts": [
+    {"box": [756,694,802,748], "name": "gun",
+     "verdict": "reject",
+     "note": "rameno/zvednuta paze chodce v tmavem obleceni, svetly odlesk na rameni; nic zbranoveho (zoom 4x + kontext 2.5x)"},
+    {"box": [1472,547,1586,686], "name": "melee",
+     "verdict": "reject",
+     "note": "prazdny zastineny asfalt, jen stin osoby; zadny objekt"}
+  ],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0064",
+  "prelabel_verdicts": [
+    {"box": [1229,1242,1333,1298], "name": "gun",
+     "verdict": "reject",
+     "note": "obnazene predlokti osoby v bile kosili vysunute doleva v urovni boku; zuzuje se od tela k pesti (blob na levem konci), odstin kuze, napojene na telo -> vsechny 4 znaky ze specifikace ukazuji na pazi (zoom 8x)"},
+    {"box": [839,1517,904,1578], "name": "gun",
+     "verdict": "reject",
+     "note": "pest/ruka na konci natazene paze osoby v tmavem; tmavy blob ~25x18 px, neni to zbran (zoom 4x)"},
+    {"box": [1227,1241,1287,1295], "name": "gun",
+     "verdict": "reject",
+     "note": "duplikat prvni detekce na stejnem predlokti"}
+  ],
+  "missed": [
+    {"approx_box": [1673,654,1803,847], "name": "melee", "confidence": "high",
+     "note": "bila tyc drzena zvednutou rukou osoby v ruzovo-bile kosili, jde diagonalne dolu-vpravo; sirka konstantni ~30 px, jasne bila (odlisna od kuze); pazi tvori tan diagonala vlevo, anotovana jen bila cast; odecteno pri zoomu 4x"},
+    {"approx_box": [2575,677,2601,872], "name": "melee", "confidence": "high",
+     "note": "bila svisla tyc drzena obema rukama osobou v kremove kosili; sirka konstantni ~25 px, delka ~195 px; horni konec (zaobleny bily vrsek) y=677, spodni konec y=872 odecteny pri zoomu 10x"}
+  ],
+  "ambiguous": [],
+  "empty": false
+ },
+ {
+  "stem": "004_004_0070",
+  "prelabel_verdicts": [
+    {"box": [2063,452,2136,534], "name": "melee",
+     "verdict": "reject",
+     "note": "obnazena paze osoby u zdi natazena doprava + tmavy blob ruky (~18x20 px) na konci; zadna tyc, sirka se zuzuje, odstin kuze (zoom 4x)"}
+  ],
+  "missed": [
+    {"approx_box": [336,1013,505,1040], "name": "melee", "confidence": "medium",
+     "note": "tenka svetla drevena lat drzena vodorovne osobou v bilem tricku, mirne stoupa doprava; sirka konstantni ~13 px, delka ~170 px (mnohem vic nez by merila paze u osoby vysoke ~230 px); odlisena od tmave nohy stojici osoby nad ni a od jeji sedive stinove masky (zoom 5.5x)"},
+    {"approx_box": [415,1348,601,1454], "name": "melee", "confidence": "high",
+     "note": "tmava tyc/prut se svetlym odleskem po spodni hrane, jde z ruky/ramene osoby v sede vzhuru-vpravo, zakonceny zaoblenou spickou; sirka konstantni ~20 px, delka po diagonale ~215 px; nemuze byt stin (stiny v tomto framu padaji dolu-vpravo a jsou bez odlesku) (zoom 4.5x)"}
+  ],
+  "ambiguous": [
+    {"approx_box": [883,765,966,823],
+     "note": "pohybove rozmazany tmavy objekt v letu nad asfaltem, ~83x58 px (poměr 1.4, tedy netycovity); muze jit o hozeny kamen/obuv/brasnu, nelze urcit tridu -> neanotovano"}
+  ],
+  "empty": false
+ },
+ {
+  "stem": "004_004_0076",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ }
+]

@@ -1,0 +1,9 @@
+path: /home/dgx2/weapon_training/datasets/weapons_merged
+train: train/images
+val: val/images
+test: test/images
+nc: 3
+names:
+- gun
+- knife
+- melee

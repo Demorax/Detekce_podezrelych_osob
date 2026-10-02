@@ -1,0 +1,4 @@
+  train: 24688 obrazku, instance {'gun': 11738, 'knife': 7281, 'melee': 8879}
+  val: 3503 obrazku, instance {'gun': 2236, 'knife': 586, 'melee': 1236}
+  test: 913 obrazku, instance {'gun': 268, 'knife': 195, 'melee': 615}
+EXIT=0

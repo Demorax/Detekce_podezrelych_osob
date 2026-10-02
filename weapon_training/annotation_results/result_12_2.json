@@ -1,0 +1,138 @@
+[
+ {
+  "stem": "001_001_0002",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0010",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0018",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0026",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0034",
+  "prelabel_verdicts": [
+   {
+    "box": [
+     531,
+     718,
+     581,
+     768
+    ],
+    "name": "gun",
+    "verdict": "reject",
+    "note": "obnazene predlokti a dlan osoby ve fialovem tricku natazene doleva; zadny objekt, klasicky FP na pazi"
+   }
+  ],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0042",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0050",
+  "prelabel_verdicts": [
+   {
+    "box": [
+     1457,
+     516,
+     1565,
+     588
+    ],
+    "name": "melee",
+    "verdict": "reject",
+    "note": "box pokryva obnazene predlokti osoby ve svetle modrem tricku; svetla skvrna na (1533-1548,520-548) je pri 10x zoomu bila bota chodce ve stinu (vedle ni tmava druha bota), ne tyc"
+   }
+  ],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0058",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0066",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0074",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0082",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0090",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0098",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0106",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0114",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "002_002_0001",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ }
+]

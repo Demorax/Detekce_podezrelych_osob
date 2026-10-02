@@ -1,0 +1,118 @@
+[
+ {
+  "stem": "001_001_0007",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0015",
+  "prelabel_verdicts": [
+    {"box": [2165,886,2272,937], "name": "melee",
+     "verdict": "reject",
+     "note": "prazdny asfalt vpravo od osoby v tmavem tricku; box pokryva svetlou statickou znacku na dlazbe (opakuje se napric framy) a okraj ramene, zadny objekt"}
+  ],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0023",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0031",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0039",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0047",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0055",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0063",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0071",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0079",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0087",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0095",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0103",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0111",
+  "prelabel_verdicts": [
+    {"box": [832,722,899,780], "name": "gun",
+     "verdict": "reject",
+     "note": "obnazene predlokti a ruka/prsty osoby v khaki kosili s natazenou pazi; typicky FP (kuze, zuzuje se, konci prsty), zadny predmet"},
+    {"box": [1741,567,1790,615], "name": "gun",
+     "verdict": "reject",
+     "note": "obnazene predlokti a dlan osoby v bilem tricku ukazujici doprava; FP na pazi, zadny predmet v ruce"}
+  ],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0119",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ }
+]

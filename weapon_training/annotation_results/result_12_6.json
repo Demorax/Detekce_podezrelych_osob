@@ -1,0 +1,68 @@
+[
+ {
+  "stem": "001_001_0006",
+  "prelabel_verdicts": [
+   {"box": [864,916,1016,1023], "name": "melee", "verdict": "reject",
+    "note": "obnazene predlokti osoby v tmave kosili, natazene doprava-dolu, konci pesti kolem (1005,1000); zuzuje se, odstin kuze, vychazi z ramene"}
+  ],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0014",
+  "prelabel_verdicts": [
+   {"box": [2063,725,2202,1133], "name": "melee", "verdict": "reject",
+    "note": "obnazena paze osoby v cerne kosili + nohy; paze jde z ramene (2065,760) k pesti (2145,905), zuzuje se, kuze"},
+   {"box": [2063,720,2172,966], "name": "melee", "verdict": "reject",
+    "note": "duplicitni detekce te same obnazene paze"},
+   {"box": [88,238,215,418], "name": "melee", "verdict": "reject",
+    "note": "temna stinova oblast nad hlavou osoby vlevo nahore, zadny objekt"}
+  ],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0030",
+  "prelabel_verdicts": [
+   {"box": [965,550,1137,626], "name": "melee", "verdict": "reject",
+    "note": "vodorovne obnazene predlokti osoby ve stinu (x 958-1035, y 583-600), konci rukou; hranice svetla a stinu okolo"}
+  ],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "001_001_0078",
+  "prelabel_verdicts": [
+   {"box": [2102,484,2214,771], "name": "melee", "verdict": "reject",
+    "note": "obnazena paze osoby s ksiltovkou zezadu, od ramene (2140,555) k pesti (2170,620); pod tim bile obleceni"},
+   {"box": [2120,539,2207,770], "name": "melee", "verdict": "reject",
+    "note": "duplicitni detekce te same paze"}
+  ],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {"stem": "001_001_0022", "prelabel_verdicts": [], "missed": [], "ambiguous": [], "empty": true},
+ {"stem": "001_001_0038", "prelabel_verdicts": [], "missed": [], "ambiguous": [], "empty": true},
+ {"stem": "001_001_0046", "prelabel_verdicts": [], "missed": [], "ambiguous": [], "empty": true},
+ {"stem": "001_001_0054", "prelabel_verdicts": [], "missed": [], "ambiguous": [], "empty": true},
+ {"stem": "001_001_0062", "prelabel_verdicts": [], "missed": [], "ambiguous": [], "empty": true},
+ {"stem": "001_001_0070", "prelabel_verdicts": [], "missed": [], "ambiguous": [], "empty": true},
+ {"stem": "001_001_0086", "prelabel_verdicts": [], "missed": [], "ambiguous": [], "empty": true},
+ {"stem": "001_001_0094", "prelabel_verdicts": [], "missed": [], "ambiguous": [], "empty": true},
+ {"stem": "001_001_0102", "prelabel_verdicts": [], "missed": [], "ambiguous": [], "empty": true},
+ {
+  "stem": "001_001_0110",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [
+   {"approx_box": [175,880,312,940],
+    "note": "tmavy podlouhly pruh vychazejici zpod cepici osoby v davu smerem dolu-vlevo; hodnotim jako STIN natazene paze (tmavsi nez okoli, mekke hrany, navazuje na stinovou masu, shodny smer se stiny ostatnich = dolu-vlevo), ale pri tomto rozliseni to nelze potvrdit na 100 %; NEANOTOVAT bez overeni"}
+  ],
+  "empty": false
+ },
+ {"stem": "001_001_0118", "prelabel_verdicts": [], "missed": [], "ambiguous": [], "empty": true}
+]

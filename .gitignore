@@ -26,3 +26,22 @@ data/
 # Note: data/AVA/annotations/ JE commited (jen ~50 MB CSV) — pokud potřeba, force-add ručně
 
 # Pozn.: demo_outputs/ (anotovaná videa) a reference_img/ JSOU commitnuté (ukázky pro BP)
+# --- Trénink detektoru zbraní (weapon_training) ---
+# Stažené Roboflow datasety a sloučený dataset (~3.5 GB) — reprodukovatelné
+# skriptem download_datasets.py + build_dataset.py, do gitu nepatří.
+weapon_training/datasets/
+# Trénovací běhy včetně checkpointů (~800 MB). Finální váhy jsou zvlášť
+# v models/weapon_detection_yolo11l/. Metriky a grafy jsou v docs/artifacts/.
+weapon_training/runs/
+# Framy a výstupy domain-gap testu (~125 MB); anotované ukázky jsou v docs/med_test/
+weapon_training/med_test/
+weapon_training/*.log
+# Váhy modelu (49 MB) — velký binární soubor
+models/weapon_detection_yolo11l/*.pt
+# Framy k anotaci (115 MB) — reprodukovatelné prelabel_frames.py.
+# Hotové anotace (labels/*.txt + progress.json) commituj ručně: git add -f
+weapon_training/annotate_med/images/
+weapon_training/annotate_dense/images/
+frames_004_dense/
+models/weapon_detection_yolo11l_med/*.pt
+weapon_training/annotate_med/images/

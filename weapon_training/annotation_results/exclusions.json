@@ -1,0 +1,7 @@
+[
+ {
+  "stem": "004_004_0070",
+  "box": [415, 1348, 601, 1454],
+  "why": "tmavy zahnuty objekt na svetlem betonu - nelze rozhodnout tyc vs stin zdvizene paze. Napojuje se na tmavou masu u osoby a zuzuje se. Frame 0076 vylucuje staticky artefakt (prazdny beton), ale zbyva stin vs objekt. Podle spec 'kdyz nevis, nehadej' -> na cloveka."
+ }
+]

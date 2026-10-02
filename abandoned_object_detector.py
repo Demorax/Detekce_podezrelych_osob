@@ -47,7 +47,11 @@ DEFAULT_MIN_OBJ_TRACK_LEN = 3
 # Armed person detection — osoba držící high-threat objekt = podezřelá (ARMED)
 # SKELETON-BASED: osoba je ARMED jen když má ZÁPĚSTÍ blízko bbox zbraně (ne jen v radiu těla).
 # Řeší nejednoznačnost v davu — "drží" vs "stojí vedle".
-HIGH_THREAT_LABELS = {'baseball bat', 'knife', 'gun'}  # scissors odebrán — generoval FP šum v davu
+# scissors odebrán — generoval FP šum v davu.
+# 'melee' přidáno 2026-08-04: nová třída custom YOLO11l modelu (pálky, sekery,
+# meče, kopí). 'baseball bat' zůstává — produkuje ho COCO YOLO11x, který je
+# v pipeline dál kvůli zavazadlům a je na custom modelu nezávislý.
+HIGH_THREAT_LABELS = {'baseball bat', 'knife', 'gun', 'melee'}
 CROWDPOSE_WRIST_IDX = (4, 5)        # l_wrist, r_wrist v CrowdPose 14-keypoint formátu
 WRIST_CONF_MIN = 0.3               # min confidence keypointu zápěstí, jinak se ignoruje
 ARMED_WRIST_DIST_FACTOR = 0.45     # zbraň "v ruce" pokud zápěstí < faktor × výška od bbox zbraně

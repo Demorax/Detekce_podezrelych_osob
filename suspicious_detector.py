@@ -10,7 +10,7 @@ Navíc detekuje podezřelé objekty:
 - YOLO11x (COCO) - pálka, nůž, nůžky, batoh, taška, kufr
 - Custom YOLOv8 (Roboflow Firearms+Knives) - gun, knife
 
-TODO: kladivo (hammer) - není v žádném modelu, vyžaduje custom trénink.
+TODO: kladivo (hammer)
 """
 import os
 import sys
@@ -48,7 +48,11 @@ _RTDETR_MODEL = 'models/rtdetr/rtdetrv2_r101vd_6x_coco_from_paddle.pth'
 _VITPOSE_CONFIG = 'models/vitpose/configs/ViTPose_huge_crowdpose_256x192_without_training_v3.py'
 _VITPOSE_MODEL = 'models/vitpose/vitpose-h-multi-crowdpose.pth'
 _YOLO_MODEL = 'models/yolo/yolo11x.pt'
-_WEAPON_MODEL = 'models/weapon_detection_new/runs/detect/Normal/weights/best.pt'
+# Domain-adapted model (2026-10-02): yolo11l dotrénovaný na anotovaných MED framech
+# se zmrazeným backbone. Na CCTV záběrech shora recall melee 0.10 -> 0.50,
+# na původních datech mAP50 0.777 -> 0.755. Původní model zůstává v
+# models/weapon_detection_yolo11l/ (viz weapon_training/docs/TRAINING_REPORT.md §6b).
+_WEAPON_MODEL = 'models/weapon_detection_yolo11l_med/best.pt'
 
 # COCO třídy YOLO11x relevantní pro podezřelé chování (BEZ person - tu řeší RT-DETR)
 COCO_HIGH_THREAT = {
@@ -64,10 +68,38 @@ COCO_CARRY = {
     28: 'suitcase',
 }
 
-# Custom weapon model (Roboflow Firearms+Knives)
+# Custom weapon model — YOLO11l fine-tune, 3 třídy (viz weapon_training/docs/)
+# Trénováno 2026-08-04 na 24 340 obrázcích, val mAP50 0.775.
 WEAPON_HIGH_THREAT = {
     0: 'gun',
     1: 'knife',
+    2: 'melee',      # baseballové pálky, sekery, meče, kopí
+}
+
+# POZOR: thresholdy byly odečteny pro PŮVODNÍ model (před domain adaptation).
+# Dotrénovaný model má na MED datech precision ~0.99 a může snést nižší práh;
+# přeladění by chtělo větší MED validaci než současných 10 boxů.
+#
+# Per-class confidence thresholdy — odečteno z F1 křivky na validačním splitu
+# (viz weapon_training/docs/artifacts/thresholds_result.txt).
+#
+# Hodnoty leží mírně POD bodem maxima F1, protože downstream ARMED logika
+# (update_armed_status v abandoned_object_detector.py) vyžaduje zápěstí u boxu,
+# takže část false positives odfiltruje sama. Vychýlení k recallu se tím vyplatí.
+#
+#           max F1 při   zvoleno   P      R      F1
+#   gun     0.411        0.35      0.831  0.852  0.841
+#   knife   0.388        0.30      ~0.85  ~0.60  ~0.71
+#   melee   0.494        0.40      0.806  0.792  0.799
+#
+# POZOR na 'knife': snížení prahu recall NEZACHRÁNÍ. Ani při conf=0.12 nestoupne
+# nad 0.621 (z 0.574 při 0.55) — chybějící nože nejsou slabé detekce, model je
+# nevidí vůbec. F1 křivka je mezi 0.25 a 0.45 plochá. Řešením jsou nová data,
+# ne ladění prahu (potvrzeno i neúspěšným oversamplingem, viz docs §6a).
+WEAPON_CONF_PER_CLASS = {
+    'gun': 0.35,
+    'knife': 0.30,
+    'melee': 0.40,
 }
 
 # COCO 17 keypoints connections (pro skeleton vizualizaci)
@@ -484,7 +516,10 @@ class SuspiciousDetector:
 
         # 4) Custom weapon model (volitelně)
         if self.weapon is not None:
-            wres = self.weapon(img, conf=conf_weapon, device=self.device, imgsz=640, verbose=False)
+            # Inference na nejnižším per-class prahu, filtruje se až podle třídy —
+            # jinak by se vyšší práh pro 'gun' uplatnil i na 'knife'.
+            min_conf = min(WEAPON_CONF_PER_CLASS.values()) if WEAPON_CONF_PER_CLASS else conf_weapon
+            wres = self.weapon(img, conf=min_conf, device=self.device, imgsz=960, verbose=False)
             for r in wres:
                 if r.boxes is None:
                     continue
@@ -493,6 +528,8 @@ class SuspiciousDetector:
                     xyxy = b.xyxy[0].cpu().numpy()
                     score = float(b.conf[0])
                     label = WEAPON_HIGH_THREAT.get(cls, f'class_{cls}')
+                    if score < WEAPON_CONF_PER_CLASS.get(label, conf_weapon):
+                        continue
                     out['high'].append((xyxy, score, label))
 
         return out

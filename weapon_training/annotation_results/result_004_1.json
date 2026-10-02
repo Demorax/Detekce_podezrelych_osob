@@ -1,0 +1,142 @@
+[
+ {
+  "stem": "004_004_0001",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0007",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0013",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0019",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0025",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0031",
+  "prelabel_verdicts": [
+    {"box": [1655,1288,1721,1355], "name": "gun",
+     "verdict": "reject",
+     "note": "v ruce osoby v cernem JE maly tmavy objekt, ale ma jen ~39x24 px (box modelu je ~2.8x vetsi) a jako zbran ho nelze identifikovat. Postoj osoby (hlava sklonena, predlokti vodorovne pred telem) odpovida drzeni mobilu, ne zbrane. Nezarazuji jako gun; objekt uveden v ambiguous."}
+  ],
+  "missed": [],
+  "ambiguous": [
+    {"approx_box": [1665,1310,1704,1334],
+     "note": "maly tmavy predmet v ruce osoby v cernem tricku (hlava ~1564-1640,1124-1195). Nejpravdepodobneji mobilni telefon, nelze rozhodnout."}
+  ],
+  "empty": false
+ },
+ {
+  "stem": "004_004_0037",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0043",
+  "prelabel_verdicts": [
+    {"box": [311,520,370,568], "name": "gun",
+     "verdict": "reject",
+     "note": "box lezi na tmave hlave a rameni osoby (hlava ~323-373,530-564), zadny predmet. False positive."}
+  ],
+  "missed": [],
+  "ambiguous": [
+    {"approx_box": [368,565,422,589],
+     "note": "bily podlouhly utvar hned vpravo od predanotace, na urovni ramene osoby. Pomer stran jen ~2.5:1, na tyc prilis kratky/silny - spis bily limec/tricko nebo taska. Nelze rozhodnout."}
+  ],
+  "empty": false
+ },
+ {
+  "stem": "004_004_0049",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0055",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [
+    {"approx_box": [1474,806,1493,1000],
+     "note": "svetly svisly pas ~19x194 px konstantni sirky mezi dvema osobami (osoba v bordovem tricku vpravo). Cast pasu je pleti zbarvena (moznost obnazene paze), cast sedava. Nelze rozhodnout tyc vs paze - podle specifikace neanotuji."}
+  ],
+  "missed": [],
+  "empty": false
+ },
+ {
+  "stem": "004_004_0061",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0067",
+  "prelabel_verdicts": [],
+  "missed": [
+    {"approx_box": [1216,534,1242,702], "name": "melee", "confidence": "high",
+     "note": "jasna svetla (bila/sedobila) tyc drzena svisle osobou v kremovem tricku (hlava ~1205-1255,705-750). Sirka konstantni 15-18 px po cele delce, zaobleny svetly konec nahore v y=534, dolni konec u hlavy/rukou y~702. Overeno: ve framu 0061 je na stejnem miste prazdny asfalt, takze nejde o staticky artefakt. Model tuto tyc uplne minul."},
+    {"approx_box": [15,462,158,601], "name": "melee", "confidence": "high",
+     "note": "dlouha bila lat/tyc diagonalne od (16,466) doprava dolu. Anotovana JEN cast za rukou: od y=462 do y=601, kde se bila konstantni sirka (~10-14 px) meni na ruzovo-bezovou sirsi plochu = ruka a predlokti osoby (hlava ~208-254,643-697). Bod zlomu odecten pri zoomu 9x na (155,597). Overeno proti framu 0061 (prazdny asfalt) - neni to staticky artefakt."}
+  ],
+  "ambiguous": [
+    {"approx_box": [160,816,224,831],
+     "note": "tenky svetly vodorovny pruh (~64x15 px) nad osobou lezici/krcici na zemi. Silne rozmazano pohybem, muze byt tyc, bily rukav i obuv. Nelze rozhodnout."},
+    {"approx_box": [89,855,153,886],
+     "note": "bily podlouhly utvar (~64x31 px) u zeme vedle cervenavych casti lezici osoby. Silne rozmazano pohybem, spis obuv nebo bile obleceni. Nelze rozhodnout."}
+  ],
+  "empty": false
+ },
+ {
+  "stem": "004_004_0073",
+  "prelabel_verdicts": [
+    {"box": [3102,730,3187,875], "name": "melee",
+     "verdict": "reject",
+     "note": "NENI objekt - je to staticka svetla diagonalni znacka na asfaltu (namalovana linie / opotrebeni). Overeno: presne stejny utvar na stejnych souradnicich je i ve framech 0049 a 0061, kde tam nikdo nestoji. Model ji detekuje opakovane."},
+    {"box": [2389,523,2429,585], "name": "melee",
+     "verdict": "reject",
+     "note": "tmavy podlouhly utvar je paze/ruka (pripadne taska) osoby v tmavem tricku a svetlych dzinach - navazuje na rameno a za rukou nic nepokracuje. False positive na pazi."}
+  ],
+  "missed": [],
+  "ambiguous": [
+    {"approx_box": [1330,628,1390,648],
+     "note": "tenka svetle seda linie (~60x20 px, sila jen ~6 px) mezi hlavou a pazi bezici osoby v bilem tricku. Barva se lisi od kuze, sirka konstantni - mohla by to byt tenka tyc, ale pri teto sile a rozmazani nelze rozhodnout."}
+  ],
+  "empty": false
+ },
+ {
+  "stem": "004_004_0079",
+  "prelabel_verdicts": [
+    {"box": [3112,751,3211,922], "name": "melee",
+     "verdict": "reject",
+     "note": "stejna staticka svetla diagonalni znacka na asfaltu jako v 0073 - overeno ve framech 0049 a 0061 na identickych souradnicich bez pritomnosti osoby. Neni to tyc drzena osobou v modrem tricku, jen prekryv pozice."}
+  ],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ }
+]

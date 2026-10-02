@@ -1,0 +1,62 @@
+[
+ {"stem": "004_004_0005", "prelabel_verdicts": [], "missed": [], "ambiguous": [], "empty": true},
+ {"stem": "004_004_0011", "prelabel_verdicts": [], "missed": [], "ambiguous": [], "empty": true},
+ {"stem": "004_004_0017", "prelabel_verdicts": [], "missed": [], "ambiguous": [], "empty": true},
+ {"stem": "004_004_0023", "prelabel_verdicts": [], "missed": [], "ambiguous": [], "empty": true},
+ {"stem": "004_004_0029",
+  "prelabel_verdicts": [
+   {"box": [1594,1527,1784,1674], "name": "melee", "verdict": "reject",
+    "note": "obnazene predlokti a pest osoby v svetle kosili natazene doprava; sirka se zuzuje k ruce, za rukou zadny objekt"}
+  ],
+  "missed": [], "ambiguous": [], "empty": true},
+ {"stem": "004_004_0035",
+  "prelabel_verdicts": [
+   {"box": [745,662,795,721], "name": "gun", "verdict": "reject",
+    "note": "tmavy asfalt a okraj hlavy osoby, zadny objekt"}
+  ],
+  "missed": [], "ambiguous": [], "empty": true},
+ {"stem": "004_004_0041",
+  "prelabel_verdicts": [
+   {"box": [397,547,447,595], "name": "gun", "verdict": "reject",
+    "note": "cisty tmavy asfalt, zadny objekt"}
+  ],
+  "missed": [],
+  "ambiguous": [
+   {"approx_box": [468,598,518,618],
+    "note": "kratky svetly pruh (~50x20 px) u osoby v tmavem ve stinu; muze byt bily predmet v ruce, taska nebo odlesk obleceni - nelze rozhodnout"}
+  ],
+  "empty": false},
+ {"stem": "004_004_0047", "prelabel_verdicts": [], "missed": [], "ambiguous": [], "empty": true},
+ {"stem": "004_004_0053",
+  "prelabel_verdicts": [
+   {"box": [1786,633,1878,822], "name": "melee", "verdict": "reject",
+    "note": "paze osoby v bile kosili; rukav se zuzuje a konci rukou kolem (1830,760), zadna tyc"}
+  ],
+  "missed": [], "ambiguous": [], "empty": true},
+ {"stem": "004_004_0059",
+  "prelabel_verdicts": [
+   {"box": [1046,852,1161,1030], "name": "melee", "verdict": "reject",
+    "note": "obnazena paze osoby v sedofialovem tricku smerujici dolu-vlevo, konci rukou kolem (1055,990)"}
+  ],
+  "missed": [], "ambiguous": [], "empty": true},
+ {"stem": "004_004_0065",
+  "prelabel_verdicts": [
+   {"box": [2198,619,2299,764], "name": "melee", "verdict": "retighten",
+    "new_box": [2222,622,2291,712],
+    "note": "spravna detekce: svetla tyc drzena osobou v bezove kosili, smeruje vzhuru-doprava, spicka na (2288,626); box modelu byl ~2.4x prilis velky a zasahoval do tela"}
+   ,
+   {"box": [862,1115,933,1171], "name": "gun", "verdict": "reject",
+    "note": "hneda bota / noha osoby v bilem na osvetlene zemi, zadna zbran"}
+  ],
+  "missed": [
+   {"approx_box": [1120,624,1192,759], "name": "melee", "confidence": "high",
+    "note": "jasna bila tyc drzena osobou v mentolove kosili; tyc jde od spicky (1122,626) sikmo dolu-doprava ke konci (1188,757), konstantni sirka ~20 px, vyrazne svetlejsi nez kuze; obnazena paze (kuzova barva) jde od ramene (1093,758) nahoru-doprava a krizi tyc v ruce kolem (1145,713) - anotovana je jen tyc"}
+  ],
+  "ambiguous": [
+   {"approx_box": [1636,822,1665,841],
+    "note": "maly jasne bily predmet (~29x19 px) v ruce predklonene osoby v dzinach na (1590-1660, 780-840); muze byt kamen, kratka tyc nebo svetly predmet - prilis maly na rozhodnuti"}
+  ],
+  "empty": false},
+ {"stem": "004_004_0071", "prelabel_verdicts": [], "missed": [], "ambiguous": [], "empty": true},
+ {"stem": "004_004_0077", "prelabel_verdicts": [], "missed": [], "ambiguous": [], "empty": true}
+]

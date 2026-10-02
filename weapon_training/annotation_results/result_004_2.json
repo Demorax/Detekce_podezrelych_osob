@@ -1,0 +1,129 @@
+[
+ {
+  "stem": "004_004_0002",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0008",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0014",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0020",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0026",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0032",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0038",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0044",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0050",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0056",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ },
+ {
+  "stem": "004_004_0062",
+  "prelabel_verdicts": [
+    {"box": [1640,1156,1710,1245], "name": "gun",
+     "verdict": "reject",
+     "note": "false positive na natazene bose pazi kluka v modre kostkovane kosili; pri 9x zoomu je patrne zuzovani od ramene (x~1725) ke konci a zakonceni zakulacenou pesti u (1652,1154), barva je odstin kuze, ne dreva; zadna zbran"}
+  ],
+  "missed": [
+    {"approx_box": [3025,981,3414,1106], "name": "melee", "confidence": "high",
+     "note": "dlouha bila lat/tyc drzena osobou u praveho okraje framu; jasne konstantni sirka ~25 px, ostry tupy konec u (3027,984), pokracuje az za pravy okraj framu (x=3416) - anotovana jen viditelna cast; dve osoby ji drzi (ruce u x~3095 a x~3200)"}
+  ],
+  "ambiguous": [
+    {"approx_box": [3096,728,3215,865],
+     "note": "zvednuta diagonala u osoby v modrem tricku vpravo naboru; dolni dve tretiny jsou zretelne kuze (paze), ale horni tenka sedozelena cast nad rukou (cca 3100-3130, 730-785) muze byt tenka tyc pokracujici za ruku - nelze rozhodnout"},
+    {"approx_box": [2740,1190,2885,1305],
+     "note": "cervenohnedy podlouhly objekt/paze u osoby ve svetle kosili (hlava ~2755,1265); tvar je zakriveny (loket?), barva cervena az tmave hneda, na konci tmavy hrot (2855-2885,1275-1305) - nelze rozhodnout paze s necim v ruce vs. tyc s cervenou rukojeti"}
+  ],
+  "empty": false
+ },
+ {
+  "stem": "004_004_0068",
+  "prelabel_verdicts": [
+    {"box": [678,889,829,995], "name": "melee",
+     "verdict": "reject",
+     "note": "box pokryva pouze natazenou bosou pazi osoby v olivove kosili (od ramene ~805,915 dolu-vlevo k pesti ~700,960): kuze/tan barva, zuzuje se, konci zakulacenou pesti, podel spodni hrany jen stin; skutecna svetla lat je AZ NAD boxem (viz missed), takze box je na nespravnem objektu"}
+  ],
+  "missed": [
+    {"approx_box": [698,848,806,880], "name": "melee", "confidence": "medium",
+     "note": "svetla (bila/drevena) lat na hranici svetlo/asfalt tesne nad rukou osoby v olivove kosili; konstantni sirka ~22 px, delka ~108 px, pod ni vlastni stin (y 878-895); overeno, ze ve framech 0026/0074/0080 (kamera je fixni) na temze miste zadny takovy svetly pruh neni, takze to neni staticka hrana betonu, ale prechodny objekt"}
+  ],
+  "ambiguous": [
+    {"approx_box": [492,900,570,951],
+     "note": "tmavy podlouhly mirne zahnuty objekt na osvetlenem betonu se zakulacenym levym koncem; prechodny (v 0026/0080 na temze miste nic), ale muze to byt stin nohy, obuv nebo kus tyce - nelze rozhodnout"},
+    {"approx_box": [248,1070,340,1105],
+     "note": "cervenave/ruzove podlouhle cca 90x30 px vpravo od osoby v bilem tricku (torso 130-240, 890-1200), s tmavym koncem u (330,1100); muze to byt natazena paze/rukav nebo tyc s cervenou barvou - nelze rozhodnout"},
+    {"approx_box": [1360,405,1388,578],
+     "note": "tmavy uzky svisly pruh (konstantni sirka ~28 px, delka ~173 px) u praveho boku osoby v modrem tricku u zdi, saha pod okraj tricka; pravdepodobne paze ve stinu, ale delka je na pazi velka - nelze rozhodnout"}
+  ],
+  "empty": false
+ },
+ {
+  "stem": "004_004_0074",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [
+    {"approx_box": [1627,1010,1647,1066],
+     "note": "maly tmavy tenky svisly objekt (20x56 px) presne na hranici asfalt/beton, dole s malym tmavsim shlukem; prechodny (v 0080 na temze miste nic), ale prilis maly na rozhodnuti tyc vs. drobny odpadek/flaska"}
+  ],
+  "empty": false
+ },
+ {
+  "stem": "004_004_0080",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [],
+  "empty": true
+ }
+]

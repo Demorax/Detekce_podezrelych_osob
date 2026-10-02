@@ -1,0 +1,6 @@
+[15:20:11] === fine-tune ===
+[15:40:13] fine-tune exit=0
+[15:40:13] === po fine-tune (runs/detect/runs/weapons/med_domain_adapt_frozen/weights/last.pt) ===
+RESULT [fine-tune] MED val: mAP50=0.6234 mAP50-95=0.3503 | melee: P=0.991 R=0.500 AP50=0.623
+RESULT [fine-tune] puvodni val: mAP50=0.7553 mAP50-95=0.4897 | gun: P=0.863 R=0.826 AP50=0.881  knife: P=0.852 R=0.587 AP50=0.590  melee: P=0.885 R=0.733 AP50=0.796
+[15:42:35] HOTOVO
