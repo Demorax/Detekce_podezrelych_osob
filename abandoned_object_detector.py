@@ -605,6 +605,9 @@ def process_video(video_path, detector, args):
                                             abandon_sec=args.abandon_sec,
                                             min_ownership_frames=args.min_ownership_frames)
             for a in new_alerts:
+                # box je v prostoru detekce (s --upscale 4× větší) → převést na souřadnice videa,
+                # stejně jako snapshoty v build_snapshot()
+                a['box'] = (np.array(a['box']) * scale).tolist()
                 a['video_frame'] = frame_idx
                 a['video_time_sec'] = frame_idx / video_fps
                 alerts.append(a)
@@ -665,7 +668,7 @@ def main():
     p.add_argument('--sample-fps', type=int, default=DEFAULT_SAMPLE_FPS,
                    help='Frames per second to process (default 5)')
     p.add_argument('--abandon-sec', type=float, default=DEFAULT_ABANDON_SEC,
-                   help='Abandonment threshold in seconds (default 5)')
+                   help='Abandonment threshold in seconds (default %(default)s)')
     p.add_argument('--radius-factor', type=float, default=DEFAULT_OWNERSHIP_RADIUS_FACTOR,
                    help='Ownership radius = factor × person bbox height (default 1.5)')
     p.add_argument('--max-person-dist', type=float, default=DEFAULT_MAX_PERSON_TRACK_DIST)
@@ -673,7 +676,9 @@ def main():
     p.add_argument('--obj-iou', type=float, default=DEFAULT_OBJ_IOU_THRESHOLD)
     p.add_argument('--min-ownership-frames', type=int, default=DEFAULT_MIN_OWNERSHIP_FRAMES)
     p.add_argument('--conf-obj', type=float, default=0.15)
-    p.add_argument('--conf-weapon', type=float, default=0.55)
+    p.add_argument('--conf-weapon', type=float, default=None,
+                   help='Jednotný práh modelu zbraní pro všechny třídy (default: prahy podle tříd '
+                        'z suspicious_detector.WEAPON_CONF_PER_CLASS)')
     p.add_argument('--imgsz', type=int, default=1280)
     p.add_argument('--use-better-obj', action='store_true',
                    help='Multi-pass YOLO11x (5× pomalejší, lepší recall)')

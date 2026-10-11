@@ -10,10 +10,10 @@ DEMOS = [
      ['--sample-fps', '5', '--skip-weapon', '--conf-obj', '0.15']),
     ('CAVIAR Fight_Chase (agresoři, upscale, weapon ON)',
      'data/CAVIAR/Fight_Chase/Fight_Chase.mpg',
-     ['--sample-fps', '5', '--upscale', '--conf-obj', '0.10', '--conf-weapon', '0.40']),
+     ['--sample-fps', '5', '--upscale', '--conf-obj', '0.10']),
     ('MED 005 netrénované (dav + batoh, upscale, weapon ON)',
      'data/Motion_Emotion/005.mp4',
-     ['--sample-fps', '5', '--upscale', '--conf-obj', '0.12', '--conf-weapon', '0.40']),
+     ['--sample-fps', '5', '--upscale', '--conf-obj', '0.12']),
 ]
 
 for i, (desc, video, extra) in enumerate(DEMOS, 1):

@@ -3,6 +3,15 @@
 Revize `abandoned_object_detector.py` (AOD) a `suspicious_detector.py` (SD). Kód se při ní jen četl,
 nic se neopravovalo. Nález 1 je navíc ověřený jednotkovým testem.
 
+**Stav oprav:**
+- **Opraveno:** 2 (`--conf-weapon` je teď volitelný jednotný práh), 3 (COCO `knife` od 0,50),
+  6 (souřadnice v JSON s alerty) a nápověda `--abandon-sec` z bodu 12.
+- **Opraveno (větev `fix-tracker-rematch`, mergnuto):** 1 a 10. CAVIAR zůstává beze změny
+  (27 scénářů, 4 TP / 23 TN, zpoždění 6,4 s), protože anotace CAVIAR nemají výpadky a chybu
+  neodhalí. Na MED s osobami z YOLO11x-pose klesl počet ID osob z 2 649 na 1 474. ARMED při
+  nasazeném nastavení: 5 poplachů na rvačkách místo 4, bitka 93 % beze změny.
+- **Otevřené:** 4, 5, 7, 8, 9, 11 a nepoužitá konstanta z bodu 12.
+
 ## Vysoká závažnost
 
 **1. Tracky se po jediném vynechaném framu už znovu nespárují (ověřeno testem).**

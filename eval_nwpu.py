@@ -178,7 +178,8 @@ def main():
     p.add_argument('--max-obj-missed', type=int, default=DEFAULT_MAX_OBJ_MISSED)
     p.add_argument('--min-ownership-frames', type=int, default=DEFAULT_MIN_OWNERSHIP_FRAMES)
     p.add_argument('--conf-obj', type=float, default=0.15)
-    p.add_argument('--conf-weapon', type=float, default=0.55)
+    p.add_argument('--conf-weapon', type=float, default=None,
+                   help='jednotný práh modelu zbraní (default: prahy podle tříd)')
     p.add_argument('--imgsz', type=int, default=1280)
     p.add_argument('--use-better-obj', action='store_true', help='Multi-pass YOLO11x (5× pomalejší)')
     p.add_argument('--skip-weapon', action='store_true')

@@ -69,6 +69,9 @@ COCO_HIGH_THREAT = {
 # POZOR: zvoleno na testovacích videích (jedna bitka), ověřit na dalších datech.
 COCO_CONF_PER_CLASS = {
     'baseball bat': 0.50,
+    # COCO nůž: ve 14 min testovacích videí se neobjevil, ale nízký práh je stejná díra jako
+    # u pálky (předmět v ruce → ARMED). Nože pokrývá vlastní model (práh 0,30).
+    'knife': 0.50,
 }
 COCO_MEDIUM_THREAT = {
     76: 'scissors',
@@ -470,12 +473,13 @@ class SuspiciousDetector:
                     out['carry'].append((box, score, COCO_CARRY[cls]))
         return out
 
-    def detect(self, img, conf_obj=0.15, conf_weapon=0.55, imgsz=1280, use_better_obj=False):
+    def detect(self, img, conf_obj=0.15, conf_weapon=None, imgsz=1280, use_better_obj=False):
         """
         Args:
             img: numpy BGR
             conf_obj: confidence pro YOLO11x objekty (default 0.15 - nízké pro malé pálky)
-            conf_weapon: confidence pro weapon model (default 0.55)
+            conf_weapon: jednotný práh pro všechny třídy modelu zbraní místo WEAPON_CONF_PER_CLASS
+                         (default None = prahy podle tříd)
             imgsz: image size pro YOLO11x (default 1280)
             use_better_obj: pokud True, použije multi-pass detekci pro objekty
                             (5× pomalejší, ale výrazně víc detekcí v různých světelných
@@ -539,7 +543,10 @@ class SuspiciousDetector:
         if self.weapon is not None:
             # Inference na nejnižším per-class prahu, filtruje se až podle třídy —
             # jinak by se vyšší práh pro 'gun' uplatnil i na 'knife'.
-            min_conf = min(WEAPON_CONF_PER_CLASS.values()) if WEAPON_CONF_PER_CLASS else conf_weapon
+            # conf_weapon (je-li zadán) přepíše prahy podle tříd jednotnou hodnotou.
+            thresholds = WEAPON_CONF_PER_CLASS if conf_weapon is None else \
+                {lab: conf_weapon for lab in WEAPON_HIGH_THREAT.values()}
+            min_conf = min(thresholds.values())
             wres = self.weapon(img, conf=min_conf, device=self.device, imgsz=960, verbose=False)
             for r in wres:
                 if r.boxes is None:
@@ -549,7 +556,7 @@ class SuspiciousDetector:
                     xyxy = b.xyxy[0].cpu().numpy()
                     score = float(b.conf[0])
                     label = WEAPON_HIGH_THREAT.get(cls, f'class_{cls}')
-                    if score < WEAPON_CONF_PER_CLASS.get(label, conf_weapon):
+                    if score < thresholds.get(label, min_conf):
                         continue
                     out['high'].append((xyxy, score, label))
 
@@ -670,7 +677,7 @@ if __name__ == "__main__":
             print("  ⚠ Could not read")
             continue
 
-        detections = detector.detect(img, conf_obj=0.15, conf_weapon=0.55)
+        detections = detector.detect(img, conf_obj=0.15)
         s = detector.summary(detections)
 
         print(f"  Persons / skeletons: {s['persons']} / {s['skeletons']}")
