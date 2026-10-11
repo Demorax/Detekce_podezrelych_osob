@@ -82,7 +82,12 @@ def main() -> int:
     # train. Učí model, že natažená holá paže není tyč (jeho nejčastější FP).
     # Testovací negativa (annotate_neg_test) se sem NEDÁVAJÍ.
     ap.add_argument("--neg-dirs", nargs="*", default=[])
+    # Framy, u kterých člověk sporné místo nerozhodl (review_ambiguous.py, „?“):
+    # nejasná tyč by v tréninku působila jako pozadí, proto se frame vynechá celý.
+    ap.add_argument("--exclude-file", default="",
+                    help="soubor se stemy framů k vynechání (jeden na řádek)")
     args = ap.parse_args()
+    exclude = set(Path(args.exclude_file).read_text().split()) if args.exclude_file else set()
 
     out = Path(args.out)
     if out.exists():
@@ -100,6 +105,9 @@ def main() -> int:
 
     st = Counter()
     for stem, img, lbl in med:
+        if stem in exclude:
+            st["vylouceno_sporne"] += 1
+            continue
         split = assign(stem, n001_cut)
         if split is None:
             st["guard_zahozeno"] += 1

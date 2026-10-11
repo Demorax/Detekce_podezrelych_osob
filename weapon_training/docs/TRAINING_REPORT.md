@@ -804,6 +804,73 @@ popisků. Generuje je skript `make_thesis_figures.py`.
 
 ![](figures/fig6_ukazky.png)
 
+
+## 6f. Časové potvrzení poplachů a těžká negativa (2026-10-11)
+
+### Proč
+
+Testy dosud počítaly falešné poplachy na jednotlivých framech (24 framů rvaček, §6d). Pipeline
+ale zpracovává video při 5 FPS a hlásí poplach průběžně. Skript `eval_temporal_filter.py`
+proto prochází **celá videa** stejně jako pipeline: 5 FPS, nativních 854×480 a hystereze
+`ARMED_HOLD_FRAMES = 8`. Detekce v mezipaměti jsou v `temporal_eval/`.
+
+- **Pozitiva:** video 005, tedy 48 anotovaných framů pro recall a celé video pro zpoždění
+  a pokrytí bitky (zdrojové framy 840–1008).
+- **Rvačky bez zbraní (5,5 min):** 017 a 026 (testovací negativa §6d) a dále **018, 019, 020,
+  007, 009**, které nikdy nebyly použity v tréninku ani při ladění.
+- **Klidné scény (3,4 min):** 021, 027, 030.
+
+Kontrola zápěstí z pipeline (ViTPose) na Macu nejde spustit a simulace ji vynechává.
+Počty falešných poplachů jsou proto **horní odhad**.
+
+### Výsledek: snímkový test falešné poplachy výrazně podhodnotil
+
+| práh | k | recall boxů 005 | bitka v poplachu | zpoždění | poplachy rvačky | poplachy klid |
+|---:|---:|---:|---:|---:|---:|---:|
+| 0,40 | 1 (dříve) | 0,28 | 90 % | 0,2 s | 10 | 8 |
+| 0,20 | 1 | 0,37 | 93 % | 0,2 s | 27 | 12 |
+| **0,20** | **2** | 0,22 | **72 %** | **0,4 s** | **3** | **5** |
+| 0,20 | 3 | 0,18 | 69 % | 0,6 s | 2 | 1 |
+| 0,15 | 2 | 0,27 | 72 % | 0,4 s | 4 | 6 |
+| 0,10 | 2 | 0,28 | 90 % | 0,4 s | 10 | 11 |
+
+`k` je počet po sobě jdoucích vzorkovaných framů, ve kterých musí být detekce na stejném
+místě (vzdálenost středů < 1,5× delší strana boxu). Celá tabulka je v `temporal_eval/results.json`.
+
+- **Při k = 1 vzniká zhruba 5 falešných poplachů za minutu rvačky** (horní odhad). Test na 24
+  framech přitom ukazoval 2 FP. Zdroje: natažené paže a **namalované čáry skákacího panáka**
+  na asfaltu (videa 027, 030), které model hlásí opakovaně na stejném místě.
+- **k = 2 sníží poplachy na rvačkách z 27 na 3.** Na pěti nikdy nepoužitých videích klesnou
+  z 18 na 1. Bitku 005 systém zachytí o 0,2 s později a poplach je aktivní 72 % jejího trvání
+  místo 93 %.
+- Proti původnímu nastavení (0,40, k = 1) má nové nastavení (0,20, k = 2) méně poplachů
+  na rvačkách (3 vs. 10) i v klidu (5 vs. 8).
+- Recall boxů s rostoucím k klesá výrazně (0,37 → 0,22), pro poplach to ale nevadí: stačí
+  jedna potvrzená tyč u osoby.
+- **Potlačení statických detekcí** (stejné místo opakovaně v posledních 10–20 s) bylo
+  vyzkoušeno a pomohlo jen málo (klid 5 → 3, rvačky beze změny). Nenasazeno, protože by se
+  ladilo na testovacích videích.
+
+**Nasazeno:** `ARMED_MIN_FRAMES = 2` v `abandoned_object_detector.py` (dříve 1). V pipeline se
+počítá na osobu, protože zbraň musí být u jejího zápěstí ve dvou po sobě jdoucích framech;
+ověřeno jednotkovým testem `update_armed_status` (sekvence 1,0,1,0 poplach nespustí, 1,1 ano).
+
+**Metodická poznámka:** volba k = 2 padla po pohledu na všechna videa včetně 017 a 026. Pět
+nikdy nepoužitých videí ale dává stejný obraz (18 → 1), práh se dál neladil a k = 2 je nejmenší
+netriviální hodnota.
+
+### Těžká negativa pro v3 (připraveno, netrénováno)
+
+`mine_hard_negatives.py` projde při 5 FPS 13 videí bez zbraní, která nejsou v žádné testovací
+sadě (003, 006, 008, 010, 011, 013, 015, 022–024, 028, 029, 031). Vybere framy, kde v2 hlásí
+tyč s conf ≥ 0,15, nejvýš 8 na video a aspoň 2 s od sebe. Vzniklo 43 framů. Po vizuální
+kontrole jsou to natažené paže, stíny, nohy a čáry na zemi; **2 sporné byly vyřazeny**
+(`annotate_neg_hard/vyrazeno_kontrolou.json`), zůstalo **41**.
+
+Dataset `med_finetune_v3` = v2 + 41 těžkých negativ (101 negativ celkem). Trénink připravuje
+`spark_setup_and_train_v3.sh` se stejnými hyperparametry jako v2, takže efekt půjde změřit čistě.
+Vhodné je nejdřív rozhodnout sporné případy (`review_ambiguous.py`) a dataset sestavit znovu.
+
 ---
 
 ## 7. Známá omezení
@@ -837,9 +904,10 @@ popisků. Generuje je skript `make_thesis_figures.py`.
   (§6c); jiná kamera, místo nebo osvětlení zatím ne. Kandidáti: UCF-Crime, RWF-2000, CCTV-Fights.
 - ~~Přeladit confidence threshold `melee`~~ — **provedeno (§6e)**, 0,40 → 0,20. Čistě ověřit
   na dalším anotovaném videu.
-- **Víc negativ** — v2 použila 60 framů (§6d); rvaček bez zbraní je v MED víc (018, 019, 020).
-- **Rozhodnout 64 sporných případů** (tyč vs. paže / stín) ve worklistu
-  `annotation_results/worklist_*.json` — přidají pozitivní i negativní příklady.
+- **Natrénovat v3** s těžkými negativy (§6f): dataset a skript pro Spark jsou připravené. Videa 018–020, 007 a 009 nepoužívat k tréninku, jsou testem časového potvrzení.
+- **Rozhodnout 64 sporných případů** (tyč vs. paže / stín): `python review_ambiguous.py sheets`
+  vyrobí listy s výřezy a `review_ambiguous/rozhodnuti.csv`; po vyplnění T / N / ? je `apply`
+  zapíše do labels a nejasné framy vyloučí (`build_finetune_dataset.py --exclude-file`).
 - **Méně zapomínání:** vyšší podíl původních dat (např. 1 : 8) nebo zmrazit i neck.
 - **Přeladit thresholdy `gun` a `knife`** pro dotrénovaný model, až budou CCTV data.
 - **Doplnit nože** pro vyrovnání poměru 1 : 4,4 (oversampling nepomohl, §6a).

@@ -162,12 +162,12 @@ MP4 videa → extract_frames.py → JPEG snímky (2 FPS)
 2. **Malý značkovaný dataset**: Zatím pouze 4 sekvence osob (196 celkových snímků)
 3. **Omezení paměti**: Velké modely (6GB+ pro ViTPose) mohou způsobit OOM chyby na strojích s omezenou VRAM
 4. **Hardcodované cesty**: Mnoho skriptů používá relativní cesty, které může být potřeba upravit
-5. **Chybějící soubor requirements**: Závislosti musí být instalovány manuálně
+5. **Závislosti**: viz `requirements.txt`; PyTorch a mmcv se instalují zvlášť (návod v hlavičce souboru)
 6. **Detekce vzdálených osob**: YOLO11x má problémy s detekcí malých/vzdálených osob - zvažte použití RT-DETR
 
 ## Závislosti
 
-Hlavní knihovny (requirements.txt neexistuje - instalujte manuálně):
+Hlavní knihovny (viz `requirements.txt`; nejdřív nainstalujte PyTorch pro svou verzi CUDA):
 - PyTorch (s podporou CUDA)
 - TensorFlow 2.10+
 - MMPose, MMEngine

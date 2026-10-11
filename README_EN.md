@@ -373,7 +373,7 @@ Luggage (`backpack`, `handbag`, `suitcase`) is still detected by COCO YOLO11x, t
 
 On top-down CCTV the deployed model is roughly **3× better** while losing little on web data.
 **Limitations:** only `melee` is verified on CCTV (MED videos contain no guns or knives), one camera
-and one yard. The model is under-confident on CCTV, so the `melee` threshold is lowered to 0.20. On the held-out part of video 005 it catches about a third of sticks with no false alarms, and on frames of fights without weapons it gives 2 false alarms in 24 frames.
+and one yard. The model is under-confident on CCTV, so the `melee` threshold is lowered to 0.20. On the held-out part of video 005 it catches about a third of sticks with no false alarms, An alarm is raised only after detections in two consecutive frames (0.4 s). On full videos of fights without weapons this cut false alarms from 27 to 3 per 5.5 minutes, while the real fight is still caught within 0.4 s.
 
 Detection is wired into `suspicious_detector.py`; flagging armed persons in
 `abandoned_object_detector.py` is enabled with `--armed`.

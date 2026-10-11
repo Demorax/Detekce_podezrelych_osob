@@ -1,0 +1,40 @@
+# Závislosti projektu. Sestaveno z importů ve skriptech a noteboocích (2026-10).
+#
+# PyTorch se instaluje ZVLÁŠŤ podle GPU, protože pip ho jinak nainstaluje
+# bez CUDA nebo s nesprávnou verzí CUDA:
+#   Windows/Linux x86 + CUDA 12.x:  pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+#   DGX Spark (aarch64, GB10):      pip install torch torchvision --index-url https://download.pytorch.org/whl/cu130
+#   macOS (MPS):                    pip install torch torchvision
+# Na Macu funguje jen inference; trénink YOLO na MPS je rozbitý (box_loss 0).
+#
+# OpenCV s CUDA (GPU super-resolution ESPCN) je vlastní build, viz materiály.md.
+# Bez něj stačí opencv-contrib-python níže; ESPCN pak poběží na CPU, a pokud
+# chybí i dnn_superres, kód potichu přejde na bikubické zvětšení.
+
+# --- jádro ---
+numpy>=1.24,<2.0          # mmcv/mmpose a TF 2.10–2.15 nejsou kompatibilní s NumPy 2
+opencv-contrib-python>=4.8  # contrib kvůli cv2.dnn_superres
+pillow>=10.0
+scipy>=1.10
+scikit-learn>=1.3
+matplotlib>=3.7
+seaborn>=0.12
+tqdm>=4.65
+pyyaml>=6.0
+
+# --- detekce osob a zbraní (YOLO11, RT-DETR) ---
+# Detektor zbraní trénován na 8.4.115, ověřen i na 8.4.175. Na <8.4 chybí YOLO11/MuSGD API.
+ultralytics>=8.4.115
+
+# --- odhad pózy (ViTPose přes MMPose 1.x API: init_model, inference_topdown, registry) ---
+# mmcv se kvůli CUDA operacím instaluje přes openmim:  pip install -U openmim && mim install "mmcv>=2.0.0"
+mmengine>=0.8
+mmpose>=1.1
+
+# --- klasifikace chování (LSTM/MLP notebooky) ---
+tensorflow>=2.10
+
+# --- volitelné ---
+# roboflow>=1.1           # jen pro stažení trénovacích dat detektoru zbraní (weapon_training/download_datasets.py)
+# realesrgan basicsr      # jen pro alternativní upscaling v upsacle_img.py
+# tkinter je součástí Pythonu (GUI label_skeletons.py); na Linuxu: apt install python3-tk

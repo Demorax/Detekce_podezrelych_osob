@@ -56,7 +56,11 @@ CROWDPOSE_WRIST_IDX = (4, 5)        # l_wrist, r_wrist v CrowdPose 14-keypoint f
 WRIST_CONF_MIN = 0.3               # min confidence keypointu zápěstí, jinak se ignoruje
 ARMED_WRIST_DIST_FACTOR = 0.45     # zbraň "v ruce" pokud zápěstí < faktor × výška od bbox zbraně
 ARMED_FALLBACK_RADIUS_FACTOR = 0.7 # když chybí skelet → centroid-based (přísnější než dřív)
-ARMED_MIN_FRAMES = 1               # flag hned při 1. detekci
+# Časové potvrzení: zbraň u zápěstí ve 2 PO SOBĚ jdoucích sampled framech (při 5 FPS = 0,4 s).
+# Simulace na celých videích (weapon_training/eval_temporal_filter.py, TRAINING_REPORT §6f):
+# při 1 framu 27 falešných poplachů na 5,5 min rvaček bez zbraní, při 2 framech 3;
+# skutečnou bitku (005) to zachytí o 0,2 s později. Falešné detekce jsou ojedinělé záblesky.
+ARMED_MIN_FRAMES = 2
 ARMED_HOLD_FRAMES = 8              # HYSTEREZE: drž ARMED N sampled framů po výpadku detekce
                                    # (skeleton-based je přesnější → kratší hold než radius verze)
 

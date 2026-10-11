@@ -49,3 +49,5 @@ weapon_training/annotate_005/images/
 weapon_training/annotate_neg_train/images/
 weapon_training/annotate_neg_test/images/
 models/weapon_detection_yolo11l_med_v2/*.pt
+weapon_training/annotate_neg_hard/images/
+weapon_training/review_ambiguous/*.png

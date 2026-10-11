@@ -115,11 +115,11 @@ MP4 Videos → extract_frames.py → JPEG Frames (2 FPS)
 2. **Small labeled dataset**: Only 4 person sequences (196 total frames) currently labeled
 3. **Memory constraints**: Large models (6GB+ for ViTPose) can cause OOM errors on machines with limited VRAM
 4. **Hardcoded paths**: Many scripts use relative paths that may need adjustment
-5. **No requirements file**: Dependencies must be manually installed
+5. **Dependencies**: `requirements.txt` lists them; PyTorch and mmcv must be installed separately (see its header)
 
 ## Dependencies
 
-Core libraries (no requirements.txt exists - install manually):
+Core libraries (see `requirements.txt`; install PyTorch for your CUDA first):
 - PyTorch (with CUDA support)
 - TensorFlow 2.10+
 - MMPose, MMEngine
