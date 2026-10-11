@@ -372,7 +372,7 @@ Zavazadla (`backpack`, `handbag`, `suitcase`) dál detekuje COCO YOLO11x, který
 
 Na CCTV záběrech shora je nasazený model zhruba **3× lepší** a na webových datech ztrácí jen málo.
 **Omezení:** na CCTV je ověřena jen třída `melee` (v MED videích nejsou pistole ani nože), jedna kamera
-a jeden dvůr. Model je na CCTV podsebevědomý — při prahu 0,40 zachytí zhruba třetinu tyčí.
+a jeden dvůr. Model je na CCTV podsebevědomý, proto je práh `melee` snížen na 0,20. Na ověřovací části videa 005 zachytí zhruba třetinu tyčí bez jediného falešného poplachu, na framech rvaček bez zbraní dává 2 falešné poplachy ve 24 framech.
 
 Detekce je zapojená v `suspicious_detector.py`; označování ozbrojených osob v
 `abandoned_object_detector.py` se zapíná přepínačem `--armed`.

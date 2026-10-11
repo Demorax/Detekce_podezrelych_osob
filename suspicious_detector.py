@@ -78,9 +78,15 @@ WEAPON_HIGH_THREAT = {
     2: 'melee',      # baseballové pálky, sekery, meče, kopí
 }
 
-# POZOR: thresholdy byly odečteny pro PŮVODNÍ model (před domain adaptation).
-# Dotrénovaný model má na MED datech precision ~0.99 a může snést nižší práh;
-# přeladění by chtělo větší MED validaci než současných 10 boxů.
+# gun/knife: thresholdy odečteny pro PŮVODNÍ model (před domain adaptation);
+# na CCTV pro ně nejsou data, proto zůstávají.
+#
+# melee: PŘELADĚNO pro v2 na 0.20 (bylo 0.40) — viz TRAINING_REPORT.md §6e.
+#   Kalibrace na časové polovině testu 005 (framy <=902): F1 je mezi conf 0.10
+#   a 0.20 plochá (~0.70), 0.20 je nejnižší práh s precision 1.00. Předem
+#   zvolené argmax F1 (0.027) zamítnuto: 11 falešných poplachů na 24 framech
+#   rvaček bez zbraní. Na druhé polovině (framy >=912): recall 0.17 -> 0.31
+#   při P 1.00; negativa 2 FP / 24 framů, klidná scéna 0 / 36.
 #
 # Per-class confidence thresholdy — odečteno z F1 křivky na validačním splitu
 # (viz weapon_training/docs/artifacts/thresholds_result.txt).
@@ -101,7 +107,7 @@ WEAPON_HIGH_THREAT = {
 WEAPON_CONF_PER_CLASS = {
     'gun': 0.35,
     'knife': 0.30,
-    'melee': 0.40,
+    'melee': 0.20,   # v2, viz výše a §6e (původní model: 0.40)
 }
 
 # COCO 17 keypoints connections (pro skeleton vizualizaci)

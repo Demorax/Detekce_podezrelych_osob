@@ -34,7 +34,7 @@ shora vzrostl recall `melee` z **0,10 na 0,50** (mAP50 0,138 → 0,623), na pův
 datech klesl mAP50 z 0,777 na 0,755. Tento model je nasazen v pipeline. Na **nezávislé
 bitce z videa 005** (67 boxů, na kterých se netrénovalo) vzrostla AP50 `melee` z 0,22 na 0,61. Verze v2 navíc
 obsahuje 60 negativních framů z rvaček bez zbraní, které snížily falešné poplachy na
-natažených pažích zhruba na polovinu (§6d). Viz [`TRAINING_REPORT.md`](TRAINING_REPORT.md) §6b.
+natažených pažích zhruba na polovinu (§6d). Práh `melee` byl pro v2 překalibrován z 0,40 na 0,20; recall na ověřovací polovině testu 005 stoupl z 0,17 na 0,31 při precision 1,00 (§6e). Viz [`TRAINING_REPORT.md`](TRAINING_REPORT.md) §6b.
 
 ## Kde co najít
 
@@ -42,6 +42,7 @@ natažených pažích zhruba na polovinu (§6d). Viz [`TRAINING_REPORT.md`](TRAI
 |---|---|
 | **[`TRAINING_REPORT.md`](TRAINING_REPORT.md)** | Hlavní zpráva: volba modelu, hardware, průběh tréninku, divergence, výsledky, domain-gap test, omezení |
 | **[`DATASETS.md`](DATASETS.md)** | Všechny zkoumané datasety, licence, mapování tříd, co bylo odmítnuto a proč, konstrukce datasetu |
+| **[`figures/`](figures/README.md)** | Grafy a ukázky detekcí do textu práce (PDF + PNG) s navrženými popisky |
 | **[`MED_VIDEO_SCAN.md`](MED_VIDEO_SCAN.md)** | Průchod všemi 31 MED videi: kde jsou zbraně, rvačky bez zbraní a další užitečná negativa |
 | **[`ANNOTATION_SPEC.md`](ANNOTATION_SPEC.md)** | Závazná anotační pravidla: tyč vs. paže, tyč vs. stín, statické artefakty, těsnost boxů |
 | **[`ANNOTATION.md`](ANNOTATION.md)** | Návod na anotaci framů pro domain adaptation — ovládání nástroje, na co si dát pozor, jak pak dotrénovat |
@@ -108,7 +109,7 @@ Provedené změny:
 
 | Soubor | Změna |
 |---|---|
-| `suspicious_detector.py` | `_WEAPON_MODEL` → `models/weapon_detection_yolo11l_med_v2/best.pt` (domain-adapted + negativa, 2026-10-11; předchozí verze v `models/weapon_detection_yolo11l_med/` a `models/weapon_detection_yolo11l/`); `WEAPON_HIGH_THREAT` rozšířeno o `2: 'melee'`; přidány `WEAPON_CONF_PER_CLASS` |
+| `suspicious_detector.py` | `_WEAPON_MODEL` → `models/weapon_detection_yolo11l_med_v2/best.pt` (domain-adapted + negativa, 2026-10-11; předchozí verze v `models/weapon_detection_yolo11l_med/` a `models/weapon_detection_yolo11l/`); `WEAPON_HIGH_THREAT` rozšířeno o `2: 'melee'`; přidány `WEAPON_CONF_PER_CLASS` (melee 0,20 pro v2, §6e) |
 | `abandoned_object_detector.py` | `HIGH_THREAT_LABELS` rozšířeno o `'melee'` |
 
 `WEAPON_CONF_PER_CLASS` nastavuje **nižší práh pro `knife` (0,35)** než pro

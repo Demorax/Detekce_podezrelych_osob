@@ -724,10 +724,85 @@ na Macu chybí CUDA a MMPose. Ověřeno:
   ve videu 005 prošlo 5 detekcí, ač tyčí je zhruba tři na frame (model je vidí, ale s jistotou
   ~0,02–0,18). To odpovídá recallu 0,31 z nezávislého testu (§6c). Naladění prahu je
   nejúčinnější další krok; vyžaduje ale větší validační sadu.
+  → **Vyřešeno v §6e:** práh `melee` snížen na 0,20.
 - **Upscaling vstupu detekci neovlivní:** nativní frame 854×480 a jeho bikubické zvětšení 4×
   dávají prakticky stejné detekce (14 vs. 16 nad conf 0,05, stejných 5 nad 0,40) — model vstup
   stejně zmenšuje na 960 px.
 
+
+
+## 6e. Kalibrace prahu `melee` pro model v2 (2026-10-11)
+
+Dotrénovaný model je na CCTV podsebevědomý: tyče vidí, ale s jistotou často pod 0,2.
+Práh 0,40 (odečtený pro původní model) proto propouštěl jen asi šestinu tyčí.
+
+### Postup
+
+Samostatná MED validace má jen 10 boxů, takže se kalibrovalo na **časové polovině**
+testu z videa 005. Druhá polovina zůstala pro ověření:
+
+| část | framy (zdrojový index) | framů | boxů `melee` |
+|---|---|---:|---:|
+| kalibrační | ≤ 902 | 19 | 31 |
+| ochranná mezera | 907 | 1 | – |
+| ověřovací | ≥ 912 | 28 | 34 |
+
+**Předem zvolené kritérium:** maximum F1 na kalibrační polovině.
+
+### Výsledky
+
+Precision / recall / F1 pro třídu `melee` (model v2, imgsz 960). Falešné poplachy (FP)
+jsou měřeny na 24 testovacích framech rvaček bez zbraní a s papíry nad hlavou (§6d)
+a na 36 framech klidné scény (videa 001 a 002):
+
+| conf | kalibrační P / R / F1 | ověřovací P / R / F1 | FP rvačky (framů) | FP klid |
+|---:|---|---|---:|---:|
+| 0,027 | 0,91 / 0,65 / **0,75** | 0,63 / 0,46 / 0,53 | 11 (9 / 24) | 2 |
+| 0,10 | 0,94 / 0,55 / 0,70 | 0,86 / 0,35 / 0,50 | 3 (2 / 24) | 1 |
+| 0,15 | 0,97 / 0,55 / 0,70 | 0,94 / 0,32 / 0,48 | 2 (2 / 24) | 0 |
+| **0,20** | **1,00 / 0,54 / 0,70** | **1,00 / 0,31 / 0,47** | **2 (2 / 24)** | **0** |
+| 0,30 | 1,00 / 0,48 / 0,65 | 1,00 / 0,20 / 0,33 | 1 (1 / 24) | 0 |
+| 0,40 (dříve) | 1,00 / 0,46 / 0,63 | 1,00 / 0,17 / 0,29 | 0 | 0 |
+
+AP50 `melee`: kalibrační polovina 0,699, ověřovací 0,510.
+
+Reprodukce: `python calibrate_melee_threshold.py --device mps` (vypíše celou tabulku).
+Po změně prahu prošel znovu i test zapojení `test_pipeline_weapon_branch.py`.
+
+### Rozhodnutí: 0,20 místo předem zvoleného 0,027
+
+Maximum F1 vyšlo na samém okraji, u conf 0,027. Tento práh jsme **zamítli**. Na framech
+bez zbraní dává 11 falešných poplachů v 9 z 24 framů, tedy poplach zhruba v každém třetím
+framu rvačky. Pro dohledový systém je to nepoužitelné. Na ověřovací polovině navíc
+precision klesá na 0,63.
+
+Na kalibrační polovině je F1 mezi conf 0,10 a 0,20 plochá (0,70). **0,20 je nejnižší
+práh této plošiny s precision 1,00.** Proti původním 0,40:
+
+- recall na ověřovací polovině stoupne z 0,17 na 0,31,
+- precision zůstane 1,00,
+- na negativech přibudou 2 falešné poplachy ve 24 framech, na klidné scéně žádný.
+
+**Metodická poznámka (poctivě):** změna kritéria padla až po pohledu na ověřovací polovinu
+u conf 0,027 a 0,40 a na negativní test. Čísla ověřovací poloviny pro 0,20 proto nejsou
+zcela čistým testem. Volba ale vychází z kalibrační poloviny (plošina F1 a precision 1,00)
+a z počtu falešných poplachů, ne z maxima na ověřovací polovině. To by vedlo k 0,027.
+Čistý odhad by vyžadoval další anotované video.
+
+Prahy `gun` a `knife` se neměnily, protože pro ně na CCTV nejsou data.
+
+
+### Obrázky
+
+Grafy a ukázky detekcí do textu práce jsou v [`figures/`](figures/README.md), včetně navržených
+popisků. Generuje je skript `make_thesis_figures.py`.
+
+| | |
+|---|---|
+| ![](figures/fig2_porovnani.png) | ![](figures/fig3_pr_krivky.png) |
+| ![](figures/fig4_falesne_poplachy.png) | ![](figures/fig5_kalibrace.png) |
+
+![](figures/fig6_ukazky.png)
 
 ---
 
@@ -760,13 +835,13 @@ na Macu chybí CUDA a MMPose. Ověřeno:
 **Dál, se získáním dat:**
 - **Další prostředí se zbraněmi** — zobecnění na jinou bitku na stejném dvoře je ověřeno
   (§6c); jiná kamera, místo nebo osvětlení zatím ne. Kandidáti: UCF-Crime, RWF-2000, CCTV-Fights.
-- **Přeladit confidence threshold `melee`** pro dotrénovaný model — model je na CCTV
-  podsebevědomý (maximum F1 u conf ≈ 0,05, §6c). Ladit na validaci, ne na testu z videa 005.
+- ~~Přeladit confidence threshold `melee`~~ — **provedeno (§6e)**, 0,40 → 0,20. Čistě ověřit
+  na dalším anotovaném videu.
 - **Víc negativ** — v2 použila 60 framů (§6d); rvaček bez zbraní je v MED víc (018, 019, 020).
 - **Rozhodnout 64 sporných případů** (tyč vs. paže / stín) ve worklistu
   `annotation_results/worklist_*.json` — přidají pozitivní i negativní příklady.
 - **Méně zapomínání:** vyšší podíl původních dat (např. 1 : 8) nebo zmrazit i neck.
-- **Přeladit confidence thresholdy** pro dotrénovaný model, až bude větší MED validace.
+- **Přeladit thresholdy `gun` a `knife`** pro dotrénovaný model, až budou CCTV data.
 - **Doplnit nože** pro vyrovnání poměru 1 : 4,4 (oversampling nepomohl, §6a).
 
 ---
