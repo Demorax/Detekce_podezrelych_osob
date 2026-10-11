@@ -706,6 +706,29 @@ a model o něco méně zapomíná. **v2 je nasazena v pipeline**
 **Omezení:** testovacích negativ je jen 24 framů a falešných poplachů jednotky — směr efektu
 je jasný, velikost ne. Pokles MED validace o 0,015 je při 10 boxech šum.
 
+### Ověření zapojení do pipeline
+
+Skript `test_pipeline_weapon_branch.py` spouští **nezměněnou** metodu
+`SuspiciousDetector.detect()` se skutečným YOLO11x a modelem v2; jen RT-DETR a ViTPose
+(osoby a skelety, na detekci zbraní nezávislé) jsou nahrazeny zástupnými moduly, protože
+na Macu chybí CUDA a MMPose. Ověřeno:
+
+- třídy modelu (`gun`, `knife`, `melee`) odpovídají mapování `WEAPON_HIGH_THREAT`,
+- per-class prahy (`WEAPON_CONF_PER_CLASS`) se dodržují,
+- třída `melee` je v `HIGH_THREAT_LABELS`, takže se dostane do ARMED logiky.
+
+**Zjištění pro provoz:**
+- **ARMED je ve výchozím stavu vypnuté** (`--armed` v `abandoned_object_detector.py`); bez
+  přepínače se detekce zbraní do označení ozbrojených osob nepromítne.
+- **Při prahu 0,40 model zachytí jen nejzřetelnější tyče** — na 10 framech vrcholu bitky
+  ve videu 005 prošlo 5 detekcí, ač tyčí je zhruba tři na frame (model je vidí, ale s jistotou
+  ~0,02–0,18). To odpovídá recallu 0,31 z nezávislého testu (§6c). Naladění prahu je
+  nejúčinnější další krok; vyžaduje ale větší validační sadu.
+- **Upscaling vstupu detekci neovlivní:** nativní frame 854×480 a jeho bikubické zvětšení 4×
+  dávají prakticky stejné detekce (14 vs. 16 nad conf 0,05, stejných 5 nad 0,40) — model vstup
+  stejně zmenšuje na 960 px.
+
+
 ---
 
 ## 7. Známá omezení

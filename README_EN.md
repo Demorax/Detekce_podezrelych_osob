@@ -14,7 +14,7 @@ This project implements a system for analyzing human movement in video sequences
 1. **Normal vs. abnormal motion detection** - classifying human behavior (normal walking, suspicious behavior, running/panic)
 2. **Individual pose analysis** - extracting and evaluating skeleton keypoints (17 COCO keypoints)
 3. **Person tracking in crowds** - tracking individuals across frames in video
-4. **Suspicious object detection** - identifying weapons and dangerous objects (in progress)
+4. **Suspicious object detection** - identifying weapons and dangerous objects (YOLO11l, classes `gun` / `knife` / `melee`, see [Weapon detection](#4-weapon-and-dangerous-object-detection))
 
 **Practical applications:**
 - Automated surveillance systems (CCTV)
@@ -127,17 +127,19 @@ models/super_resolution/
 └── ESPCN_x4.pb         # ESPCN model for 4x upscaling
 ```
 
-#### Weapon Detection (in progress)
+#### Weapon Detection
 ```
-models/weapon_detection_guns/    # Dataset: firearms
-models/weapon_detection_new/     # Dataset: various suspicious objects
+models/weapon_detection_yolo11l_med_v2/   # DEPLOYED: YOLO11l adapted to CCTV (MED) + negatives
+models/weapon_detection_yolo11l_med/      # v1: domain adaptation without negatives
+models/weapon_detection_yolo11l/          # baseline: fine-tuned on web datasets
 ```
+Weights are not in git (`.gitignore`). Training, datasets and annotation: [`weapon_training/`](weapon_training/docs/README.md) (documentation in Czech).
 
 ### Data Directories
 
 ```
 frames_0.5/              # Extracted frames (2 FPS)
-frames_0.5_upscaled/     # Upscaled frames (ESPCN 4x)
+frames_0.5_upscaled/     # Frames upscaled 4x (ESPCN, or bicubic fallback — see below)
 skeletons_yolo_11_upscaled_2/  # Skeletons from RT-DETR + ViTPose
 ├── *.npy                # Skeleton data (N, 17, 2 or 3)
 └── visualizations/      # Detection visualizations
@@ -161,10 +163,11 @@ To train a model for suspicious person detection, a quality dataset is required.
 1. Frame extraction from video
    - `extract_frames.py` captures one frame every 0.5 seconds from videos
 2. Image resolution enhancement
-   - Upscaling to 4K using ESPCN_x4.pb
+   - Upscaling to 4K using ESPCN_x4.pb; if OpenCV lacks the `dnn_superres` module, the code falls back to bicubic resizing.
+     The existing `frames_0.5_upscaled/` were verified to match bicubic resizing (MAE 0.25–0.55, JPEG noise level), i.e. they were produced by the fallback.
    - For deployment, quality will likely be max 2K
 3. Person detection model
-4. Suspicious object detection model (not yet implemented)
+4. Suspicious object detection model — YOLO11l, see [section 4](#4-weapon-and-dangerous-object-detection)
 5. Skeleton extraction model
 6. Dataset labeling
    - Using `label_skeletons.py`
@@ -349,6 +352,34 @@ RT-DETR detects nearly all people even in a crowded scene. When people are very 
 - Accurate skeleton extraction thanks to the ViTPose-Huge model
 - 3 people close together: handles perfectly
 - Large crowds: detects almost all people, but heavily overlapping figures require further optimization
+
+## 4. Weapon and Dangerous Object Detection
+
+A custom **YOLO11l** detector with three classes: `gun`, `knife` and `melee` (sticks, bats, axes, swords).
+Luggage (`backpack`, `handbag`, `suitcase`) is still detected by COCO YOLO11x, trained on 118,000 images.
+
+**Approach:**
+1. Fine-tuning on 24,340 images from 6 public Roboflow datasets (after deduplication and class checks — three recommended datasets turned out to be unusable).
+2. A test on real MED footage revealed a large domain gap: the model trained on web photos barely worked on top-down CCTV.
+3. Annotation of 252 MED frames (56 stick boxes, 220 negatives) and fine-tuning with a frozen backbone (domain adaptation).
+4. Adding negatives from fights without weapons, which reduced false alarms on outstretched arms.
+
+**Results** (AP50 for class `melee`):
+
+| | Web data (val) | CCTV — independent fight (MED video 005) |
+|---|---|---|
+| Baseline model | 0.830 | 0.219 |
+| **Deployed model (v2)** | 0.807 | **0.612** |
+
+On top-down CCTV the deployed model is roughly **3× better** while losing little on web data.
+**Limitations:** only `melee` is verified on CCTV (MED videos contain no guns or knives), one camera
+and one yard. The model is under-confident on CCTV — at threshold 0.40 it catches about a third of sticks.
+
+Detection is wired into `suspicious_detector.py`; flagging armed persons in
+`abandoned_object_detector.py` is enabled with `--armed`.
+
+Full documentation (training, datasets, annotation spec, ablations, failed experiments; in Czech):
+**[`weapon_training/docs/`](weapon_training/docs/README.md)**.
 
 ---
 

@@ -17,6 +17,9 @@ Human behavior detection and classification system using pose estimation from vi
 
 2. **Super-Resolution Enhancement**
    - ESPCN 4x upscaling using `models/super_resolution/ESPCN_x4.pb`
+   - NOTE: if OpenCV lacks `dnn_superres`, the code silently falls back to bicubic resize. The existing
+     `frames_0.5_upscaled/` match bicubic (verified, MAE ~0.3) — new frames for training must be upscaled bicubically
+     to stay consistent (see `weapon_training/extract_dense.py`)
    - Additional preprocessing: CLAHE, histogram equalization, gamma correction (γ=0.8)
    - Output: `frames_0.5_upscaled/`
 
@@ -95,6 +98,16 @@ MP4 Videos → extract_frames.py → JPEG Frames (2 FPS)
            → label_skeletons.py (tracking + labeling) → Labeled sequences (.json + .npz)
            → LSTM training → Behavior classifier (.h5)
 ```
+
+## Weapon / Dangerous Object Detection
+
+- Custom YOLO11l detector (classes `gun`, `knife`, `melee`) wired into `suspicious_detector.py`; deployed weights
+  `models/weapon_detection_yolo11l_med_v2/best.pt` (not in git). ARMED flagging in `abandoned_object_detector.py`
+  needs `--armed`.
+- Everything about it (training, datasets, annotation, results, scripts) lives in `weapon_training/`;
+  start with `weapon_training/docs/README.md`.
+- Training runs on the DGX Spark (`ssh spark2` via Cloudflare Access). Training on Apple MPS is broken
+  (box_loss 0); inference on MPS is fine.
 
 ## Known Issues and Limitations
 

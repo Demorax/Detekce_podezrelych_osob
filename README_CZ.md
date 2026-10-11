@@ -12,7 +12,7 @@ Systém pro detekci a klasifikaci lidského chování pomocí odhadu pózy z vid
 - Výstup: `frames_0.5/`
 
 #### 2. Vylepšení rozlišení (Super-Resolution)
-- ESPCN 4× zvětšení pomocí `models/super_resolution/ESPCN_x4.pb`
+- ESPCN 4× zvětšení pomocí `models/super_resolution/ESPCN_x4.pb` (pokud OpenCV nemá `dnn_superres`, použije se bikubické zvětšení — stávající `frames_0.5_upscaled/` vznikly takto, ověřeno porovnáním pixelů)
 - Dodatečné předzpracování: CLAHE, ekvalizace histogramu, gamma korekce (γ=0.8)
 - Výstup: `frames_0.5_upscaled/`
 

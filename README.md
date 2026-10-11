@@ -14,7 +14,7 @@ Projekt implementuje systém pro analýzu pohybu osob ve videosekvencích, kter�
 1. **Detekce normálního vs. abnormálního pohybu** - klasifikace chování osob (normální chůze, podezřelé chování, běh/panika)
 2. **Analýza póz jednotlivců** - extrakce a vyhodnocení klíčových bodů skeletu (17 bodů COCO formátu)
 3. **Sledování osob v davu** - tracking jednotlivců napříč framy ve videu
-4. **Detekce podezřelých předmětů** - identifikace zbraní a nebezpečných objektů (v přípravě)
+4. **Detekce podezřelých předmětů** - identifikace zbraní a nebezpečných objektů (YOLO11l, třídy `gun` / `knife` / `melee`, viz [Detekce zbraní](#4-detekce-zbraní-a-nebezpečných-předmětů))
 
 **Praktické využití:**
 - Automatizované přehledové systémy (CCTV)
@@ -127,17 +127,19 @@ models/super_resolution/
 └── ESPCN_x4.pb         # ESPCN model pro 4x upscaling
 ```
 
-#### Detekce zbraní (v přípravě)
+#### Detekce zbraní
 ```
-models/weapon_detection_guns/    # Dataset: zbraně
-models/weapon_detection_new/     # Dataset: různé podezřelé objekty
+models/weapon_detection_yolo11l_med_v2/   # NASAZENÝ: YOLO11l dotrénovaný na CCTV (MED) + negativa
+models/weapon_detection_yolo11l_med/      # v1: domain adaptation bez negativ
+models/weapon_detection_yolo11l/          # výchozí: fine-tune na webových datasetech
 ```
+Váhy nejsou v gitu (`.gitignore`). Trénink, datasety a anotace: [`weapon_training/`](weapon_training/docs/README.md).
 
 ### Datové adresáře
 
 ```
 frames_0.5/              # Extrahované snímky (2 FPS)
-frames_0.5_upscaled/     # Upscalované snímky (ESPCN 4x)
+frames_0.5_upscaled/     # Upscalované snímky 4× (ESPCN, příp. bikubický fallback — viz níže)
 skeletons_yolo_11_upscaled_2/  # Skelety z RT-DETR + ViTPose
 ├── *.npy                # Skeleton data (N, 17, 2 nebo 3)
 └── visualizations/      # Vizualizace detekcí
@@ -161,10 +163,11 @@ Pro trénování modelu k detekci podezřelých osob je nutný kvalitní dataset
 1. Extrakce obrázku z videa
    - soubor extract_frames.py z videí každou 0.5 sekundy vezme obrázek
 2. Zvětšení rozlišení obrázků
-   - rozlišení na 4K pomocí ESPCN_x4.pb.
+   - rozlišení na 4K pomocí ESPCN_x4.pb; pokud OpenCV nemá modul `dnn_superres`, kód použije bikubické zvětšení.
+     Ověřeno, že stávající `frames_0.5_upscaled/` odpovídají bikubice (MAE 0,25–0,55, úroveň šumu JPEG) — vznikly tedy fallbackem.
    - pro nasazení pravděpodobně kvalita maximálne 2K
 3. Model na detekci lidí
-4. Model na detekci podezřelých předmětů (zatím neimplementováno)
+4. Model na detekci podezřelých předmětů — YOLO11l, viz [sekce 4](#4-detekce-zbraní-a-nebezpečných-předmětů)
 5. Model pro vytvoření skeletonů lidí
 6. Popsat dataset
    - pomocí label_skeletons.py
@@ -348,6 +351,34 @@ RT-DETR detekuje téměř všechny osoby i v přeplněné scéně. Když jsou li
 - Přesná extrakce skeletu díky ViTPose-Huge modelu
 - 3 osoby blízko sebe: zvládá perfektně
 - Velké davy: detekuje téměř všechny osoby, ale překrývající se postavy vyžadují další optimalizaci
+
+## 4. Detekce zbraní a nebezpečných předmětů
+
+Vlastní detektor **YOLO11l** se třemi třídami: `gun`, `knife` a `melee` (tyče, pálky, sekery, meče).
+Zavazadla (`backpack`, `handbag`, `suitcase`) dál detekuje COCO YOLO11x, který je má z 118 000 obrázků.
+
+**Postup:**
+1. Fine-tune na 24 340 obrázcích ze 6 veřejných Roboflow datasetů (po deduplikaci a kontrole tříd — tři doporučené datasety se ukázaly jako nepoužitelné).
+2. Test na reálných MED záběrech odhalil velký rozdíl domén: model trénovaný na webových fotkách na CCTV shora skoro nefungoval.
+3. Anotace 252 MED framů (56 boxů tyčí, 220 negativ) a dotrénování se zmrazeným backbone (domain adaptation).
+4. Přidání negativ z rvaček bez zbraní, které snížily falešné poplachy na natažených pažích.
+
+**Výsledky** (AP50 třídy `melee`):
+
+| | Webová data (val) | CCTV — nezávislá bitka (MED video 005) |
+|---|---|---|
+| Výchozí model | 0,830 | 0,219 |
+| **Nasazený model (v2)** | 0,807 | **0,612** |
+
+Na CCTV záběrech shora je nasazený model zhruba **3× lepší** a na webových datech ztrácí jen málo.
+**Omezení:** na CCTV je ověřena jen třída `melee` (v MED videích nejsou pistole ani nože), jedna kamera
+a jeden dvůr. Model je na CCTV podsebevědomý — při prahu 0,40 zachytí zhruba třetinu tyčí.
+
+Detekce je zapojená v `suspicious_detector.py`; označování ozbrojených osob v
+`abandoned_object_detector.py` se zapíná přepínačem `--armed`.
+
+Kompletní dokumentace (průběh tréninku, datasety, anotační specifikace, ablace, neúspěšné experimenty):
+**[`weapon_training/docs/`](weapon_training/docs/README.md)**.
 
 ---
 
