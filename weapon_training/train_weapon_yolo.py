@@ -50,6 +50,10 @@ def main() -> int:
     # --freeze 11 trénuje jen neck + hlavu. Smysl: při dotrénování na malém
     # jednodoménovém datasetu omezit zapomínání (catastrophic forgetting).
     ap.add_argument("--freeze", type=int, default=0)
+    # 'ram' = dekódovat a zmenšit obrázky jednou a držet je v paměti. Šetří CPU
+    # (dekódování 4K JPEGů je nejdražší část načítání) — vhodné na sdíleném stroji
+    # a pro malé datasety. Na výsledky tréninku vliv nemá.
+    ap.add_argument("--cache", default="false", choices=["false", "ram", "disk"])
     ap.add_argument("--resume", default=None,
                     help="cesta k last.pt pro pokračování")
     args = ap.parse_args()
@@ -78,7 +82,7 @@ def main() -> int:
             deterministic=False,   # rychlejší, u detekce nepotřebujeme bitovou reprodukovatelnost
             patience=args.patience,
             amp=True,
-            cache=False,           # ~30k obrázků @960px se do RAM nevejde dekódovaných
+            cache=False if args.cache == "false" else args.cache,
             optimizer=args.optimizer,
             lr0=args.lr0,
             lrf=args.lrf,

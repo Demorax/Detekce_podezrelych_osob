@@ -48,11 +48,13 @@ _RTDETR_MODEL = 'models/rtdetr/rtdetrv2_r101vd_6x_coco_from_paddle.pth'
 _VITPOSE_CONFIG = 'models/vitpose/configs/ViTPose_huge_crowdpose_256x192_without_training_v3.py'
 _VITPOSE_MODEL = 'models/vitpose/vitpose-h-multi-crowdpose.pth'
 _YOLO_MODEL = 'models/yolo/yolo11x.pt'
-# Domain-adapted model (2026-10-02): yolo11l dotrénovaný na anotovaných MED framech
-# se zmrazeným backbone. Na CCTV záběrech shora recall melee 0.10 -> 0.50,
-# na původních datech mAP50 0.777 -> 0.755. Původní model zůstává v
-# models/weapon_detection_yolo11l/ (viz weapon_training/docs/TRAINING_REPORT.md §6b).
-_WEAPON_MODEL = 'models/weapon_detection_yolo11l_med/best.pt'
+# Domain-adapted model v2 (2026-10-11): yolo11l dotrénovaný na anotovaných MED framech
+# se zmrazeným backbone + 60 negativních framů z rvaček bez zbraní a zdvižených papírů.
+# Nezávislý test (MED video 005): AP50 melee 0.219 (výchozí) -> 0.612; falešné poplachy
+# na rvačkách bez zbraní 7 -> 3 (conf>=0.10), 2 -> 0 (conf>=0.40); původní data mAP50 0.761.
+# Předchozí verze: models/weapon_detection_yolo11l_med/ (v1), models/weapon_detection_yolo11l/
+# (výchozí). Viz weapon_training/docs/TRAINING_REPORT.md §6b-6d.
+_WEAPON_MODEL = 'models/weapon_detection_yolo11l_med_v2/best.pt'
 
 # COCO třídy YOLO11x relevantní pro podezřelé chování (BEZ person - tu řeší RT-DETR)
 COCO_HIGH_THREAT = {

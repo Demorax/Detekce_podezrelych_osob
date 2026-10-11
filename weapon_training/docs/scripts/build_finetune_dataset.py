@@ -78,6 +78,10 @@ def main() -> int:
     ap.add_argument("--out", default="datasets/med_finetune")
     ap.add_argument("--orig", default="datasets/weapons_merged")
     ap.add_argument("--mix", type=int, default=MIX_ORIG)
+    # Negativní framy bez zbraní (rvačky pěstmi, zdvižené papíry) — všechny do
+    # train. Učí model, že natažená holá paže není tyč (jeho nejčastější FP).
+    # Testovací negativa (annotate_neg_test) se sem NEDÁVAJÍ.
+    ap.add_argument("--neg-dirs", nargs="*", default=[])
     args = ap.parse_args()
 
     out = Path(args.out)
@@ -107,6 +111,13 @@ def main() -> int:
         st[f"{split}_box"] += n
         st[f"{split}_{'pos' if n else 'neg'}"] += 1
 
+    for nd in args.neg_dirs:
+        for img in sorted(Path(nd, "images").glob("*.jpg")):
+            link(img, out / "train" / "images" / f"neg_{img.stem}.jpg")
+            (out / "train" / "labels").mkdir(parents=True, exist_ok=True)
+            (out / "train" / "labels" / f"neg_{img.stem}.txt").write_text("")
+            st["train_neg_extra"] += 1
+
     # vzorek původních dat → jen train (validace na původních datech se dělá zvlášť
     # na kompletním weapons_merged/val, aby šla porovnat s výchozím modelem)
     orig_imgs = sorted((Path(args.orig) / "train" / "images").iterdir())
@@ -135,6 +146,7 @@ def main() -> int:
     print(f"  MED val:   {st['val_img']} framů ({st['val_pos']} s boxy, "
           f"{st['val_neg']} negativ), {st['val_box']} boxů")
     print(f"  zahozeno v ochranné mezeře: {st['guard_zahozeno']}")
+    print(f"  přidaná negativa (rvačky/papíry): {st['train_neg_extra']}")
     print(f"  přimícháno původních: {st['train_orig_img']} obrázků, instance {dict(oc)}")
     print(f"  -> {out.resolve()}/data.yaml")
     return 0

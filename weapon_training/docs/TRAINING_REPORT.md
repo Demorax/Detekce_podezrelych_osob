@@ -650,6 +650,62 @@ ověřené nejsou. V framech, kde byly nejisté objekty vyloučeny, zůstaly tyt
 neoznačené — případná detekce se tam započítá jako false positive, takže precision je spíš
 podhodnocená.
 
+## 6d. Negativa z rvaček bez zbraní (v2, 2026-10-11)
+
+Nejčastější false positive dotrénovaného modelu na CCTV je **natažená holá paže**. Průchod
+MED videi (§6c, [`MED_VIDEO_SCAN.md`](MED_VIDEO_SCAN.md)) našel scény, kde se to děje bez
+jakékoli zbraně: rvačky pěstmi a pochod s bílými papíry zdviženými nad hlavou.
+
+### Data
+
+| Sada | Videa | Framů | Použití |
+|---|---|---|---|
+| Trénovací negativa | 012, 014, 016 (rvačky), 025 (papíry) | 60 | přidáno do train |
+| **Testovací negativa** | 017 (rvačka), 026 (papíry) | 24 | jen vyhodnocení |
+
+Každý druhý 2 FPS frame z okna události, bikubicky zvětšený 4× jako zbytek dat.
+**Že framy opravdu neobsahují zbraň, bylo ověřeno:** všechny tři modely na nich byly puštěny
+s conf 0,10 a všech 19 jejich detekcí prohlédnuto — všechno false positives (natažené paže,
+stíny paží, člověk fotící mobilem se zdviženými lokty, paže s papírem, nohy, čára na asfaltu).
+Negativní frame se skrytou zbraní by model učil opak.
+
+### Trénink
+
+Fine-tune **identický s v1** (zmrazený backbone, SGD, lr0 0,0005, 30 epoch, stejné rozdělení
+train/val, stejných 800 přimíchaných původních obrázků) — jediný rozdíl je +60 negativních
+framů. Efekt negativ je tak změřen čistě.
+
+Trénováno na DGX Spark 2 se šetrným nastavením kvůli produkčním službám na stroji:
+`nice -n 19`, 2 dataloader workery, `cache=ram` (obrázky dekódovány jednou — dekódování
+4K JPEGů je nejdražší část načítání). Doba včetně obnovy prostředí 25 min.
+
+**Trénink na Apple Silicon (MPS) nefunguje:** zkušební běh na M1 Pro dával `box_loss = 0`
+při 826 obrázcích s boxy, tj. chybný výpočet loss. **Inference na MPS je v pořádku** —
+výsledky na MPS i CPU se shodují se Sparkem na čtyři desetinná místa (MED val 0,1376 / 0,6234).
+
+### Výsledky
+
+| | v1 (zmrazený) | **v2 (+ negativa)** |
+|---|---|---|
+| **FP na testovacích negativech**, conf ≥ 0,10 | 7 (ve 4 framech) | **3** (ve 2) |
+| FP na testovacích negativech, conf ≥ 0,40 | 2 | **0** |
+| Nezávislý test 005: AP50 `melee` | 0,602 | **0,612** |
+| Test 005: precision / recall | 0,885 / 0,493 | 0,853 / 0,448 |
+| Původní val: mAP50 | 0,755 | **0,761** |
+| Původní val: `melee` AP50 | 0,796 | **0,807** |
+| MED val mAP50 (10 boxů) | 0,623 | 0,609 |
+
+### Interpretace
+
+Negativa splnila účel: na scénách bez zbraní model hlásí zhruba poloviční počet falešných
+poplachů a při produkčním prahu na testovacích negativech žádný. Detekce zbraní se nezhoršila
+(AP50 na nezávislém testu prakticky shodná; posun precision/recall je v šumu při 67 boxech)
+a model o něco méně zapomíná. **v2 je nasazena v pipeline**
+(`models/weapon_detection_yolo11l_med_v2/`).
+
+**Omezení:** testovacích negativ je jen 24 framů a falešných poplachů jednotky — směr efektu
+je jasný, velikost ne. Pokles MED validace o 0,015 je při 10 boxech šum.
+
 ---
 
 ## 7. Známá omezení
@@ -683,7 +739,7 @@ podhodnocená.
   (§6c); jiná kamera, místo nebo osvětlení zatím ne. Kandidáti: UCF-Crime, RWF-2000, CCTV-Fights.
 - **Přeladit confidence threshold `melee`** pro dotrénovaný model — model je na CCTV
   podsebevědomý (maximum F1 u conf ≈ 0,05, §6c). Ladit na validaci, ne na testu z videa 005.
-- **Využít negativa z rvaček bez zbraní** (videa 012, 014, 016, 017) a zdvižených papírů (025, 026).
+- **Víc negativ** — v2 použila 60 framů (§6d); rvaček bez zbraní je v MED víc (018, 019, 020).
 - **Rozhodnout 64 sporných případů** (tyč vs. paže / stín) ve worklistu
   `annotation_results/worklist_*.json` — přidají pozitivní i negativní příklady.
 - **Méně zapomínání:** vyšší podíl původních dat (např. 1 : 8) nebo zmrazit i neck.

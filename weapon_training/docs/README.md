@@ -32,7 +32,9 @@ nedostatečnou rozmanitost dat. Viz [`TRAINING_REPORT.md`](TRAINING_REPORT.md) �
 (56 boxů, 220 negativ) byl model dotrénován se zmrazeným backbone. Na CCTV záběrech
 shora vzrostl recall `melee` z **0,10 na 0,50** (mAP50 0,138 → 0,623), na původních
 datech klesl mAP50 z 0,777 na 0,755. Tento model je nasazen v pipeline. Na **nezávislé
-bitce z videa 005** (67 boxů, na kterých se netrénovalo) vzrostla AP50 `melee` z 0,22 na 0,60. Viz [`TRAINING_REPORT.md`](TRAINING_REPORT.md) §6b.
+bitce z videa 005** (67 boxů, na kterých se netrénovalo) vzrostla AP50 `melee` z 0,22 na 0,61. Verze v2 navíc
+obsahuje 60 negativních framů z rvaček bez zbraní, které snížily falešné poplachy na
+natažených pažích zhruba na polovinu (§6d). Viz [`TRAINING_REPORT.md`](TRAINING_REPORT.md) §6b.
 
 ## Kde co najít
 
@@ -106,7 +108,7 @@ Provedené změny:
 
 | Soubor | Změna |
 |---|---|
-| `suspicious_detector.py` | `_WEAPON_MODEL` → `models/weapon_detection_yolo11l_med/best.pt` (domain-adapted, 2026-10-02; původní model v `models/weapon_detection_yolo11l/`); `WEAPON_HIGH_THREAT` rozšířeno o `2: 'melee'`; přidány `WEAPON_CONF_PER_CLASS` |
+| `suspicious_detector.py` | `_WEAPON_MODEL` → `models/weapon_detection_yolo11l_med_v2/best.pt` (domain-adapted + negativa, 2026-10-11; předchozí verze v `models/weapon_detection_yolo11l_med/` a `models/weapon_detection_yolo11l/`); `WEAPON_HIGH_THREAT` rozšířeno o `2: 'melee'`; přidány `WEAPON_CONF_PER_CLASS` |
 | `abandoned_object_detector.py` | `HIGH_THREAT_LABELS` rozšířeno o `'melee'` |
 
 `WEAPON_CONF_PER_CLASS` nastavuje **nižší práh pro `knife` (0,35)** než pro
