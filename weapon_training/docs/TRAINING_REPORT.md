@@ -896,13 +896,16 @@ bitky 005 (zdrojové framy 840–1008) s aktivním poplachem.
 
 ### Výsledky
 
+Graf: `figures/fig7_armed`. Ukázkové snímky: `figures/fig8_armed_ukazka`. Videa vznikají lokálně
+skriptem `make_demo_video.py` do `docs/demo/` a v gitu nejsou.
+
 | varianta | bitka 005 v poplachu | zpoždění | poplachy rvačky (5,5 min) | z toho nepoužitá videa (3,8 min) | poplachy klid (3,4 min) |
 |---|---:|---:|---:|---:|---:|
 | dříve: melee 0,40, 1 frame | 100 % | 0 s | 24 | 21 | 7 |
 | melee 0,20, 1 frame | 100 % | 0 s | 38 | 30 | 13 |
-| **nasazeno: melee 0,20, 2 framy** | **100 %** | **0 s** | **9** | **7** | **5** |
+| melee 0,20, 2 framy (pálka 0,15) | 100 % | 0 s | 9 | 7 | 5 |
 | melee 0,20, 3 framy | 100 % | 0 s | 6 | 5 | 0 |
-| melee 0,20, 2 framy, COCO pálka jen od 0,50 | 93 % | 0,4 s | 4 | 2 | 5 |
+| **nasazeno: melee 0,20, 2 framy, COCO pálka od 0,50** | **93 %** | **0,4 s** | **4** | **2** | **5** |
 | melee 0,20, 2 framy, bez COCO pálky | 69 % | 0,4 s | 3 | 1 | 5 |
 
 Celá tabulka je v `armed_eval/results.json`.
@@ -921,9 +924,14 @@ Celá tabulka je v `armed_eval/results.json`.
 4. **Na skutečných tyčích je ale COCO pálka užitečná.** Ve videu 005 ji hlásí 44krát a šest
    z osmi namátkou prohlédnutých detekcí jsou skutečné bílé nebo červené tyče. Díky ní je bitka
    v poplachu po celou dobu; bez ní jen 69 % času. COCO pálka a model v2 se tedy doplňují.
-5. **Kompromis:** COCO pálka až od conf 0,50 sníží poplachy na rvačkách z 9 na 4 při pokrytí
-   bitky 93 %. **Nenasazeno.** Hodnota by se volila na testovacích videích (005 a rvačky);
-   jde o návrh k rozhodnutí. Čistě by ji šlo ověřit až na dalším videu se zbraněmi.
+5. **Kompromis, nasazeno:** COCO pálka až od conf 0,50 (`COCO_CONF_PER_CLASS` v
+   `suspicious_detector.py`; obecný `conf_obj` 0,15 zůstává pro zavazadla) sníží poplachy na
+   rvačkách z 9 na 4 při pokrytí bitky 93 % a zpoždění 0,4 s. **Hodnota je zvolena na testovacích
+   videích** (005 a rvačky), opírá se ale i o kvalitativní oddělení (tyče conf ~0,42–0,64, stíny
+   ~0,16–0,34). Čistě ji půjde ověřit až na dalším videu se zbraněmi.
+6. **Pozorování bez zásahu:** varianta se 3 framy a pálkou 0,15 má 100 % pokrytí, 6 poplachů na
+   rvačkách a 0 v klidu. Je tedy jiným rozumným bodem kompromisu. Další ladění na stejných
+   testovacích videích by ale bylo už jen přeučení na ně, proto se nenasazuje.
 
 **Omezení:** YOLO11x-pose není ViTPose. Detekuje jiné osoby a zápěstí s jinou přesností, takže
 absolutní čísla se v produkci mohou lišit. Srovnání variant mezi sebou je ale férové, protože
@@ -962,7 +970,7 @@ všechny používají stejné osoby i skelety.
   (§6c); jiná kamera, místo nebo osvětlení zatím ne. Kandidáti: UCF-Crime, RWF-2000, CCTV-Fights.
 - ~~Přeladit confidence threshold `melee`~~ — **provedeno (§6e)**, 0,40 → 0,20. Čistě ověřit
   na dalším anotovaném videu.
-- **Rozhodnout práh COCO `baseball bat` pro ARMED** (§6g): 0,15 → 0,50 sníží poplachy na rvačkách 9 → 4 při pokrytí bitky 93 %; ověřit na dalším videu.
+- **Ověřit práh COCO `baseball bat` 0,50** (§6g, nasazeno) na dalším videu se zbraněmi.
 - **Natrénovat v3** s těžkými negativy (§6f): dataset a skript pro Spark jsou připravené. Videa 018–020, 007 a 009 nepoužívat k tréninku, jsou testem časového potvrzení.
 - **Rozhodnout 64 sporných případů** (tyč vs. paže / stín): `python review_ambiguous.py sheets`
   vyrobí listy s výřezy a `review_ambiguous/rozhodnuti.csv`; po vyplnění T / N / ? je `apply`

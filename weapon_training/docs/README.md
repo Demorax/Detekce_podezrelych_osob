@@ -34,7 +34,7 @@ shora vzrostl recall `melee` z **0,10 na 0,50** (mAP50 0,138 → 0,623), na pův
 datech klesl mAP50 z 0,777 na 0,755. Tento model je nasazen v pipeline. Na **nezávislé
 bitce z videa 005** (67 boxů, na kterých se netrénovalo) vzrostla AP50 `melee` z 0,22 na 0,61. Verze v2 navíc
 obsahuje 60 negativních framů z rvaček bez zbraní, které snížily falešné poplachy na
-natažených pažích zhruba na polovinu (§6d). Práh `melee` byl pro v2 překalibrován z 0,40 na 0,20; recall na ověřovací polovině testu 005 stoupl z 0,17 na 0,31 při precision 1,00 (§6e). Poplach ARMED se navíc vyhlásí až po detekci ve **dvou po sobě jdoucích framech**. V simulaci celé větve ARMED včetně kontroly zápěstí to snížilo falešné poplachy na rvačkách bez zbraní z 24 na 9 za 5,5 minuty (§6f, §6g). Viz [`TRAINING_REPORT.md`](TRAINING_REPORT.md) §6b.
+natažených pažích zhruba na polovinu (§6d). Práh `melee` byl pro v2 překalibrován z 0,40 na 0,20; recall na ověřovací polovině testu 005 stoupl z 0,17 na 0,31 při precision 1,00 (§6e). Poplach ARMED se navíc vyhlásí až po detekci ve **dvou po sobě jdoucích framech**. V simulaci celé větve ARMED včetně kontroly zápěstí to spolu s prahem 0,50 pro COCO `baseball bat` snížilo falešné poplachy na rvačkách bez zbraní z 24 na 4 za 5,5 minuty při pokrytí bitky 93 % (§6f, §6g). Viz [`TRAINING_REPORT.md`](TRAINING_REPORT.md) §6b.
 
 ## Kde co najít
 
@@ -43,6 +43,7 @@ natažených pažích zhruba na polovinu (§6d). Práh `melee` byl pro v2 překa
 | **[`TRAINING_REPORT.md`](TRAINING_REPORT.md)** | Hlavní zpráva: volba modelu, hardware, průběh tréninku, divergence, výsledky, domain-gap test, omezení |
 | **[`DATASETS.md`](DATASETS.md)** | Všechny zkoumané datasety, licence, mapování tříd, co bylo odmítnuto a proč, konstrukce datasetu |
 | **[`KAPITOLA_DETEKCE_ZBRANI.md`](KAPITOLA_DETEKCE_ZBRANI.md)** | Koncept kapitoly do práce (souvislý text, obrázky, tabulky, poznámky pro autora) |
+| **[`CODE_REVIEW_PIPELINE.md`](CODE_REVIEW_PIPELINE.md)** | Revize kódu pipeline: nalezené chyby (tracker po výpadku ztrácí ID) a návrhy oprav |
 | **[`figures/`](figures/README.md)** | Grafy a ukázky detekcí do textu práce (PDF + PNG) s navrženými popisky |
 | **[`MED_VIDEO_SCAN.md`](MED_VIDEO_SCAN.md)** | Průchod všemi 31 MED videi: kde jsou zbraně, rvačky bez zbraní a další užitečná negativa |
 | **[`ANNOTATION_SPEC.md`](ANNOTATION_SPEC.md)** | Závazná anotační pravidla: tyč vs. paže, tyč vs. stín, statické artefakty, těsnost boxů |

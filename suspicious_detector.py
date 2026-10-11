@@ -61,6 +61,15 @@ COCO_HIGH_THREAT = {
     34: 'baseball bat',
     43: 'knife',
 }
+# Vlastní práh pro COCO třídy, které vyhlašují ARMED. Obecný conf_obj (0,15) je nastaven
+# nízko kvůli zavazadlům, kde falešný kandidát nevadí. U 'baseball bat' ale každá detekce
+# u zápěstí znamená poplach. Simulace celé větve ARMED (TRAINING_REPORT §6g): skutečné tyče
+# mají u COCO pálky conf ~0,42–0,64, diagonální stíny na asfaltu ~0,16–0,34. Práh 0,50 snížil
+# falešné poplachy na rvačkách bez zbraní 9 -> 4 / 5,5 min, bitka 005 v poplachu 100 % -> 93 %.
+# POZOR: zvoleno na testovacích videích (jedna bitka), ověřit na dalších datech.
+COCO_CONF_PER_CLASS = {
+    'baseball bat': 0.50,
+}
 COCO_MEDIUM_THREAT = {
     76: 'scissors',
 }
@@ -452,6 +461,8 @@ class SuspiciousDetector:
                 box = arr[i, :4]
                 score = float(arr[i, 4])
                 if cls in COCO_HIGH_THREAT:
+                    if score < COCO_CONF_PER_CLASS.get(COCO_HIGH_THREAT[cls], 0.0):
+                        continue
                     out['high'].append((box, score, COCO_HIGH_THREAT[cls]))
                 elif cls in COCO_MEDIUM_THREAT:
                     out['medium'].append((box, score, COCO_MEDIUM_THREAT[cls]))
@@ -516,6 +527,8 @@ class SuspiciousDetector:
                     xyxy = b.xyxy[0].cpu().numpy()
                     score = float(b.conf[0])
                     if cls in COCO_HIGH_THREAT:
+                        if score < COCO_CONF_PER_CLASS.get(COCO_HIGH_THREAT[cls], 0.0):
+                            continue
                         out['high'].append((xyxy, score, COCO_HIGH_THREAT[cls]))
                     elif cls in COCO_MEDIUM_THREAT:
                         out['medium'].append((xyxy, score, COCO_MEDIUM_THREAT[cls]))

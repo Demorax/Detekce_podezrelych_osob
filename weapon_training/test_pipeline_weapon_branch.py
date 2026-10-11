@@ -28,7 +28,7 @@ w = YOLO(sd._WEAPON_MODEL)
 print("tridy modelu:      ", w.names)
 print("WEAPON_HIGH_THREAT:", sd.WEAPON_HIGH_THREAT)
 assert {k: v for k, v in w.names.items()} == sd.WEAPON_HIGH_THREAT, "MAPOVANI TRID NESEDI"
-print("prahy:", sd.WEAPON_CONF_PER_CLASS)
+print("prahy:", sd.WEAPON_CONF_PER_CLASS, "COCO:", sd.COCO_CONF_PER_CLASS)
 
 det = sd.SuspiciousDetector.__new__(sd.SuspiciousDetector)
 det.rtdetr = types.SimpleNamespace(better_detection=lambda img: np.zeros((0, 5)))
@@ -45,9 +45,11 @@ for path, desc in [("weapon_training/annotate_005/images/005d_00932.jpg", "bitka
     hi = out["high"]
     print(f"\n[{desc}] {img.shape[1]}x{img.shape[0]}  high={len(hi)} medium={len(out['medium'])} carry={len(out['carry'])}")
     for box, score, label in sorted(hi, key=lambda x: -x[1]):
-        thr = sd.WEAPON_CONF_PER_CLASS.get(label)
+        thr = sd.WEAPON_CONF_PER_CLASS.get(label, sd.COCO_CONF_PER_CLASS.get(label))
         ok = "ARMED-label" if label in aod.HIGH_THREAT_LABELS else "NENI v HIGH_THREAT_LABELS!"
         print(f"   {label:<13} {score:.3f}  prah={thr}  {ok}")
         if label in sd.WEAPON_CONF_PER_CLASS:
             assert score >= thr, f"detekce {label} {score} pod prahem {thr}"
+        if label in sd.COCO_CONF_PER_CLASS:
+            assert score >= sd.COCO_CONF_PER_CLASS[label], f"COCO {label} {score} pod prahem"
 print("\nVSECHNY KONTROLY PROSLY")

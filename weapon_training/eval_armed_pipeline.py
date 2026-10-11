@@ -106,7 +106,8 @@ def cache_video(vid: str, det, pose, device: str) -> dict:
     return res
 
 
-def simulate(video: dict, aod, melee_thr: float, min_frames: int, use_coco_threat: bool) -> list[set]:
+def simulate(video: dict, aod, melee_thr: float, min_frames: int, coco_bat_min: float | None) -> list[set]:
+    """coco_bat_min: práh COCO 'baseball bat' (None = COCO pálka i nůž vypnuté)."""
     """Vrátí pro každý frame množinu ID osob s ARMED."""
     pt = aod.PersonTracker(max_dist=aod.DEFAULT_MAX_PERSON_TRACK_DIST)
     ot = aod.ObjectTracker(iou_threshold=aod.DEFAULT_OBJ_IOU_THRESHOLD, max_missed=aod.DEFAULT_MAX_OBJ_MISSED)
@@ -116,7 +117,7 @@ def simulate(video: dict, aod, melee_thr: float, min_frames: int, use_coco_threa
         for box, s, lab in f["objects"]:
             if lab == "melee" and s < melee_thr:
                 continue
-            if lab in COCO_THREAT and not use_coco_threat:
+            if lab in COCO_THREAT and (coco_bat_min is None or (lab == "baseball bat" and s < coco_bat_min)):
                 continue
             objs.append((np.array(box), s, V2_LABEL_BACK.get(lab, lab)))
         persons = np.array(f["persons"], dtype=np.float32).reshape(-1, 5)
@@ -172,18 +173,21 @@ def main() -> int:
         else:
             data[v] = cache_video(v, det, pose, args.device)
 
+    # Detekce v cache jsou z pipeline s COCO conf 0,15; vyšší práh pálky se aplikuje při simulaci.
     variants = [
-        ("dříve: melee 0,40, 1 frame", 0.40, 1, True),
-        ("melee 0,20, 1 frame", 0.20, 1, True),
-        ("NASAZENO: melee 0,20, 2 framy", 0.20, 2, True),
-        ("melee 0,15, 2 framy", 0.15, 2, True),
-        ("melee 0,10, 2 framy", 0.10, 2, True),
-        ("melee 0,20, 3 framy", 0.20, 3, True),
-        ("melee 0,20, 2 framy, bez COCO pálky/nože", 0.20, 2, False),
+        ("dříve: melee 0,40, 1 frame, pálka 0,15", 0.40, 1, 0.15),
+        ("melee 0,20, 1 frame, pálka 0,15", 0.20, 1, 0.15),
+        ("melee 0,20, 2 framy, pálka 0,15", 0.20, 2, 0.15),
+        ("melee 0,20, 3 framy, pálka 0,15", 0.20, 3, 0.15),
+        ("melee 0,20, 2 framy, pálka 0,30", 0.20, 2, 0.30),
+        ("NASAZENO: melee 0,20, 2 framy, pálka 0,50", 0.20, 2, 0.50),
+        ("melee 0,15, 2 framy, pálka 0,50", 0.15, 2, 0.50),
+        ("melee 0,10, 2 framy, pálka 0,50", 0.10, 2, 0.50),
+        ("melee 0,20, 2 framy, bez COCO pálky", 0.20, 2, None),
     ]
     rows = []
     for name, thr, k, coco in variants:
-        r = {"varianta": name, "thr": thr, "k": k, "coco_bat": coco, "per_video": {}}
+        r = {"varianta": name, "thr": thr, "k": k, "coco_bat_min": coco, "per_video": {}}
         for v in videos:
             arm = simulate(data[v], aod, thr, k, coco)
             r["per_video"][v] = summarize(data[v], arm)
@@ -201,10 +205,10 @@ def main() -> int:
     mins = {g: sum(len(data[v]["frames"]) for v in vs) / 300 for g, vs in
             (("rvacky", FIGHTS), ("nepouzita", NEVER_USED), ("klid", CALM))}
     print(f"\nrvačky {mins['rvacky']:.1f} min (z toho nepoužité {mins['nepouzita']:.1f}), klid {mins['klid']:.1f} min")
-    print(f"{'varianta':<38} | {'bitka 005':>9} {'zpoždění':>8} | {'rvačky':>6} {'nepoužité':>9} {'s':>6} | {'klid':>4}")
+    print(f"{'varianta':<44} | {'bitka 005':>9} {'zpoždění':>8} | {'rvačky':>6} {'nepoužité':>9} {'s':>6} | {'klid':>4}")
     for r in rows:
         d = "—" if r["delay_005_s"] is None else f"{r['delay_005_s']:.1f} s"
-        print(f"{r['varianta']:<38} | {r['fight005_armed_frac']:9.0%} {d:>8} | {r['rvacky_events']:6d} "
+        print(f"{r['varianta']:<44} | {r['fight005_armed_frac']:9.0%} {d:>8} | {r['rvacky_events']:6d} "
               f"{r['nepouzita_events']:9d} {r['rvacky_armed_s']:6.1f} | {r['klid_events']:4d}")
     (CACHE / "results.json").write_text(json.dumps({"minutes": mins, "rows": rows}, indent=1, ensure_ascii=False))
     return 0

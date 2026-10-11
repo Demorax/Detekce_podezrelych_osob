@@ -12,6 +12,7 @@ Výstup (PDF pro sazbu + PNG pro náhled):
     fig4_falesne_poplachy.* falešné poplachy na framech bez zbraní vs. práh (v1 / v2)
     fig5_kalibrace.*        P / R / F1 vs. práh na kalibrační a ověřovací polovině
     fig6_ukazky.*           správná detekce, přehlédnutá tyč, falešný poplach
+    fig7_armed.*            celá větev ARMED: falešné poplachy vs. pokrytí bitky (z eval_armed_pipeline.py)
     figures_data.json       všechna čísla, ze kterých grafy vznikly
 
 Použití:
@@ -280,11 +281,58 @@ def fig_examples(model, test_imgs: list[Path], neg_imgs: list[Path], device: str
                       "falesny_poplach": fp_best[0].name if fp_best else None}
 
 
+# ------------------------------------------------------------------ obr. 7
+def fig_armed(data: dict) -> None:
+    res = json.loads((HERE / "armed_eval/results.json").read_text())
+    rows = {r["varianta"]: r for r in res["rows"]}
+    pick = [  # (klíč v results.json, popisek, nasazeno?)
+        ("dříve: melee 0,40, 1 frame, pálka 0,15", "původní\n(0,40; 1 snímek)", False),
+        ("melee 0,20, 1 frame, pálka 0,15", "0,20; 1 snímek", False),
+        ("melee 0,20, 2 framy, pálka 0,15", "0,20; 2 snímky", False),
+        ("melee 0,20, 3 framy, pálka 0,15", "0,20; 3 snímky", False),
+        ("NASAZENO: melee 0,20, 2 framy, pálka 0,50", "nasazeno\n(0,20; 2 snímky;\nCOCO pálka ≥ 0,50)", True),
+        ("melee 0,20, 2 framy, bez COCO pálky", "bez COCO pálky", False),
+    ]
+    fig, ax = plt.subplots(figsize=(6.4, 3.6))
+    offsets = {"původní": (8, -4), "0,20; 1 snímek": (-8, -14), "0,20; 2 snímky": (8, 4),
+               "0,20; 3 snímky": (-4, 10), "nasazeno": (10, -22), "bez COCO pálky": (8, -4)}
+    out = {}
+    for key, lab, dep in pick:
+        r = rows[key]
+        x, y = r["rvacky_events"], r["fight005_armed_frac"] * 100
+        col = "#1baf7a" if dep else "#2a78d6"
+        ax.scatter([x], [y], s=70 if dep else 40, color=col, edgecolor=SURF, linewidth=2, zorder=3)
+        dx, dy = next(v for k, v in offsets.items() if lab.startswith(k))
+        ax.annotate(lab, (x, y), xytext=(dx, dy), textcoords="offset points", fontsize=7.5,
+                    color=INK, ha="right" if dx < 0 else "left", va="center",
+                    fontweight="bold" if dep else "normal")
+        out[lab.replace("\n", " ")] = {"poplachy_rvacky": x, "bitka_v_poplachu_pct": round(y, 1),
+                                         "poplachy_klid": r["klid_events"]}
+    ax.set_xlabel(f"falešné poplachy na rvačkách bez zbraní ({cz(res['minutes']['rvacky'], 1)} min videa)")
+    ax.set_ylabel("bitka 005 v poplachu (%)")
+    ax.set_xlim(0, 42); ax.set_ylim(60, 104)
+    ax.xaxis.set_major_formatter(COMMA)
+    ax.annotate("lepší", xy=(13, 97), xytext=(19, 88), color=INK2, fontsize=8,
+                arrowprops=dict(arrowstyle="->", color=INK2, lw=0.8))
+    ax.set_title("Celá větev ARMED s kontrolou zápěstí, 5 snímků/s", loc="left")
+    fig.tight_layout()
+    save(fig, "fig7_armed")
+    data["armed"] = out
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--device", default="0")
+    ap.add_argument("--only-armed", action="store_true",
+                    help="jen obr. 7 (bez inference modelů, z armed_eval/results.json)")
     args = ap.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
+    if args.only_armed:
+        dj = OUT / "figures_data.json"
+        data = json.loads(dj.read_text()) if dj.exists() else {}
+        fig_armed(data)
+        dj.write_text(json.dumps(data, indent=1, ensure_ascii=False))
+        return 0
     from ultralytics import YOLO
 
     test_imgs = sorted((HERE / "annotate_005/images").glob("*.jpg"))
@@ -308,6 +356,7 @@ def main() -> int:
     fig_false_alarms(neg, len(neg_imgs), data)
     fig_calibration(cal, hold, data)
     fig_examples(v2, test_imgs, neg_imgs, args.device, data)
+    fig_armed(data)
 
     (OUT / "figures_data.json").write_text(json.dumps(data, indent=1, ensure_ascii=False))
     print(f"hotovo -> {OUT}")

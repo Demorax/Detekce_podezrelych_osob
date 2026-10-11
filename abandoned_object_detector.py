@@ -59,8 +59,8 @@ ARMED_FALLBACK_RADIUS_FACTOR = 0.7 # když chybí skelet → centroid-based (př
 # Časové potvrzení: zbraň u zápěstí ve 2 PO SOBĚ jdoucích sampled framech (při 5 FPS = 0,4 s).
 # Simulace celé větve ARMED na celých videích (weapon_training/eval_armed_pipeline.py,
 # TRAINING_REPORT §6g): při 1 framu 24 falešných poplachů na 5,5 min
-# rvaček bez zbraní (práh melee 0,40), při 2 framech a prahu 0,20 jen 9; bitka 005 zůstává celá
-# v poplachu. Falešné detekce jsou většinou ojedinělé záblesky.
+# rvaček bez zbraní (práh melee 0,40), při 2 framech a prahu 0,20 jen 9 (s prahem COCO pálky 0,50
+# v suspicious_detector.py 4). Falešné detekce jsou většinou ojedinělé záblesky.
 ARMED_MIN_FRAMES = 2
 ARMED_HOLD_FRAMES = 8              # HYSTEREZE: drž ARMED N sampled framů po výpadku detekce
                                    # (skeleton-based je přesnější → kratší hold než radius verze)
