@@ -372,7 +372,7 @@ Zavazadla (`backpack`, `handbag`, `suitcase`) dál detekuje COCO YOLO11x, který
 
 Na CCTV záběrech shora je nasazený model zhruba **3× lepší** a na webových datech ztrácí jen málo.
 **Omezení:** na CCTV je ověřena jen třída `melee` (v MED videích nejsou pistole ani nože), jedna kamera
-a jeden dvůr. Model je na CCTV podsebevědomý, proto je práh `melee` snížen na 0,20. Na ověřovací části videa 005 zachytí zhruba třetinu tyčí bez jediného falešného poplachu, Poplach se vyhlásí až po detekci ve dvou po sobě jdoucích framech (0,4 s). Na celých videích rvaček bez zbraní to snížilo falešné poplachy z 27 na 3 za 5,5 minuty, přičemž skutečnou bitku systém zachytí do 0,4 s.
+a jeden dvůr. Model je na CCTV podsebevědomý, proto je práh `melee` snížen na 0,20. Na ověřovací části videa 005 zachytí zhruba třetinu tyčí bez jediného falešného poplachu, Poplach se vyhlásí až po detekci ve dvou po sobě jdoucích framech (0,4 s). V simulaci celé větve ARMED na videích rvaček bez zbraní to snížilo falešné poplachy z 24 na 9 za 5,5 minuty a skutečná bitka zůstala celá v poplachu. Zbývající poplachy způsobuje hlavně třída `baseball bat` obecného COCO detektoru (stíny na asfaltu).
 
 Detekce je zapojená v `suspicious_detector.py`; označování ozbrojených osob v
 `abandoned_object_detector.py` se zapíná přepínačem `--armed`.

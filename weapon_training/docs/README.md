@@ -34,7 +34,7 @@ shora vzrostl recall `melee` z **0,10 na 0,50** (mAP50 0,138 → 0,623), na pův
 datech klesl mAP50 z 0,777 na 0,755. Tento model je nasazen v pipeline. Na **nezávislé
 bitce z videa 005** (67 boxů, na kterých se netrénovalo) vzrostla AP50 `melee` z 0,22 na 0,61. Verze v2 navíc
 obsahuje 60 negativních framů z rvaček bez zbraní, které snížily falešné poplachy na
-natažených pažích zhruba na polovinu (§6d). Práh `melee` byl pro v2 překalibrován z 0,40 na 0,20; recall na ověřovací polovině testu 005 stoupl z 0,17 na 0,31 při precision 1,00 (§6e). Poplach ARMED se navíc vyhlásí až po detekci ve **dvou po sobě jdoucích framech**. Na celých videích to snížilo falešné poplachy na rvačkách bez zbraní z 27 na 3 za 5,5 minuty (§6f). Viz [`TRAINING_REPORT.md`](TRAINING_REPORT.md) §6b.
+natažených pažích zhruba na polovinu (§6d). Práh `melee` byl pro v2 překalibrován z 0,40 na 0,20; recall na ověřovací polovině testu 005 stoupl z 0,17 na 0,31 při precision 1,00 (§6e). Poplach ARMED se navíc vyhlásí až po detekci ve **dvou po sobě jdoucích framech**. V simulaci celé větve ARMED včetně kontroly zápěstí to snížilo falešné poplachy na rvačkách bez zbraní z 24 na 9 za 5,5 minuty (§6f, §6g). Viz [`TRAINING_REPORT.md`](TRAINING_REPORT.md) §6b.
 
 ## Kde co najít
 
