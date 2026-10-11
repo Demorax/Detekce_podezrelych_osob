@@ -1,0 +1,240 @@
+{
+ "weights": "runs/detect/runs/weapons/weapons_sgd_lr005/weights/best.pt",
+ "conf": 0.1,
+ "imgsz": 960,
+ "stride": 1,
+ "frames": 44,
+ "frames_with_prelabels": 28,
+ "prelabels_per_class": {
+  "melee": 37,
+  "gun": 11
+ },
+ "prelabels_total": 48,
+ "classes": [
+  "gun",
+  "knife",
+  "melee"
+ ],
+ "manifest": [
+  {
+   "stem": "004d_00866",
+   "src": "frames_004_dense/004d/00866.jpg",
+   "prelabels": 2
+  },
+  {
+   "stem": "004d_00871",
+   "src": "frames_004_dense/004d/00871.jpg",
+   "prelabels": 2
+  },
+  {
+   "stem": "004d_00876",
+   "src": "frames_004_dense/004d/00876.jpg",
+   "prelabels": 3
+  },
+  {
+   "stem": "004d_00881",
+   "src": "frames_004_dense/004d/00881.jpg",
+   "prelabels": 4
+  },
+  {
+   "stem": "004d_00886",
+   "src": "frames_004_dense/004d/00886.jpg",
+   "prelabels": 2
+  },
+  {
+   "stem": "004d_00891",
+   "src": "frames_004_dense/004d/00891.jpg",
+   "prelabels": 4
+  },
+  {
+   "stem": "004d_00901",
+   "src": "frames_004_dense/004d/00901.jpg",
+   "prelabels": 3
+  },
+  {
+   "stem": "004d_00906",
+   "src": "frames_004_dense/004d/00906.jpg",
+   "prelabels": 2
+  },
+  {
+   "stem": "004d_00911",
+   "src": "frames_004_dense/004d/00911.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "004d_00916",
+   "src": "frames_004_dense/004d/00916.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004d_00921",
+   "src": "frames_004_dense/004d/00921.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "004d_00926",
+   "src": "frames_004_dense/004d/00926.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "004d_00931",
+   "src": "frames_004_dense/004d/00931.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "004d_00936",
+   "src": "frames_004_dense/004d/00936.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004d_00941",
+   "src": "frames_004_dense/004d/00941.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "004d_00946",
+   "src": "frames_004_dense/004d/00946.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "004d_00951",
+   "src": "frames_004_dense/004d/00951.jpg",
+   "prelabels": 2
+  },
+  {
+   "stem": "004d_00956",
+   "src": "frames_004_dense/004d/00956.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "004d_00961",
+   "src": "frames_004_dense/004d/00961.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004d_00971",
+   "src": "frames_004_dense/004d/00971.jpg",
+   "prelabels": 2
+  },
+  {
+   "stem": "004d_00976",
+   "src": "frames_004_dense/004d/00976.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004d_00981",
+   "src": "frames_004_dense/004d/00981.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "004d_00986",
+   "src": "frames_004_dense/004d/00986.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "004d_00991",
+   "src": "frames_004_dense/004d/00991.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004d_00996",
+   "src": "frames_004_dense/004d/00996.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "004d_01001",
+   "src": "frames_004_dense/004d/01001.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "004d_01006",
+   "src": "frames_004_dense/004d/01006.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004d_01011",
+   "src": "frames_004_dense/004d/01011.jpg",
+   "prelabels": 2
+  },
+  {
+   "stem": "004d_01016",
+   "src": "frames_004_dense/004d/01016.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004d_01021",
+   "src": "frames_004_dense/004d/01021.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "004d_01026",
+   "src": "frames_004_dense/004d/01026.jpg",
+   "prelabels": 2
+  },
+  {
+   "stem": "004d_01031",
+   "src": "frames_004_dense/004d/01031.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004d_01041",
+   "src": "frames_004_dense/004d/01041.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004d_01046",
+   "src": "frames_004_dense/004d/01046.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004d_01051",
+   "src": "frames_004_dense/004d/01051.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004d_01056",
+   "src": "frames_004_dense/004d/01056.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004d_01061",
+   "src": "frames_004_dense/004d/01061.jpg",
+   "prelabels": 2
+  },
+  {
+   "stem": "004d_01066",
+   "src": "frames_004_dense/004d/01066.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004d_01071",
+   "src": "frames_004_dense/004d/01071.jpg",
+   "prelabels": 2
+  },
+  {
+   "stem": "004d_01076",
+   "src": "frames_004_dense/004d/01076.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004d_01081",
+   "src": "frames_004_dense/004d/01081.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004d_01086",
+   "src": "frames_004_dense/004d/01086.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004d_01091",
+   "src": "frames_004_dense/004d/01091.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "004d_01096",
+   "src": "frames_004_dense/004d/01096.jpg",
+   "prelabels": 1
+  }
+ ]
+}

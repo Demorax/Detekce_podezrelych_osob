@@ -1,0 +1,1060 @@
+{
+ "weights": "runs/detect/runs/weapons/weapons_sgd_lr005/weights/best.pt",
+ "conf": 0.1,
+ "imgsz": 960,
+ "stride": 1,
+ "frames": 208,
+ "frames_with_prelabels": 53,
+ "prelabels_per_class": {
+  "melee": 55,
+  "gun": 23
+ },
+ "prelabels_total": 78,
+ "classes": [
+  "gun",
+  "knife",
+  "melee"
+ ],
+ "manifest": [
+  {
+   "stem": "001_001_0000",
+   "src": "med_test/frames_0.5_upscaled/001/001_0000.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0001",
+   "src": "med_test/frames_0.5_upscaled/001/001_0001.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0002",
+   "src": "med_test/frames_0.5_upscaled/001/001_0002.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0003",
+   "src": "med_test/frames_0.5_upscaled/001/001_0003.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0004",
+   "src": "med_test/frames_0.5_upscaled/001/001_0004.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0005",
+   "src": "med_test/frames_0.5_upscaled/001/001_0005.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0006",
+   "src": "med_test/frames_0.5_upscaled/001/001_0006.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "001_001_0007",
+   "src": "med_test/frames_0.5_upscaled/001/001_0007.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0008",
+   "src": "med_test/frames_0.5_upscaled/001/001_0008.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0009",
+   "src": "med_test/frames_0.5_upscaled/001/001_0009.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0010",
+   "src": "med_test/frames_0.5_upscaled/001/001_0010.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0011",
+   "src": "med_test/frames_0.5_upscaled/001/001_0011.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0012",
+   "src": "med_test/frames_0.5_upscaled/001/001_0012.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "001_001_0013",
+   "src": "med_test/frames_0.5_upscaled/001/001_0013.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0014",
+   "src": "med_test/frames_0.5_upscaled/001/001_0014.jpg",
+   "prelabels": 3
+  },
+  {
+   "stem": "001_001_0015",
+   "src": "med_test/frames_0.5_upscaled/001/001_0015.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "001_001_0016",
+   "src": "med_test/frames_0.5_upscaled/001/001_0016.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0017",
+   "src": "med_test/frames_0.5_upscaled/001/001_0017.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0018",
+   "src": "med_test/frames_0.5_upscaled/001/001_0018.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0019",
+   "src": "med_test/frames_0.5_upscaled/001/001_0019.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0020",
+   "src": "med_test/frames_0.5_upscaled/001/001_0020.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "001_001_0021",
+   "src": "med_test/frames_0.5_upscaled/001/001_0021.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0022",
+   "src": "med_test/frames_0.5_upscaled/001/001_0022.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0023",
+   "src": "med_test/frames_0.5_upscaled/001/001_0023.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0024",
+   "src": "med_test/frames_0.5_upscaled/001/001_0024.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0025",
+   "src": "med_test/frames_0.5_upscaled/001/001_0025.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0026",
+   "src": "med_test/frames_0.5_upscaled/001/001_0026.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0027",
+   "src": "med_test/frames_0.5_upscaled/001/001_0027.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0028",
+   "src": "med_test/frames_0.5_upscaled/001/001_0028.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0029",
+   "src": "med_test/frames_0.5_upscaled/001/001_0029.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0030",
+   "src": "med_test/frames_0.5_upscaled/001/001_0030.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "001_001_0031",
+   "src": "med_test/frames_0.5_upscaled/001/001_0031.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0032",
+   "src": "med_test/frames_0.5_upscaled/001/001_0032.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0033",
+   "src": "med_test/frames_0.5_upscaled/001/001_0033.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0034",
+   "src": "med_test/frames_0.5_upscaled/001/001_0034.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "001_001_0035",
+   "src": "med_test/frames_0.5_upscaled/001/001_0035.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "001_001_0036",
+   "src": "med_test/frames_0.5_upscaled/001/001_0036.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0037",
+   "src": "med_test/frames_0.5_upscaled/001/001_0037.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0038",
+   "src": "med_test/frames_0.5_upscaled/001/001_0038.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0039",
+   "src": "med_test/frames_0.5_upscaled/001/001_0039.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0040",
+   "src": "med_test/frames_0.5_upscaled/001/001_0040.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "001_001_0041",
+   "src": "med_test/frames_0.5_upscaled/001/001_0041.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0042",
+   "src": "med_test/frames_0.5_upscaled/001/001_0042.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0043",
+   "src": "med_test/frames_0.5_upscaled/001/001_0043.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0044",
+   "src": "med_test/frames_0.5_upscaled/001/001_0044.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0045",
+   "src": "med_test/frames_0.5_upscaled/001/001_0045.jpg",
+   "prelabels": 2
+  },
+  {
+   "stem": "001_001_0046",
+   "src": "med_test/frames_0.5_upscaled/001/001_0046.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0047",
+   "src": "med_test/frames_0.5_upscaled/001/001_0047.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0048",
+   "src": "med_test/frames_0.5_upscaled/001/001_0048.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "001_001_0049",
+   "src": "med_test/frames_0.5_upscaled/001/001_0049.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0050",
+   "src": "med_test/frames_0.5_upscaled/001/001_0050.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "001_001_0051",
+   "src": "med_test/frames_0.5_upscaled/001/001_0051.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0052",
+   "src": "med_test/frames_0.5_upscaled/001/001_0052.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "001_001_0053",
+   "src": "med_test/frames_0.5_upscaled/001/001_0053.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "001_001_0054",
+   "src": "med_test/frames_0.5_upscaled/001/001_0054.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0055",
+   "src": "med_test/frames_0.5_upscaled/001/001_0055.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0056",
+   "src": "med_test/frames_0.5_upscaled/001/001_0056.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0057",
+   "src": "med_test/frames_0.5_upscaled/001/001_0057.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0058",
+   "src": "med_test/frames_0.5_upscaled/001/001_0058.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0059",
+   "src": "med_test/frames_0.5_upscaled/001/001_0059.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "001_001_0060",
+   "src": "med_test/frames_0.5_upscaled/001/001_0060.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0061",
+   "src": "med_test/frames_0.5_upscaled/001/001_0061.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "001_001_0062",
+   "src": "med_test/frames_0.5_upscaled/001/001_0062.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0063",
+   "src": "med_test/frames_0.5_upscaled/001/001_0063.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0064",
+   "src": "med_test/frames_0.5_upscaled/001/001_0064.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0065",
+   "src": "med_test/frames_0.5_upscaled/001/001_0065.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0066",
+   "src": "med_test/frames_0.5_upscaled/001/001_0066.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0067",
+   "src": "med_test/frames_0.5_upscaled/001/001_0067.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0068",
+   "src": "med_test/frames_0.5_upscaled/001/001_0068.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0069",
+   "src": "med_test/frames_0.5_upscaled/001/001_0069.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0070",
+   "src": "med_test/frames_0.5_upscaled/001/001_0070.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0071",
+   "src": "med_test/frames_0.5_upscaled/001/001_0071.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0072",
+   "src": "med_test/frames_0.5_upscaled/001/001_0072.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "001_001_0073",
+   "src": "med_test/frames_0.5_upscaled/001/001_0073.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0074",
+   "src": "med_test/frames_0.5_upscaled/001/001_0074.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0075",
+   "src": "med_test/frames_0.5_upscaled/001/001_0075.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "001_001_0076",
+   "src": "med_test/frames_0.5_upscaled/001/001_0076.jpg",
+   "prelabels": 4
+  },
+  {
+   "stem": "001_001_0077",
+   "src": "med_test/frames_0.5_upscaled/001/001_0077.jpg",
+   "prelabels": 2
+  },
+  {
+   "stem": "001_001_0078",
+   "src": "med_test/frames_0.5_upscaled/001/001_0078.jpg",
+   "prelabels": 2
+  },
+  {
+   "stem": "001_001_0079",
+   "src": "med_test/frames_0.5_upscaled/001/001_0079.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0080",
+   "src": "med_test/frames_0.5_upscaled/001/001_0080.jpg",
+   "prelabels": 3
+  },
+  {
+   "stem": "001_001_0081",
+   "src": "med_test/frames_0.5_upscaled/001/001_0081.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0082",
+   "src": "med_test/frames_0.5_upscaled/001/001_0082.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0083",
+   "src": "med_test/frames_0.5_upscaled/001/001_0083.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0084",
+   "src": "med_test/frames_0.5_upscaled/001/001_0084.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0085",
+   "src": "med_test/frames_0.5_upscaled/001/001_0085.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0086",
+   "src": "med_test/frames_0.5_upscaled/001/001_0086.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0087",
+   "src": "med_test/frames_0.5_upscaled/001/001_0087.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0088",
+   "src": "med_test/frames_0.5_upscaled/001/001_0088.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0089",
+   "src": "med_test/frames_0.5_upscaled/001/001_0089.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0090",
+   "src": "med_test/frames_0.5_upscaled/001/001_0090.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0091",
+   "src": "med_test/frames_0.5_upscaled/001/001_0091.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0092",
+   "src": "med_test/frames_0.5_upscaled/001/001_0092.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0093",
+   "src": "med_test/frames_0.5_upscaled/001/001_0093.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "001_001_0094",
+   "src": "med_test/frames_0.5_upscaled/001/001_0094.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0095",
+   "src": "med_test/frames_0.5_upscaled/001/001_0095.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0096",
+   "src": "med_test/frames_0.5_upscaled/001/001_0096.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0097",
+   "src": "med_test/frames_0.5_upscaled/001/001_0097.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0098",
+   "src": "med_test/frames_0.5_upscaled/001/001_0098.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0099",
+   "src": "med_test/frames_0.5_upscaled/001/001_0099.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0100",
+   "src": "med_test/frames_0.5_upscaled/001/001_0100.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0101",
+   "src": "med_test/frames_0.5_upscaled/001/001_0101.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0102",
+   "src": "med_test/frames_0.5_upscaled/001/001_0102.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0103",
+   "src": "med_test/frames_0.5_upscaled/001/001_0103.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0104",
+   "src": "med_test/frames_0.5_upscaled/001/001_0104.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0105",
+   "src": "med_test/frames_0.5_upscaled/001/001_0105.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0106",
+   "src": "med_test/frames_0.5_upscaled/001/001_0106.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0107",
+   "src": "med_test/frames_0.5_upscaled/001/001_0107.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0108",
+   "src": "med_test/frames_0.5_upscaled/001/001_0108.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0109",
+   "src": "med_test/frames_0.5_upscaled/001/001_0109.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0110",
+   "src": "med_test/frames_0.5_upscaled/001/001_0110.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0111",
+   "src": "med_test/frames_0.5_upscaled/001/001_0111.jpg",
+   "prelabels": 2
+  },
+  {
+   "stem": "001_001_0112",
+   "src": "med_test/frames_0.5_upscaled/001/001_0112.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0113",
+   "src": "med_test/frames_0.5_upscaled/001/001_0113.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0114",
+   "src": "med_test/frames_0.5_upscaled/001/001_0114.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0115",
+   "src": "med_test/frames_0.5_upscaled/001/001_0115.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0116",
+   "src": "med_test/frames_0.5_upscaled/001/001_0116.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0117",
+   "src": "med_test/frames_0.5_upscaled/001/001_0117.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0118",
+   "src": "med_test/frames_0.5_upscaled/001/001_0118.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "001_001_0119",
+   "src": "med_test/frames_0.5_upscaled/001/001_0119.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "002_001_0076",
+   "src": "med_test/frames_0.5_upscaled/002/001_0076.jpg",
+   "prelabels": 4
+  },
+  {
+   "stem": "002_002_0000",
+   "src": "med_test/frames_0.5_upscaled/002/002_0000.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "002_002_0001",
+   "src": "med_test/frames_0.5_upscaled/002/002_0001.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "002_002_0002",
+   "src": "med_test/frames_0.5_upscaled/002/002_0002.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "002_002_0003",
+   "src": "med_test/frames_0.5_upscaled/002/002_0003.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "002_002_0004",
+   "src": "med_test/frames_0.5_upscaled/002/002_0004.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0000",
+   "src": "med_test/frames_0.5_upscaled/004/004_0000.jpg",
+   "prelabels": 4
+  },
+  {
+   "stem": "004_004_0001",
+   "src": "med_test/frames_0.5_upscaled/004/004_0001.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0002",
+   "src": "med_test/frames_0.5_upscaled/004/004_0002.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0003",
+   "src": "med_test/frames_0.5_upscaled/004/004_0003.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "004_004_0004",
+   "src": "med_test/frames_0.5_upscaled/004/004_0004.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0005",
+   "src": "med_test/frames_0.5_upscaled/004/004_0005.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0006",
+   "src": "med_test/frames_0.5_upscaled/004/004_0006.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0007",
+   "src": "med_test/frames_0.5_upscaled/004/004_0007.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0008",
+   "src": "med_test/frames_0.5_upscaled/004/004_0008.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0009",
+   "src": "med_test/frames_0.5_upscaled/004/004_0009.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0010",
+   "src": "med_test/frames_0.5_upscaled/004/004_0010.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0011",
+   "src": "med_test/frames_0.5_upscaled/004/004_0011.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0012",
+   "src": "med_test/frames_0.5_upscaled/004/004_0012.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0013",
+   "src": "med_test/frames_0.5_upscaled/004/004_0013.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0014",
+   "src": "med_test/frames_0.5_upscaled/004/004_0014.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0015",
+   "src": "med_test/frames_0.5_upscaled/004/004_0015.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0016",
+   "src": "med_test/frames_0.5_upscaled/004/004_0016.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0017",
+   "src": "med_test/frames_0.5_upscaled/004/004_0017.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0018",
+   "src": "med_test/frames_0.5_upscaled/004/004_0018.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "004_004_0019",
+   "src": "med_test/frames_0.5_upscaled/004/004_0019.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0020",
+   "src": "med_test/frames_0.5_upscaled/004/004_0020.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0021",
+   "src": "med_test/frames_0.5_upscaled/004/004_0021.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0022",
+   "src": "med_test/frames_0.5_upscaled/004/004_0022.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "004_004_0023",
+   "src": "med_test/frames_0.5_upscaled/004/004_0023.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0024",
+   "src": "med_test/frames_0.5_upscaled/004/004_0024.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0025",
+   "src": "med_test/frames_0.5_upscaled/004/004_0025.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0026",
+   "src": "med_test/frames_0.5_upscaled/004/004_0026.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0027",
+   "src": "med_test/frames_0.5_upscaled/004/004_0027.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0028",
+   "src": "med_test/frames_0.5_upscaled/004/004_0028.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0029",
+   "src": "med_test/frames_0.5_upscaled/004/004_0029.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "004_004_0030",
+   "src": "med_test/frames_0.5_upscaled/004/004_0030.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0031",
+   "src": "med_test/frames_0.5_upscaled/004/004_0031.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "004_004_0032",
+   "src": "med_test/frames_0.5_upscaled/004/004_0032.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0033",
+   "src": "med_test/frames_0.5_upscaled/004/004_0033.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0034",
+   "src": "med_test/frames_0.5_upscaled/004/004_0034.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0035",
+   "src": "med_test/frames_0.5_upscaled/004/004_0035.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "004_004_0036",
+   "src": "med_test/frames_0.5_upscaled/004/004_0036.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0037",
+   "src": "med_test/frames_0.5_upscaled/004/004_0037.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0038",
+   "src": "med_test/frames_0.5_upscaled/004/004_0038.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0039",
+   "src": "med_test/frames_0.5_upscaled/004/004_0039.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0040",
+   "src": "med_test/frames_0.5_upscaled/004/004_0040.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0041",
+   "src": "med_test/frames_0.5_upscaled/004/004_0041.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "004_004_0042",
+   "src": "med_test/frames_0.5_upscaled/004/004_0042.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0043",
+   "src": "med_test/frames_0.5_upscaled/004/004_0043.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "004_004_0044",
+   "src": "med_test/frames_0.5_upscaled/004/004_0044.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0045",
+   "src": "med_test/frames_0.5_upscaled/004/004_0045.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "004_004_0046",
+   "src": "med_test/frames_0.5_upscaled/004/004_0046.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0047",
+   "src": "med_test/frames_0.5_upscaled/004/004_0047.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0048",
+   "src": "med_test/frames_0.5_upscaled/004/004_0048.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0049",
+   "src": "med_test/frames_0.5_upscaled/004/004_0049.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0050",
+   "src": "med_test/frames_0.5_upscaled/004/004_0050.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0051",
+   "src": "med_test/frames_0.5_upscaled/004/004_0051.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0052",
+   "src": "med_test/frames_0.5_upscaled/004/004_0052.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0053",
+   "src": "med_test/frames_0.5_upscaled/004/004_0053.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "004_004_0054",
+   "src": "med_test/frames_0.5_upscaled/004/004_0054.jpg",
+   "prelabels": 2
+  },
+  {
+   "stem": "004_004_0055",
+   "src": "med_test/frames_0.5_upscaled/004/004_0055.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0056",
+   "src": "med_test/frames_0.5_upscaled/004/004_0056.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0057",
+   "src": "med_test/frames_0.5_upscaled/004/004_0057.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0058",
+   "src": "med_test/frames_0.5_upscaled/004/004_0058.jpg",
+   "prelabels": 2
+  },
+  {
+   "stem": "004_004_0059",
+   "src": "med_test/frames_0.5_upscaled/004/004_0059.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "004_004_0060",
+   "src": "med_test/frames_0.5_upscaled/004/004_0060.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0061",
+   "src": "med_test/frames_0.5_upscaled/004/004_0061.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0062",
+   "src": "med_test/frames_0.5_upscaled/004/004_0062.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "004_004_0063",
+   "src": "med_test/frames_0.5_upscaled/004/004_0063.jpg",
+   "prelabels": 2
+  },
+  {
+   "stem": "004_004_0064",
+   "src": "med_test/frames_0.5_upscaled/004/004_0064.jpg",
+   "prelabels": 3
+  },
+  {
+   "stem": "004_004_0065",
+   "src": "med_test/frames_0.5_upscaled/004/004_0065.jpg",
+   "prelabels": 2
+  },
+  {
+   "stem": "004_004_0066",
+   "src": "med_test/frames_0.5_upscaled/004/004_0066.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "004_004_0067",
+   "src": "med_test/frames_0.5_upscaled/004/004_0067.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0068",
+   "src": "med_test/frames_0.5_upscaled/004/004_0068.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "004_004_0069",
+   "src": "med_test/frames_0.5_upscaled/004/004_0069.jpg",
+   "prelabels": 2
+  },
+  {
+   "stem": "004_004_0070",
+   "src": "med_test/frames_0.5_upscaled/004/004_0070.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "004_004_0071",
+   "src": "med_test/frames_0.5_upscaled/004/004_0071.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0072",
+   "src": "med_test/frames_0.5_upscaled/004/004_0072.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "004_004_0073",
+   "src": "med_test/frames_0.5_upscaled/004/004_0073.jpg",
+   "prelabels": 2
+  },
+  {
+   "stem": "004_004_0074",
+   "src": "med_test/frames_0.5_upscaled/004/004_0074.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0075",
+   "src": "med_test/frames_0.5_upscaled/004/004_0075.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0076",
+   "src": "med_test/frames_0.5_upscaled/004/004_0076.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0077",
+   "src": "med_test/frames_0.5_upscaled/004/004_0077.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0078",
+   "src": "med_test/frames_0.5_upscaled/004/004_0078.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "004_004_0079",
+   "src": "med_test/frames_0.5_upscaled/004/004_0079.jpg",
+   "prelabels": 1
+  },
+  {
+   "stem": "004_004_0080",
+   "src": "med_test/frames_0.5_upscaled/004/004_0080.jpg",
+   "prelabels": 0
+  },
+  {
+   "stem": "004_004_0081",
+   "src": "med_test/frames_0.5_upscaled/004/004_0081.jpg",
+   "prelabels": 0
+  }
+ ]
+}

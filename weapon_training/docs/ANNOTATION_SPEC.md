@@ -83,6 +83,9 @@ Ověřené případy:
 | 001 | `(2795–2885, 550–580)` | tmavá skvrna na hranici světla a stínu |
 | 001 | `(1240–1370, 465–512)` | tmavá skvrna na hranici světla a stínu |
 | 001 | `(1440–1620, 730–880)` | odložený batoh, framy ~0067–0115 |
+| 005 | `(3100–3250, 1065–1150)` | tmavý pruh na hraně stínu (stín sloupku) |
+| 005 | `(2800–2900, 1060–1150)` | stín sloupku na hraně stínu |
+| 005 | `(1545–1650, 840–890)` | tmavá skvrna na zemi, ve všech framech |
 
 Ověřeno na framu 001 `0115`, kde je scéna téměř prázdná a artefakty tam přesto jsou.
 

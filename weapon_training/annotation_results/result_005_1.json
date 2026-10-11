@@ -1,0 +1,654 @@
+[
+ {
+  "stem": "005d_00892",
+  "prelabel_verdicts": [],
+  "missed": [
+   {
+    "approx_box": [
+     1750,
+     528,
+     1847,
+     556
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "jasne bila lat/tyc vodorovne u hlavy osoby ve zlute kosili"
+   },
+   {
+    "approx_box": [
+     1108,
+     1365,
+     1298,
+     1447
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "svetla tyc v leve ruce shrbene osoby (ruka ~1300,1370); tmavy rovnobezny pruh nize (1100-1400,1480-1550) je jeji stin - neanotovan"
+   },
+   {
+    "approx_box": [
+     2295,
+     1095,
+     2440,
+     1135
+    ],
+    "name": "melee",
+    "confidence": "medium",
+    "note": "cerveny prut u osoby v modrych dzinach (shrbena pod muzem v bilem); rozmazany, potvrzen v 00897-00907; tmavy pruh 2320-2500,y1250 je stin prutu"
+   }
+  ],
+  "ambiguous": [],
+  "empty": false
+ },
+ {
+  "stem": "005d_00897",
+  "prelabel_verdicts": [],
+  "missed": [
+   {
+    "approx_box": [
+     1475,
+     500,
+     1565,
+     578
+    ],
+    "name": "melee",
+    "confidence": "medium",
+    "note": "bila tyc osoby ve zlute kosili, pohybove rozmazana; tataz tyc ostre v 00892/00902"
+   },
+   {
+    "approx_box": [
+     903,
+     1228,
+     1065,
+     1257
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "svetla tyc vodorovne z leve ruky shrbene osoby (ruka ~1065,1245), konstantni sirka; diagonalni tmavy pruh 1055-1195,1495-1665 je stin"
+   },
+   {
+    "approx_box": [
+     2190,
+     1058,
+     2335,
+     1102
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "cerveny prut v ruce osoby v modre dzinove bunde, tenky, konstantni sirka"
+   }
+  ],
+  "ambiguous": [],
+  "empty": false
+ },
+ {
+  "stem": "005d_00902",
+  "prelabel_verdicts": [],
+  "missed": [
+   {
+    "approx_box": [
+     1372,
+     612,
+     1480,
+     642
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "bila tyc osoby ve zlute kosili, vodorovne doleva od ruky"
+   },
+   {
+    "approx_box": [
+     2060,
+     1110,
+     2165,
+     1158
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "cerveny prut osoby v modre dzinove bunde"
+   },
+   {
+    "approx_box": [
+     891,
+     910,
+     913,
+     1012
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "svetla tyc svisle nahoru z ruky shrbene osoby (ruka ~900,1010), konstantni sirka"
+   }
+  ],
+  "ambiguous": [],
+  "empty": false
+ },
+ {
+  "stem": "005d_00907",
+  "prelabel_verdicts": [],
+  "missed": [
+   {
+    "approx_box": [
+     870,
+     848,
+     987,
+     878
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "bila tyc vzpazena nad hlavou osoby ve svetle modrem triku; predlokti pod ni neanotovano"
+   },
+   {
+    "approx_box": [
+     1850,
+     1088,
+     2015,
+     1130
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "cerveny prut osoby v modre dzinove bunde"
+   }
+  ],
+  "ambiguous": [],
+  "empty": false
+ },
+ {
+  "stem": "005d_00912",
+  "prelabel_verdicts": [],
+  "missed": [
+   {
+    "approx_box": [
+     808,
+     805,
+     920,
+     900
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "bila tyc vzpazena sikmo nad hlavou osoby ve svetle modrem triku"
+   },
+   {
+    "approx_box": [
+     1298,
+     500,
+     1372,
+     555
+    ],
+    "name": "melee",
+    "confidence": "medium",
+    "note": "slaby svetly sikmy pruh u ruky osoby ve zlute kosili, pohybove rozmazana bila tyc (tataz osoba drzi tyc v 00892-00902)"
+   },
+   {
+    "approx_box": [
+     1725,
+     1015,
+     1850,
+     1048
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "cerveny prut osoby v modre dzinove bunde"
+   }
+  ],
+  "ambiguous": [],
+  "empty": false
+ },
+ {
+  "stem": "005d_00917",
+  "prelabel_verdicts": [],
+  "missed": [
+   {
+    "approx_box": [
+     678,
+     797,
+     802,
+     945
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "bila tyc sikmo nad hlavou osoby ve svetle modrem triku"
+   },
+   {
+    "approx_box": [
+     1575,
+     1003,
+     1700,
+     1040
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "cerveny prut osoby v modre dzinove bunde, vlevo od tela"
+   }
+  ],
+  "ambiguous": [],
+  "empty": false
+ },
+ {
+  "stem": "005d_00922",
+  "prelabel_verdicts": [],
+  "missed": [
+   {
+    "approx_box": [
+     565,
+     783,
+     637,
+     905
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "bila tyc vzpazena nad hlavou osoby ve svetle modrem triku"
+   }
+  ],
+  "ambiguous": [
+   {
+    "approx_box": [
+     1438,
+     975,
+     1525,
+     1015
+    ],
+    "note": "silne rozmazany ruzovy pruh vlevo od osoby v modre dzinove bunde - poloha odpovida cervenemu prutu ze sousednich framu, ale nelze odlisit od rozmazane ruky"
+   }
+  ],
+  "empty": false
+ },
+ {
+  "stem": "005d_00927",
+  "prelabel_verdicts": [],
+  "missed": [
+   {
+    "approx_box": [
+     445,
+     760,
+     522,
+     900
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "bila tyc sikmo nahoru z ruky osoby ve svetle modrem triku"
+   },
+   {
+    "approx_box": [
+     1250,
+     985,
+     1360,
+     1025
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "cerveny prut osoby v modre dzinove bunde"
+   },
+   {
+    "approx_box": [
+     3315,
+     852,
+     3414,
+     980
+    ],
+    "name": "melee",
+    "confidence": "medium",
+    "note": "cerveno-bila pruhovana tyc nad hlavou muze v bilem triku u praveho okraje, orezana okrajem a rozmazana; jasne viditelna v 00932; holou paz pod ni neanotovano"
+   }
+  ],
+  "ambiguous": [],
+  "empty": false
+ },
+ {
+  "stem": "005d_00932",
+  "prelabel_verdicts": [],
+  "missed": [
+   {
+    "approx_box": [
+     270,
+     800,
+     455,
+     875
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "bila tyc drzena sikmo pres ramena osoby ve svetle modrem triku"
+   },
+   {
+    "approx_box": [
+     1095,
+     910,
+     1200,
+     975
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "cerveny prut osoby v modre dzinove bunde"
+   },
+   {
+    "approx_box": [
+     3120,
+     655,
+     3325,
+     788
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "cerveno-bila pruhovana tyc (silnejsi) v ruce muze v bilem triku, od ruky ~3120,780 sikmo nahoru doprava; paze pod ni neanotovana"
+   }
+  ],
+  "ambiguous": [],
+  "empty": false
+ },
+ {
+  "stem": "005d_00937",
+  "prelabel_verdicts": [],
+  "missed": [
+   {
+    "approx_box": [
+     190,
+     820,
+     392,
+     850
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "bila tyc vodorovne za hlavou osoby ve svetle modrem triku"
+   },
+   {
+    "approx_box": [
+     498,
+     448,
+     572,
+     545
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "tenka svetla tyc vzpazena za hlavou osoby ve zlute kosili"
+   },
+   {
+    "approx_box": [
+     955,
+     925,
+     1050,
+     965
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "cerveny prut osoby v modre dzinove bunde"
+   },
+   {
+    "approx_box": [
+     2860,
+     660,
+     2950,
+     738
+    ],
+    "name": "melee",
+    "confidence": "medium",
+    "note": "pruhovana cerveno-bila tyc muze v bilem triku, rozmazana (cerveny konec ~2880,680, seda stred k ruce)"
+   }
+  ],
+  "ambiguous": [],
+  "empty": false
+ },
+ {
+  "stem": "005d_00942",
+  "prelabel_verdicts": [],
+  "missed": [
+   {
+    "approx_box": [
+     90,
+     762,
+     265,
+     805
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "bila tyc vodorovne za hlavou osoby ve svetle modrem triku u leveho okraje"
+   },
+   {
+    "approx_box": [
+     398,
+     440,
+     445,
+     530
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "svetla tyc vzpazena nad hlavou osoby ve zlute kosili"
+   },
+   {
+    "approx_box": [
+     2738,
+     880,
+     2895,
+     962
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "cerveno-bila pruhovana tyc muze v bilem triku, sikmo doleva dolu od ruky ~2890,890"
+   }
+  ],
+  "ambiguous": [
+   {
+    "approx_box": [
+     500,
+     650,
+     605,
+     695
+    ],
+    "note": "slaby ruzovo-sedy pruh od prave ruky osoby ve zlute kosili - mozna druhy prut, mozna rozmazana ruka"
+   }
+  ],
+  "empty": false
+ },
+ {
+  "stem": "005d_00947",
+  "prelabel_verdicts": [],
+  "missed": [
+   {
+    "approx_box": [
+     38,
+     755,
+     162,
+     830
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "svetla tyc sikmo za hlavou osoby ve svetle modrem triku u leveho okraje"
+   },
+   {
+    "approx_box": [
+     298,
+     470,
+     350,
+     545
+    ],
+    "name": "melee",
+    "confidence": "medium",
+    "note": "svetla tyc vzpazena nad hlavou osoby ve zlute kosili, slabsi kontrast"
+   },
+   {
+    "approx_box": [
+     2895,
+     940,
+     2945,
+     1010
+    ],
+    "name": "melee",
+    "confidence": "medium",
+    "note": "cervena cast pruhovane tyce drzene svisle dolu muzem v bilem triku; spodni (bila) cast splyva s dzinami - box jen viditelna cervena cast"
+   }
+  ],
+  "ambiguous": [],
+  "empty": false
+ },
+ {
+  "stem": "005d_00952",
+  "prelabel_verdicts": [],
+  "missed": [
+   {
+    "approx_box": [
+     200,
+     505,
+     268,
+     622
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "svetla tyc sikmo dolu v ruce osoby ve zlute kosili"
+   },
+   {
+    "approx_box": [
+     628,
+     840,
+     692,
+     880
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "cerveny prut osoby v modre dzinove bunde (zkraceny perspektivou)"
+   },
+   {
+    "approx_box": [
+     8,
+     768,
+     88,
+     852
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "svetla tyc u leveho okraje, osoba ve svetle modrem triku; konci v ruce ~85,850"
+   }
+  ],
+  "ambiguous": [
+   {
+    "approx_box": [
+     2940,
+     830,
+     3045,
+     995
+    ],
+    "note": "cervene useky u tela muze v bilem triku - pravdepodobne pruhovana tyc drzena svisle podel tela, ale splyva s pazi a dzinami"
+   }
+  ],
+  "empty": false
+ },
+ {
+  "stem": "005d_00957",
+  "prelabel_verdicts": [],
+  "missed": [
+   {
+    "approx_box": [
+     80,
+     555,
+     200,
+     650
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "svetla tyc sikmo v ruce osoby ve zlute kosili"
+   },
+   {
+    "approx_box": [
+     485,
+     803,
+     578,
+     830
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "cerveny prut osoby v modre dzinove bunde"
+   },
+   {
+    "approx_box": [
+     3,
+     748,
+     28,
+     840
+    ],
+    "name": "melee",
+    "confidence": "medium",
+    "note": "svisla svetla tyc na samem levem okraji nad rukou ~10,845, orezana okrajem"
+   }
+  ],
+  "ambiguous": [
+   {
+    "approx_box": [
+     2970,
+     675,
+     3020,
+     795
+    ],
+    "note": "ruzovo-cervena skvrna pred hrudi muze v bilem triku - mozna pruhovana tyc z celniho pohledu, mozna ruce"
+   }
+  ],
+  "empty": false
+ },
+ {
+  "stem": "005d_00962",
+  "prelabel_verdicts": [],
+  "missed": [
+   {
+    "approx_box": [
+     0,
+     655,
+     178,
+     688
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "svetla tyc vodorovne z ruky osoby ve zlute kosili k levemu okraji"
+   },
+   {
+    "approx_box": [
+     395,
+     785,
+     490,
+     820
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "cerveny prut osoby v modre dzinove bunde"
+   }
+  ],
+  "ambiguous": [],
+  "empty": false
+ },
+ {
+  "stem": "005d_00967",
+  "prelabel_verdicts": [],
+  "missed": [
+   {
+    "approx_box": [
+     48,
+     662,
+     130,
+     795
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "bila tyc sikmo dolu z ruky osoby ve zlute kosili; ruka nad y~660 neanotovana"
+   },
+   {
+    "approx_box": [
+     350,
+     808,
+     412,
+     835
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "cerveny/svetly prut osoby v modre dzinove bunde"
+   },
+   {
+    "approx_box": [
+     3035,
+     540,
+     3115,
+     660
+    ],
+    "name": "melee",
+    "confidence": "medium",
+    "note": "pruhovana cerveno-seda tyc vzpazena muzem v bilem triku, rozmazana; dolni konec u ruky splyva s pazi"
+   }
+  ],
+  "ambiguous": [],
+  "empty": false
+ }
+]

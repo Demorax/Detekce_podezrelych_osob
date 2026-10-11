@@ -31,8 +31,8 @@ nedostatečnou rozmanitost dat. Viz [`TRAINING_REPORT.md`](TRAINING_REPORT.md) �
 **Domain adaptation (2026-10-02).** Po ruční a asistované anotaci 252 MED framů
 (56 boxů, 220 negativ) byl model dotrénován se zmrazeným backbone. Na CCTV záběrech
 shora vzrostl recall `melee` z **0,10 na 0,50** (mAP50 0,138 → 0,623), na původních
-datech klesl mAP50 z 0,777 na 0,755. Tento model je nasazen v pipeline. Výhrada:
-MED validace má jen 10 boxů z jediné bitky. Viz [`TRAINING_REPORT.md`](TRAINING_REPORT.md) §6b.
+datech klesl mAP50 z 0,777 na 0,755. Tento model je nasazen v pipeline. Na **nezávislé
+bitce z videa 005** (67 boxů, na kterých se netrénovalo) vzrostla AP50 `melee` z 0,22 na 0,60. Viz [`TRAINING_REPORT.md`](TRAINING_REPORT.md) §6b.
 
 ## Kde co najít
 
@@ -40,6 +40,7 @@ MED validace má jen 10 boxů z jediné bitky. Viz [`TRAINING_REPORT.md`](TRAINI
 |---|---|
 | **[`TRAINING_REPORT.md`](TRAINING_REPORT.md)** | Hlavní zpráva: volba modelu, hardware, průběh tréninku, divergence, výsledky, domain-gap test, omezení |
 | **[`DATASETS.md`](DATASETS.md)** | Všechny zkoumané datasety, licence, mapování tříd, co bylo odmítnuto a proč, konstrukce datasetu |
+| **[`MED_VIDEO_SCAN.md`](MED_VIDEO_SCAN.md)** | Průchod všemi 31 MED videi: kde jsou zbraně, rvačky bez zbraní a další užitečná negativa |
 | **[`ANNOTATION_SPEC.md`](ANNOTATION_SPEC.md)** | Závazná anotační pravidla: tyč vs. paže, tyč vs. stín, statické artefakty, těsnost boxů |
 | **[`ANNOTATION.md`](ANNOTATION.md)** | Návod na anotaci framů pro domain adaptation — ovládání nástroje, na co si dát pozor, jak pak dotrénovat |
 | [`scripts/`](scripts/) | Použité skripty (kopie) |

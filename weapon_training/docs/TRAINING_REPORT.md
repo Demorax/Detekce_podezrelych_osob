@@ -605,6 +605,53 @@ Rozdíl 0,50 vs. 0,40 je ale **jedna tyč** z deseti, tedy na hranici šumu.
 
 ---
 
+## 6c. Nezávislý test na jiné bitce (MED video 005)
+
+Validace v §6b pocházela ze stejné bitky jako trénink (video 004), takže neověřovala
+zobecnění. Průchod všemi 28 zbývajícími MED videi ([`MED_VIDEO_SCAN.md`](MED_VIDEO_SCAN.md))
+našel jedinou další bitku se zbraněmi: **video 005** — stejný dvůr a kamera, ale jiná událost,
+jiní lidé v jiných pozicích, a navíc víc červených prutů.
+
+**Testovací set:** 48 hustě vzorkovaných framů (zdrojové framy 812–1050, krok 5), anotováno
+stejnou metodikou (§6b.1). Agenti navrhli 79 boxů; na kontaktním listu bylo **12 vyloučeno**
+(mj. jeden stín označený jako tyč s vysokou jistotou a pět téměř neviditelných rozmazaných
+čárek), zůstalo **67 ověřených boxů `melee`**. Na videu 005 se nikdy netrénovalo.
+Skript `eval_test005.py`.
+
+| Model | AP50 | AP50-95 | Precision | Recall | Recall při conf ≥ 0,40 |
+|---|---|---|---|---|---|
+| Výchozí | 0,219 | 0,042 | 0,44 | 0,25 | 0,13 |
+| Fine-tune (vše se učí) | **0,640** | **0,302** | 0,87 | **0,51** | 0,37 |
+| Fine-tune (zmrazený backbone) | 0,602 | 0,281 | **0,89** | 0,49 | 0,31 |
+
+(Precision a recall jsou v bodě maxima F1, jak je vrací ultralytics.)
+
+### Interpretace
+
+**Dotrénování zobecňuje mimo bitku, na které se učilo.** AP50 vzrostla zhruba trojnásobně
+(0,22 → 0,60–0,64) na události, kterou model nikdy neviděl. To je nejsilnější doklad přínosu
+domain adaptation v celé práci — na rozdíl od MED validace (10 boxů ze stejné bitky) jde
+o 67 boxů z nezávislé scény.
+
+**Pořadí obou fine-tunů se proti MED validaci obrátilo.** Na validaci (video 004) byl lepší
+zmrazený backbone (0,623 vs. 0,498), na nezávislém testu je mírně lepší plné dotrénování
+(0,640 vs. 0,602). Rozdíl mezi nimi je tedy v rámci šumu a **ani jedna varianta není na cílové
+doméně prokazatelně lepší**. Rozhodující zůstává menší zapomínání zmrazené varianty na původních
+datech (−0,022 vs. −0,032), proto zůstává nasazená ona.
+
+**Model je na nové doméně podsebevědomý.** Maximum F1 leží u conf ≈ 0,05; při produkčním prahu
+0,40 má precision 1,00, ale recall jen 0,31. Nižší práh by recall výrazně zvedl (při conf 0,10:
+P = 0,91, R = 0,46). **Práh v pipeline záměrně nebyl změněn** — byl by odečten z testovacího
+setu, který by tím přestal být nezávislý. Správně se práh ladí na validační sadě, a ta je zatím
+příliš malá (10 boxů).
+
+**Omezení:** stále jen jedna kamera a jeden dvůr; jiné prostředí, osvětlení nebo úhel
+ověřené nejsou. V framech, kde byly nejisté objekty vyloučeny, zůstaly tyto objekty
+neoznačené — případná detekce se tam započítá jako false positive, takže precision je spíš
+podhodnocená.
+
+---
+
 ## 7. Známá omezení
 
 1. **Domain gap web/sport → CCTV** není odstraněn, jen zmírněn augmentací
@@ -632,9 +679,11 @@ Rozdíl 0,50 vs. 0,40 je ale **jedna tyč** z deseti, tedy na hranici šumu.
 **Provedeno (§6b):** anotace 252 MED framů a domain adaptation se zmrazeným backbone.
 
 **Dál, se získáním dat:**
-- **Další video se zbraněmi** — jediný způsob, jak ověřit, že dotrénovaný model zobecní
-  mimo jednu bitku. Bez něj zůstává zlepšení na CCTV změřeno jen na 10 boxech ze stejné
-  události.
+- **Další prostředí se zbraněmi** — zobecnění na jinou bitku na stejném dvoře je ověřeno
+  (§6c); jiná kamera, místo nebo osvětlení zatím ne. Kandidáti: UCF-Crime, RWF-2000, CCTV-Fights.
+- **Přeladit confidence threshold `melee`** pro dotrénovaný model — model je na CCTV
+  podsebevědomý (maximum F1 u conf ≈ 0,05, §6c). Ladit na validaci, ne na testu z videa 005.
+- **Využít negativa z rvaček bez zbraní** (videa 012, 014, 016, 017) a zdvižených papírů (025, 026).
 - **Rozhodnout 64 sporných případů** (tyč vs. paže / stín) ve worklistu
   `annotation_results/worklist_*.json` — přidají pozitivní i negativní příklady.
 - **Méně zapomínání:** vyšší podíl původních dat (např. 1 : 8) nebo zmrazit i neck.

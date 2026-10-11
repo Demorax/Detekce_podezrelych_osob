@@ -1,0 +1,382 @@
+[
+ {
+  "stem": "005d_00972",
+  "prelabel_verdicts": [],
+  "missed": [
+   {
+    "approx_box": [
+     118,
+     695,
+     165,
+     832
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "bila tyc v ruce muze v bezove kosili, svisle dolu od ruky (~y695) ke spodnimu konci y832"
+   }
+  ],
+  "ambiguous": [
+   {
+    "approx_box": [
+     352,
+     838,
+     388,
+     872
+    ],
+    "note": "narudly/ruzovy utvar u ruky muze v tmave bunde, maly - cerveny prut nebo ruka?"
+   }
+  ],
+  "empty": false
+ },
+ {
+  "stem": "005d_00977",
+  "prelabel_verdicts": [],
+  "missed": [
+   {
+    "approx_box": [
+     150,
+     700,
+     248,
+     818
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "bila tyc v ruce muze v bezove kosili, diagonala dolu-vpravo"
+   },
+   {
+    "approx_box": [
+     3335,
+     788,
+     3414,
+     898
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "cerveno-bily prut v prave ruce muze v bilem tricku vpravo, uriznuty pravym okrajem framu"
+   }
+  ],
+  "ambiguous": [],
+  "empty": false
+ },
+ {
+  "stem": "005d_00982",
+  "prelabel_verdicts": [],
+  "missed": [
+   {
+    "approx_box": [
+     3272,
+     676,
+     3326,
+     730
+    ],
+    "name": "melee",
+    "confidence": "medium",
+    "note": "cerveny prut muze v bilem tricku, zkraceny perspektivou (miri ke kamere) - viditelny jen cerveny konec za pesti; v 00977 tentyz prut cely"
+   }
+  ],
+  "ambiguous": [
+   {
+    "approx_box": [
+     195,
+     690,
+     260,
+     724
+    ],
+    "note": "svetly pruh od ruky muze v bezovem za muze v tmave bunde - pravdepodobne bila tyc, ale splyva s limcem bundy"
+   },
+   {
+    "approx_box": [
+     255,
+     835,
+     295,
+     870
+    ],
+    "note": "svetle/ruzove u ruky muze v tmave bunde - ruka nebo prut"
+   }
+  ],
+  "empty": false
+ },
+ {
+  "stem": "005d_00987",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [
+   {
+    "approx_box": [
+     300,
+     650,
+     380,
+     672
+    ],
+    "note": "bily vodorovny pruh vpravo od hlavy muze v tmave bunde - mozna konec bile tyce muze v bezovem, zdroj nejasny"
+   },
+   {
+    "approx_box": [
+     3195,
+     580,
+     3290,
+     650
+    ],
+    "note": "rozmazana pest s cervenym utvarem u muze v bilem tricku vpravo - cerveny prut zkraceny, nelze ohranicit"
+   }
+  ],
+  "empty": false
+ },
+ {
+  "stem": "005d_00992",
+  "prelabel_verdicts": [],
+  "missed": [
+   {
+    "approx_box": [
+     272,
+     600,
+     385,
+     632
+    ],
+    "name": "melee",
+    "confidence": "high",
+    "note": "bila tyc drzena muzem v bezove kosili vodorovne doprava od ruky (ruka ~x265), konstantni sirka, bila barva"
+   }
+  ],
+  "ambiguous": [],
+  "empty": false
+ },
+ {
+  "stem": "005d_00997",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [
+   {
+    "approx_box": [
+     290,
+     575,
+     382,
+     596
+    ],
+    "note": "slaby svetly pruh od ruky muze v bezovem doprava - pravdepodobne tataz bila tyc jako v 00992, ale rozmazana/nizky kontrast"
+   },
+   {
+    "approx_box": [
+     2985,
+     455,
+     3048,
+     477
+    ],
+    "note": "natazena ruka muze v modrem u zdi s tmavym koncem - predlokti vs kratky predmet"
+   }
+  ],
+  "empty": false
+ },
+ {
+  "stem": "005d_01002",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [
+   {
+    "approx_box": [
+     340,
+     560,
+     395,
+     585
+    ],
+    "note": "velmi slaby svetly utvar vpravo od ruky muze v bezovem - mozna konec bile tyce, nelze potvrdit"
+   }
+  ],
+  "empty": false
+ },
+ {
+  "stem": "005d_01007",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [
+   {
+    "approx_box": [
+     350,
+     748,
+     402,
+     800
+    ],
+    "note": "pest muze v tmave bunde s tmave cervenohnedym utvarem - mozna drzeny cerveny prut zkraceny, spis jen ruka"
+   }
+  ],
+  "empty": false
+ },
+ {
+  "stem": "005d_01012",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [
+   {
+    "approx_box": [
+     368,
+     728,
+     438,
+     797
+    ],
+    "note": "tmave cervenohnedy predmet vychazejici z pesti muze v tmave bunde dolu-doprava (~70x30 px), konzistentne ve framech 01007-01027 - mozna cerveny prut, ale tvar spis kompaktni (mohla by to byt i taska/obleceni); nelze rozhodnout"
+   }
+  ],
+  "empty": false
+ },
+ {
+  "stem": "005d_01017",
+  "prelabel_verdicts": [],
+  "missed": [],
+  "ambiguous": [
+   {
+    "approx_box": [
+     372,
+     735,
+     442,
+     798
+    ],
+    "note": "tmave cervenohnedy predmet vychazejici z pesti muze v tmave bunde dolu-doprava (~70x30 px), konzistentne ve framech 01007-01027 - mozna cerveny prut, ale tvar spis kompaktni (mohla by to byt i taska/obleceni); nelze rozhodnout"
+   }
+  ],
+  "empty": false
+ },
+ {
+  "stem": "005d_01022",
+  "prelabel_verdicts": [],
+  "missed": [
+   {
+    "approx_box": [
+     397,
+     573,
+     480,
+     614
+    ],
+    "name": "melee",
+    "confidence": "medium",
+    "note": "bila tyc od ruky muze v bezove kosili sikmo dolu-doprava, jasne bila (ne kuze), konstantni sirka; vzdaleny konec slabne"
+   }
+  ],
+  "ambiguous": [
+   {
+    "approx_box": [
+     383,
+     748,
+     445,
+     795
+    ],
+    "note": "tmave cervenohnedy predmet vychazejici z pesti muze v tmave bunde dolu-doprava (~70x30 px), konzistentne ve framech 01007-01027 - mozna cerveny prut, ale tvar spis kompaktni (mohla by to byt i taska/obleceni); nelze rozhodnout"
+   }
+  ],
+  "empty": false
+ },
+ {
+  "stem": "005d_01027",
+  "prelabel_verdicts": [],
+  "missed": [
+   {
+    "approx_box": [
+     395,
+     570,
+     482,
+     592
+    ],
+    "name": "melee",
+    "confidence": "medium",
+    "note": "bila vodorovna tyc vpravo od ruky muze v bezove kosili, tenka konstantni sirka, ostry konec x~480; tataz tyc jako v 01022"
+   }
+  ],
+  "ambiguous": [
+   {
+    "approx_box": [
+     395,
+     735,
+     490,
+     772
+    ],
+    "note": "cervenavy rozmazany utvar u pesti muze v tmave bunde - mozna cerveny prut, nelze ohranicit"
+   }
+  ],
+  "empty": false
+ },
+ {
+  "stem": "005d_01032",
+  "prelabel_verdicts": [],
+  "missed": [
+   {
+    "approx_box": [
+     444,
+     561,
+     512,
+     577
+    ],
+    "name": "melee",
+    "confidence": "medium",
+    "note": "bila tenka tyc konstantni sirky vpravo od muze v bezove kosili (pokracovani tyce z 01022/01027, posouva se spolu s nim doprava - neni staticky artefakt); vyrazne bila, ne kuze; drzici ruka zakryta; nizsi kontrast"
+   }
+  ],
+  "ambiguous": [],
+  "empty": false
+ },
+ {
+  "stem": "005d_01037",
+  "prelabel_verdicts": [],
+  "missed": [
+   {
+    "approx_box": [
+     497,
+     551,
+     577,
+     569
+    ],
+    "name": "melee",
+    "confidence": "medium",
+    "note": "bila tenka tyc konstantni sirky vpravo od muze v bezove kosili (pokracovani tyce z 01022/01027, posouva se spolu s nim doprava - neni staticky artefakt); vyrazne bila, ne kuze; drzici ruka zakryta; prechod kuze->bila tyc u x~497"
+   }
+  ],
+  "ambiguous": [],
+  "empty": false
+ },
+ {
+  "stem": "005d_01042",
+  "prelabel_verdicts": [],
+  "missed": [
+   {
+    "approx_box": [
+     530,
+     550,
+     592,
+     565
+    ],
+    "name": "melee",
+    "confidence": "medium",
+    "note": "bila tenka tyc konstantni sirky vpravo od muze v bezove kosili (pokracovani tyce z 01022/01027, posouva se spolu s nim doprava - neni staticky artefakt); vyrazne bila, ne kuze; drzici ruka zakryta"
+   }
+  ],
+  "ambiguous": [],
+  "empty": false
+ },
+ {
+  "stem": "005d_01047",
+  "prelabel_verdicts": [],
+  "missed": [
+   {
+    "approx_box": [
+     562,
+     541,
+     642,
+     557
+    ],
+    "name": "melee",
+    "confidence": "medium",
+    "note": "bila tenka tyc konstantni sirky vpravo od muze v bezove kosili (pokracovani tyce z 01022/01027, posouva se spolu s nim doprava - neni staticky artefakt); vyrazne bila, ne kuze; drzici ruka zakryta"
+   }
+  ],
+  "ambiguous": [
+   {
+    "approx_box": [
+     498,
+     655,
+     578,
+     712
+    ],
+    "note": "ruzovy/cervenavy diagonalni pruh vedle tmave nohavice muze v bezovem - mozna cerveny prut, splyva s nohou"
+   }
+  ],
+  "empty": false
+ }
+]

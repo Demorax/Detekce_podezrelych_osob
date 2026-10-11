@@ -1,0 +1,343 @@
+[
+ {
+  "stem": "005d_00842",
+  "kind": "vyloucen_kontrolou",
+  "approx_box": [
+   3160,
+   680,
+   3396,
+   701
+  ],
+  "note": "kontaktni list #2: v boxu temer nic, pruh na okraji framu"
+ },
+ {
+  "stem": "005d_00872",
+  "kind": "ambiguous",
+  "approx_box": [
+   3378,
+   1535,
+   3412,
+   1585
+  ],
+  "note": "maly cerveny fragment na pravem okraji, mozna konec ciziho prutu, prilis maly/nejasny"
+ },
+ {
+  "stem": "005d_00897",
+  "kind": "vyloucen_kontrolou",
+  "approx_box": [
+   1475,
+   500,
+   1565,
+   578
+  ],
+  "note": "kontaktni list #27: rozmazana smouha, nelze potvrdit"
+ },
+ {
+  "stem": "005d_00912",
+  "kind": "vyloucen_kontrolou",
+  "approx_box": [
+   1298,
+   500,
+   1372,
+   555
+  ],
+  "note": "kontaktni list #36: slaba smouha"
+ },
+ {
+  "stem": "005d_00922",
+  "kind": "ambiguous",
+  "approx_box": [
+   1438,
+   975,
+   1525,
+   1015
+  ],
+  "note": "silne rozmazany ruzovy pruh vlevo od osoby v modre dzinove bunde - poloha odpovida cervenemu prutu ze sousednich framu, ale nelze odlisit od rozmazane ruky"
+ },
+ {
+  "stem": "005d_00927",
+  "kind": "vyloucen_kontrolou",
+  "approx_box": [
+   1250,
+   985,
+   1360,
+   1025
+  ],
+  "note": "kontaktni list #42: tmava cara na svetlem betonu bez odlesku = stin, ne tyc"
+ },
+ {
+  "stem": "005d_00942",
+  "kind": "ambiguous",
+  "approx_box": [
+   500,
+   650,
+   605,
+   695
+  ],
+  "note": "slaby ruzovo-sedy pruh od prave ruky osoby ve zlute kosili - mozna druhy prut, mozna rozmazana ruka"
+ },
+ {
+  "stem": "005d_00947",
+  "kind": "vyloucen_kontrolou",
+  "approx_box": [
+   2895,
+   940,
+   2945,
+   1010
+  ],
+  "note": "kontaktni list #56: cervena smouha u ruky, muze byt ruka"
+ },
+ {
+  "stem": "005d_00952",
+  "kind": "ambiguous",
+  "approx_box": [
+   2940,
+   830,
+   3045,
+   995
+  ],
+  "note": "cervene useky u tela muze v bilem triku - pravdepodobne pruhovana tyc drzena svisle podel tela, ale splyva s pazi a dzinami"
+ },
+ {
+  "stem": "005d_00957",
+  "kind": "ambiguous",
+  "approx_box": [
+   2970,
+   675,
+   3020,
+   795
+  ],
+  "note": "ruzovo-cervena skvrna pred hrudi muze v bilem triku - mozna pruhovana tyc z celniho pohledu, mozna ruce"
+ },
+ {
+  "stem": "005d_00967",
+  "kind": "vyloucen_kontrolou",
+  "approx_box": [
+   3035,
+   540,
+   3115,
+   660
+  ],
+  "note": "kontaktni list #67: v boxu nic citelneho"
+ },
+ {
+  "stem": "005d_00972",
+  "kind": "ambiguous",
+  "approx_box": [
+   352,
+   838,
+   388,
+   872
+  ],
+  "note": "narudly/ruzovy utvar u ruky muze v tmave bunde, maly - cerveny prut nebo ruka?"
+ },
+ {
+  "stem": "005d_00982",
+  "kind": "vyloucen_kontrolou",
+  "approx_box": [
+   3272,
+   676,
+   3326,
+   730
+  ],
+  "note": "kontaktni list #71: kompaktni cerveny utvar v pesti, muze byt ruka"
+ },
+ {
+  "stem": "005d_00982",
+  "kind": "ambiguous",
+  "approx_box": [
+   195,
+   690,
+   260,
+   724
+  ],
+  "note": "svetly pruh od ruky muze v bezovem za muze v tmave bunde - pravdepodobne bila tyc, ale splyva s limcem bundy"
+ },
+ {
+  "stem": "005d_00982",
+  "kind": "ambiguous",
+  "approx_box": [
+   255,
+   835,
+   295,
+   870
+  ],
+  "note": "svetle/ruzove u ruky muze v tmave bunde - ruka nebo prut"
+ },
+ {
+  "stem": "005d_00987",
+  "kind": "ambiguous",
+  "approx_box": [
+   300,
+   650,
+   380,
+   672
+  ],
+  "note": "bily vodorovny pruh vpravo od hlavy muze v tmave bunde - mozna konec bile tyce muze v bezovem, zdroj nejasny"
+ },
+ {
+  "stem": "005d_00987",
+  "kind": "ambiguous",
+  "approx_box": [
+   3195,
+   580,
+   3290,
+   650
+  ],
+  "note": "rozmazana pest s cervenym utvarem u muze v bilem tricku vpravo - cerveny prut zkraceny, nelze ohranicit"
+ },
+ {
+  "stem": "005d_00997",
+  "kind": "ambiguous",
+  "approx_box": [
+   290,
+   575,
+   382,
+   596
+  ],
+  "note": "slaby svetly pruh od ruky muze v bezovem doprava - pravdepodobne tataz bila tyc jako v 00992, ale rozmazana/nizky kontrast"
+ },
+ {
+  "stem": "005d_00997",
+  "kind": "ambiguous",
+  "approx_box": [
+   2985,
+   455,
+   3048,
+   477
+  ],
+  "note": "natazena ruka muze v modrem u zdi s tmavym koncem - predlokti vs kratky predmet"
+ },
+ {
+  "stem": "005d_01002",
+  "kind": "ambiguous",
+  "approx_box": [
+   340,
+   560,
+   395,
+   585
+  ],
+  "note": "velmi slaby svetly utvar vpravo od ruky muze v bezovem - mozna konec bile tyce, nelze potvrdit"
+ },
+ {
+  "stem": "005d_01007",
+  "kind": "ambiguous",
+  "approx_box": [
+   350,
+   748,
+   402,
+   800
+  ],
+  "note": "pest muze v tmave bunde s tmave cervenohnedym utvarem - mozna drzeny cerveny prut zkraceny, spis jen ruka"
+ },
+ {
+  "stem": "005d_01012",
+  "kind": "ambiguous",
+  "approx_box": [
+   368,
+   728,
+   438,
+   797
+  ],
+  "note": "tmave cervenohnedy predmet vychazejici z pesti muze v tmave bunde dolu-doprava (~70x30 px), konzistentne ve framech 01007-01027 - mozna cerveny prut, ale tvar spis kompaktni (mohla by to byt i taska/obleceni); nelze rozhodnout"
+ },
+ {
+  "stem": "005d_01017",
+  "kind": "ambiguous",
+  "approx_box": [
+   372,
+   735,
+   442,
+   798
+  ],
+  "note": "tmave cervenohnedy predmet vychazejici z pesti muze v tmave bunde dolu-doprava (~70x30 px), konzistentne ve framech 01007-01027 - mozna cerveny prut, ale tvar spis kompaktni (mohla by to byt i taska/obleceni); nelze rozhodnout"
+ },
+ {
+  "stem": "005d_01022",
+  "kind": "ambiguous",
+  "approx_box": [
+   383,
+   748,
+   445,
+   795
+  ],
+  "note": "tmave cervenohnedy predmet vychazejici z pesti muze v tmave bunde dolu-doprava (~70x30 px), konzistentne ve framech 01007-01027 - mozna cerveny prut, ale tvar spis kompaktni (mohla by to byt i taska/obleceni); nelze rozhodnout"
+ },
+ {
+  "stem": "005d_01027",
+  "kind": "vyloucen_kontrolou",
+  "approx_box": [
+   395,
+   570,
+   482,
+   592
+  ],
+  "note": "kontaktni list #74: rozmazana, temer neviditelna"
+ },
+ {
+  "stem": "005d_01027",
+  "kind": "ambiguous",
+  "approx_box": [
+   395,
+   735,
+   490,
+   772
+  ],
+  "note": "cervenavy rozmazany utvar u pesti muze v tmave bunde - mozna cerveny prut, nelze ohranicit"
+ },
+ {
+  "stem": "005d_01032",
+  "kind": "vyloucen_kontrolou",
+  "approx_box": [
+   444,
+   561,
+   512,
+   577
+  ],
+  "note": "kontaktni list #75: temer neviditelna"
+ },
+ {
+  "stem": "005d_01037",
+  "kind": "vyloucen_kontrolou",
+  "approx_box": [
+   497,
+   551,
+   577,
+   569
+  ],
+  "note": "kontaktni list #76: temer neviditelna"
+ },
+ {
+  "stem": "005d_01042",
+  "kind": "vyloucen_kontrolou",
+  "approx_box": [
+   530,
+   550,
+   592,
+   565
+  ],
+  "note": "kontaktni list #77: temer neviditelna"
+ },
+ {
+  "stem": "005d_01047",
+  "kind": "vyloucen_kontrolou",
+  "approx_box": [
+   562,
+   541,
+   642,
+   557
+  ],
+  "note": "kontaktni list #78: temer neviditelna"
+ },
+ {
+  "stem": "005d_01047",
+  "kind": "ambiguous",
+  "approx_box": [
+   498,
+   655,
+   578,
+   712
+  ],
+  "note": "ruzovy/cervenavy diagonalni pruh vedle tmave nohavice muze v bezovem - mozna cerveny prut, splyva s nohou"
+ }
+]

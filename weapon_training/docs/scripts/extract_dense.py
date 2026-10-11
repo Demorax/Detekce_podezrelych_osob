@@ -43,8 +43,10 @@ def main() -> int:
     ap.add_argument("--step", type=int, default=5)
     ap.add_argument("--out", required=True)
     ap.add_argument("--prefix", default="004d")
-    ap.add_argument("--skip-existing", action="store_true", default=True,
-                    help="přeskočit zdrojové framy, které už jsou v 2 FPS sadě")
+    ap.add_argument("--no-skip-existing", dest="skip_existing", action="store_false",
+                    help="nepřeskakovat násobky 14 — pro videa, ze kterých upscalovaná "
+                         "2 FPS sada neexistuje (vše kromě 001, 002, 004)")
+    ap.set_defaults(skip_existing=True)
     args = ap.parse_args()
 
     video = Path(args.video).expanduser().resolve()
