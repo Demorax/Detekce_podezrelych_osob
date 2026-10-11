@@ -178,7 +178,11 @@ class PersonTracker:
 
             # Greedy match: for each track, find nearest unmatched detection
             for tid, t in list(self.tracks.items()):
-                if t['missed'] > 1:  # only match active (missed=1 means just lost this frame)
+                # Párovat i tracky, které chyběly až max_missed framů. Dřív zde bylo `missed > 1`:
+                # missed se zvyšuje výše, takže track viděný v minulém framu má 1 a track, který
+                # jeden frame chyběl, už 2 — po jediném výpadku detekce tak osoba dostala nové ID
+                # (ztráta ARMED stavu i vlastnictví zavazadla). Viz weapon_training/docs/CODE_REVIEW_PIPELINE.md.
+                if t['missed'] > self.max_missed:
                     continue
                 best_d, best_i = float('inf'), -1
                 for i, c in enumerate(new_centroids):
@@ -210,6 +214,20 @@ class PersonTracker:
                     }
                     self.next_id += 1
 
+        # Osoba v tomto framu chybí → update_armed_status ji nevidí (dostává jen active()).
+        # Aby „N framů po sobě“ platilo i přes výpadek, vynuluje se rozpracované potvrzení
+        # a běžící hystereze se odečítá stejně, jako by zbraň u osoby nebyla.
+        for t in self.tracks.values():
+            if t['missed'] > 0:
+                if t.get('armed'):
+                    t['armed_hold'] = t.get('armed_hold', 0) - 1
+                    if t['armed_hold'] < 0:
+                        t['armed'] = False
+                        t['weapon_label'] = None
+                        t['armed_count'] = 0
+                else:
+                    t['armed_count'] = 0
+
         # Remove dead tracks
         dead = [tid for tid, t in self.tracks.items() if t['missed'] > self.max_missed]
         for tid in dead:
@@ -238,7 +256,7 @@ class ObjectTracker:
         if object_dets:
             matched = set()
             for oid, t in list(self.tracks.items()):
-                if t['missed'] > 1:
+                if t['missed'] > self.max_missed:   # viz PersonTracker.update
                     continue
                 best_iou, best_i = 0.0, -1
                 for i, (box, score, label) in enumerate(object_dets):
