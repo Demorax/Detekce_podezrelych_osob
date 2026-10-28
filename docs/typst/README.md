@@ -11,7 +11,17 @@ bibliografie Hayagriva v `reference.yaml`, `#set heading(numbering: "1.")`, cita
 | `figures/` | všechny PNG obrázky obou kapitol | nahrát do projektu do složky `figures/` |
 | `md2typ.py` | převod Markdown → Typst (nadpisy, tabulky, obrázky, zvýraznění) | pro další kapitoly psané v MD |
 
-## Vložení do projektu
+## Stav projektu na typst.app (2026-10-28)
+
+Projekt „Bakalářka (copy)“ je přepnutý na diplomku: podklady z bakalářky jsou smazané, zůstaly
+`main.typ` (nový, kopie zde v `main.typ`), `template.typ`, `reference.yaml` (staré položky nevadí,
+nevyužité se v seznamu literatury neobjeví) a složka `typst/` s kapitolami, bibliografií a obrázky.
+Kapitoly jsou vložené přes `#include`, bibliografie přes
+`#bibliography(("reference.yaml", "typst/reference_chovani.yaml"))`. Kompiluje se bez chyb;
+dvě varování (font Nimbus Roman No9 L, `show par: set block`) jsou ze staré šablony.
+Neexistující odkazy jsou nahrazené makrem `#todo[...]` (červeně v PDF), hledat `TODO`.
+
+## Vložení do projektu (postup, pokud se zakládá znovu)
 
 1. Nahrát `kapitola_*.typ`, `reference_chovani.yaml` a složku `figures/` do projektu na typst.app.
 2. Do `main.typ` za `#set heading(numbering: "1.")` přidat:
