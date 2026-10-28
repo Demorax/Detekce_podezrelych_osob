@@ -115,7 +115,8 @@ MP4 Videos → extract_frames.py → JPEG Frames (2 FPS)
 ## Known Issues and Limitations
 
 1. **Severe class imbalance**: Training data is ~96% walking, ~4% running, ~0% suspicious behaviors
-2. **Small labeled dataset**: Only 4 person sequences (196 total frames) currently labeled
+2. **Small labeled dataset**: Only 4 person sequences (196 total frames) currently labeled; unlabeled frames are
+   stored as -1 since 2026-10 (140 walking / 0 suspicious / 8 running / 48 unlabeled in `labeled_behaviors/`)
 3. **Memory constraints**: Large models (6GB+ for ViTPose) can cause OOM errors on machines with limited VRAM
 4. **Hardcoded paths**: Many scripts use relative paths that may need adjustment
 5. **Dependencies**: `requirements.txt` lists them; PyTorch and mmcv must be installed separately (see its header)

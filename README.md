@@ -153,7 +153,8 @@ labeled_behaviors/       # Anotovaná data pro trénování LSTM
 ```
 best_lstm_behavior_model.h5      # Trénovaný LSTM klasifikátor
 best_lstm_behavior_model/        # SavedModel formát
-frame_classifier_mlp.keras       # MLP baseline (67% accuracy)
+frame_classifier_mlp.keras       # MLP baseline (67 % = vždy „chůze“, majoritní třída)
+best_lstm_pytorch.pt             # BiLSTM RWF-2000 (sekce 5), není v gitu
 ```
 
 ---
@@ -372,13 +373,46 @@ Zavazadla (`backpack`, `handbag`, `suitcase`) dál detekuje COCO YOLO11x, který
 
 Na CCTV záběrech shora je nasazený model zhruba **3× lepší** a na webových datech ztrácí jen málo.
 **Omezení:** na CCTV je ověřena jen třída `melee` (v MED videích nejsou pistole ani nože), jedna kamera
-a jeden dvůr. Model je na CCTV podsebevědomý, proto je práh `melee` snížen na 0,20. Na ověřovací části videa 005 zachytí zhruba třetinu tyčí bez jediného falešného poplachu, Poplach se vyhlásí až po detekci ve dvou po sobě jdoucích framech (0,4 s). V simulaci celé větve ARMED na videích rvaček bez zbraní to spolu s vyšším prahem (0,50) pro třídu `baseball bat` obecného COCO detektoru, která hlásila stíny na asfaltu, snížilo falešné poplachy z 24 na 4 za 5,5 minuty, přičemž skutečná bitka je v poplachu 93 % času.
+a jeden dvůr. Model je na CCTV podsebevědomý, proto je práh `melee` snížen na 0,20. Na ověřovací části videa 005 zachytí zhruba třetinu tyčí bez jediného falešného poplachu, Poplach se vyhlásí až po detekci ve dvou po sobě jdoucích framech (0,4 s). V simulaci celé větve ARMED na videích rvaček bez zbraní to spolu s vyšším prahem (0,50) pro třídu `baseball bat` obecného COCO detektoru, která hlásila stíny na asfaltu, snížilo falešné poplachy z 25 na 5 za 5,5 minuty, přičemž skutečná bitka je v poplachu 93 % času.
 
 Detekce je zapojená v `suspicious_detector.py`; označování ozbrojených osob v
 `abandoned_object_detector.py` se zapíná přepínačem `--armed`.
 
 Kompletní dokumentace (průběh tréninku, datasety, anotační specifikace, ablace, neúspěšné experimenty):
 **[`weapon_training/docs/`](weapon_training/docs/README.md)**.
+
+---
+
+## 5. Klasifikace chování ze skeletů
+
+**MED (vlastní anotace):** olabelováno je jen 196 framů ze 2 videí (140 chůze, 8 běh, 0 podezřelé, 48 neolabelovaných).
+MLP s „67 % accuracy“ (`clean_detekce_osob.ipynb`) ve skutečnosti predikuje vždy „chůzi“, takže jde o majoritní baseline.
+Keras LSTM (`detekce_novy_pristub.ipynb`) má testovací sadu jen s jednou třídou. Na MED tedy zatím není použitelný klasifikátor.
+
+**RWF-2000 (rvačka / bez rvačky):** skelety z pipeline RT-DETR + ViTPose (`run_rwf_batch.py`, 5 FPS, 14 bodů CrowdPose),
+BiLSTM s attention nad okny 15 snímků (`run_train_lstm.py`). Vyhodnocení `eval_rwf_lstm.py` vybírá checkpoint na části
+trénovacích videí a oficiální val (400 videí) používá jen jako test (průměr ± sd přes 3 seedy):
+
+| úroveň | accuracy | F1 Fight | ROC AUC |
+|---|---:|---:|---:|
+| okna (3 s) | 0,727 ± 0,003 | 0,679 | 0,789 |
+| **video** | **0,781 ± 0,006** | 0,752 | 0,808 |
+
+V 84 ze 400 videí není nikdo sledovaný 3 s, takže nevznikne žádné okno. Skeletové metody v literatuře hlásí na RWF-2000 zhruba 85–93 %.
+
+---
+
+## 6. Detekce opuštěných zavazadel (pre-incident)
+
+`abandoned_object_detector.py`: tracker osob (Hungarian + předpověď pohybu) a zavazadel (IoU), vlastnictví podle vzdálenosti
+(1,5 × výška osoby), alert po 2 s bez vlastníka. Zavazadla detekuje COCO YOLO11x.
+
+- **CAVIAR** (pravidla nad GT boxy, `eval_caviar_rules.py`): při leave-one-video-out výběru parametrů (`caviar_loo.py`)
+  **precision 100 % (0 falešných alertů na 26 scénářích bez opuštění), recall 75 % (3/4)**, zpoždění 6 s.
+- **ABODA** (plná pipeline, `diagnose_aboda.py`): úzkým hrdlem je detekce. Odložené zavazadlo, které
+  nikdo nedrží, YOLO11x často nenajde. Výsledky jsou v `reference_img/aboda_alerts_v2/`.
+
+Podrobnosti a otevřené body: [`STAV_PRACE.md`](STAV_PRACE.md), [`plan_pre_incident.md`](plan_pre_incident.md).
 
 ---
 

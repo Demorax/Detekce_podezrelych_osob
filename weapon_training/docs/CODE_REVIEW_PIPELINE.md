@@ -10,7 +10,20 @@ nic se neopravovalo. Nález 1 je navíc ověřený jednotkovým testem.
   (27 scénářů, 4 TP / 23 TN, zpoždění 6,4 s), protože anotace CAVIAR nemají výpadky a chybu
   neodhalí. Na MED s osobami z YOLO11x-pose klesl počet ID osob z 2 649 na 1 474. ARMED při
   nasazeném nastavení: 5 poplachů na rvačkách místo 4, bitka 93 % beze změny.
-- **Otevřené:** 4, 5, 7, 8, 9, 11 a nepoužitá konstanta z bodu 12.
+- **Opraveno (2026-10-28, Windows PC):** 4, 5, 7, 8, 9 a zbytek 12.
+  - 4: párování osob i objektů je Hungarian (`match_tracks`) s gatingem. Hungarian sám míjení
+    neřeší (dvě blízké osoby je „levnější“ prohodit), proto `PersonTracker` páruje podle
+    předpovězené polohy (konstantní rychlost, `use_motion=True`). Jednotkový test: dvě osoby jdoucí
+    proti sobě si ID dřív prohodily, teď ne.
+  - 5: `--max-person-dist` je v px vstupního videa, s `--upscale` se přepočítá do prostoru detekce.
+  - 7: vizualizace (SD i `visualization_helper.py`) volí spoje podle počtu bodů (14 = CrowdPose).
+  - 8: `_wrist_points` bere u 17bodového skeletu COCO indexy (9, 10).
+  - 9: pass 2 bere rozměr z pass 1 a video otevírá znovu, bez `seek` na 0.
+  - 12: odstraněna nepoužitá `DEFAULT_MIN_OBJ_TRACK_LEN`.
+  - Dopad: CAVIAR beze změny (4/4, 6,4 s). ARMED nasazené nastavení beze změny (5 poplachů na
+    rvačkách, 5 v klidu, bitka 93 %); varianta bez COCO pálky drží bitku 005 z 90 % místo 62 %.
+    `armed_eval/results.json` přepočítán (předchozí verze byla ještě před opravou bodu 1).
+- **Otevřené:** 11 (designová otázka).
 
 ## Vysoká závažnost
 

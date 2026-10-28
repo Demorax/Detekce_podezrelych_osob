@@ -4,6 +4,10 @@ Používá matplotlib pro vizualizaci a tkinter pro ovládání
 """
 import cv2
 import numpy as np
+
+# Frame mimo všechny označené segmenty. Dřív se ukládal jako 0 (walking), což nafukovalo
+# podíl chůze; teď -1 a trénink ho musí vynechat / zamaskovat.
+UNLABELED = -1
 import os
 import json
 from collections import defaultdict
@@ -830,7 +834,7 @@ class ImprovedPersonTracker:
             skeleton_sequence.append(skeleton)
 
             # Get behavior for this frame
-            behavior = 0  # default
+            behavior = UNLABELED  # mimo označený segment -> neolabelováno (při tréninku maskovat)
             for segment in self.labels["segments"]:
                 if segment["start"] <= frame_num <= segment["end"]:
                     behavior = segment["behavior"]

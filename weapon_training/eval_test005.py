@@ -10,7 +10,9 @@ být nezávislý.
 
 Použití (stačí CPU/MPS, 48 obrázků):
     python eval_test005.py
+    python eval_test005.py --add v3=runs/detect/runs/weapons/<běh>/weights/best.pt
 """
+import argparse
 from pathlib import Path
 
 from ultralytics import YOLO
@@ -20,10 +22,16 @@ MODELS = {
     "vychozi": ROOT.parent / "models/weapon_detection_yolo11l/best.pt",
     "ft_vse": ROOT / "runs/detect/runs/weapons/med_domain_adapt/weights/last.pt",
     "ft_zmrazeny": ROOT.parent / "models/weapon_detection_yolo11l_med/best.pt",
+    "v2": ROOT.parent / "models/weapon_detection_yolo11l_med_v2/best.pt",
 }
 
 
 def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--add", nargs="*", default=[], metavar="TAG=CESTA", help="další modely k porovnání")
+    for a in ap.parse_args().add:
+        tag, w = a.split("=", 1)
+        MODELS[tag] = Path(w)
     yaml = ROOT / "annotate_005" / "test005.yaml"
     yaml.write_text(f"path: {ROOT / 'annotate_005'}\ntrain: images\nval: images\n"
                     "nc: 3\nnames: [gun, knife, melee]\n")

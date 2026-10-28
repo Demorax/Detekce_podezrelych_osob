@@ -32,6 +32,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import os
 import shutil
 import sys
 from collections import Counter, defaultdict
@@ -301,7 +302,7 @@ def main() -> int:
 
         if args.link:
             try:
-                dst_img.hardlink_to(img)
+                os.link(img, dst_img)  # Path.hardlink_to je až od Pythonu 3.10
             except OSError:
                 shutil.copy2(img, dst_img)
         else:

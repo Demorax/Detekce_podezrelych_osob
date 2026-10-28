@@ -1,0 +1,316 @@
+{
+ "loo": {
+  "TP": 3,
+  "FP": 0,
+  "FN": 1,
+  "TN": 26,
+  "precision": 1.0,
+  "recall": 0.75,
+  "f1": 0.8571428571428571,
+  "mean_latency_sec": 6.0
+ },
+ "per_video": [
+  {
+   "video": "Browse1",
+   "outcome": "TN",
+   "latency_sec": null,
+   "config": [
+    2,
+    1.5,
+    1
+   ]
+  },
+  {
+   "video": "Browse2",
+   "outcome": "TN",
+   "latency_sec": null,
+   "config": [
+    2,
+    1.5,
+    1
+   ]
+  },
+  {
+   "video": "Browse3",
+   "outcome": "TN",
+   "latency_sec": null,
+   "config": [
+    2,
+    1.5,
+    1
+   ]
+  },
+  {
+   "video": "Browse4",
+   "outcome": "TN",
+   "latency_sec": null,
+   "config": [
+    2,
+    1.5,
+    1
+   ]
+  },
+  {
+   "video": "Browse_WhileWaiting1",
+   "outcome": "TN",
+   "latency_sec": null,
+   "config": [
+    2,
+    1.5,
+    1
+   ]
+  },
+  {
+   "video": "Browse_WhileWaiting2",
+   "outcome": "TN",
+   "latency_sec": null,
+   "config": [
+    2,
+    1.5,
+    1
+   ]
+  },
+  {
+   "video": "Fight_Chase",
+   "outcome": "TN",
+   "latency_sec": null,
+   "config": [
+    2,
+    1.5,
+    1
+   ]
+  },
+  {
+   "video": "Fight_OneManDown",
+   "outcome": "TN",
+   "latency_sec": null,
+   "config": [
+    2,
+    1.5,
+    1
+   ]
+  },
+  {
+   "video": "Fight_OneManDown",
+   "outcome": "TN",
+   "latency_sec": null,
+   "config": [
+    2,
+    1.5,
+    1
+   ]
+  },
+  {
+   "video": "Fight_OneManDown",
+   "outcome": "TN",
+   "latency_sec": null,
+   "config": [
+    2,
+    1.5,
+    1
+   ]
+  },
+  {
+   "video": "Fight_RunAway1",
+   "outcome": "TN",
+   "latency_sec": null,
+   "config": [
+    2,
+    1.5,
+    1
+   ]
+  },
+  {
+   "video": "Fight_RunAway2",
+   "outcome": "TN",
+   "latency_sec": null,
+   "config": [
+    2,
+    1.5,
+    1
+   ]
+  },
+  {
+   "video": "LeftBag",
+   "outcome": "TP",
+   "latency_sec": 3.44,
+   "config": [
+    2,
+    1.5,
+    1
+   ]
+  },
+  {
+   "video": "LeftBag_AtChair",
+   "outcome": "TP",
+   "latency_sec": 4.64,
+   "config": [
+    2,
+    1.5,
+    1
+   ]
+  },
+  {
+   "video": "LeftBag_BehindChair",
+   "outcome": "TN",
+   "latency_sec": null,
+   "config": [
+    2,
+    1.5,
+    1
+   ]
+  },
+  {
+   "video": "LeftBag_PickedUp",
+   "outcome": "TP",
+   "latency_sec": 9.92,
+   "config": [
+    2,
+    1.5,
+    1
+   ]
+  },
+  {
+   "video": "LeftBox",
+   "outcome": "FN",
+   "latency_sec": null,
+   "config": [
+    2,
+    1.0,
+    1
+   ]
+  },
+  {
+   "video": "Meet_Crowd",
+   "outcome": "TN",
+   "latency_sec": null,
+   "config": [
+    2,
+    1.5,
+    1
+   ]
+  },
+  {
+   "video": "Meet_Split_3rdGuy",
+   "outcome": "TN",
+   "latency_sec": null,
+   "config": [
+    2,
+    1.5,
+    1
+   ]
+  },
+  {
+   "video": "Meet_WalkSplit",
+   "outcome": "TN",
+   "latency_sec": null,
+   "config": [
+    2,
+    1.5,
+    1
+   ]
+  },
+  {
+   "video": "Meet_WalkTogether1",
+   "outcome": "TN",
+   "latency_sec": null,
+   "config": [
+    2,
+    1.5,
+    1
+   ]
+  },
+  {
+   "video": "Meet_WalkTogether2",
+   "outcome": "TN",
+   "latency_sec": null,
+   "config": [
+    2,
+    1.5,
+    1
+   ]
+  },
+  {
+   "video": "Rest_FallOnFloor",
+   "outcome": "TN",
+   "latency_sec": null,
+   "config": [
+    2,
+    1.5,
+    1
+   ]
+  },
+  {
+   "video": "Rest_InChair",
+   "outcome": "TN",
+   "latency_sec": null,
+   "config": [
+    2,
+    1.5,
+    1
+   ]
+  },
+  {
+   "video": "Rest_SlumpOnFloor",
+   "outcome": "TN",
+   "latency_sec": null,
+   "config": [
+    2,
+    1.5,
+    1
+   ]
+  },
+  {
+   "video": "Rest_WiggleOnFloor",
+   "outcome": "TN",
+   "latency_sec": null,
+   "config": [
+    2,
+    1.5,
+    1
+   ]
+  },
+  {
+   "video": "Split",
+   "outcome": "TN",
+   "latency_sec": null,
+   "config": [
+    2,
+    1.5,
+    1
+   ]
+  },
+  {
+   "video": "Walk1",
+   "outcome": "TN",
+   "latency_sec": null,
+   "config": [
+    2,
+    1.5,
+    1
+   ]
+  },
+  {
+   "video": "Walk2",
+   "outcome": "TN",
+   "latency_sec": null,
+   "config": [
+    2,
+    1.5,
+    1
+   ]
+  },
+  {
+   "video": "Walk3",
+   "outcome": "TN",
+   "latency_sec": null,
+   "config": [
+    2,
+    1.5,
+    1
+   ]
+  }
+ ],
+ "n_configs_at_best_f1": 21,
+ "n_configs": 90
+}

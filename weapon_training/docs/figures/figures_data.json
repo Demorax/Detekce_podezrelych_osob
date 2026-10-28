@@ -275,33 +275,33 @@
  },
  "armed": {
   "původní (0,40; 1 snímek)": {
-   "poplachy_rvacky": 24,
+   "poplachy_rvacky": 25,
    "bitka_v_poplachu_pct": 100.0,
    "poplachy_klid": 7
   },
   "0,20; 1 snímek": {
-   "poplachy_rvacky": 38,
+   "poplachy_rvacky": 40,
    "bitka_v_poplachu_pct": 100.0,
    "poplachy_klid": 13
   },
   "0,20; 2 snímky": {
-   "poplachy_rvacky": 9,
+   "poplachy_rvacky": 10,
    "bitka_v_poplachu_pct": 100.0,
    "poplachy_klid": 5
   },
   "0,20; 3 snímky": {
    "poplachy_rvacky": 6,
-   "bitka_v_poplachu_pct": 100.0,
+   "bitka_v_poplachu_pct": 96.6,
    "poplachy_klid": 0
   },
   "nasazeno (0,20; 2 snímky; COCO pálka ≥ 0,50)": {
-   "poplachy_rvacky": 4,
+   "poplachy_rvacky": 5,
    "bitka_v_poplachu_pct": 93.1,
    "poplachy_klid": 5
   },
   "bez COCO pálky": {
-   "poplachy_rvacky": 3,
-   "bitka_v_poplachu_pct": 69.0,
+   "poplachy_rvacky": 4,
+   "bitka_v_poplachu_pct": 89.7,
    "poplachy_klid": 5
   }
  }

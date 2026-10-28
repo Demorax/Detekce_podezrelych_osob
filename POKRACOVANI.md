@@ -18,13 +18,29 @@
   - Olabelováno je jen 196 framů.
   - Jediný skutečný výsledek klasifikace chování je RWF-2000 BiLSTM, val_acc 0,756 (data jsou na PC).
 
+## 1b. Stav na Windows PC (2026-10-28)
+
+Přenos hotový (git pull + `bp_prenos.tar`). Udělané bez rozhodnutí autora, detaily v `STAV_PRACE.md`
+(sekce „Aktualizace 2026-10-28“):
+
+- RWF BiLSTM vyhodnocen: čistý odhad **video accuracy 0,781 ± 0,006**, okna 0,727 (`eval_rwf_lstm.py`).
+- Labeler opraven (neolabelováno = −1), data přepočítána (`fix_labeled_behaviors.py`).
+- Tracker: Hungarian + předpověď pohybu. CAVIAR leave-one-out 100 % / 75 % (`caviar_loo.py`).
+  Čísla ARMED v kapitole a reportu přepočítána, viz poznámka v kapitole.
+- ABODA přepočítávána s opraveným trackerem a diagnostikou (`diagnose_aboda.py`).
+- **Trénink v3 je připravený:** listy sporných případů jsou vygenerované (`weapon_training/review_ambiguous/list_01–06.png`),
+  po vyplnění `rozhodnuti.csv` stačí `bash weapon_training/train_v3_pc.sh` (zápis → sestavení → trénink ~12 min →
+  všechny evaluace). Ověřeno: sestavení dává stejný dataset jako na Macu, trénink na RTX 3090 běží (23 s/epocha).
+  AP50 na testu 005 vychází na PC o ~0,02 jinak než na Macu (jiná verze ultralytics), skript proto přeměřuje i v2.
+  CSV lze vyplnit i v Excelu (středníky/cp1250 skript přečte).
+
 ## 2. Co je na tobě (v tomhle pořadí)
 
 1. **Rozhodnout, co bude vedle zbraní jádrem práce** (`STAV_PRACE.md`, závěr).
    - **Varianta A:** RWF BiLSTM + pravidla pro opuštěná zavazadla. Najdi na PC pickly a model RWF;
      Claude pak doplní evaluaci a text.
-   - **Varianta B:** dolabelovat MED v `label_skeletons.py`. Pozor, labeler ukládá neolabelované
-     framy jako „chůze“ (`label_skeletons.py:657–662`), nejdřív to nech opravit.
+   - **Varianta B:** dolabelovat MED v `label_skeletons.py`. Chyba s neolabelovanými framy uloženými
+     jako „chůze“ je opravená (2026-10-28, ukládají se jako −1).
 2. **64 sporných případů z anotace** (tyč vs. paže/stín):
    ```bash
    cd weapon_training

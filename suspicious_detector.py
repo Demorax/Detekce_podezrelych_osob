@@ -130,6 +130,20 @@ SKELETON_CONNECTIONS = [
     (11, 12),                                                    # boky
 ]
 
+# CrowdPose 14 keypoints (výstup ViTPose v této pipeline): 0/1 ramena, 2/3 lokty, 4/5 zápěstí,
+# 6/7 boky, 8/9 kolena, 10/11 kotníky, 12 temeno, 13 krk
+CROWDPOSE_SKELETON_CONNECTIONS = [
+    (12, 13), (13, 0), (13, 1),                                  # hlava, krk
+    (0, 2), (2, 4), (1, 3), (3, 5),                              # ruce
+    (0, 6), (1, 7), (6, 7),                                      # trup
+    (6, 8), (8, 10), (7, 9), (9, 11),                            # nohy
+]
+
+
+def skeleton_connections(n_keypoints):
+    """Spoje skeletu podle formátu: 14 bodů = CrowdPose, jinak COCO 17."""
+    return CROWDPOSE_SKELETON_CONNECTIONS if n_keypoints == 14 else SKELETON_CONNECTIONS
+
 
 class RTDETRDetector:
     """
@@ -603,7 +617,7 @@ class SuspiciousDetector:
                     skel = skeletons[i]
                     kp = skel[:, :2]
                     sc = skel[:, 2]
-                    for c0, c1 in SKELETON_CONNECTIONS:
+                    for c0, c1 in skeleton_connections(len(kp)):
                         if c0 >= len(kp) or c1 >= len(kp):
                             continue
                         if sc[c0] > 0.3 and sc[c1] > 0.3:

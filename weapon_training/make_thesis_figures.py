@@ -283,7 +283,7 @@ def fig_examples(model, test_imgs: list[Path], neg_imgs: list[Path], device: str
 
 # ------------------------------------------------------------------ obr. 7
 def fig_armed(data: dict) -> None:
-    res = json.loads((HERE / "armed_eval/results.json").read_text())
+    res = json.loads((HERE / "armed_eval/results.json").read_text(encoding="utf-8"))
     rows = {r["varianta"]: r for r in res["rows"]}
     pick = [  # (klíč v results.json, popisek, nasazeno?)
         ("dříve: melee 0,40, 1 frame, pálka 0,15", "původní\n(0,40; 1 snímek)", False),
@@ -295,7 +295,7 @@ def fig_armed(data: dict) -> None:
     ]
     fig, ax = plt.subplots(figsize=(6.4, 3.6))
     offsets = {"původní": (8, -4), "0,20; 1 snímek": (-8, -14), "0,20; 2 snímky": (8, 4),
-               "0,20; 3 snímky": (-4, 10), "nasazeno": (10, -22), "bez COCO pálky": (8, -4)}
+               "0,20; 3 snímky": (8, 4), "nasazeno": (10, -14), "bez COCO pálky": (8, -16)}
     out = {}
     for key, lab, dep in pick:
         r = rows[key]
@@ -310,7 +310,7 @@ def fig_armed(data: dict) -> None:
                                          "poplachy_klid": r["klid_events"]}
     ax.set_xlabel(f"falešné poplachy na rvačkách bez zbraní ({cz(res['minutes']['rvacky'], 1)} min videa)")
     ax.set_ylabel("bitka 005 v poplachu (%)")
-    ax.set_xlim(0, 42); ax.set_ylim(60, 104)
+    ax.set_xlim(0, 42); ax.set_ylim(80, 104)
     ax.xaxis.set_major_formatter(COMMA)
     ax.annotate("lepší", xy=(13, 97), xytext=(19, 88), color=INK2, fontsize=8,
                 arrowprops=dict(arrowstyle="->", color=INK2, lw=0.8))

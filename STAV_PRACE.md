@@ -4,6 +4,46 @@
 > Detekce zbraní (`weapon_training/`) je hotová a zdokumentovaná: trénink, MED test, nasazení v2, ARMED větev
 > a koncept kapitoly `weapon_training/docs/KAPITOLA_DETEKCE_ZBRANI.md` (~6 800 slov). Tady se jí dál nevěnuji.
 
+## Aktualizace 2026-10-28 (Windows PC, data z PC i z Macu)
+
+Body tabulky „Co chybí do odevzdání“, které šly udělat bez rozhodnutí autora:
+
+- **Bod 3, RWF BiLSTM, vyhodnoceno** (`eval_rwf_lstm.py`, výsledky `rwf_lstm_eval.json`). Data a model jsou na PC.
+  - Checkpoint `best_lstm_pytorch.pt` (epocha 38) po oknech přesně reprodukuje 0,756. Je ale vybraný podle val, který je zároveň jedinou nezávislou sadou, takže je optimistický.
+  - **Čistý odhad** (`--holdout`): stejný model a hyperparametry, checkpoint vybraný na 15 % trénovacích videí, oficiální val (400 videí) použit jen jednou jako test, 3 seedy.
+
+    | úroveň | accuracy | macro F1 | F1 Fight | ROC AUC |
+    |---|---:|---:|---:|---:|
+    | okna (15 snímků) | 0,727 ± 0,003 | 0,721 | 0,679 | 0,789 |
+    | **video (průměr oken)** | **0,781 ± 0,006** | 0,778 | 0,752 | 0,808 |
+    | video, jen pokrytá (316/400) | 0,805 ± 0,008 | 0,805 | 0,812 | 0,869 |
+
+    (Checkpoint vybraný na val: okna 0,756, video 0,802.)
+  - **Pokrytí:** RWF videa mají při 5 FPS jen 25 snímků. V **84 ze 400** val videí (26 Fight) není nikdo sledovaný 15 snímků, takže nevznikne okno a video se počítá jako NonFight. Pro text: buď kratší okno, nebo pokrytí uvádět zvlášť.
+  - Srovnání s literaturou (skeletové metody, video accuracy na RWF val). **Čísla ověřit v originálech**, protokoly se liší:
+    - Human skeletons + change detection (ConvLSTM): 90,25 %, https://cs.paperswithcode.com/paper/human-skeletons-and-change-detection-for
+    - LG-SPIL, 3D skeleton point clouds: 90,0 %; obecné modely pro rozpoznání akcí podle autorů nejvýš 87,3 %, https://arxiv.org/pdf/2308.13866
+    - Structured Keypoint Pooling: 93,4 % (agregátor), https://next.hyper.ai/en/sota/tasks/activity-recognition/benchmark/activity-recognition-on-rwf-2000
+    - Diplomová práce, póza + rozdíly snímků: 85,25 %, https://ebuah.uah.es/xmlui/handle/10017/60891
+    - DIFEM (Random Forest nad interakcemi keypointů): 96,5 % jen ze sekundárního shrnutí, nepoužívat bez originálu.
+
+    Náš výsledek 0,78 je tedy pod skeletovými SOTA (~0,85–0,93). Hlavní vysvětlení jsou okno 15 snímků při 5 FPS (16 % videí bez okna), modelování jednotlivých osob bez interakcí mezi nimi a malý model.
+- **Bod 6, labeler, opraveno.** Oba labelery ukládají neolabelované framy jako −1 (`UNLABELED`). `fix_labeled_behaviors.py --write` přepočítal existující `.npz` ze segmentů v JSON (skelety beze změny). Keras notebook `detekce_novy_pristub.ipynb` okna s −1 vynechává (`to_categorical(-1)` by je tiše zařadil do třídy running).
+
+  | adresář | dřív walking / susp. / running | teď walking / susp. / running / neolabelováno |
+  |---|---|---|
+  | `labeled_behaviors/` | 188 / 0 / 8 | 140 / 0 / 8 / 48 |
+  | `labeled_behaviors_05/` | 209 / 4 / 2 | 126 / 4 / 2 / 83 |
+- **Bod 4, tracker:** Hungarian a předpověď pohybu, body 4, 5, 7, 8, 9 a 12 z `CODE_REVIEW_PIPELINE.md` jsou opravené. CAVIAR se nezměnil. ARMED nasazení se nezměnilo (5 / 5 / 93 %). Bez COCO pálky drží bitku z 90 % místo 62 %.
+- **Bod 5, CAVIAR held-out** (`caviar_loo.py`, `caviar_loo_results.json`). Leave-one-video-out přes 30 XML / 28 scénářů:
+  - **precision 100 % (0 FP), recall 75 % (3/4)**, latence 6,0 s.
+  - Chybí `LeftBox`: bez něj výběr kvůli nižší latenci zvolí radius 1,0 místo 1,5.
+  - Na všech videích má F1 = 1 celkem 21 z 90 konfigurací. Číslo 4/4 je tedy na datech, na kterých se ladilo.
+  - `LeftBag_PickedUp` je teď TP (+9,9 s). Definici pozitiva musí rozhodnout autor.
+- **Bod 8, ABODA:** `diagnose_aboda.py` znovu pouští plnou pipeline s opraveným trackerem a u každého zavazadla zapisuje detekci, vlastníka a dobu bez vlastníka (`reference_img/aboda_alerts_v2/`). Původní batch běžel ještě s chybou trackeru z bodu 1. Video4: taška je detekovaná jen v ruce majitele (10–19 s). Když leží sama u skříně, YOLO11x ji nenajde a track zanikne. Selhává tedy **detekce** odloženého zavazadla, ne pravidla. Souhrn všech 11 videí je v `reference_img/aboda_alerts_v2/souhrn.json`.
+- **Bod 15, NWPU:** `nwpu_eval_30*.json` vznikly také ještě se starým trackerem. NWPU nemá typ anomálie po videích, takže recall opuštění změřit nejde. Smysl má jen počet falešných poplachů na normálních videích (dřív 0 na 10 videích).
+- **Prostředí PC (Python 3.9):** opraveno `Path.hardlink_to` (od 3.10) v `build_*dataset.py` a `oversample_knife.py`. Vzorek původních dat v `build_finetune_dataset.py` byl na Windows jiný (řazení `WindowsPath` nerozlišuje velikost písmen), teď se řadí podle jména a dataset v3 vychází identicky s Macem. Skripty spouštět s `PYTHONUTF8=1` (JSONy z Macu jsou v UTF-8).
+
 ## Chronologie (git log, 41 commitů)
 
 | Období | Co vzniklo |

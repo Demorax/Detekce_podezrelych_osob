@@ -28,6 +28,7 @@ Použití (na Sparku):
 from __future__ import annotations
 
 import argparse
+import os
 import random
 import shutil
 from collections import Counter
@@ -68,7 +69,7 @@ def link(src: Path, dst: Path):
     if dst.exists():
         dst.unlink()
     try:
-        dst.hardlink_to(src)
+        os.link(src, dst)  # Path.hardlink_to je až od Pythonu 3.10
     except OSError:
         shutil.copy2(src, dst)
 
@@ -128,7 +129,9 @@ def main() -> int:
 
     # vzorek původních dat → jen train (validace na původních datech se dělá zvlášť
     # na kompletním weapons_merged/val, aby šla porovnat s výchozím modelem)
-    orig_imgs = sorted((Path(args.orig) / "train" / "images").iterdir())
+    # řadit podle jména: WindowsPath se porovnává bez ohledu na velikost písmen,
+    # takže by stejný seed dal na Windows jiný vzorek než na Macu/Linuxu
+    orig_imgs = sorted((Path(args.orig) / "train" / "images").iterdir(), key=lambda p: p.name)
     random.Random(SEED).shuffle(orig_imgs)
     oc = Counter()
     for img in orig_imgs[: args.mix]:

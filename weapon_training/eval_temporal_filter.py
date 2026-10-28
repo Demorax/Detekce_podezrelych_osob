@@ -132,9 +132,14 @@ def iou(a, b) -> float:
 
 
 def main() -> int:
+    global CACHE, WEIGHTS
     ap = argparse.ArgumentParser()
     ap.add_argument("--device", default="0")
+    # pro jiný model (např. v3) jiné --weights i --cache, cache detekcí je vázaná na váhy
+    ap.add_argument("--weights", default=str(WEIGHTS))
+    ap.add_argument("--cache", default=str(CACHE))
     args = ap.parse_args()
+    CACHE, WEIGHTS = Path(args.cache), Path(args.weights)
     CACHE.mkdir(exist_ok=True)
 
     from ultralytics import YOLO

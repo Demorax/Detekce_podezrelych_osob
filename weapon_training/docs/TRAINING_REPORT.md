@@ -901,14 +901,16 @@ skriptem `make_demo_video.py` do `docs/demo/` a v gitu nejsou.
 
 | varianta | bitka 005 v poplachu | zpoždění | poplachy rvačky (5,5 min) | z toho nepoužitá videa (3,8 min) | poplachy klid (3,4 min) |
 |---|---:|---:|---:|---:|---:|
-| dříve: melee 0,40, 1 frame | 100 % | 0 s | 24 | 21 | 7 |
-| melee 0,20, 1 frame | 100 % | 0 s | 38 | 30 | 13 |
-| melee 0,20, 2 framy (pálka 0,15) | 100 % | 0 s | 9 | 7 | 5 |
-| melee 0,20, 3 framy | 100 % | 0 s | 6 | 5 | 0 |
-| **nasazeno: melee 0,20, 2 framy, COCO pálka od 0,50** | **93 %** | **0,4 s** | **4** | **2** | **5** |
-| melee 0,20, 2 framy, bez COCO pálky | 69 % | 0,4 s | 3 | 1 | 5 |
+| dříve: melee 0,40, 1 frame | 100 % | 0 s | 25 | 21 | 7 |
+| melee 0,20, 1 frame | 100 % | 0 s | 40 | 30 | 13 |
+| melee 0,20, 2 framy (pálka 0,15) | 100 % | 0 s | 10 | 7 | 5 |
+| melee 0,20, 3 framy | 97 % | 0 s | 6 | 5 | 0 |
+| **nasazeno: melee 0,20, 2 framy, COCO pálka od 0,50** | **93 %** | **0,4 s** | **5** | **2** | **5** |
+| melee 0,20, 2 framy, bez COCO pálky | 90 % | 0,4 s | 4 | 1 | 5 |
 
-Celá tabulka je v `armed_eval/results.json`.
+Celá tabulka je v `armed_eval/results.json`. Přepočítáno 2026-10-28 s opraveným trackerem
+(výpadek detekce, Hungarian + předpověď pohybu, `CODE_REVIEW_PIPELINE.md` body 1 a 4); text
+zjištění níže je psaný k původním číslům (bez COCO pálky tehdy 69 %, nasazeno 4 poplachy).
 
 ### Zjištění
 

@@ -56,7 +56,7 @@ def iou(a, b) -> float:
 def load_items() -> list[dict]:
     items = []
     for wl in WORKLISTS:
-        for x in json.loads((HERE / wl).read_text()):
+        for x in json.loads((HERE / wl).read_text(encoding="utf-8")):
             if x.get("approx_box"):
                 items.append(x)
     return items
@@ -64,7 +64,8 @@ def load_items() -> list[dict]:
 
 def font(size: int):
     for f in ("/System/Library/Fonts/Supplemental/Arial.ttf", "/Library/Fonts/Arial.ttf",
-              "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"):
+              "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+              "C:/Windows/Fonts/arial.ttf"):
         if Path(f).exists():
             return ImageFont.truetype(f, size)
     return ImageFont.load_default()
@@ -118,7 +119,7 @@ def sheets(device: str) -> None:
         sheet.save(OUT / f"list_{k // per + 1:02d}.png")
 
     if CSV.exists():   # nepřepsat už vyplněná rozhodnutí
-        old = {r["id"]: r["rozhodnuti"] for r in csv.DictReader(open(CSV, encoding="utf-8"))}
+        old = {r["id"]: r["rozhodnuti"] for r in read_csv()}
         for r in rows:
             r["rozhodnuti"] = old.get(str(r["id"]), "")
     with open(CSV, "w", newline="", encoding="utf-8") as f:
@@ -127,8 +128,21 @@ def sheets(device: str) -> None:
     print(f"{len(items)} případů, {len(tiles) // per + (len(tiles) % per > 0)} listů -> {OUT}")
 
 
+def read_csv() -> list[dict]:
+    """CSV z českého Excelu bývá v cp1250 se středníky, z editoru v UTF-8 s čárkami."""
+    raw = CSV.read_bytes()
+    for enc in ("utf-8-sig", "cp1250"):
+        try:
+            text = raw.decode(enc)
+            break
+        except UnicodeDecodeError:
+            continue
+    delim = ";" if text.splitlines()[0].count(";") > text.splitlines()[0].count(",") else ","
+    return list(csv.DictReader(text.splitlines(), delimiter=delim))
+
+
 def apply() -> None:
-    rows = list(csv.DictReader(open(CSV, encoding="utf-8")))
+    rows = read_csv()
     todo = [r for r in rows if not r["rozhodnuti"].strip()]
     if todo:
         raise SystemExit(f"Nevyplněno {len(todo)} případů (např. #{todo[0]['id']}). "
@@ -142,7 +156,7 @@ def apply() -> None:
             with Image.open(d / "images" / f"{r['stem']}.jpg") as im:
                 w, h = im.size
             lbl = d / "labels" / f"{r['stem']}.txt"
-            lines = [l for l in lbl.read_text().splitlines() if l.strip()] if lbl.exists() else []
+            lines = [l for l in lbl.read_text(encoding="utf-8").splitlines() if l.strip()] if lbl.exists() else []
             dup = False
             for l in lines:
                 c, cx, cy, bw, bh = map(float, l.split())

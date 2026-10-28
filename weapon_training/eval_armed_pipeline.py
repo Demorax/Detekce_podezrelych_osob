@@ -142,9 +142,14 @@ def summarize(video: dict, armed: list[set]) -> dict:
 
 
 def main() -> int:
+    global CACHE
     ap = argparse.ArgumentParser()
     ap.add_argument("--device", default="0")
+    # pro jiný model (např. v3) jiné --weights i --cache, cache detekcí je vázaná na váhy
+    ap.add_argument("--weights", default=None, help="výchozí: _WEAPON_MODEL ze suspicious_detector.py")
+    ap.add_argument("--cache", default=str(CACHE))
     args = ap.parse_args()
+    CACHE = Path(args.cache)
     CACHE.mkdir(exist_ok=True)
     os.chdir(ROOT)
     sys.path.insert(0, str(ROOT))
@@ -162,7 +167,7 @@ def main() -> int:
         det.rtdetr = types.SimpleNamespace(better_detection=lambda img: np.zeros((0, 5)))
         det.vitpose = types.SimpleNamespace(extract_keypoints=lambda img, b: np.array([]))
         det.coco = YOLO(sd._YOLO_MODEL)
-        det.weapon = YOLO(sd._WEAPON_MODEL)
+        det.weapon = YOLO(args.weights or sd._WEAPON_MODEL)
         det.device = args.device
         det.coco_filter = list(sd.COCO_HIGH_THREAT) + list(sd.COCO_MEDIUM_THREAT) + list(sd.COCO_CARRY)
         pose = YOLO(str(ROOT / "yolo11x-pose.pt"))

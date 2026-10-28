@@ -13,7 +13,7 @@
    "per_video": {
     "005": {
      "events": 2,
-     "person_events": 18,
+     "person_events": 22,
      "armed_s": 14.4
     },
     "017": {
@@ -22,19 +22,19 @@
      "armed_s": 0.0
     },
     "026": {
-     "events": 3,
-     "person_events": 6,
-     "armed_s": 5.4
+     "events": 4,
+     "person_events": 7,
+     "armed_s": 5.2
     },
     "018": {
      "events": 3,
-     "person_events": 4,
+     "person_events": 7,
      "armed_s": 5.4
     },
     "019": {
      "events": 8,
-     "person_events": 26,
-     "armed_s": 20.4
+     "person_events": 31,
+     "armed_s": 21.4
     },
     "020": {
      "events": 6,
@@ -69,10 +69,10 @@
    },
    "fight005_armed_frac": 1.0,
    "delay_005_s": 0.0,
-   "rvacky_events": 24,
-   "rvacky_armed_s": 52.99999999999999,
+   "rvacky_events": 25,
+   "rvacky_armed_s": 53.8,
    "nepouzita_events": 21,
-   "nepouzita_armed_s": 47.599999999999994,
+   "nepouzita_armed_s": 48.599999999999994,
    "klid_events": 7,
    "klid_armed_s": 13.399999999999999
   },
@@ -84,33 +84,33 @@
    "per_video": {
     "005": {
      "events": 3,
-     "person_events": 21,
+     "person_events": 27,
      "armed_s": 17.0
     },
     "017": {
      "events": 5,
-     "person_events": 10,
+     "person_events": 11,
      "armed_s": 9.0
     },
     "026": {
-     "events": 3,
-     "person_events": 12,
-     "armed_s": 9.8
+     "events": 5,
+     "person_events": 15,
+     "armed_s": 8.6
     },
     "018": {
      "events": 4,
-     "person_events": 5,
+     "person_events": 8,
      "armed_s": 7.2
     },
     "019": {
      "events": 9,
-     "person_events": 28,
-     "armed_s": 22.2
+     "person_events": 33,
+     "armed_s": 23.2
     },
     "020": {
      "events": 9,
      "person_events": 17,
-     "armed_s": 19.0
+     "armed_s": 19.8
     },
     "007": {
      "events": 5,
@@ -124,7 +124,7 @@
     },
     "021": {
      "events": 2,
-     "person_events": 4,
+     "person_events": 5,
      "armed_s": 5.2
     },
     "027": {
@@ -134,16 +134,16 @@
     },
     "030": {
      "events": 8,
-     "person_events": 19,
+     "person_events": 22,
      "armed_s": 23.4
     }
    },
    "fight005_armed_frac": 1.0,
    "delay_005_s": 0.0,
-   "rvacky_events": 38,
-   "rvacky_armed_s": 82.60000000000001,
+   "rvacky_events": 40,
+   "rvacky_armed_s": 83.2,
    "nepouzita_events": 30,
-   "nepouzita_armed_s": 63.8,
+   "nepouzita_armed_s": 65.60000000000001,
    "klid_events": 13,
    "klid_armed_s": 34.2
   },
@@ -164,9 +164,9 @@
      "armed_s": 0.0
     },
     "026": {
-     "events": 2,
-     "person_events": 5,
-     "armed_s": 4.8
+     "events": 3,
+     "person_events": 6,
+     "armed_s": 4.6
     },
     "018": {
      "events": 0,
@@ -206,17 +206,17 @@
     "030": {
      "events": 3,
      "person_events": 4,
-     "armed_s": 8.6
+     "armed_s": 10.2
     }
    },
    "fight005_armed_frac": 1.0,
    "delay_005_s": 0.0,
-   "rvacky_events": 9,
-   "rvacky_armed_s": 22.2,
+   "rvacky_events": 10,
+   "rvacky_armed_s": 22.0,
    "nepouzita_events": 7,
    "nepouzita_armed_s": 17.4,
    "klid_events": 5,
-   "klid_armed_s": 13.6
+   "klid_armed_s": 15.2
   },
   {
    "varianta": "melee 0,20, 3 framy, pálka 0,15",
@@ -225,9 +225,9 @@
    "coco_bat_min": 0.15,
    "per_video": {
     "005": {
-     "events": 1,
-     "person_events": 5,
-     "armed_s": 7.6
+     "events": 2,
+     "person_events": 6,
+     "armed_s": 7.4
     },
     "017": {
      "events": 0,
@@ -280,7 +280,7 @@
      "armed_s": 0.0
     }
    },
-   "fight005_armed_frac": 1.0,
+   "fight005_armed_frac": 0.9655172413793104,
    "delay_005_s": 0.0,
    "rvacky_events": 6,
    "rvacky_armed_s": 11.8,
@@ -297,7 +297,7 @@
    "per_video": {
     "005": {
      "events": 1,
-     "person_events": 7,
+     "person_events": 6,
      "armed_s": 7.4
     },
     "017": {
@@ -306,9 +306,9 @@
      "armed_s": 0.0
     },
     "026": {
-     "events": 2,
-     "person_events": 5,
-     "armed_s": 4.8
+     "events": 3,
+     "person_events": 6,
+     "armed_s": 4.6
     },
     "018": {
      "events": 0,
@@ -348,17 +348,17 @@
     "030": {
      "events": 3,
      "person_events": 4,
-     "armed_s": 8.6
+     "armed_s": 10.2
     }
    },
    "fight005_armed_frac": 1.0,
    "delay_005_s": 0.0,
-   "rvacky_events": 7,
-   "rvacky_armed_s": 15.399999999999999,
+   "rvacky_events": 8,
+   "rvacky_armed_s": 15.2,
    "nepouzita_events": 5,
    "nepouzita_armed_s": 10.600000000000001,
    "klid_events": 5,
-   "klid_armed_s": 13.6
+   "klid_armed_s": 15.2
   },
   {
    "varianta": "NASAZENO: melee 0,20, 2 framy, pálka 0,50",
@@ -368,7 +368,7 @@
    "per_video": {
     "005": {
      "events": 1,
-     "person_events": 6,
+     "person_events": 5,
      "armed_s": 5.6
     },
     "017": {
@@ -377,9 +377,9 @@
      "armed_s": 0.0
     },
     "026": {
-     "events": 2,
-     "person_events": 5,
-     "armed_s": 4.8
+     "events": 3,
+     "person_events": 6,
+     "armed_s": 4.6
     },
     "018": {
      "events": 0,
@@ -419,17 +419,17 @@
     "030": {
      "events": 3,
      "person_events": 4,
-     "armed_s": 8.6
+     "armed_s": 10.2
     }
    },
    "fight005_armed_frac": 0.9310344827586207,
    "delay_005_s": 0.4004004004004004,
-   "rvacky_events": 4,
-   "rvacky_armed_s": 8.8,
+   "rvacky_events": 5,
+   "rvacky_armed_s": 8.6,
    "nepouzita_events": 2,
    "nepouzita_armed_s": 4.0,
    "klid_events": 5,
-   "klid_armed_s": 13.6
+   "klid_armed_s": 15.2
   },
   {
    "varianta": "melee 0,15, 2 framy, pálka 0,50",
@@ -439,7 +439,7 @@
    "per_video": {
     "005": {
      "events": 1,
-     "person_events": 6,
+     "person_events": 5,
      "armed_s": 5.8
     },
     "017": {
@@ -448,9 +448,9 @@
      "armed_s": 0.0
     },
     "026": {
-     "events": 3,
+     "events": 4,
      "person_events": 7,
-     "armed_s": 7.8
+     "armed_s": 7.6
     },
     "018": {
      "events": 0,
@@ -490,17 +490,17 @@
     "030": {
      "events": 3,
      "person_events": 4,
-     "armed_s": 8.8
+     "armed_s": 10.4
     }
    },
    "fight005_armed_frac": 0.9310344827586207,
    "delay_005_s": 0.4004004004004004,
-   "rvacky_events": 5,
-   "rvacky_armed_s": 11.8,
+   "rvacky_events": 6,
+   "rvacky_armed_s": 11.600000000000001,
    "nepouzita_events": 2,
    "nepouzita_armed_s": 4.0,
    "klid_events": 6,
-   "klid_armed_s": 15.8
+   "klid_armed_s": 17.4
   },
   {
    "varianta": "melee 0,10, 2 framy, pálka 0,50",
@@ -510,7 +510,7 @@
    "per_video": {
     "005": {
      "events": 1,
-     "person_events": 6,
+     "person_events": 5,
      "armed_s": 5.8
     },
     "017": {
@@ -519,9 +519,9 @@
      "armed_s": 4.4
     },
     "026": {
-     "events": 3,
+     "events": 4,
      "person_events": 7,
-     "armed_s": 8.0
+     "armed_s": 7.8
     },
     "018": {
      "events": 0,
@@ -560,18 +560,18 @@
     },
     "030": {
      "events": 7,
-     "person_events": 13,
-     "armed_s": 18.4
+     "person_events": 14,
+     "armed_s": 20.0
     }
    },
    "fight005_armed_frac": 0.9310344827586207,
    "delay_005_s": 0.4004004004004004,
-   "rvacky_events": 9,
-   "rvacky_armed_s": 18.6,
+   "rvacky_events": 10,
+   "rvacky_armed_s": 18.4,
    "nepouzita_events": 4,
    "nepouzita_armed_s": 6.2,
    "klid_events": 10,
-   "klid_armed_s": 25.4
+   "klid_armed_s": 27.0
   },
   {
    "varianta": "melee 0,20, 2 framy, bez COCO pálky",
@@ -582,7 +582,7 @@
     "005": {
      "events": 2,
      "person_events": 5,
-     "armed_s": 4.0
+     "armed_s": 5.2
     },
     "017": {
      "events": 0,
@@ -590,9 +590,9 @@
      "armed_s": 0.0
     },
     "026": {
-     "events": 2,
-     "person_events": 5,
-     "armed_s": 4.8
+     "events": 3,
+     "person_events": 6,
+     "armed_s": 4.6
     },
     "018": {
      "events": 0,
@@ -632,17 +632,17 @@
     "030": {
      "events": 3,
      "person_events": 4,
-     "armed_s": 8.6
+     "armed_s": 10.2
     }
    },
-   "fight005_armed_frac": 0.6896551724137931,
+   "fight005_armed_frac": 0.896551724137931,
    "delay_005_s": 0.4004004004004004,
-   "rvacky_events": 3,
-   "rvacky_armed_s": 7.0,
+   "rvacky_events": 4,
+   "rvacky_armed_s": 6.8,
    "nepouzita_events": 1,
    "nepouzita_armed_s": 2.2,
    "klid_events": 5,
-   "klid_armed_s": 13.6
+   "klid_armed_s": 15.2
   }
  ]
 }

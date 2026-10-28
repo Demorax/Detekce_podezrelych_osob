@@ -79,14 +79,23 @@ def visualize_detections(img, boxes, skeletons=None, title="Detection Results", 
     # Draw skeletons if provided
     if skeletons is not None and len(skeletons) > 0:
         # COCO skeleton connections (17 keypoints format)
-        connections = [
+        coco_connections = [
             (0, 1), (0, 2), (1, 3), (2, 4),  # Head
             (5, 6), (5, 7), (7, 9), (6, 8), (8, 10),  # Arms
             (5, 11), (6, 12), (11, 13), (13, 15), (12, 14), (14, 16),  # Legs
             (11, 12)  # Hip
         ]
+        # CrowdPose connections (14 keypoints, ViTPose výstup): 0/1 ramena, 2/3 lokty, 4/5 zápěstí,
+        # 6/7 boky, 8/9 kolena, 10/11 kotníky, 12 temeno, 13 krk
+        crowdpose_connections = [
+            (12, 13), (13, 0), (13, 1),  # Head, neck
+            (0, 2), (2, 4), (1, 3), (3, 5),  # Arms
+            (0, 6), (1, 7), (6, 7),  # Torso
+            (6, 8), (8, 10), (7, 9), (9, 11)  # Legs
+        ]
 
         for person_idx, (skeleton, color) in enumerate(zip(skeletons, colors)):
+            connections = crowdpose_connections if len(skeleton) == 14 else coco_connections
             # Handle different skeleton formats
             if skeleton.shape[-1] == 3:  # (num_keypoints, 3) with scores
                 keypoints = skeleton[:, :2]

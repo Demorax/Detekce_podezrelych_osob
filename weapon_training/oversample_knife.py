@@ -9,7 +9,7 @@ poměr vyrovnat bez novych dat.
 val a test se NEOVERSAMPLUJI - jinak by metriky nebyly srovnatelne.
 Obrazky se hardlinkuji, takze varianta nezere misto.
 """
-import shutil, sys
+import os, shutil, sys
 from collections import Counter
 from pathlib import Path
 
@@ -35,7 +35,7 @@ for split in ("train", "val", "test"):
             di = dst / split / "images" / f"{img.stem}{sfx}{img.suffix}"
             dl = dst / split / "labels" / f"{lbl.stem}{sfx}.txt"
             try:
-                di.hardlink_to(img)
+                os.link(img, di)  # Path.hardlink_to je až od Pythonu 3.10
             except OSError:
                 shutil.copy2(img, di)
             dl.write_text(lbl.read_text())

@@ -27,6 +27,7 @@ from pathlib import Path
 
 import cv2
 import numpy as np
+from scipy.optimize import linear_sum_assignment
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from suspicious_detector import SuspiciousDetector
@@ -38,11 +39,10 @@ from suspicious_detector import SuspiciousDetector
 DEFAULT_SAMPLE_FPS = 5
 DEFAULT_ABANDON_SEC = 2                # was 5 — sníženo pro vyšší recall (LeftBag_PickedUp)
 DEFAULT_OWNERSHIP_RADIUS_FACTOR = 1.5   # × person bbox height
-DEFAULT_MAX_PERSON_TRACK_DIST = 100
+DEFAULT_MAX_PERSON_TRACK_DIST = 100    # px v rozlišení VSTUPNÍHO videa (s --upscale se přepočítá)
 DEFAULT_MAX_OBJ_MISSED = 5
 DEFAULT_OBJ_IOU_THRESHOLD = 0.3
 DEFAULT_MIN_OWNERSHIP_FRAMES = 1        # was 2 — sníženo, ownership claim snadnější
-DEFAULT_MIN_OBJ_TRACK_LEN = 3
 
 # Armed person detection — osoba držící high-threat objekt = podezřelá (ARMED)
 # SKELETON-BASED: osoba je ARMED jen když má ZÁPĚSTÍ blízko bbox zbraně (ne jen v radiu těla).
@@ -53,6 +53,7 @@ DEFAULT_MIN_OBJ_TRACK_LEN = 3
 # v pipeline dál kvůli zavazadlům a je na custom modelu nezávislý.
 HIGH_THREAT_LABELS = {'baseball bat', 'knife', 'gun', 'melee'}
 CROWDPOSE_WRIST_IDX = (4, 5)        # l_wrist, r_wrist v CrowdPose 14-keypoint formátu
+COCO_WRIST_IDX = (9, 10)            # l_wrist, r_wrist v COCO 17-keypoint formátu
 WRIST_CONF_MIN = 0.3               # min confidence keypointu zápěstí, jinak se ignoruje
 ARMED_WRIST_DIST_FACTOR = 0.45     # zbraň "v ruce" pokud zápěstí < faktor × výška od bbox zbraně
 ARMED_FALLBACK_RADIUS_FACTOR = 0.7 # když chybí skelet → centroid-based (přísnější než dřív)
@@ -149,14 +150,39 @@ def point_to_bbox_dist(pt, box):
 
 
 # ===== Trackers =====
-class PersonTracker:
-    """Greedy centroid tracker pro osoby."""
+def match_tracks(cost, allowed):
+    """Globálně optimální párování tracků (řádky) s detekcemi (sloupce), Hungarian.
 
-    def __init__(self, max_dist=DEFAULT_MAX_PERSON_TRACK_DIST, max_missed=3):
-        self.tracks = {}      # tid -> {'centroid', 'box', 'missed', 'history': [(frame, box)]}
+    Dřív se párovalo hladově v pořadí tracků: když se dvě osoby míjely, starší track si vzal
+    detekci, která patřila druhému, a osoby si prohodily ID i s ARMED stavem / vlastnictvím
+    zavazadla (CODE_REVIEW_PIPELINE.md bod 4). `allowed` je gating (max. vzdálenost, min. IoU,
+    stejný label); zakázané dvojice se nikdy nespárují.
+    """
+    if cost.size == 0 or not allowed.any():
+        return []
+    big = cost[allowed].max() + 1e6
+    rows, cols = linear_sum_assignment(np.where(allowed, cost, big))
+    return [(r, c) for r, c in zip(rows, cols) if allowed[r, c]]
+
+
+class PersonTracker:
+    """Centroid tracker pro osoby (párování Hungarian s gatingem max_dist).
+
+    use_motion: párovat podle předpovězené polohy (konstantní rychlost), ne poslední známé.
+    Bez toho si dvě osoby, které se míjejí, prohodí ID, i když je párování globálně optimální.
+    """
+
+    def __init__(self, max_dist=DEFAULT_MAX_PERSON_TRACK_DIST, max_missed=3, use_motion=True):
+        self.tracks = {}      # tid -> {'centroid', 'vel', 'last_frame', 'box', 'missed', 'history': [(frame, box)]}
         self.next_id = 0
         self.max_dist = max_dist
         self.max_missed = max_missed
+        self.use_motion = use_motion
+
+    def _predict(self, t, frame_idx):
+        if not self.use_motion:
+            return t['centroid']
+        return t['centroid'] + t['vel'] * (frame_idx - t['last_frame'])
 
     def update(self, frame_idx, person_boxes, skeletons=None):
         """
@@ -176,35 +202,34 @@ class PersonTracker:
             new_centroids = [bbox_centroid(b[:4]) for b in person_boxes]
             matched = set()
 
-            # Greedy match: for each track, find nearest unmatched detection
-            for tid, t in list(self.tracks.items()):
-                # Párovat i tracky, které chyběly až max_missed framů. Dřív zde bylo `missed > 1`:
-                # missed se zvyšuje výše, takže track viděný v minulém framu má 1 a track, který
-                # jeden frame chyběl, už 2 — po jediném výpadku detekce tak osoba dostala nové ID
-                # (ztráta ARMED stavu i vlastnictví zavazadla). Viz weapon_training/docs/CODE_REVIEW_PIPELINE.md.
-                if t['missed'] > self.max_missed:
-                    continue
-                best_d, best_i = float('inf'), -1
-                for i, c in enumerate(new_centroids):
-                    if i in matched:
-                        continue
-                    d = distance(t['centroid'], c)
-                    if d < best_d:
-                        best_d, best_i = d, i
-                if best_i >= 0 and best_d < self.max_dist:
-                    t['centroid'] = new_centroids[best_i]
-                    t['box'] = person_boxes[best_i, :4]
-                    t['conf'] = float(person_boxes[best_i, 4]) if person_boxes.shape[1] > 4 else 1.0
-                    t['skeleton'] = _skel(best_i)
-                    t['missed'] = 0
-                    t['history'].append((frame_idx, person_boxes[best_i, :4]))
-                    matched.add(best_i)
+            # Párovat i tracky, které chyběly až max_missed framů. Dřív zde bylo `missed > 1`:
+            # missed se zvyšuje výše, takže track viděný v minulém framu má 1 a track, který
+            # jeden frame chyběl, už 2 — po jediném výpadku detekce tak osoba dostala nové ID
+            # (ztráta ARMED stavu i vlastnictví zavazadla). Viz weapon_training/docs/CODE_REVIEW_PIPELINE.md.
+            tids = [tid for tid, t in self.tracks.items() if t['missed'] <= self.max_missed]
+            pred = [self._predict(self.tracks[tid], frame_idx) for tid in tids]
+            cost = np.array([[distance(p, c) for c in new_centroids]
+                             for p in pred]).reshape(len(tids), len(new_centroids))
+            for r, i in match_tracks(cost, cost < self.max_dist):
+                t = self.tracks[tids[r]]
+                dt = max(frame_idx - t['last_frame'], 1)
+                t['vel'] = 0.5 * t['vel'] + 0.5 * (new_centroids[i] - t['centroid']) / dt
+                t['last_frame'] = frame_idx
+                t['centroid'] = new_centroids[i]
+                t['box'] = person_boxes[i, :4]
+                t['conf'] = float(person_boxes[i, 4]) if person_boxes.shape[1] > 4 else 1.0
+                t['skeleton'] = _skel(i)
+                t['missed'] = 0
+                t['history'].append((frame_idx, person_boxes[i, :4]))
+                matched.add(i)
 
             # Start new tracks for unmatched
             for i, c in enumerate(new_centroids):
                 if i not in matched:
                     self.tracks[self.next_id] = {
                         'centroid': c,
+                        'vel': np.zeros(2),
+                        'last_frame': frame_idx,
                         'box': person_boxes[i, :4],
                         'conf': float(person_boxes[i, 4]) if person_boxes.shape[1] > 4 else 1.0,
                         'skeleton': _skel(i),
@@ -240,7 +265,7 @@ class PersonTracker:
 
 
 class ObjectTracker:
-    """Greedy IoU tracker pro objekty (s ownership history)."""
+    """IoU tracker pro objekty (s ownership history), párování Hungarian jako u osob."""
 
     def __init__(self, iou_threshold=DEFAULT_OBJ_IOU_THRESHOLD, max_missed=DEFAULT_MAX_OBJ_MISSED):
         self.tracks = {}     # oid -> {'box', 'label', 'missed', 'history', 'owner_history', 'first_frame'}
@@ -255,25 +280,19 @@ class ObjectTracker:
 
         if object_dets:
             matched = set()
-            for oid, t in list(self.tracks.items()):
-                if t['missed'] > self.max_missed:   # viz PersonTracker.update
-                    continue
-                best_iou, best_i = 0.0, -1
-                for i, (box, score, label) in enumerate(object_dets):
-                    if i in matched:
-                        continue
-                    if label != t['label']:
-                        continue
-                    iou = bbox_iou(t['box'], box)
-                    if iou > best_iou:
-                        best_iou, best_i = iou, i
-                if best_i >= 0 and best_iou > self.iou_threshold:
-                    box, score, _ = object_dets[best_i]
-                    t['box'] = box
-                    t['score'] = score
-                    t['missed'] = 0
-                    t['history'].append((frame_idx, box, score))
-                    matched.add(best_i)
+            oids = [oid for oid, t in self.tracks.items() if t['missed'] <= self.max_missed]  # viz PersonTracker
+            iou = np.array([[bbox_iou(self.tracks[oid]['box'], box) for box, _, _ in object_dets]
+                            for oid in oids]).reshape(len(oids), len(object_dets))
+            same = np.array([[label == self.tracks[oid]['label'] for _, _, label in object_dets]
+                             for oid in oids], dtype=bool).reshape(iou.shape)
+            for r, i in match_tracks(1.0 - iou, same & (iou > self.iou_threshold)):
+                t = self.tracks[oids[r]]
+                box, score, _ = object_dets[i]
+                t['box'] = box
+                t['score'] = score
+                t['missed'] = 0
+                t['history'].append((frame_idx, box, score))
+                matched.add(i)
 
             for i, (box, score, label) in enumerate(object_dets):
                 if i not in matched:
@@ -360,11 +379,12 @@ def check_abandonment(frame_idx, fps, object_tracks, abandon_sec, min_ownership_
 
 # ===== Armed person detection =====
 def _wrist_points(skeleton):
-    """Vrátí list (x,y) zápěstí s dostatečnou confidence z CrowdPose skeletonu."""
+    """Vrátí list (x,y) zápěstí s dostatečnou confidence (CrowdPose 14 i COCO 17 bodů)."""
     pts = []
     if skeleton is None or len(skeleton) == 0:
         return pts
-    for wi in CROWDPOSE_WRIST_IDX:
+    # s 17bodovým configem by indexy CrowdPose (4, 5) vzaly ucho a rameno
+    for wi in (COCO_WRIST_IDX if len(skeleton) == 17 else CROWDPOSE_WRIST_IDX):
         if wi < len(skeleton) and skeleton[wi, 2] > WRIST_CONF_MIN:
             pts.append(skeleton[wi, :2])
     return pts
@@ -602,6 +622,10 @@ def process_video(video_path, detector, args):
             frame_for_detect = apply_upscale(frame) if args.upscale else frame
             if scale == 1.0 and frame_for_detect.shape[1] != frame.shape[1]:
                 scale = frame.shape[1] / frame_for_detect.shape[1]
+                # tracker pracuje v prostoru detekce; --max-person-dist je v px vstupního videa,
+                # jinak by se s --upscale (4×) choval 4× přísněji (CODE_REVIEW_PIPELINE.md bod 5)
+                person_tracker.max_dist = args.max_person_dist / scale
+            frame_hw = frame.shape[:2]
 
             det = detector.detect(frame_for_detect, conf_obj=args.conf_obj, conf_weapon=args.conf_weapon,
                                    imgsz=args.imgsz, use_better_obj=args.use_better_obj)
@@ -645,14 +669,14 @@ def process_video(video_path, detector, args):
     print(f'  PASS 1 (detekce): {pass1_time:.1f}s — {sampled_idx} sampled framů, {len(alerts)} alertů')
 
     # ---------- PASS 2: render every frame s interpolací → plynulé video ----------
-    if args.save_video:
+    if args.save_video and sampled_idx > 0:
         os.makedirs(args.output_dir, exist_ok=True)
         out_video_path = os.path.join(args.output_dir, Path(video_path).stem + '_annotated.mp4')
 
+        # rozměr z PASS 1 a nové otevření místo read() + seek na 0, který je u .mpg nepřesný
+        # (CODE_REVIEW_PIPELINE.md bod 9)
+        h, w = frame_hw
         cap = cv2.VideoCapture(video_path)
-        ret, sample = cap.read()
-        h, w = sample.shape[:2]
-        cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
         fourcc = cv2.VideoWriter_fourcc(*'mp4v')
         writer = cv2.VideoWriter(out_video_path, fourcc, video_fps, (w, h))  # PLNÉ video FPS
 
