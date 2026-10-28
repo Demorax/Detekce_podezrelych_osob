@@ -15,7 +15,7 @@ popsané zvlášť v `weapon_training/docs/DATASETS.md`.
 | UCSD Anomaly (Ped1, Ped2) | `data/UCSD/` | přenos modelu davu na cizí scénu | 2026-10-28 | 740 MB | `ucsd2010` |
 | CUHK Avenue | `data/Avenue/` | přenos modelu davu na cizí scénu | 2026-10-28 | 813 MB + 0,9 MB GT | `avenue2013` |
 | UMN crowd | `data/UMN/` | přenos modelu davu (panika) | 2026-10-28 | 25 MB | `umn2009` |
-| ShanghaiTech Campus | `data/ShanghaiTech/` | benchmark skeletové anomálie (zatím nestaženo) | — | ~5 GB | `shanghaitech2017` |
+| ShanghaiTech Campus | `data/ShanghaiTech/shanghaitech/` | benchmark skeletové anomálie (úloha 2) | 2026-10-28 | 7,0 GB (330 train videí, 107 test sekvencí) | `shanghaitech2017` |
 | COCO (předtrénované váhy YOLO/RT-DETR, ImageNet pro ResNet) | `models/` | detekce osob a objektů, příznaky | — | — | `coco2014`, `imagenet2009` |
 
 ## Podrobnosti
@@ -85,7 +85,11 @@ popsané zvlášť v `weapon_training/docs/DATASETS.md`.
 - Odkaz: https://svip-lab.github.io/dataset/campus_dataset.html,
   https://github.com/StevenLiuWen/ano_pred_cvpr2018 (OneDrive `shanghaitech.tar.gz`).
 - Obsah: 330 trénovacích a 107 testovacích videí 856×480, 13 scén, GT po snímcích i pixelové masky.
-- Stav: zatím nestaženo (ruční stažení z OneDrive).
+- Soubor: `shanghaitech.tar.gz` (6 992 962 418 B, md5 začíná `08494decd30f`), stažen ručně z OneDrive
+  2026-10-28 jako samostatný soubor (stažení celé složky jako zip se při ~7,5 GB usekne).
+- Obsah ověřen: 330 trénovacích videí (všechny scény 01–13), 107 testovacích sekvencí, 40 791 testovacích
+  snímků (17 326 abnormálních, `test_frame_mask/*.npy`), pixelové masky `test_pixel_mask/`.
+- Skelety: `shanghai_skeletons.py` -> `data/ShanghaiTech/skeletons/{training,testing}/`.
 
 ### Roboflow Universe (datasety zbraní)
 - Viz `weapon_training/docs/DATASETS.md` (6 datasetů, licence CC BY 4.0 a další, odkazy a verze).
