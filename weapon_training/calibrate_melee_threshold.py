@@ -18,6 +18,7 @@ Použití:
 from __future__ import annotations
 
 import argparse
+import glob
 import tempfile
 from pathlib import Path
 
@@ -74,7 +75,7 @@ def main() -> int:
 
     neg_sets = {
         "rvačky bez zbraní": sorted(Path(args.neg_dir).glob("*.jpg")),
-        "klidná scéna": sorted(Path("/").glob(args.calm_glob.lstrip("/"))),
+        "klidná scéna": sorted(Path(p) for p in glob.glob(args.calm_glob))  # Path("/").glob na Windows neumí absolutní vzor,
     }
     print("\nFalešné poplachy melee (boxy / framy s poplachem):")
     for name, files in neg_sets.items():

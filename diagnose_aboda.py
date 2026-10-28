@@ -91,6 +91,13 @@ def main():
     detector = SuspiciousDetector(skip_weapon_model=True)
     summary = []
     for v in a.videos:
+        done = OUT_DIR / f'{v}_diag.json'
+        if done.exists():   # hotové video z dřívějšího (přerušeného) běhu jen převzít do souhrnu
+            with open(done, encoding='utf-8') as f:
+                diag = json.load(f)
+            summary.append({k: diag[k] for k in diag if k != 'tracks'})
+            print(f'>>> {v}: převzato z {done.name}', flush=True)
+            continue
         alerts, diag = run_video(v, detector, a.abandon_sec)
         for name, obj in ((f'{v}_alerts.json', alerts), (f'{v}_diag.json', diag)):
             with open(OUT_DIR / name, 'w', encoding='utf-8') as f:

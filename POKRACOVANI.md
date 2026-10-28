@@ -27,12 +27,14 @@ Přenos hotový (git pull + `bp_prenos.tar`). Udělané bez rozhodnutí autora, 
 - Labeler opraven (neolabelováno = −1), data přepočítána (`fix_labeled_behaviors.py`).
 - Tracker: Hungarian + předpověď pohybu. CAVIAR leave-one-out 100 % / 75 % (`caviar_loo.py`).
   Čísla ARMED v kapitole a reportu přepočítána, viz poznámka v kapitole.
-- ABODA přepočítávána s opraveným trackerem a diagnostikou (`diagnose_aboda.py`).
-- **Trénink v3 je připravený:** listy sporných případů jsou vygenerované (`weapon_training/review_ambiguous/list_01–06.png`),
-  po vyplnění `rozhodnuti.csv` stačí `bash weapon_training/train_v3_pc.sh` (zápis → sestavení → trénink ~12 min →
-  všechny evaluace). Ověřeno: sestavení dává stejný dataset jako na Macu, trénink na RTX 3090 běží (23 s/epocha).
-  AP50 na testu 005 vychází na PC o ~0,02 jinak než na Macu (jiná verze ultralytics), skript proto přeměřuje i v2.
-  CSV lze vyplnit i v Excelu (středníky/cp1250 skript přečte).
+- ABODA s opraveným trackerem a diagnostikou (`diagnose_aboda.py`): hotová videa 1–5, zbytek pustit znovu stejným
+  příkazem (hotová videa přeskočí). Pak přepočítat NWPU a sloučit třídy zavazadel v `ObjectTracker` (video1: 4 alerty
+  pro jednu tašku pod různými třídami).
+- **v3 natrénována a vyhodnocena (2026-10-28), NEnasazena** (`TRAINING_REPORT.md` §6h). Sporné případy rozhodnuty
+  (15 T, 49 N, stíny jako N). Na videu má v3 asi polovinu ojedinělých falešných detekcí, po potvrzení dvěma snímky je
+  rozdíl malý (ARMED 3/3 vs 5/4 poplachů), ale při prahu 0,20 má nižší recall na testu 005 (0,22 vs 0,31). Postup:
+  `bash weapon_training/train_v3_pc.sh` (celé), `… eval` (jen evaluace). Detekce se mezi Macem a PC liší,
+  v2 a v3 srovnávat jen z téhož stroje.
 
 ## 2. Co je na tobě (v tomhle pořadí)
 

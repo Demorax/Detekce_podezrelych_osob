@@ -1,0 +1,648 @@
+{
+ "minutes": {
+  "rvacky": 5.533333333333333,
+  "nepouzita": 3.75,
+  "klid": 3.4166666666666665
+ },
+ "rows": [
+  {
+   "varianta": "dříve: melee 0,40, 1 frame, pálka 0,15",
+   "thr": 0.4,
+   "k": 1,
+   "coco_bat_min": 0.15,
+   "per_video": {
+    "005": {
+     "events": 1,
+     "person_events": 9,
+     "armed_s": 5.8
+    },
+    "017": {
+     "events": 1,
+     "person_events": 3,
+     "armed_s": 1.8
+    },
+    "026": {
+     "events": 4,
+     "person_events": 7,
+     "armed_s": 5.2
+    },
+    "018": {
+     "events": 1,
+     "person_events": 1,
+     "armed_s": 1.8
+    },
+    "019": {
+     "events": 4,
+     "person_events": 10,
+     "armed_s": 6.0
+    },
+    "020": {
+     "events": 3,
+     "person_events": 8,
+     "armed_s": 6.2
+    },
+    "007": {
+     "events": 2,
+     "person_events": 2,
+     "armed_s": 1.6
+    },
+    "009": {
+     "events": 2,
+     "person_events": 4,
+     "armed_s": 3.6
+    },
+    "021": {
+     "events": 1,
+     "person_events": 1,
+     "armed_s": 2.4
+    },
+    "027": {
+     "events": 1,
+     "person_events": 2,
+     "armed_s": 1.8
+    },
+    "030": {
+     "events": 7,
+     "person_events": 11,
+     "armed_s": 14.2
+    }
+   },
+   "fight005_armed_frac": 0.9655172413793104,
+   "delay_005_s": 0.2002002002002002,
+   "rvacky_events": 17,
+   "rvacky_armed_s": 26.200000000000003,
+   "nepouzita_events": 12,
+   "nepouzita_armed_s": 19.2,
+   "klid_events": 9,
+   "klid_armed_s": 18.4
+  },
+  {
+   "varianta": "melee 0,20, 1 frame, pálka 0,15",
+   "thr": 0.2,
+   "k": 1,
+   "coco_bat_min": 0.15,
+   "per_video": {
+    "005": {
+     "events": 3,
+     "person_events": 14,
+     "armed_s": 9.4
+    },
+    "017": {
+     "events": 5,
+     "person_events": 9,
+     "armed_s": 9.0
+    },
+    "026": {
+     "events": 5,
+     "person_events": 15,
+     "armed_s": 8.6
+    },
+    "018": {
+     "events": 2,
+     "person_events": 2,
+     "armed_s": 3.6
+    },
+    "019": {
+     "events": 6,
+     "person_events": 13,
+     "armed_s": 9.6
+    },
+    "020": {
+     "events": 6,
+     "person_events": 14,
+     "armed_s": 11.8
+    },
+    "007": {
+     "events": 5,
+     "person_events": 6,
+     "armed_s": 7.0
+    },
+    "009": {
+     "events": 2,
+     "person_events": 4,
+     "armed_s": 4.2
+    },
+    "021": {
+     "events": 2,
+     "person_events": 5,
+     "armed_s": 5.2
+    },
+    "027": {
+     "events": 3,
+     "person_events": 7,
+     "armed_s": 5.6
+    },
+    "030": {
+     "events": 9,
+     "person_events": 23,
+     "armed_s": 23.2
+    }
+   },
+   "fight005_armed_frac": 0.9655172413793104,
+   "delay_005_s": 0.2002002002002002,
+   "rvacky_events": 31,
+   "rvacky_armed_s": 53.80000000000001,
+   "nepouzita_events": 21,
+   "nepouzita_armed_s": 36.2,
+   "klid_events": 14,
+   "klid_armed_s": 34.0
+  },
+  {
+   "varianta": "melee 0,20, 2 framy, pálka 0,15",
+   "thr": 0.2,
+   "k": 2,
+   "coco_bat_min": 0.15,
+   "per_video": {
+    "005": {
+     "events": 2,
+     "person_events": 5,
+     "armed_s": 5.4
+    },
+    "017": {
+     "events": 0,
+     "person_events": 0,
+     "armed_s": 0.0
+    },
+    "026": {
+     "events": 3,
+     "person_events": 6,
+     "armed_s": 4.6
+    },
+    "018": {
+     "events": 0,
+     "person_events": 0,
+     "armed_s": 0.0
+    },
+    "019": {
+     "events": 0,
+     "person_events": 0,
+     "armed_s": 0.0
+    },
+    "020": {
+     "events": 1,
+     "person_events": 1,
+     "armed_s": 1.8
+    },
+    "007": {
+     "events": 0,
+     "person_events": 0,
+     "armed_s": 0.0
+    },
+    "009": {
+     "events": 1,
+     "person_events": 1,
+     "armed_s": 2.2
+    },
+    "021": {
+     "events": 1,
+     "person_events": 1,
+     "armed_s": 3.2
+    },
+    "027": {
+     "events": 1,
+     "person_events": 2,
+     "armed_s": 1.8
+    },
+    "030": {
+     "events": 2,
+     "person_events": 2,
+     "armed_s": 4.0
+    }
+   },
+   "fight005_armed_frac": 0.896551724137931,
+   "delay_005_s": 0.4004004004004004,
+   "rvacky_events": 5,
+   "rvacky_armed_s": 8.6,
+   "nepouzita_events": 2,
+   "nepouzita_armed_s": 4.0,
+   "klid_events": 4,
+   "klid_armed_s": 9.0
+  },
+  {
+   "varianta": "melee 0,20, 3 framy, pálka 0,15",
+   "thr": 0.2,
+   "k": 3,
+   "coco_bat_min": 0.15,
+   "per_video": {
+    "005": {
+     "events": 2,
+     "person_events": 5,
+     "armed_s": 5.2
+    },
+    "017": {
+     "events": 0,
+     "person_events": 0,
+     "armed_s": 0.0
+    },
+    "026": {
+     "events": 1,
+     "person_events": 2,
+     "armed_s": 1.8
+    },
+    "018": {
+     "events": 0,
+     "person_events": 0,
+     "armed_s": 0.0
+    },
+    "019": {
+     "events": 0,
+     "person_events": 0,
+     "armed_s": 0.0
+    },
+    "020": {
+     "events": 0,
+     "person_events": 0,
+     "armed_s": 0.0
+    },
+    "007": {
+     "events": 0,
+     "person_events": 0,
+     "armed_s": 0.0
+    },
+    "009": {
+     "events": 1,
+     "person_events": 1,
+     "armed_s": 2.0
+    },
+    "021": {
+     "events": 0,
+     "person_events": 0,
+     "armed_s": 0.0
+    },
+    "027": {
+     "events": 0,
+     "person_events": 0,
+     "armed_s": 0.0
+    },
+    "030": {
+     "events": 0,
+     "person_events": 0,
+     "armed_s": 0.0
+    }
+   },
+   "fight005_armed_frac": 0.8620689655172413,
+   "delay_005_s": 0.6006006006006006,
+   "rvacky_events": 2,
+   "rvacky_armed_s": 3.8,
+   "nepouzita_events": 1,
+   "nepouzita_armed_s": 2.0,
+   "klid_events": 0,
+   "klid_armed_s": 0.0
+  },
+  {
+   "varianta": "melee 0,20, 2 framy, pálka 0,30",
+   "thr": 0.2,
+   "k": 2,
+   "coco_bat_min": 0.3,
+   "per_video": {
+    "005": {
+     "events": 2,
+     "person_events": 5,
+     "armed_s": 5.4
+    },
+    "017": {
+     "events": 0,
+     "person_events": 0,
+     "armed_s": 0.0
+    },
+    "026": {
+     "events": 3,
+     "person_events": 6,
+     "armed_s": 4.6
+    },
+    "018": {
+     "events": 0,
+     "person_events": 0,
+     "armed_s": 0.0
+    },
+    "019": {
+     "events": 0,
+     "person_events": 0,
+     "armed_s": 0.0
+    },
+    "020": {
+     "events": 1,
+     "person_events": 1,
+     "armed_s": 1.8
+    },
+    "007": {
+     "events": 0,
+     "person_events": 0,
+     "armed_s": 0.0
+    },
+    "009": {
+     "events": 1,
+     "person_events": 1,
+     "armed_s": 2.2
+    },
+    "021": {
+     "events": 1,
+     "person_events": 1,
+     "armed_s": 3.2
+    },
+    "027": {
+     "events": 1,
+     "person_events": 2,
+     "armed_s": 1.8
+    },
+    "030": {
+     "events": 2,
+     "person_events": 2,
+     "armed_s": 4.0
+    }
+   },
+   "fight005_armed_frac": 0.896551724137931,
+   "delay_005_s": 0.4004004004004004,
+   "rvacky_events": 5,
+   "rvacky_armed_s": 8.6,
+   "nepouzita_events": 2,
+   "nepouzita_armed_s": 4.0,
+   "klid_events": 4,
+   "klid_armed_s": 9.0
+  },
+  {
+   "varianta": "NASAZENO: melee 0,20, 2 framy, pálka 0,50",
+   "thr": 0.2,
+   "k": 2,
+   "coco_bat_min": 0.5,
+   "per_video": {
+    "005": {
+     "events": 2,
+     "person_events": 5,
+     "armed_s": 5.4
+    },
+    "017": {
+     "events": 0,
+     "person_events": 0,
+     "armed_s": 0.0
+    },
+    "026": {
+     "events": 3,
+     "person_events": 6,
+     "armed_s": 4.6
+    },
+    "018": {
+     "events": 0,
+     "person_events": 0,
+     "armed_s": 0.0
+    },
+    "019": {
+     "events": 0,
+     "person_events": 0,
+     "armed_s": 0.0
+    },
+    "020": {
+     "events": 1,
+     "person_events": 1,
+     "armed_s": 1.8
+    },
+    "007": {
+     "events": 0,
+     "person_events": 0,
+     "armed_s": 0.0
+    },
+    "009": {
+     "events": 1,
+     "person_events": 1,
+     "armed_s": 2.2
+    },
+    "021": {
+     "events": 1,
+     "person_events": 1,
+     "armed_s": 3.2
+    },
+    "027": {
+     "events": 1,
+     "person_events": 2,
+     "armed_s": 1.8
+    },
+    "030": {
+     "events": 2,
+     "person_events": 2,
+     "armed_s": 4.0
+    }
+   },
+   "fight005_armed_frac": 0.896551724137931,
+   "delay_005_s": 0.4004004004004004,
+   "rvacky_events": 5,
+   "rvacky_armed_s": 8.6,
+   "nepouzita_events": 2,
+   "nepouzita_armed_s": 4.0,
+   "klid_events": 4,
+   "klid_armed_s": 9.0
+  },
+  {
+   "varianta": "melee 0,15, 2 framy, pálka 0,50",
+   "thr": 0.15,
+   "k": 2,
+   "coco_bat_min": 0.5,
+   "per_video": {
+    "005": {
+     "events": 1,
+     "person_events": 5,
+     "armed_s": 5.6
+    },
+    "017": {
+     "events": 0,
+     "person_events": 0,
+     "armed_s": 0.0
+    },
+    "026": {
+     "events": 4,
+     "person_events": 7,
+     "armed_s": 7.6
+    },
+    "018": {
+     "events": 0,
+     "person_events": 0,
+     "armed_s": 0.0
+    },
+    "019": {
+     "events": 0,
+     "person_events": 0,
+     "armed_s": 0.0
+    },
+    "020": {
+     "events": 1,
+     "person_events": 1,
+     "armed_s": 1.8
+    },
+    "007": {
+     "events": 0,
+     "person_events": 0,
+     "armed_s": 0.0
+    },
+    "009": {
+     "events": 1,
+     "person_events": 1,
+     "armed_s": 2.2
+    },
+    "021": {
+     "events": 1,
+     "person_events": 1,
+     "armed_s": 3.2
+    },
+    "027": {
+     "events": 2,
+     "person_events": 3,
+     "armed_s": 3.6
+    },
+    "030": {
+     "events": 3,
+     "person_events": 3,
+     "armed_s": 7.2
+    }
+   },
+   "fight005_armed_frac": 0.9310344827586207,
+   "delay_005_s": 0.4004004004004004,
+   "rvacky_events": 6,
+   "rvacky_armed_s": 11.600000000000001,
+   "nepouzita_events": 2,
+   "nepouzita_armed_s": 4.0,
+   "klid_events": 6,
+   "klid_armed_s": 14.0
+  },
+  {
+   "varianta": "melee 0,10, 2 framy, pálka 0,50",
+   "thr": 0.1,
+   "k": 2,
+   "coco_bat_min": 0.5,
+   "per_video": {
+    "005": {
+     "events": 1,
+     "person_events": 5,
+     "armed_s": 5.8
+    },
+    "017": {
+     "events": 2,
+     "person_events": 3,
+     "armed_s": 4.4
+    },
+    "026": {
+     "events": 4,
+     "person_events": 7,
+     "armed_s": 7.8
+    },
+    "018": {
+     "events": 0,
+     "person_events": 0,
+     "armed_s": 0.0
+    },
+    "019": {
+     "events": 1,
+     "person_events": 1,
+     "armed_s": 0.4
+    },
+    "020": {
+     "events": 1,
+     "person_events": 1,
+     "armed_s": 1.8
+    },
+    "007": {
+     "events": 1,
+     "person_events": 1,
+     "armed_s": 1.8
+    },
+    "009": {
+     "events": 1,
+     "person_events": 1,
+     "armed_s": 2.2
+    },
+    "021": {
+     "events": 1,
+     "person_events": 1,
+     "armed_s": 4.4
+    },
+    "027": {
+     "events": 2,
+     "person_events": 3,
+     "armed_s": 3.8
+    },
+    "030": {
+     "events": 5,
+     "person_events": 12,
+     "armed_s": 16.2
+    }
+   },
+   "fight005_armed_frac": 0.9310344827586207,
+   "delay_005_s": 0.4004004004004004,
+   "rvacky_events": 10,
+   "rvacky_armed_s": 18.4,
+   "nepouzita_events": 4,
+   "nepouzita_armed_s": 6.2,
+   "klid_events": 8,
+   "klid_armed_s": 24.4
+  },
+  {
+   "varianta": "melee 0,20, 2 framy, bez COCO pálky",
+   "thr": 0.2,
+   "k": 2,
+   "coco_bat_min": null,
+   "per_video": {
+    "005": {
+     "events": 1,
+     "person_events": 4,
+     "armed_s": 3.6
+    },
+    "017": {
+     "events": 0,
+     "person_events": 0,
+     "armed_s": 0.0
+    },
+    "026": {
+     "events": 3,
+     "person_events": 6,
+     "armed_s": 4.6
+    },
+    "018": {
+     "events": 0,
+     "person_events": 0,
+     "armed_s": 0.0
+    },
+    "019": {
+     "events": 0,
+     "person_events": 0,
+     "armed_s": 0.0
+    },
+    "020": {
+     "events": 0,
+     "person_events": 0,
+     "armed_s": 0.0
+    },
+    "007": {
+     "events": 0,
+     "person_events": 0,
+     "armed_s": 0.0
+    },
+    "009": {
+     "events": 1,
+     "person_events": 1,
+     "armed_s": 2.2
+    },
+    "021": {
+     "events": 1,
+     "person_events": 1,
+     "armed_s": 3.2
+    },
+    "027": {
+     "events": 1,
+     "person_events": 2,
+     "armed_s": 1.8
+    },
+    "030": {
+     "events": 2,
+     "person_events": 2,
+     "armed_s": 4.0
+    }
+   },
+   "fight005_armed_frac": 0.6206896551724138,
+   "delay_005_s": 0.4004004004004004,
+   "rvacky_events": 4,
+   "rvacky_armed_s": 6.8,
+   "nepouzita_events": 1,
+   "nepouzita_armed_s": 2.2,
+   "klid_events": 4,
+   "klid_armed_s": 9.0
+  }
+ ]
+}

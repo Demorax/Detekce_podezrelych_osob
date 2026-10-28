@@ -1,0 +1,39 @@
+{
+ "video": "video4",
+ "alerts": 0,
+ "reason": "vlastník neodešel na >= 5 s (nebo track zanikl dřív)",
+ "sampled_frames_with_carry": 45,
+ "carry_tracks": 3,
+ "carry_tracks_ge_2s": 2,
+ "labels": {
+  "handbag": 1,
+  "suitcase": 2
+ },
+ "max_alone_sec": 0.0,
+ "tracks": [
+  {
+   "label": "handbag",
+   "first": 52,
+   "n_frames": 35,
+   "owner_frames": 35,
+   "max_alone_sec": 0.0,
+   "last": 95
+  },
+  {
+   "label": "suitcase",
+   "first": 60,
+   "n_frames": 29,
+   "owner_frames": 29,
+   "max_alone_sec": 0.0,
+   "last": 95
+  },
+  {
+   "label": "suitcase",
+   "first": 152,
+   "n_frames": 2,
+   "owner_frames": 2,
+   "max_alone_sec": 0.0,
+   "last": 153
+  }
+ ]
+}

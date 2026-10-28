@@ -941,6 +941,46 @@ všechny používají stejné osoby i skelety.
 
 ---
 
+## 6h. Model v3: těžká negativa a rozhodnuté sporné případy (2026-10-28, Windows PC)
+
+**Data:** v2 + 41 těžkých negativ (`annotate_neg_hard`, framy, kde v2 falešně hlásí tyč) + 64 ručně
+rozhodnutých sporných míst z asistované anotace (`review_ambiguous/rozhodnuti.csv`: 15× T,
+49× N, 0× ?; stíny tyčí rozhodnuty jako N). Hyperparametry identické s v2
+(`spark_setup_and_train_v3.sh`), trénink na RTX 3090 přes `train_v3_pc.sh`, 30 epoch za 9,5 min.
+Váhy: `runs/weapons/med_domain_adapt_frozen_neg_v3/weights/best.pt` (není v gitu).
+
+**Férovost srovnání:** v2 byla přeměřena na stejném PC. Detekce se mezi Macem (MPS, ultralytics 8.4)
+a PC (CUDA, 8.3) liší: AP50 o ~0,02 a hlavně COCO `baseball bat` (v cache ARMED 104 detekcí na Macu,
+17 na PC). Čísla v této sekci proto nejsou přímo srovnatelná s §6e–§6g, jen mezi sebou.
+
+| | v2 (PC) | v3 (PC) |
+|---|---:|---:|
+| test 005 AP50 `melee` (celý) | 0,634 | 0,635 |
+| test 005 P / R při conf 0,001 | 0,853 / 0,448 | 0,852 / 0,514 |
+| ověřovací polovina 005, práh 0,20: P / R | 1,00 / **0,31** | 1,00 / **0,22** |
+| ověřovací polovina 005, práh 0,10: P / R | 0,86 / 0,35 | 1,00 / 0,36 |
+| negativa rvaček (24 framů), FP boxy @0,20 / @0,10 | 2 / 3 | 2 / 4 |
+| časový filtr, rvačky 5,5 min, poplachy @0,20 k=1 / k=2 | 27 / 3 | **9** / 3 |
+| časový filtr, klid 3,4 min, poplachy @0,20 k=1 / k=2 | 13 / 5 | **7** / 4 |
+| ARMED nasazené nastavení: bitka / rvačky / klid | 90 % / 5 / 4 | 90 % / **3** / **3** |
+| ARMED 0,20, 1 frame: rvačky / klid | 31 / 14 | **13** / 7 |
+
+**Závěr:**
+- Na videu má v3 výrazně méně ojedinělých falešných detekcí, při jediném snímku zhruba polovinu.
+  Těžká negativa tedy fungují, jak měla.
+- Po časovém potvrzení dvěma snímky, které je nasazené, je rozdíl malý: ARMED 3 / 3 proti 5 / 4
+  poplachům při stejném pokrytí bitky 90 %. To je v pásmu šumu jednotek poplachů.
+- v3 je méně sebevědomá. Při nasazeném prahu 0,20 má na ověřovací polovině recall 0,22 proti 0,31.
+  Práh by pro ni musel jít na ~0,10 (recall 0,36, P 1,00), ale ověřovací polovina už je teď viděná,
+  takže by taková volba nebyla čistá.
+- **Podle pravidla „nasadit jen když je lepší na testu 005 i na negativech“ v3 nenasazena.** Na
+  negativech je lepší, na testu 005 při nasazeném prahu horší. `_WEAPON_MODEL` zůstává v2.
+
+Výstupy: `v3_eval_test005.txt`, `v3_calibrate_melee.txt`, `v2pc_calibrate_melee.txt`,
+`v3_eval_temporal.txt`, `v2pc_eval_temporal.txt`, `v3_eval_armed.txt`, `v2pc_eval_armed.txt`.
+
+---
+
 ## 7. Známá omezení
 
 1. **Domain gap web/sport → CCTV** není odstraněn, jen zmírněn augmentací

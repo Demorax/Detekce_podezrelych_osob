@@ -1,0 +1,23 @@
+  005: 195 framů
+  017: 265 framů
+  026: 270 framů
+  018: 150 framů
+  019: 280 framů
+  020: 305 framů
+  007: 205 framů
+  009: 185 framů
+  021: 250 framů
+  027: 285 framů
+  030: 490 framů
+
+rvačky 5.5 min (z toho nepoužité 3.8), klid 3.4 min
+varianta                                     | bitka 005 zpoždění | rvačky nepoužité      s | klid
+dříve: melee 0,40, 1 frame, pálka 0,15       |       97%    0.2 s |      9         5   15.2 |    4
+melee 0,20, 1 frame, pálka 0,15              |       97%    0.2 s |     13        10   26.8 |    7
+melee 0,20, 2 framy, pálka 0,15              |       90%    0.4 s |      3         1    9.4 |    3
+melee 0,20, 3 framy, pálka 0,15              |       86%    0.6 s |      2         0    1.6 |    0
+melee 0,20, 2 framy, pálka 0,30              |       90%    0.4 s |      3         1    9.4 |    3
+NASAZENO: melee 0,20, 2 framy, pálka 0,50    |       90%    0.4 s |      3         1    9.4 |    3
+melee 0,15, 2 framy, pálka 0,50              |       90%    0.4 s |      3         1    9.4 |    3
+melee 0,10, 2 framy, pálka 0,50              |       93%    0.4 s |      4         1   11.6 |    4
+melee 0,20, 2 framy, bez COCO pálky          |       62%    0.4 s |      2         0    7.6 |    3

@@ -1,0 +1,136 @@
+{
+ "video": "video1",
+ "alerts": 5,
+ "reason": "alert",
+ "sampled_frames_with_carry": 264,
+ "carry_tracks": 37,
+ "carry_tracks_ge_2s": 13,
+ "labels": {
+  "suitcase": 14,
+  "handbag": 13,
+  "backpack": 10
+ },
+ "max_alone_sec": 5.605605605605605,
+ "tracks": [
+  {
+   "label": "backpack",
+   "first": 211,
+   "n_frames": 117,
+   "owner_frames": 54,
+   "max_alone_sec": 5.605605605605605,
+   "last": 335
+  },
+  {
+   "label": "suitcase",
+   "first": 244,
+   "n_frames": 106,
+   "owner_frames": 52,
+   "max_alone_sec": 5.405405405405405,
+   "last": 364
+  },
+  {
+   "label": "handbag",
+   "first": 197,
+   "n_frames": 86,
+   "owner_frames": 48,
+   "max_alone_sec": 5.605605605605605,
+   "last": 295
+  },
+  {
+   "label": "suitcase",
+   "first": 241,
+   "n_frames": 67,
+   "owner_frames": 11,
+   "max_alone_sec": 5.205205205205205,
+   "last": 315
+  },
+  {
+   "label": "suitcase",
+   "first": 334,
+   "n_frames": 31,
+   "owner_frames": 13,
+   "max_alone_sec": 1.2012012012012012,
+   "last": 364
+  },
+  {
+   "label": "suitcase",
+   "first": 81,
+   "n_frames": 30,
+   "owner_frames": 14,
+   "max_alone_sec": 4.004004004004004,
+   "last": 117
+  },
+  {
+   "label": "handbag",
+   "first": 301,
+   "n_frames": 29,
+   "owner_frames": 7,
+   "max_alone_sec": 5.405405405405405,
+   "last": 335
+  },
+  {
+   "label": "backpack",
+   "first": 168,
+   "n_frames": 21,
+   "owner_frames": 21,
+   "max_alone_sec": 0.0,
+   "last": 188
+  },
+  {
+   "label": "backpack",
+   "first": 183,
+   "n_frames": 20,
+   "owner_frames": 20,
+   "max_alone_sec": 0.0,
+   "last": 202
+  },
+  {
+   "label": "suitcase",
+   "first": 167,
+   "n_frames": 19,
+   "owner_frames": 19,
+   "max_alone_sec": 0.0,
+   "last": 185
+  },
+  {
+   "label": "suitcase",
+   "first": 123,
+   "n_frames": 17,
+   "owner_frames": 3,
+   "max_alone_sec": 2.4024024024024024,
+   "last": 139
+  },
+  {
+   "label": "suitcase",
+   "first": 47,
+   "n_frames": 13,
+   "owner_frames": 1,
+   "max_alone_sec": 0.0,
+   "last": 64
+  },
+  {
+   "label": "suitcase",
+   "first": 218,
+   "n_frames": 10,
+   "owner_frames": 10,
+   "max_alone_sec": 0.0,
+   "last": 231
+  },
+  {
+   "label": "suitcase",
+   "first": 30,
+   "n_frames": 9,
+   "owner_frames": 7,
+   "max_alone_sec": 0.6006006006006006,
+   "last": 41
+  },
+  {
+   "label": "backpack",
+   "first": 355,
+   "n_frames": 9,
+   "owner_frames": 3,
+   "max_alone_sec": 1.4014014014014013,
+   "last": 364
+  }
+ ]
+}

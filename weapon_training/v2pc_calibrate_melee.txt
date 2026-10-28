@@ -1,0 +1,40 @@
+Ultralytics 8.3.197  Python-3.9.23 torch-2.1.0+cu121 CUDA:0 (NVIDIA GeForce RTX 3090, 24576MiB)
+YOLO11l summary (fused): 190 layers, 25,281,625 parameters, 0 gradients, 86.6 GFLOPs
+[34m[1mval: [0mFast image access  (ping: 0.00.0 ms, read: 5171.11474.0 MB/s, size: 574.0 KB)
+[K[34m[1mval: [0mScanning C:\Users\tomas\PycharmProjects\CustomDetekceWebcamera\weapon_training\annotate_005\labels... 19 images, 5 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 19/19 1.8Kit/s 0.0s[K[34m[1mval: [0mScanning C:\Users\tomas\PycharmProjects\CustomDetekceWebcamera\weapon_training\annotate_005\labels... 19 images, 5 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 19/19 1.7Kit/s 0.0s
+[34m[1mval: [0mNew cache created: C:\Users\tomas\PycharmProjects\CustomDetekceWebcamera\weapon_training\annotate_005\labels.cache
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 20% ━━────────── 1/5 0.7it/s 0.4s<5.9s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 40% ━━━━╸─────── 2/5 3.3it/s 0.5s<0.9s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 60% ━━━━━━━───── 3/5 3.6it/s 0.8s<0.6s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 80% ━━━━━━━━━╸── 4/5 3.8it/s 1.0s<0.3s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 5/5 3.9it/s 1.3s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 5/5 3.9it/s 1.3s
+                   all         19         31      0.946      0.571      0.721      0.338
+Speed: 0.2ms preprocess, 17.0ms inference, 0.0ms loss, 4.0ms postprocess per image
+
+kalibrační: 19 framů, AP50 melee 0.721
+  argmax F1 = 0.754 při conf 0.027
+  conf 0.027: P 0.91  R 0.65  F1 0.75
+  conf 0.050: P 0.95  R 0.58  F1 0.72
+  conf 0.100: P 0.94  R 0.55  F1 0.70
+  conf 0.150: P 0.97  R 0.55  F1 0.70
+  conf 0.200: P 1.00  R 0.54  F1 0.70
+  conf 0.250: P 1.00  R 0.49  F1 0.66
+  conf 0.300: P 1.00  R 0.48  F1 0.65
+  conf 0.400: P 1.00  R 0.46  F1 0.63
+Ultralytics 8.3.197  Python-3.9.23 torch-2.1.0+cu121 CUDA:0 (NVIDIA GeForce RTX 3090, 24576MiB)
+[34m[1mval: [0mFast image access  (ping: 0.00.0 ms, read: 3593.8856.2 MB/s, size: 449.1 KB)
+[K[34m[1mval: [0mScanning C:\Users\tomas\PycharmProjects\CustomDetekceWebcamera\weapon_training\annotate_005\labels... 28 images, 12 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 28/28 2.7Kit/s 0.0s[K[34m[1mval: [0mScanning C:\Users\tomas\PycharmProjects\CustomDetekceWebcamera\weapon_training\annotate_005\labels... 28 images, 12 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 28/28 2.7Kit/s 0.0s
+[34m[1mval: [0mNew cache created: C:\Users\tomas\PycharmProjects\CustomDetekceWebcamera\weapon_training\annotate_005\labels.cache
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 14% ━╸────────── 1/7 0.6it/s 0.5s<10.5s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 29% ━━━───────── 2/7 1.6it/s 0.8s<3.2s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 43% ━━━━━─────── 3/7 2.2it/s 1.1s<1.8s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 57% ━━━━━━╸───── 4/7 2.9it/s 1.3s<1.1s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 71% ━━━━━━━━╸─── 5/7 3.3it/s 1.5s<0.6s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 86% ━━━━━━━━━━── 6/7 3.6it/s 1.7s<0.3s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 7/7 3.6it/s 1.9s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 7/7 3.6it/s 1.9s
+                   all         28         34      0.717      0.353      0.533      0.289
+Speed: 0.3ms preprocess, 11.7ms inference, 0.0ms loss, 0.7ms postprocess per image
+
+ověřovací: 28 framů, AP50 melee 0.533
+  conf 0.027: P 0.64  R 0.46  F1 0.53
+  conf 0.050: P 0.69  R 0.40  F1 0.50
+  conf 0.100: P 0.86  R 0.35  F1 0.50
+  conf 0.150: P 0.94  R 0.32  F1 0.48
+  conf 0.200: P 1.00  R 0.31  F1 0.47
+  conf 0.250: P 1.00  R 0.26  F1 0.42
+  conf 0.300: P 1.00  R 0.20  F1 0.33
+  conf 0.400: P 1.00  R 0.17  F1 0.29
+
+Falešné poplachy melee (boxy / framy s poplachem):
+  rvačky bez zbraní (24 framů): 0.027: 11/9  0.05: 7/5  0.1: 3/2  0.15: 2/2  0.2: 2/2  0.25: 1/1  0.3: 1/1  0.4: 0/0
+  klidná scéna (36 framů): 0.027: 2/1  0.05: 1/1  0.1: 1/1  0.15: 0/0  0.2: 0/0  0.25: 0/0  0.3: 0/0  0.4: 0/0

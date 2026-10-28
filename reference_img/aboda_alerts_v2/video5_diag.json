@@ -1,0 +1,136 @@
+{
+ "video": "video5",
+ "alerts": 0,
+ "reason": "zavazadlo bez vlastníka (nikdy osoba v radiu)",
+ "sampled_frames_with_carry": 35,
+ "carry_tracks": 21,
+ "carry_tracks_ge_2s": 0,
+ "labels": {
+  "handbag": 11,
+  "backpack": 6,
+  "suitcase": 4
+ },
+ "max_alone_sec": 0.0,
+ "tracks": [
+  {
+   "label": "suitcase",
+   "first": 148,
+   "n_frames": 9,
+   "owner_frames": 9,
+   "max_alone_sec": 0.0,
+   "last": 164
+  },
+  {
+   "label": "handbag",
+   "first": 62,
+   "n_frames": 6,
+   "owner_frames": 6,
+   "max_alone_sec": 0.0,
+   "last": 72
+  },
+  {
+   "label": "handbag",
+   "first": 22,
+   "n_frames": 3,
+   "owner_frames": 3,
+   "max_alone_sec": 0.0,
+   "last": 24
+  },
+  {
+   "label": "handbag",
+   "first": 81,
+   "n_frames": 2,
+   "owner_frames": 2,
+   "max_alone_sec": 0.0,
+   "last": 82
+  },
+  {
+   "label": "suitcase",
+   "first": 132,
+   "n_frames": 2,
+   "owner_frames": 2,
+   "max_alone_sec": 0.0,
+   "last": 135
+  },
+  {
+   "label": "backpack",
+   "first": 185,
+   "n_frames": 2,
+   "owner_frames": 2,
+   "max_alone_sec": 0.0,
+   "last": 186
+  },
+  {
+   "label": "backpack",
+   "first": 62,
+   "n_frames": 1,
+   "owner_frames": 1,
+   "max_alone_sec": 0.0,
+   "last": 62
+  },
+  {
+   "label": "backpack",
+   "first": 81,
+   "n_frames": 1,
+   "owner_frames": 1,
+   "max_alone_sec": 0.0,
+   "last": 81
+  },
+  {
+   "label": "handbag",
+   "first": 94,
+   "n_frames": 1,
+   "owner_frames": 1,
+   "max_alone_sec": 0.0,
+   "last": 94
+  },
+  {
+   "label": "handbag",
+   "first": 94,
+   "n_frames": 1,
+   "owner_frames": 1,
+   "max_alone_sec": 0.0,
+   "last": 94
+  },
+  {
+   "label": "backpack",
+   "first": 94,
+   "n_frames": 1,
+   "owner_frames": 1,
+   "max_alone_sec": 0.0,
+   "last": 94
+  },
+  {
+   "label": "suitcase",
+   "first": 173,
+   "n_frames": 1,
+   "owner_frames": 1,
+   "max_alone_sec": 0.0,
+   "last": 173
+  },
+  {
+   "label": "suitcase",
+   "first": 203,
+   "n_frames": 1,
+   "owner_frames": 1,
+   "max_alone_sec": 0.0,
+   "last": 203
+  },
+  {
+   "label": "handbag",
+   "first": 272,
+   "n_frames": 1,
+   "owner_frames": 1,
+   "max_alone_sec": 0.0,
+   "last": 272
+  },
+  {
+   "label": "handbag",
+   "first": 278,
+   "n_frames": 1,
+   "owner_frames": 1,
+   "max_alone_sec": 0.0,
+   "last": 278
+  }
+ ]
+}

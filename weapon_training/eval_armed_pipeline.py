@@ -149,7 +149,10 @@ def main() -> int:
     ap.add_argument("--weights", default=None, help="výchozí: _WEAPON_MODEL ze suspicious_detector.py")
     ap.add_argument("--cache", default=str(CACHE))
     args = ap.parse_args()
-    CACHE = Path(args.cache)
+    # cesty převést na absolutní před os.chdir(ROOT) níže
+    CACHE = Path(args.cache).resolve()
+    if args.weights:
+        args.weights = str(Path(args.weights).resolve())
     CACHE.mkdir(exist_ok=True)
     os.chdir(ROOT)
     sys.path.insert(0, str(ROOT))

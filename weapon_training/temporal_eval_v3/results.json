@@ -1,0 +1,961 @@
+{
+ "fight_minutes": 5.533333333333333,
+ "calm_minutes": 3.4166666666666665,
+ "n_gt_005": 67,
+ "rows": [
+  {
+   "thr": 0.1,
+   "k": 1,
+   "recall_005": 0.43283582089552236,
+   "fp_005": 1,
+   "fight005_armed_frac": 0.9655172413793104,
+   "delay_005_s": 0.2002002002002002,
+   "fight_events": 28,
+   "fight_armed_s": 53.0,
+   "calm_events": 13,
+   "per_video": {
+    "017": {
+     "events": 6,
+     "armed_s": 10.6
+    },
+    "026": {
+     "events": 2,
+     "armed_s": 8.6
+    },
+    "018": {
+     "events": 2,
+     "armed_s": 3.2
+    },
+    "019": {
+     "events": 5,
+     "armed_s": 7.0
+    },
+    "020": {
+     "events": 8,
+     "armed_s": 14.4
+    },
+    "007": {
+     "events": 4,
+     "armed_s": 7.6
+    },
+    "009": {
+     "events": 1,
+     "armed_s": 1.6
+    },
+    "021": {
+     "events": 1,
+     "armed_s": 5.0
+    },
+    "027": {
+     "events": 3,
+     "armed_s": 4.8
+    },
+    "030": {
+     "events": 9,
+     "armed_s": 26.8
+    }
+   }
+  },
+  {
+   "thr": 0.1,
+   "k": 2,
+   "recall_005": 0.2537313432835821,
+   "fp_005": 0,
+   "fight005_armed_frac": 0.7931034482758621,
+   "delay_005_s": 0.4004004004004004,
+   "fight_events": 4,
+   "fight_armed_s": 10.4,
+   "calm_events": 5,
+   "per_video": {
+    "017": {
+     "events": 1,
+     "armed_s": 1.6
+    },
+    "026": {
+     "events": 2,
+     "armed_s": 7.2
+    },
+    "018": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "019": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "020": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "007": {
+     "events": 1,
+     "armed_s": 1.6
+    },
+    "009": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "021": {
+     "events": 1,
+     "armed_s": 2.6
+    },
+    "027": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "030": {
+     "events": 4,
+     "armed_s": 9.4
+    }
+   }
+  },
+  {
+   "thr": 0.1,
+   "k": 3,
+   "recall_005": 0.16417910447761194,
+   "fp_005": 0,
+   "fight005_armed_frac": 0.6896551724137931,
+   "delay_005_s": 0.6006006006006006,
+   "fight_events": 1,
+   "fight_armed_s": 4.2,
+   "calm_events": 3,
+   "per_video": {
+    "017": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "026": {
+     "events": 1,
+     "armed_s": 4.2
+    },
+    "018": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "019": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "020": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "007": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "009": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "021": {
+     "events": 1,
+     "armed_s": 2.4
+    },
+    "027": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "030": {
+     "events": 2,
+     "armed_s": 3.6
+    }
+   }
+  },
+  {
+   "thr": 0.15,
+   "k": 1,
+   "recall_005": 0.373134328358209,
+   "fp_005": 0,
+   "fight005_armed_frac": 0.896551724137931,
+   "delay_005_s": 0.2002002002002002,
+   "fight_events": 16,
+   "fight_armed_s": 29.0,
+   "calm_events": 10,
+   "per_video": {
+    "017": {
+     "events": 3,
+     "armed_s": 4.8
+    },
+    "026": {
+     "events": 2,
+     "armed_s": 7.6
+    },
+    "018": {
+     "events": 2,
+     "armed_s": 3.2
+    },
+    "019": {
+     "events": 2,
+     "armed_s": 2.2
+    },
+    "020": {
+     "events": 3,
+     "armed_s": 4.8
+    },
+    "007": {
+     "events": 3,
+     "armed_s": 4.8
+    },
+    "009": {
+     "events": 1,
+     "armed_s": 1.6
+    },
+    "021": {
+     "events": 1,
+     "armed_s": 4.6
+    },
+    "027": {
+     "events": 2,
+     "armed_s": 3.2
+    },
+    "030": {
+     "events": 7,
+     "armed_s": 18.6
+    }
+   }
+  },
+  {
+   "thr": 0.15,
+   "k": 2,
+   "recall_005": 0.22388059701492538,
+   "fp_005": 0,
+   "fight005_armed_frac": 0.7931034482758621,
+   "delay_005_s": 0.4004004004004004,
+   "fight_events": 2,
+   "fight_armed_s": 6.2,
+   "calm_events": 4,
+   "per_video": {
+    "017": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "026": {
+     "events": 2,
+     "armed_s": 6.2
+    },
+    "018": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "019": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "020": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "007": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "009": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "021": {
+     "events": 1,
+     "armed_s": 2.6
+    },
+    "027": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "030": {
+     "events": 3,
+     "armed_s": 6.8
+    }
+   }
+  },
+  {
+   "thr": 0.15,
+   "k": 3,
+   "recall_005": 0.16417910447761194,
+   "fp_005": 0,
+   "fight005_armed_frac": 0.6896551724137931,
+   "delay_005_s": 0.6006006006006006,
+   "fight_events": 2,
+   "fight_armed_s": 3.2,
+   "calm_events": 2,
+   "per_video": {
+    "017": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "026": {
+     "events": 2,
+     "armed_s": 3.2
+    },
+    "018": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "019": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "020": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "007": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "009": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "021": {
+     "events": 1,
+     "armed_s": 1.8
+    },
+    "027": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "030": {
+     "events": 1,
+     "armed_s": 1.8
+    }
+   }
+  },
+  {
+   "thr": 0.2,
+   "k": 1,
+   "recall_005": 0.3582089552238806,
+   "fp_005": 0,
+   "fight005_armed_frac": 0.896551724137931,
+   "delay_005_s": 0.2002002002002002,
+   "fight_events": 9,
+   "fight_armed_s": 17.8,
+   "calm_events": 7,
+   "per_video": {
+    "017": {
+     "events": 1,
+     "armed_s": 1.6
+    },
+    "026": {
+     "events": 2,
+     "armed_s": 7.6
+    },
+    "018": {
+     "events": 1,
+     "armed_s": 1.6
+    },
+    "019": {
+     "events": 2,
+     "armed_s": 2.2
+    },
+    "020": {
+     "events": 2,
+     "armed_s": 3.2
+    },
+    "007": {
+     "events": 1,
+     "armed_s": 1.6
+    },
+    "009": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "021": {
+     "events": 1,
+     "armed_s": 2.8
+    },
+    "027": {
+     "events": 1,
+     "armed_s": 1.6
+    },
+    "030": {
+     "events": 5,
+     "armed_s": 12.2
+    }
+   }
+  },
+  {
+   "thr": 0.2,
+   "k": 2,
+   "recall_005": 0.208955223880597,
+   "fp_005": 0,
+   "fight005_armed_frac": 0.7241379310344828,
+   "delay_005_s": 0.4004004004004004,
+   "fight_events": 3,
+   "fight_armed_s": 5.6,
+   "calm_events": 4,
+   "per_video": {
+    "017": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "026": {
+     "events": 3,
+     "armed_s": 5.6
+    },
+    "018": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "019": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "020": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "007": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "009": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "021": {
+     "events": 1,
+     "armed_s": 1.6
+    },
+    "027": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "030": {
+     "events": 3,
+     "armed_s": 5.0
+    }
+   }
+  },
+  {
+   "thr": 0.2,
+   "k": 3,
+   "recall_005": 0.14925373134328357,
+   "fp_005": 0,
+   "fight005_armed_frac": 0.6896551724137931,
+   "delay_005_s": 0.6006006006006006,
+   "fight_events": 1,
+   "fight_armed_s": 1.6,
+   "calm_events": 1,
+   "per_video": {
+    "017": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "026": {
+     "events": 1,
+     "armed_s": 1.6
+    },
+    "018": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "019": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "020": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "007": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "009": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "021": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "027": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "030": {
+     "events": 1,
+     "armed_s": 1.6
+    }
+   }
+  },
+  {
+   "thr": 0.25,
+   "k": 1,
+   "recall_005": 0.31343283582089554,
+   "fp_005": 0,
+   "fight005_armed_frac": 0.8275862068965517,
+   "delay_005_s": 0.2002002002002002,
+   "fight_events": 4,
+   "fight_armed_s": 10.799999999999999,
+   "calm_events": 7,
+   "per_video": {
+    "017": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "026": {
+     "events": 2,
+     "armed_s": 7.6
+    },
+    "018": {
+     "events": 1,
+     "armed_s": 1.6
+    },
+    "019": {
+     "events": 1,
+     "armed_s": 1.6
+    },
+    "020": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "007": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "009": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "021": {
+     "events": 1,
+     "armed_s": 2.6
+    },
+    "027": {
+     "events": 1,
+     "armed_s": 1.6
+    },
+    "030": {
+     "events": 5,
+     "armed_s": 10.4
+    }
+   }
+  },
+  {
+   "thr": 0.25,
+   "k": 2,
+   "recall_005": 0.208955223880597,
+   "fp_005": 0,
+   "fight005_armed_frac": 0.7241379310344828,
+   "delay_005_s": 0.4004004004004004,
+   "fight_events": 3,
+   "fight_armed_s": 5.4,
+   "calm_events": 3,
+   "per_video": {
+    "017": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "026": {
+     "events": 3,
+     "armed_s": 5.4
+    },
+    "018": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "019": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "020": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "007": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "009": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "021": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "027": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "030": {
+     "events": 3,
+     "armed_s": 5.0
+    }
+   }
+  },
+  {
+   "thr": 0.25,
+   "k": 3,
+   "recall_005": 0.14925373134328357,
+   "fp_005": 0,
+   "fight005_armed_frac": 0.6896551724137931,
+   "delay_005_s": 0.6006006006006006,
+   "fight_events": 0,
+   "fight_armed_s": 0.0,
+   "calm_events": 1,
+   "per_video": {
+    "017": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "026": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "018": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "019": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "020": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "007": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "009": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "021": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "027": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "030": {
+     "events": 1,
+     "armed_s": 1.6
+    }
+   }
+  },
+  {
+   "thr": 0.3,
+   "k": 1,
+   "recall_005": 0.2835820895522388,
+   "fp_005": 0,
+   "fight005_armed_frac": 0.8275862068965517,
+   "delay_005_s": 0.2002002002002002,
+   "fight_events": 4,
+   "fight_armed_s": 8.4,
+   "calm_events": 5,
+   "per_video": {
+    "017": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "026": {
+     "events": 3,
+     "armed_s": 6.8
+    },
+    "018": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "019": {
+     "events": 1,
+     "armed_s": 1.6
+    },
+    "020": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "007": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "009": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "021": {
+     "events": 1,
+     "armed_s": 2.2
+    },
+    "027": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "030": {
+     "events": 4,
+     "armed_s": 6.8
+    }
+   }
+  },
+  {
+   "thr": 0.3,
+   "k": 2,
+   "recall_005": 0.19402985074626866,
+   "fp_005": 0,
+   "fight005_armed_frac": 0.6896551724137931,
+   "delay_005_s": 0.4004004004004004,
+   "fight_events": 2,
+   "fight_armed_s": 3.8,
+   "calm_events": 2,
+   "per_video": {
+    "017": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "026": {
+     "events": 2,
+     "armed_s": 3.8
+    },
+    "018": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "019": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "020": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "007": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "009": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "021": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "027": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "030": {
+     "events": 2,
+     "armed_s": 3.2
+    }
+   }
+  },
+  {
+   "thr": 0.3,
+   "k": 3,
+   "recall_005": 0.14925373134328357,
+   "fp_005": 0,
+   "fight005_armed_frac": 0.6551724137931034,
+   "delay_005_s": 0.6006006006006006,
+   "fight_events": 0,
+   "fight_armed_s": 0.0,
+   "calm_events": 0,
+   "per_video": {
+    "017": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "026": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "018": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "019": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "020": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "007": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "009": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "021": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "027": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "030": {
+     "events": 0,
+     "armed_s": 0.0
+    }
+   }
+  },
+  {
+   "thr": 0.4,
+   "k": 1,
+   "recall_005": 0.26865671641791045,
+   "fp_005": 0,
+   "fight005_armed_frac": 0.8275862068965517,
+   "delay_005_s": 0.2002002002002002,
+   "fight_events": 3,
+   "fight_armed_s": 5.6,
+   "calm_events": 5,
+   "per_video": {
+    "017": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "026": {
+     "events": 3,
+     "armed_s": 5.6
+    },
+    "018": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "019": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "020": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "007": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "009": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "021": {
+     "events": 1,
+     "armed_s": 1.6
+    },
+    "027": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "030": {
+     "events": 4,
+     "armed_s": 6.8
+    }
+   }
+  },
+  {
+   "thr": 0.4,
+   "k": 2,
+   "recall_005": 0.1791044776119403,
+   "fp_005": 0,
+   "fight005_armed_frac": 0.6896551724137931,
+   "delay_005_s": 0.4004004004004004,
+   "fight_events": 0,
+   "fight_armed_s": 0.0,
+   "calm_events": 2,
+   "per_video": {
+    "017": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "026": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "018": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "019": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "020": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "007": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "009": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "021": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "027": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "030": {
+     "events": 2,
+     "armed_s": 3.2
+    }
+   }
+  },
+  {
+   "thr": 0.4,
+   "k": 3,
+   "recall_005": 0.13432835820895522,
+   "fp_005": 0,
+   "fight005_armed_frac": 0.6551724137931034,
+   "delay_005_s": 0.6006006006006006,
+   "fight_events": 0,
+   "fight_armed_s": 0.0,
+   "calm_events": 0,
+   "per_video": {
+    "017": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "026": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "018": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "019": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "020": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "007": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "009": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "021": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "027": {
+     "events": 0,
+     "armed_s": 0.0
+    },
+    "030": {
+     "events": 0,
+     "armed_s": 0.0
+    }
+   }
+  }
+ ]
+}

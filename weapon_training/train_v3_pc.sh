@@ -10,7 +10,6 @@ set -euo pipefail
 cd "$(dirname "$0")"
 export PYTHONUTF8=1          # JSONy z Macu jsou UTF-8, Windows by bez toho četl cp1250
 NAME=med_domain_adapt_frozen_neg_v3
-V3=runs/detect/runs/weapons/$NAME/weights/best.pt
 log() { echo "[$(date +%H:%M:%S)] $*"; }
 
 if [ "${1:-}" != "eval" ]; then
@@ -28,6 +27,9 @@ if [ "${1:-}" != "eval" ]; then
     --patience 0 --freeze 11 --name $NAME
 fi
 
+# ultralytics 8.3 (PC) ukládá do runs/weapons/, 8.4 (Mac/Spark) do runs/detect/runs/weapons/
+V3=$(ls runs/weapons/$NAME/weights/best.pt runs/detect/runs/weapons/$NAME/weights/best.pt 2>/dev/null | head -1 || true)
+[ -n "$V3" ] || { echo "váhy v3 nenalezeny ($NAME)"; exit 1; }
 log "evaluace v3 (v2 se přeměřuje na stejném stroji, AP50 se mezi ultralytics 8.3 a 8.4 liší o ~0,02)"
 python eval_test005.py --add v3=$V3 | tee v3_eval_test005.txt
 python calibrate_melee_threshold.py --weights $V3 | tee v3_calibrate_melee.txt

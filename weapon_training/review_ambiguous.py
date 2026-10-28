@@ -131,12 +131,11 @@ def sheets(device: str) -> None:
 def read_csv() -> list[dict]:
     """CSV z českého Excelu bývá v cp1250 se středníky, z editoru v UTF-8 s čárkami."""
     raw = CSV.read_bytes()
-    for enc in ("utf-8-sig", "cp1250"):
-        try:
-            text = raw.decode(enc)
-            break
-        except UnicodeDecodeError:
-            continue
+    # UTF-8 s pár poškozenými znaky (useknutý komentář) je pořád UTF-8; cp1250 z Excelu
+    # by v UTF-8 selhal na každém českém znaku
+    text = raw.decode("utf-8-sig", errors="replace")
+    if text.count("�") > 10:
+        text = raw.decode("cp1250", errors="replace")
     delim = ";" if text.splitlines()[0].count(";") > text.splitlines()[0].count(",") else ","
     return list(csv.DictReader(text.splitlines(), delimiter=delim))
 
