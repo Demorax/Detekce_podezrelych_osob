@@ -1,4 +1,6 @@
-= Detekce zbraní a nebezpečných předmětů
+#let todo(x) = text(fill: red, weight: "bold")[[TODO: #x]]
+
+= Detekce zbraní a nebezpečných předmětů <kap-zbrane>
 
 == Motivace a cíl
 
@@ -6,15 +8,15 @@ Analýza chování osob popsaná v předchozích kapitolách pracuje s pohybem o
 
 Cílem této části práce bylo doplnit do zpracovatelského řetězce detektor, který v jednotlivých snímcích z kamery vyhledá střelné zbraně, nože a tupé či sečné zbraně držené v ruce. Jeho výstup se kombinuje s detekcí osob a s odhadem jejich skeletu: osoba je označena jako ozbrojená (příznak ARMED) teprve tehdy, když se box detekované zbraně nachází u zápěstí některé z osob. Tato podmínka odpovídá zadání, protože zajímá zbraň v ruce, nikoli předmět ležící opodál, a zároveň odfiltruje část falešných detekcí v místech, kde žádná ruka není.
 
-Cílovou doménou jsou záběry z Motion Emotion Datasetu (MED) @TODO-citace: statická bezpečnostní kamera snímající prostranství šikmo shora, davy lidí, malé objekty, pohybové rozmazání a proměnlivé osvětlení. Jak ukáže zbytek kapitoly, právě rozdíl mezi touto doménou a fotografiemi, z nichž vycházejí veřejně dostupné datasety zbraní, se stal ústředním problémem celé úlohy.
+Cílovou doménou jsou záběry z Motion Emotion Datasetu (MED) #todo[citace]: statická bezpečnostní kamera snímající prostranství šikmo shora, davy lidí, malé objekty, pohybové rozmazání a proměnlivé osvětlení. Jak ukáže zbytek kapitoly, právě rozdíl mezi touto doménou a fotografiemi, z nichž vycházejí veřejně dostupné datasety zbraní, se stal ústředním problémem celé úlohy.
 
 == Volba přístupu
 
 === Detektor a jeho velikost
 
-Hotový detektor tupých zbraní v použitelné kvalitě není k dispozici, a cestou bylo proto dotrénování (fine-tuning) obecného detektoru objektů. Zvažovány byly tři varianty: model YOLO11 @TODO-citace ve velikosti _l_ při vstupním rozlišení 960 px, větší varianta _x_ při 640 px a trénink transformerového detektoru RT-DETR @TODO-citace od nuly.
+Hotový detektor tupých zbraní v použitelné kvalitě není k dispozici, a cestou bylo proto dotrénování (fine-tuning) obecného detektoru objektů. Zvažovány byly tři varianty: model YOLO11 #todo[citace] ve velikosti _l_ při vstupním rozlišení 960 px, větší varianta _x_ při 640 px a trénink transformerového detektoru RT-DETR #todo[citace] od nuly.
 
-Trénink transformeru od nuly byl zamítnut jako první: pro přibližně 24 tisíc obrázků, které se podařilo sestavit, by trval desítky hodin a s velkou pravděpodobností by prohrál s dotrénováním vah předtrénovaných na datasetu COCO @TODO-citace. Mezi zbylými variantami rozhodla povaha cílových dat. U zbraní v záběru bezpečnostní kamery není limitujícím faktorem kapacita sítě, ale velikost objektu, neboť tyč nebo pálka zabírá v MED snímku jen desítky pixelů. Vyšší vstupní rozlišení proto přináší při srovnatelném výpočetním čase víc než hlubší síť. Zvolen byl model YOLO11l se vstupem 960 px, inicializovaný vahami z COCO.
+Trénink transformeru od nuly byl zamítnut jako první: pro přibližně 24 tisíc obrázků, které se podařilo sestavit, by trval desítky hodin a s velkou pravděpodobností by prohrál s dotrénováním vah předtrénovaných na datasetu COCO #todo[citace]. Mezi zbylými variantami rozhodla povaha cílových dat. U zbraní v záběru bezpečnostní kamery není limitujícím faktorem kapacita sítě, ale velikost objektu, neboť tyč nebo pálka zabírá v MED snímku jen desítky pixelů. Vyšší vstupní rozlišení proto přináší při srovnatelném výpočetním čase víc než hlubší síť. Zvolen byl model YOLO11l se vstupem 960 px, inicializovaný vahami z COCO.
 
 === Tři třídy místo šesti
 
@@ -26,7 +28,7 @@ Pro tyče a hole nebyla založena samostatná třída, ačkoli se později ukáz
 
 === Zdroje a sestavení datasetu
 
-Trénovací data pocházejí z veřejných datasetů platformy Roboflow Universe @TODO-citace. Ze sedmi stažených datasetů (3,3 GB) bylo použito šest. Nejkvalitnějším zdrojem byl dataset s vyváženými třídami baseballová pálka, nůž a pistole (1 240, 1 012 a 1 144 instancí) pod licencí CC BY 4.0; dalšími zdroji byly datasety s různými typy střelných a chladných zbraní, dva datasety baseballových pálek a menší dataset pistolí [CITACE pro každý dataset].
+Trénovací data pocházejí z veřejných datasetů platformy Roboflow Universe #todo[citace]. Ze sedmi stažených datasetů (3,3 GB) bylo použito šest. Nejkvalitnějším zdrojem byl dataset s vyváženými třídami baseballová pálka, nůž a pistole (1 240, 1 012 a 1 144 instancí) pod licencí CC BY 4.0; dalšími zdroji byly datasety s různými typy střelných a chladných zbraní, dva datasety baseballových pálek a menší dataset pistolí #todo[citace pro každý dataset].
 
 Zdrojové třídy (jen do třídy `gun` jich bylo namapováno přes dvacet) se převáděly na cílové podle názvu, u nejednoznačných tříd však na základě vizuální kontroly náhodného vzorku výřezů. Tak bylo ověřeno, že třída `heavy-weapon` (11 598 boxů) obsahuje výhradně dlouhé palné zbraně a že nepojmenovaná třída `0` v jednom z datasetů jsou baseballové pálky. Třída `short sword`, původně mapovaná na `melee`, naopak obsahovala dýky vizuálně nerozeznatelné od velkých nožů; jejích 501 instancí bylo přesunuto do třídy `knife`, což odstranilo soupeření dvou tříd o stejný vzhled a posílilo nejslabší třídu.
 
@@ -44,13 +46,13 @@ Některé vady sestaveného datasetu odstranit nešlo. Celkem 7 798 z 10 730 box
 
 == Trénink
 
-Trénink probíhal na stroji NVIDIA DGX Spark s GPU GB10 a 121 GB paměti sdílené mezi procesorem a grafickým akcelerátorem, s knihovnou Ultralytics @TODO-citace ve verzi 8.4.115; kvůli nižší propustnosti sdílené paměti model zpracoval při dávce 32 a rozlišení 960 px zhruba 14 obrázků za sekundu.
+Trénink probíhal na stroji NVIDIA DGX Spark s GPU GB10 a 121 GB paměti sdílené mezi procesorem a grafickým akcelerátorem, s knihovnou Ultralytics #todo[citace] ve verzi 8.4.115; kvůli nižší propustnosti sdílené paměti model zpracoval při dávce 32 a rozlišení 960 px zhruba 14 obrázků za sekundu.
 
 Finální konfigurace používala optimalizátor SGD s počáteční rychlostí učení 0,005 a kosinovým útlumem, dávku 32 a smíšenou přesnost. Augmentace (geometrické transformace, horizontální převrácení, mozaika, mixup a posuny barevného tónu, sytosti a jasu) byly nastaveny s ohledem na rozdíl domén. Trénink byl naplánován na 100 epoch s předčasným ukončením po 25 epochách bez zlepšení a zastavil se po 90 epochách a 43,4 hodinách. Nejlepší epocha 65 byla vybrána podle kombinované metriky knihovny (0,1 · mAP50 + 0,9 · mAP50-95), která upřednostňuje přesnou lokalizaci; nejvyšší mAP50 (0,7804) dosáhla epocha 76, rozdíl je však zanedbatelný.
 
 === Divergence optimalizátoru MuSGD
 
-K finální konfiguraci se dospělo až po dvou neúspěšných bězích. Při výchozím nastavení `optimizer='auto'` zvolila použitá verze knihovny optimalizátor MuSGD založený na metodě Muon @TODO-citace s rychlostí učení 0,01. Během warmupu model divergoval: mAP50 klesla z 0,304 v první epoše na 0,0999 ve třetí a validační klasifikační ztráta vzrostla z 2,466 na 6,119. Současně rostla i trénovací ztráta, takže nešlo o šum ani o přeučení. Pravděpodobnou příčinou je, že metoda Muon počítá s výrazně menší efektivní rychlostí učení pro maticové parametry než klasický SGD. Explicitní volba SGD s rychlostí učení 0,005 problém okamžitě odstranila (mAP50 po první epoše 0,558 proti 0,304). Průběh obou běhů srovnává obrázek X.1. U této verze knihovny proto nelze doporučit spoléhat na automatickou volbu optimalizátoru.
+K finální konfiguraci se dospělo až po dvou neúspěšných bězích. Při výchozím nastavení `optimizer='auto'` zvolila použitá verze knihovny optimalizátor MuSGD založený na metodě Muon #todo[citace] s rychlostí učení 0,01. Během warmupu model divergoval: mAP50 klesla z 0,304 v první epoše na 0,0999 ve třetí a validační klasifikační ztráta vzrostla z 2,466 na 6,119. Současně rostla i trénovací ztráta, takže nešlo o šum ani o přeučení. Pravděpodobnou příčinou je, že metoda Muon počítá s výrazně menší efektivní rychlostí učení pro maticové parametry než klasický SGD. Explicitní volba SGD s rychlostí učení 0,005 problém okamžitě odstranila (mAP50 po první epoše 0,558 proti 0,304). Průběh obou běhů srovnává obrázek X.1. U této verze knihovny proto nelze doporučit spoléhat na automatickou volbu optimalizátoru.
 
 #figure(
   image("figures/fig1_trenink.png", width: 90%),
@@ -112,7 +114,7 @@ Z testu vyplynulo, že nejúčinnějším krokem nebude další ladění na webo
 
 === Postup anotace
 
-Snímky mají po zvětšení rozměr 3416 × 1920 px a box zbraně zabírá jen několik procent jejich šířky, takže bez přiblížení nelze objekt spolehlivě rozpoznat ani ohraničit. Anotace proto probíhala s asistencí velkého jazykového modelu s multimodálním vstupem a jeho podřízených agentů @TODO-citace podle písemné anotační specifikace, která definuje třídy, pravidla kreslení boxů a postup v nejasných případech. Výstupy modelu nebyly přebírány automaticky; každý krok byl navržen tak, aby šel ověřit.
+Snímky mají po zvětšení rozměr 3416 × 1920 px a box zbraně zabírá jen několik procent jejich šířky, takže bez přiblížení nelze objekt spolehlivě rozpoznat ani ohraničit. Anotace proto probíhala s asistencí velkého jazykového modelu s multimodálním vstupem a jeho podřízených agentů #todo[citace] podle písemné anotační specifikace, která definuje třídy, pravidla kreslení boxů a postup v nejasných případech. Výstupy modelu nebyly přebírány automaticky; každý krok byl navržen tak, aby šel ověřit.
 
 Postup měl tři fáze. Nejprve natrénovaný detektor vygeneroval předanotace s nízkým prahem jistoty 0,10, aby vzniklo co nejvíce kandidátů ke kontrole. Poté agenti každý snímek prošli od hrubého k jemnému: nejprve celý snímek se souřadnicovou mřížkou a předanotacemi, poté přiblížené výřezy kolem jednotlivých kandidátů. Mřížka se ukázala jako zásadní. Bez ní dosahoval box odhadnutý jazykovým modelem shody IoU s referencí jen 0,70, což je pro trénink příliš volné; s přiblíženým výřezem a mřížkou se souřadnice odečítají s přesností přibližně ±5 px. U tmavého asfaltu a stínů pomohlo percentilové roztažení kontrastu. Agenti nevraceli přímo labely, ale strukturované verdikty ke každé předanotaci (přijmout, zpřesnit box, zamítnout) spolu se seznamem přehlédnutých objektů a nejasných případů; nejasný případ se do dat nezapsal, ale byl odložen ke kontrole člověkem. Ve třetí fázi byly všechny boxy před zápisem prohlédnuty na kontaktních listech, tedy přehledových tabulích výřezů, na nichž lze vedle sebe porovnat desítky boxů, a sporné boxy byly vyloučeny.
 
@@ -130,7 +132,7 @@ Při přípravě dat se navíc ukázalo, že dříve zvětšené snímky MED nev
 
 Snímky husté sady jsou od sebe vzdáleny jen 0,17 s a sousední snímky jsou téměř totožné. Náhodné rozdělení by tak poslalo prakticky stejný snímek do tréninku i do validace a validace by měřila zapamatování. Data proto byla rozdělena časově: validaci tvoří souvislý blok snímků bitky ve videu 004 s ochrannou mezerou pěti snímků na každé straně, poslední čtvrtina videa 001 a celé video 002. Trénovací část má 209 snímků se 43 boxy, validační 41 snímků s 10 boxy; zbývající dva snímky se třemi boxy padly do ochranné mezery.
 
-Snímky MED obsahují jen tyče, a model dotrénovaný pouze na nich by mohl ztratit schopnost rozpoznat ostatní třídy (katastrofické zapomínání @TODO-citace). Do trénovacích dat bylo proto přimícháno 800 obrázků z původního webového datasetu. Dotrénování vycházelo z nejlepších vah hlavního tréninku s nízkou rychlostí učení (SGD, lr0 0,0005, 30 epoch, dávka 16, 960 px). Dva běhy se liší pouze tím, zda je zmrazen backbone sítě (vrstvy 0–10), a tvoří tak čistou ablaci. Vyhodnocovaly se váhy z poslední epochy, protože při pouhých 10 validačních boxech by výběr epochy podle téže validace výsledek nadhodnotil.
+Snímky MED obsahují jen tyče, a model dotrénovaný pouze na nich by mohl ztratit schopnost rozpoznat ostatní třídy (katastrofické zapomínání #todo[citace]). Do trénovacích dat bylo proto přimícháno 800 obrázků z původního webového datasetu. Dotrénování vycházelo z nejlepších vah hlavního tréninku s nízkou rychlostí učení (SGD, lr0 0,0005, 30 epoch, dávka 16, 960 px). Dva běhy se liší pouze tím, zda je zmrazen backbone sítě (vrstvy 0–10), a tvoří tak čistou ablaci. Vyhodnocovaly se váhy z poslední epochy, protože při pouhých 10 validačních boxech by výběr epochy podle téže validace výsledek nadhodnotil.
 
 === Výsledky
 
@@ -339,7 +341,7 @@ Třetím omezením jsou malé testovací sady. Validace MED má 10 boxů (během
 
 Za zmínku stojí i role jazykového modelu při anotaci. Ten sám byl zdrojem chyb, například stínu označeného jako tyč s vysokou jistotou, a kvalitu dat zajistila až struktura postupu: mřížka místo odhadu, strukturované verdikty místo přímého zápisu, odkládání nejistých případů a vizuální kontrola na kontaktních listech. Šedesát čtyři sporných případů (tyč proti paži nebo stínu) dosud čeká na posouzení člověkem.
 
-Konečně trvá mezera v dostupných datech: holá tyč nebo hůl jako anotovaná třída ve veřejných datasetech chybí a třída `melee` je v původních datech ze 72,7 % tvořena baseballovými pálkami. Obecné řešení by vyžadovalo anotaci záznamů z více prostředí, například z datasetů násilí zachyceného bezpečnostními kamerami, jako jsou UCF-Crime, RWF-2000 nebo CCTV-Fights @TODO-citace.
+Konečně trvá mezera v dostupných datech: holá tyč nebo hůl jako anotovaná třída ve veřejných datasetech chybí a třída `melee` je v původních datech ze 72,7 % tvořena baseballovými pálkami. Obecné řešení by vyžadovalo anotaci záznamů z více prostředí, například z datasetů násilí zachyceného bezpečnostními kamerami, jako jsou UCF-Crime, RWF-2000 nebo CCTV-Fights #todo[citace].
 
 == Shrnutí
 

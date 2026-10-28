@@ -3,6 +3,8 @@
 // Obrázky: nahrát docs/figures/fig_med_*.png a fig_rwf_presnost.png do složky figures/ v projektu
 // (nebo upravit cesty níže). Bibliografii z reference_chovani.yaml sloučit do reference.yaml.
 // Části označené TODO čekají na výsledky med_pose_anomaly.py.
+#let todo(x) = text(fill: red, weight: "bold")[[TODO: #x]]
+
 
 #let cz(x) = x   // čísla v textu jsou psaná s desetinnou čárkou ručně
 
@@ -12,7 +14,7 @@
 
 Zadání práce rozlišuje tři úlohy: rozpoznání normálního a abnormálního pohybu davu jako celku, rozpoznání abnormálních póz jednotlivých osob a rozpoznání interakcí mezi osobami. Společným rysem všech tří je, že rozhodnutí nelze učinit z jediného snímku. Panika je náhlá změna pohybu celé scény, rvačka je sled rychlých, nekoordinovaných pohybů dvou nebo více osob a abnormální póza se projeví teprve jako odchylka od toho, jak se lidé v daném prostředí obvykle pohybují. Každá úloha proto spojuje prostorový popis snímku s modelem jeho vývoje v čase.
 
-Tato kapitola popisuje tři modely, pro každou úlohu jeden, a jejich vyhodnocení. Pro pohyb davu se využívá oficiální anotace Motion Emotion Datasetu (MED) @med2016, pro interakce dataset RWF-2000 @rwf2000 a pro abnormální pózy opět MED, tentokrát na úrovni jednotlivých osob sledovaných v čase. Detekce osob a odhad skeletu, z nichž druhá a třetí úloha vycházejí, jsou popsány v kapitole @kap-detekce; detekce zbraní, která na skeletovou větev navazuje, v kapitole @kap-zbrane.
+Tato kapitola popisuje tři modely, pro každou úlohu jeden, a jejich vyhodnocení. Pro pohyb davu se využívá oficiální anotace Motion Emotion Datasetu (MED) @med2016, pro interakce dataset RWF-2000 @rwf2000 a pro abnormální pózy opět MED, tentokrát na úrovni jednotlivých osob sledovaných v čase. Detekce osob a odhad skeletu, z nichž druhá a třetí úloha vycházejí, jsou popsány v kapitole #todo[detekce a póza]; detekce zbraní, která na skeletovou větev navazuje, v kapitole @kap-zbrane.
 
 == Data
 
@@ -26,7 +28,7 @@ V rané fázi práce vznikl pokus o vlastní anotaci chování jednotlivých oso
 
 === RWF-2000
 
-RWF-2000 @rwf2000 je soubor 2 000 pětisekundových klipů z bezpečnostních kamer, rozdělených napůl na rvačky a scény bez rvačky; autoři dataset dělí na 1 600 trénovacích a 400 validačních klipů. Pro skeletovou větev byly všechny klipy zpracovány řetězcem RT-DETR + ViTPose (kapitola @kap-detekce) při 5 snímcích/s, s jednoduchým sledováním osob podle těžiště skeletu. Výsledkem je pro každý klip množina trajektorií, každá tvořena posloupností 14bodových skeletů jedné osoby.
+RWF-2000 @rwf2000 je soubor 2 000 pětisekundových klipů z bezpečnostních kamer, rozdělených napůl na rvačky a scény bez rvačky; autoři dataset dělí na 1 600 trénovacích a 400 validačních klipů. Pro skeletovou větev byly všechny klipy zpracovány řetězcem RT-DETR + ViTPose (kapitola #todo[detekce a póza]) při 5 snímcích/s, s jednoduchým sledováním osob podle těžiště skeletu. Výsledkem je pro každý klip množina trajektorií, každá tvořena posloupností 14bodových skeletů jedné osoby.
 
 == Chování davu <sec-dav>
 
