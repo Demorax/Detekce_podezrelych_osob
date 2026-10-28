@@ -2,6 +2,9 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+**Start here when continuing work:** `POKRACOVANI.md` (handoff: current state, open tasks for the user,
+knowledge from earlier sessions) and `STAV_PRACE.md` (audit of the non-weapon parts).
+
 ## Project Overview
 
 Human behavior detection and classification system using pose estimation from video surveillance footage. Processes the Motion Emotion Dataset to detect people, extract skeletal keypoints, track individuals across frames, and classify behaviors into three categories: walking/normal, suspicious, and running/panic.
