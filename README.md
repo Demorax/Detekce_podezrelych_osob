@@ -403,6 +403,10 @@ Vyhodnocení 5 foldů **podle videí**, 3 seedy:
 Časová složka pomáhá ve všech variantách. Slabé třídy jsou Fight (lokální událost, globální příznaky ji nevidí)
 a Congestion (plete se s Neutral). Detaily a celá ablace: `STAV_PRACE.md`, `med_results.json`.
 
+**Přenos na cizí scény** (`anomaly_bench.py`, UCSD Ped1/Ped2, CUHK Avenue, UMN; zdroje v `data/ZDROJE.md`):
+model natrénovaný na MED je jinde na úrovni náhody (AUC 0,49–0,66). Stejné příznaky s modelem normality
+naučeným bez anotací na normálních záběrech cílové kamery (PCA + kNN) dávají AUC 0,79–0,94 (UMN 0,94, Ped2 0,89).
+
 ### 5.2 Chování jednotlivců ze skeletů
 
 **MED (vlastní anotace):** olabelováno je jen 196 framů ze 2 videí (140 chůze, 8 běh, 0 podezřelé, 48 neolabelovaných).

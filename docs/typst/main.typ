@@ -156,4 +156,4 @@ YOLO – You Only Look Once\
 #todo[závěr]
 
 #pagebreak()
-#bibliography(("reference.yaml", "typst/reference_chovani.yaml"), title: "Použitá literatura")
+#bibliography(("reference.yaml", "typst/reference_chovani.yaml", "typst/reference_data.yaml"), title: "Použitá literatura")

@@ -8,6 +8,7 @@ bibliografie Hayagriva v `reference.yaml`, `#set heading(numbering: "1.")`, cita
 | `kapitola_chovani.typ` | Klasifikace chování osob a davu (úlohy 1–3 ze zadání: MED dav, RWF rvačky, anomálie póz) | koncept; sekce o pózách čeká na výsledky (`// TODO`) |
 | `kapitola_zbrane.typ` | Detekce zbraní a nebezpečných předmětů | převod z `weapon_training/docs/KAPITOLA_DETEKCE_ZBRANI.md` skriptem `md2typ.py` |
 | `reference_chovani.yaml` | bibliografie ke kapitole o chování | sloučit do `reference.yaml` |
+| `reference_data.yaml` | bibliografie datasetů (CAVIAR, ABODA, NWPU, UCSD, Avenue, UMN, ShanghaiTech, AVA, COCO, ImageNet); zdroje a licence v `data/ZDROJE.md` | nahrát do `typst/` a přidat do `#bibliography` (v `main.typ` zde už je) |
 | `figures/` | všechny PNG obrázky obou kapitol | nahrát do projektu do složky `figures/` |
 | `md2typ.py` | převod Markdown → Typst (nadpisy, tabulky, obrázky, zvýraznění) | pro další kapitoly psané v MD |
 

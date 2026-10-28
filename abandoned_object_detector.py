@@ -150,6 +150,14 @@ def point_to_bbox_dist(pt, box):
 
 
 # ===== Trackers =====
+# Třídy, které tracker objektů považuje za jeden druh předmětu (zavazadlo).
+LABEL_GROUPS = {'backpack': 'bag', 'handbag': 'bag', 'suitcase': 'bag'}
+
+
+def label_group(label):
+    return LABEL_GROUPS.get(label, label)
+
+
 def match_tracks(cost, allowed):
     """Globálně optimální párování tracků (řádky) s detekcemi (sloupce), Hungarian.
 
@@ -283,8 +291,11 @@ class ObjectTracker:
             oids = [oid for oid, t in self.tracks.items() if t['missed'] <= self.max_missed]  # viz PersonTracker
             iou = np.array([[bbox_iou(self.tracks[oid]['box'], box) for box, _, _ in object_dets]
                             for oid in oids]).reshape(len(oids), len(object_dets))
-            same = np.array([[label == self.tracks[oid]['label'] for _, _, label in object_dets]
-                             for oid in oids], dtype=bool).reshape(iou.shape)
+            # Páruje se v rámci skupiny tříd, ne přesné třídy: YOLO u téže tašky střídá
+            # backpack / handbag / suitcase mezi snímky a vznikaly tak paralelní tracky
+            # jednoho předmětu, každý s vlastním alertem (ABODA video1: 4 alerty na jednu tašku).
+            same = np.array([[label_group(label) == label_group(self.tracks[oid]['label'])
+                              for _, _, label in object_dets] for oid in oids], dtype=bool).reshape(iou.shape)
             for r, i in match_tracks(1.0 - iou, same & (iou > self.iou_threshold)):
                 t = self.tracks[oids[r]]
                 box, score, _ = object_dets[i]

@@ -1,0 +1,162 @@
+# Bibliografie datasetů (Hayagriva). Přidat do #bibliography((..., "typst/reference_data.yaml")).
+# Klíče med2016, medEmotion2016, rwf2000 jsou v reference_chovani.yaml.
+
+caviar2004:
+  type: web
+  title: "CAVIAR: Context Aware Vision using Image-based Active Recognition — test case scenarios"
+  author: Fisher, Robert B.
+  date: 2004
+  url: https://homepages.inf.ed.ac.uk/rbf/CAVIARDATA1/
+  organization: University of Edinburgh, INRIA Grenoble
+
+aboda2015:
+  type: article
+  title: Abandoned Object Detection via Temporal Consistency Modeling and Back-Tracing Verification for Visual Surveillance
+  author:
+    - Lin, Kevin
+    - Chen, Shen-Chi
+    - Chen, Chu-Song
+    - Lin, Daw-Tung
+    - Hung, Yi-Ping
+  date: 2015
+  parent:
+    type: periodical
+    title: IEEE Transactions on Information Forensics and Security
+  volume: 10
+  issue: 7
+  doi: 10.1109/TIFS.2015.2422301
+
+nwpu2023:
+  type: article
+  title: A New Comprehensive Benchmark for Semi-supervised Video Anomaly Detection and Anticipation
+  author:
+    - Cao, Congqi
+    - Lu, Yue
+    - Wang, Peng
+    - Zhang, Yanning
+  date: 2023
+  parent:
+    type: proceedings
+    title: IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)
+    publisher: IEEE
+  doi: 10.1109/CVPR52729.2023.01953
+
+ucsd2010:
+  type: article
+  title: Anomaly Detection in Crowded Scenes
+  author:
+    - Mahadevan, Vijay
+    - Li, Weixin
+    - Bhalodia, Viral
+    - Vasconcelos, Nuno
+  date: 2010
+  parent:
+    type: proceedings
+    title: IEEE Conference on Computer Vision and Pattern Recognition (CVPR)
+    publisher: IEEE
+  doi: 10.1109/CVPR.2010.5539872
+  url: http://www.svcl.ucsd.edu/projects/anomaly/dataset.html
+
+avenue2013:
+  type: article
+  title: Abnormal Event Detection at 150 FPS in MATLAB
+  author:
+    - Lu, Cewu
+    - Shi, Jianping
+    - Jia, Jiaya
+  date: 2013
+  parent:
+    type: proceedings
+    title: IEEE International Conference on Computer Vision (ICCV)
+    publisher: IEEE
+  doi: 10.1109/ICCV.2013.338
+  url: http://www.cse.cuhk.edu.hk/leojia/projects/detectabnormal/dataset.html
+
+umn2009:
+  type: article
+  title: Abnormal Crowd Behavior Detection using Social Force Model
+  author:
+    - Mehran, Ramin
+    - Oyama, Alexis
+    - Shah, Mubarak
+  date: 2009
+  parent:
+    type: proceedings
+    title: IEEE Conference on Computer Vision and Pattern Recognition (CVPR)
+    publisher: IEEE
+  doi: 10.1109/CVPR.2009.5206641
+  note: "Dataset Unusual Crowd Activity, University of Minnesota: https://mha.cs.umn.edu/proj_events.shtml#crowd"
+
+shanghaitech2017:
+  type: article
+  title: A Revisit of Sparse Coding Based Anomaly Detection in Stacked RNN Framework
+  author:
+    - Luo, Weixin
+    - Liu, Wen
+    - Gao, Shenghua
+  date: 2017
+  parent:
+    type: proceedings
+    title: IEEE International Conference on Computer Vision (ICCV)
+    publisher: IEEE
+  doi: 10.1109/ICCV.2017.45
+  url: https://svip-lab.github.io/dataset/campus_dataset.html
+
+ava2018:
+  type: article
+  title: "AVA: A Video Dataset of Spatio-temporally Localized Atomic Visual Actions"
+  author:
+    - Gu, Chunhui
+    - Sun, Chen
+    - Ross, David A.
+    - Vondrick, Carl
+    - Pantofaru, Caroline
+    - Li, Yeqing
+    - Vijayanarasimhan, Sudheendra
+    - Toderici, George
+    - Ricco, Susanna
+    - Sukthankar, Rahul
+    - Schmid, Cordelia
+    - Malik, Jitendra
+  date: 2018
+  parent:
+    type: proceedings
+    title: IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)
+    publisher: IEEE
+  doi: 10.1109/CVPR.2018.00633
+
+coco2014:
+  type: article
+  title: "Microsoft COCO: Common Objects in Context"
+  author:
+    - Lin, Tsung-Yi
+    - Maire, Michael
+    - Belongie, Serge
+    - Hays, James
+    - Perona, Pietro
+    - Ramanan, Deva
+    - Dollár, Piotr
+    - Zitnick, C. Lawrence
+  date: 2014
+  parent:
+    type: proceedings
+    title: European Conference on Computer Vision (ECCV)
+    publisher: Springer
+  doi: 10.1007/978-3-319-10602-1_48
+
+imagenet2009:
+  type: article
+  title: "ImageNet: A large-scale hierarchical image database"
+  author:
+    - Deng, Jia
+    - Dong, Wei
+    - Socher, Richard
+    - Li, Li-Jia
+    - Li, Kai
+    - Fei-Fei, Li
+  date: 2009
+  parent:
+    type: proceedings
+    title: IEEE Conference on Computer Vision and Pattern Recognition (CVPR)
+    publisher: IEEE
+  doi: 10.1109/CVPR.2009.5206848

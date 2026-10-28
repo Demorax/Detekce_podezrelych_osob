@@ -81,6 +81,20 @@ Body tabulky „Co chybí do odevzdání“, které šly udělat bez rozhodnutí
   Střízlivý výsledek: autoenkodér přidává proti rychlosti jen málo celkem, ale jediný zachytí kongesci (rychlost = náhoda).
   Rvačku nevidí ani jeden (skelety v bitce jsou nekvalitní, tracky se trhají). Pro text: doplněk k modelu davu, ne samostatný detektor.
   Text je v `docs/KAPITOLA_CHOVANI.md` (Y.5) a `docs/typst/kapitola_chovani.typ`.
+- **Nová data + přenos modelu davu na cizí scény** (`anomaly_bench.py`, `umn_labels.py`, výsledky
+  `anomaly_bench_results.json`; zdroje a licence `data/ZDROJE.md`, citace `docs/typst/reference_data.yaml`).
+  Staženo 2026-10-28: UCSD Ped1/Ped2, CUHK Avenue (+GT masky), UMN. Frame-level AUC (v závorce normalizace po videích):
+
+  | dataset | optický tok | in-domain kNN bez anotací | model MED (přenos) |
+  |---|---:|---:|---:|
+  | Ped1 | 0,74 (0,69) | 0,69 (0,61) | 0,49 |
+  | Ped2 | 0,81 (0,86) | **0,89** (0,80) | 0,66 |
+  | Avenue | 0,76 (0,68) | 0,76 (**0,79**) | 0,51 |
+  | UMN | 0,47 (0,57) | 0,86 (**0,94**) | 0,55 |
+
+  **Model natrénovaný na MED se na jinou scénu nepřenáší** (úroveň náhody); stejné příznaky s modelem normality
+  z normálních záběrů cílové kamery dávají 0,79–0,94. Do textu jako negativní, ale důležitý výsledek (kapitola Y.6).
+  ShanghaiTech (skeletová anomálie, srovnání úlohy 2 s literaturou) čeká na ruční stažení z OneDrive.
 - **Prostředí PC (Python 3.9):** opraveno `Path.hardlink_to` (od 3.10) v `build_*dataset.py` a `oversample_knife.py`. Vzorek původních dat v `build_finetune_dataset.py` byl na Windows jiný (řazení `WindowsPath` nerozlišuje velikost písmen), teď se řadí podle jména a dataset v3 vychází identicky s Macem. Skripty spouštět s `PYTHONUTF8=1` (JSONy z Macu jsou v UTF-8).
 
 ## Chronologie (git log, 41 commitů)

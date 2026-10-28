@@ -126,7 +126,26 @@ Výsledek je střízlivý. Autoenkodér odděluje abnormální snímky od neutr�
 
 Pro praxi z toho plyne, že samotná anomálie pózy jednotlivce není na MED silným signálem a je vhodná jako doplněk k modelu davu z části Y.3, který tytéž třídy rozpoznává přes celou scénu výrazně lépe (AUC 0,83). Její výhodou zůstává, že nepotřebuje anotace anomálií a lokalizuje osobu, ne jen snímek.
 
-## Y.6 Omezení a diskuse
+## Y.6 Přenos na jiné scény: UCSD, Avenue a UMN
+
+Model davu z části Y.3 byl vyhodnocen jen na MED, tedy na jediné kameře. Pro odhad, jak se chová mimo ni, byl natrénován na všech 31 záznamech MED a bez jakékoli úpravy použit na tři veřejné datasety anomálií s anotací po snímcích: UCSD Ped1 a Ped2 [CITACE] (chodník na kampusu, vozíky, kola, bruslaři; 238 × 158 a 360 × 240 px), CUHK Avenue [CITACE] (běh, házení předmětů, špatný směr; 640 × 360 px) a UMN [CITACE] (tři scény, jedenáct klipů, každý končí útěkem davu; 320 × 240 px). UMN nemá oficiální anotaci po snímcích; úseky paniky jsou v něm vyznačeny nápisem vypáleným do obrazu, z nějž byla anotace odvozena automaticky (`umn_labels.py`; počty snímků scén 1 453, 4 143 a 2 143 souhlasí s literaturou). Skóre abnormality je 1 − P(neutrální). Metrika je plocha pod ROC křivkou na úrovni snímků testovací části, jak je u těchto datasetů zvykem; u UMN, který testovací část nemá, slouží prvních 60 % normálních snímků každého klipu jako „trénovací“ normál a zbytek jako test.
+
+Pro srovnání byly spočteny dvě další hodnoty se stejnými příznaky (ResNet-18 + optický tok): baseline bez učení, průměrná velikost optického toku ve snímku, a jednoduchý in-domain model normality, který anotace nepotřebuje: PCA na příznacích normálních trénovacích snímků daného datasetu a skóre = průměrná vzdálenost k pěti nejbližším trénovacím snímkům. Skóre se vyhlazují mediánem přes pět vzorků; uvádí se varianta se společným prahem pro celý dataset a varianta s min-max normalizací skóre v každém videu zvlášť, kterou část literatury používá.
+
+**Tabulka Y.4:** Frame-level AUC na cizích datasetech. Model MED: průměr ± směrodatná odchylka ze tří inicializací. V závorce varianta s normalizací skóre po videích.
+
+| dataset | snímků (abnorm.) | optický tok | in-domain kNN | model MED (přenos) |
+|---|---:|---:|---:|---:|
+| UCSD Ped1 | 3 600 (56 %) | 0,743 (0,692) | 0,693 (0,609) | 0,493 ± 0,024 (0,499) |
+| UCSD Ped2 | 1 005 (82 %) | 0,811 (0,863) | 0,891 (0,798) | 0,661 ± 0,009 (0,650) |
+| CUHK Avenue | 3 064 (24 %) | 0,759 (0,680) | 0,756 (0,789) | 0,510 ± 0,083 (0,494) |
+| UMN | 630 (29 %) | 0,474 (0,571) | 0,856 (**0,941**) | 0,545 ± 0,159 (0,351) |
+
+Výsledek je jednoznačný a pro práci důležitý. Model natrénovaný s učitelem na MED se na jinou scénu nepřenáší: na všech čtyřech datasetech je na úrovni náhody nebo jen mírně nad ní a na UMN s normalizací po videích dokonce pod ní. Příznaky vzhledu scény, které na MED nejvíce pomáhaly, jsou vázané na konkrétní kameru; co je v jedné scéně „překážka“, je v jiné běžné pozadí, a rozdíly v rozlišení a měřítku osob mění i statistiky optického toku. Tytéž příznaky bez učitele, s modelem normality naučeným na normálních záběrech cílové kamery, dávají naopak použitelná čísla: na UMN 0,94, na Ped2 0,89, na Avenue 0,79. Jsou to hodnoty pod publikovanými metodami stavěnými na míru těmto datasetům (zhruba 0,85 pro Ped1, 0,97 pro Ped2, 0,88 pro Avenue a 0,97 pro UMN [CITACE]), ale dosažené bez jediné anotace a bez trénování sítě.
+
+Pro nasazení z toho plyne praktické doporučení: klasifikátor tříd chování je třeba trénovat na záběrech cílové kamery, a kde takové anotace nejsou, je lepší začít modelem normality naučeným z běžného provozu dané kamery, k němuž se třídy mohou doplnit později. Ped1 je přitom výjimkou, kde ani in-domain model nepřekonal prostý optický tok: při rozlišení 238 × 158 px jsou osoby vysoké kolem 20 px a vzhledové příznaky ze sítě předtrénované na fotografiích nesou málo informace.
+
+## Y.7 Omezení a diskuse
 
 Všechny tři modely sdílejí omezení plynoucí z dat. MED má 31 záznamů z jediné kamery a jediného místa; pět skupin videí brání úniku informace mezi tréninkem a testem, ale neříká nic o přenosu na jinou scénu. Některé třídy jsou v datech zastoupeny několika málo videi (panika 11, kongesce 7), takže výsledky po třídách mají velký rozptyl, patrný i ve směrodatných odchylkách tabulky Y.1. RWF-2000 je větší a rozmanitější, ale klipy jsou krátké a bez časové lokalizace rvačky uvnitř klipu.
 
@@ -134,9 +153,9 @@ Druhé omezení je ve skeletech. Odhad pózy nebyl na záběry z kamer dolaďov�
 
 Třetí omezení je metodické. Hyperparametry modelů nebyly laděny systematicky, vycházejí z běžných hodnot a několika pokusů; počet epoch je pevný. Je pravděpodobné, že ladění na vyčleněné části tréninku by výsledky zlepšilo, ale za cenu dalšího dělení už tak malých dat.
 
-## Y.7 Shrnutí
+## Y.8 Shrnutí
 
-Pro pohyb davu byl na oficiálních anotacích MED natrénován prostorově-temporální model spojující vzhled scény, optický tok a detekci osob s obousměrnou LSTM. Při vyhodnocení po videích dosahuje průměrné přesnosti po třídách 0,54 a AUC 0,83 pro rozhodnutí normální/abnormální, proti 0,44 v původním článku k datasetu; časová složka zlepšuje všechny varianty. Pro interakce mezi osobami rozpoznává model nad skeletovými trajektoriemi rvačku na RWF-2000 s přesností 0,78 na úrovni klipu, s poctivým protokolem výběru modelu; slabinou je sledování osob, kvůli kterému pětina klipů nemá žádné okno. Pro abnormální pózy jednotlivců byl bez anotací natrénován autoenkodér skeletových trajektorií na normálních úsecích MED; odděluje abnormální snímky s AUC 0,70, jen mírně nad rychlostní baseline (0,68), ale na rozdíl od ní zachytí kongesci (0,64 proti 0,53), takže je užitečný jako doplněk modelu davu, ne jako samostatný detektor.
+Pro pohyb davu byl na oficiálních anotacích MED natrénován prostorově-temporální model spojující vzhled scény, optický tok a detekci osob s obousměrnou LSTM. Při vyhodnocení po videích dosahuje průměrné přesnosti po třídách 0,54 a AUC 0,83 pro rozhodnutí normální/abnormální, proti 0,44 v původním článku k datasetu; časová složka zlepšuje všechny varianty. Pro interakce mezi osobami rozpoznává model nad skeletovými trajektoriemi rvačku na RWF-2000 s přesností 0,78 na úrovni klipu, s poctivým protokolem výběru modelu; slabinou je sledování osob, kvůli kterému pětina klipů nemá žádné okno. Pro abnormální pózy jednotlivců byl bez anotací natrénován autoenkodér skeletových trajektorií na normálních úsecích MED; odděluje abnormální snímky s AUC 0,70, jen mírně nad rychlostní baseline (0,68), ale na rozdíl od ní zachytí kongesci (0,64 proti 0,53), takže je užitečný jako doplněk modelu davu, ne jako samostatný detektor. Přenos modelu davu na cizí scény (UCSD, Avenue, UMN) nefunguje, zatímco model normality naučený bez anotací na záběrech cílové kamery dosahuje AUC 0,79–0,94; v nové scéně je tedy třeba buď anotovat, nebo začít od normality.
 
 ## Poznámky pro autora
 

@@ -1,0 +1,9 @@
+ped1    pooled     snímků  3600 abnorm. 56%  AUC tok 0.743  in-domain kNN 0.693  model MED 0.493 ± 0.024
+ped1    per_video  snímků  3600 abnorm. 56%  AUC tok 0.692  in-domain kNN 0.609  model MED 0.499 ± 0.025
+ped2    pooled     snímků  1005 abnorm. 82%  AUC tok 0.811  in-domain kNN 0.891  model MED 0.661 ± 0.009
+ped2    per_video  snímků  1005 abnorm. 82%  AUC tok 0.863  in-domain kNN 0.798  model MED 0.650 ± 0.015
+avenue  pooled     snímků  3064 abnorm. 24%  AUC tok 0.759  in-domain kNN 0.756  model MED 0.510 ± 0.083
+avenue  per_video  snímků  3064 abnorm. 24%  AUC tok 0.680  in-domain kNN 0.789  model MED 0.494 ± 0.038
+umn     pooled     snímků   630 abnorm. 29%  AUC tok 0.474  in-domain kNN 0.856  model MED 0.545 ± 0.159
+umn     per_video  snímků   630 abnorm. 29%  AUC tok 0.571  in-domain kNN 0.941  model MED 0.351 ± 0.134
+-> anomaly_bench_results.json
