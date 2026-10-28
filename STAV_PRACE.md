@@ -42,6 +42,45 @@ Body tabulky „Co chybí do odevzdání“, které šly udělat bez rozhodnutí
   - `LeftBag_PickedUp` je teď TP (+9,9 s). Definici pozitiva musí rozhodnout autor.
 - **Bod 8, ABODA:** `diagnose_aboda.py` znovu pouští plnou pipeline s opraveným trackerem a u každého zavazadla zapisuje detekci, vlastníka a dobu bez vlastníka (`reference_img/aboda_alerts_v2/`). Původní batch běžel ještě s chybou trackeru z bodu 1. Video4: taška je detekovaná jen v ruce majitele (10–19 s). Když leží sama u skříně, YOLO11x ji nenajde a track zanikne. Selhává tedy **detekce** odloženého zavazadla, ne pravidla. Souhrn všech 11 videí je v `reference_img/aboda_alerts_v2/souhrn.json`.
 - **Bod 15, NWPU:** `nwpu_eval_30*.json` vznikly také ještě se starým trackerem. NWPU nemá typ anomálie po videích, takže recall opuštění změřit nejde. Smysl má jen počet falešných poplachů na normálních videích (dřív 0 na 10 videích).
+- **Úloha 1 ze zadání (pohyb davu) na oficiálních anotacích MED** (`med_features.py`, `med_person_features.py`,
+  `med_train.py`, výsledky `med_results.json`). Dosud se MED anotace po snímcích (Panic / Fight / Congestion /
+  Obstacle / Neutral, všech 31 videí, `dataset_frames_abnormal_labeling.m`) v projektu nepoužívaly; ruční
+  labelování 196 framů tím ztrácí smysl. Model: na každém vzorkovaném snímku (5/s) prostorové příznaky
+  ResNet-18 (512), optický tok Farneback (48) a detekce osob YOLO11x (24), nad nimi BiLSTM přes okno 16 snímků
+  (3,2 s). Vyhodnocení 5 foldů podle videí (žádné video v tréninku i testu), pevný počet epoch, 3 seedy.
+
+  | příznaky | časový model | přesnost | prům. přesnost po třídách | macro-F1 | normální vs. abnormální AUC |
+  |---|---|---:|---:|---:|---:|
+  | optický tok | ne | 0,498 | 0,434 | 0,401 | 0,672 |
+  | optický tok | BiLSTM | 0,624 | 0,455 | 0,445 | 0,704 |
+  | CNN | ne | 0,649 | 0,450 | 0,433 | 0,779 |
+  | CNN | BiLSTM | 0,665 | 0,489 | 0,465 | 0,807 |
+  | CNN + tok | ne | 0,689 | 0,512 | 0,510 | 0,795 |
+  | CNN + tok | BiLSTM | 0,695 | 0,529 | 0,506 | 0,815 |
+  | CNN + tok + osoby | ne | 0,687 | 0,512 | 0,509 | 0,798 |
+  | **CNN + tok + osoby** | **BiLSTM** | **0,699** | **0,538** | **0,522 ± 0,025** | **0,825** |
+
+  F1 po třídách u nejlepší varianty: Neutral 0,83, Panic 0,69, Fight 0,38, Congestion 0,20, Obstacle 0,51.
+  Časová složka pomáhá ve všech variantách (+2 až +4 b. průměrné přesnosti po třídách). Delší okno 32 snímků
+  zlepší Congestion (F1 0,20 → 0,38) za cenu ostatních tříd (`med_train_window.log`).
+  **Srovnání s literaturou:** Rabiee et al. 2016 (článek k MED, dense trajectories + SVM, leave-one-sequence-out)
+  uvádí průměrnou přesnost po třídách 0,387 (low-level), 0,436 (emotion-based), 0,439 (latent emotion);
+  https://arxiv.org/abs/1607.07646. Náš protokol je přísnější (5 foldů místo 30/1). Slabé třídy: Fight je lokální
+  událost, kterou globální příznaky scény nevidí (na ni cílí RWF skeletová větev), Congestion se plete s Neutral.
+- **Úloha 2 ze zadání (abnormální pózy jednotlivců), bez anotací** (`med_skeletons.py` → `data/Motion_Emotion/skeletons/*.pkl`,
+  `med_pose_anomaly.py`, výsledky `med_pose_results.json`). Skelety RT-DETR + ViTPose se sledováním pro všech 31 MED videí
+  (5 snímků/s, 62 322 oken po 12 snímcích). GRU autoenkodér nad trajektorií jedné osoby (normalizovaný skelet + rychlost),
+  učený jen na oknech z Neutral snímků trénovacích videí, skóre = chyba rekonstrukce, skóre snímku = průměr 3 nejvyšších.
+  Stejných 5 foldů podle videí, AUC na úrovni snímků proti Neutral:
+
+  | skóre | abnormální | Panic | Fight | Congestion | Obstacle |
+  |---|---:|---:|---:|---:|---:|
+  | baseline rychlost | 0,680 | **0,921** | 0,682 | 0,532 | 0,652 |
+  | GRU autoenkodér | **0,701** | 0,883 | 0,678 | **0,641** | **0,679** |
+
+  Střízlivý výsledek: autoenkodér přidává proti rychlosti jen málo celkem, ale jediný zachytí kongesci (rychlost = náhoda).
+  Rvačku nevidí ani jeden (skelety v bitce jsou nekvalitní, tracky se trhají). Pro text: doplněk k modelu davu, ne samostatný detektor.
+  Text je v `docs/KAPITOLA_CHOVANI.md` (Y.5) a `docs/typst/kapitola_chovani.typ`.
 - **Prostředí PC (Python 3.9):** opraveno `Path.hardlink_to` (od 3.10) v `build_*dataset.py` a `oversample_knife.py`. Vzorek původních dat v `build_finetune_dataset.py` byl na Windows jiný (řazení `WindowsPath` nerozlišuje velikost písmen), teď se řadí podle jména a dataset v3 vychází identicky s Macem. Skripty spouštět s `PYTHONUTF8=1` (JSONy z Macu jsou v UTF-8).
 
 ## Chronologie (git log, 41 commitů)

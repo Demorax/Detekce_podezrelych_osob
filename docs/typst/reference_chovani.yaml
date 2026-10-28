@@ -1,0 +1,144 @@
+# Bibliografie ke kapitole o klasifikaci chování (Hayagriva). Sloučit do reference.yaml.
+# Klíče začínají na "chov" nebo názvem metody, aby nekolidovaly s existujícími.
+
+med2016:
+  type: article
+  title: Novel dataset for fine-grained abnormal behavior understanding in crowd
+  author:
+    - Rabiee, Hamidreza
+    - Haddadnia, Javad
+    - Mousavi, Hossein
+    - Kalantarzadeh, Maziyar
+    - Nabi, Moin
+    - Murino, Vittorio
+  date: 2016
+  parent:
+    type: proceedings
+    title: 13th IEEE International Conference on Advanced Video and Signal Based Surveillance (AVSS)
+    publisher: IEEE
+  doi: 10.1109/AVSS.2016.7738074
+
+medEmotion2016:
+  type: article
+  title: Emotion-Based Crowd Representation for Abnormality Detection
+  author:
+    - Rabiee, Hamidreza
+    - Haddadnia, Javad
+    - Mousavi, Hossein
+    - Nabi, Moin
+    - Murino, Vittorio
+    - Sebe, Nicu
+  date: 2016
+  url: https://arxiv.org/abs/1607.07646
+  parent:
+    type: repository
+    title: arXiv
+
+rwf2000:
+  type: article
+  title: "RWF-2000: An Open Large Scale Video Database for Violence Detection"
+  author:
+    - Cheng, Ming
+    - Cai, Kunjing
+    - Li, Ming
+  date: 2021
+  parent:
+    type: proceedings
+    title: 25th International Conference on Pattern Recognition (ICPR)
+    publisher: IEEE
+  doi: 10.1109/ICPR48806.2021.9412502
+
+resnet2016:
+  type: article
+  title: Deep Residual Learning for Image Recognition
+  author:
+    - He, Kaiming
+    - Zhang, Xiangyu
+    - Ren, Shaoqing
+    - Sun, Jian
+  date: 2016
+  parent:
+    type: proceedings
+    title: IEEE Conference on Computer Vision and Pattern Recognition (CVPR)
+    publisher: IEEE
+  doi: 10.1109/CVPR.2016.90
+
+farneback2003:
+  type: article
+  title: Two-Frame Motion Estimation Based on Polynomial Expansion
+  author: Farnebäck, Gunnar
+  date: 2003
+  parent:
+    type: proceedings
+    title: "Image Analysis: 13th Scandinavian Conference (SCIA)"
+    publisher: Springer
+  doi: 10.1007/3-540-45103-X_50
+
+yolo11:
+  type: web
+  title: Ultralytics YOLO11
+  author:
+    - Jocher, Glenn
+    - Qiu, Jing
+  date: 2024
+  url: https://github.com/ultralytics/ultralytics
+
+morais2019:
+  type: article
+  title: Learning Regularity in Skeleton Trajectories for Anomaly Detection in Videos
+  author:
+    - Morais, Romero
+    - Le, Vuong
+    - Tran, Truyen
+    - Saha, Budhaditya
+    - Mansour, Moussa
+    - Venkatesh, Svetha
+  date: 2019
+  parent:
+    type: proceedings
+    title: IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)
+    publisher: IEEE
+  doi: 10.1109/CVPR.2019.01227
+
+# --- skeletové metody na RWF-2000; čísla ověřit v originálech ---
+garciacobo2023:
+  type: article
+  title: Human skeletons and change detection for efficient violence detection in surveillance videos
+  author:
+    - Garcia-Cobo, Guillermo
+    - SanMiguel, Juan C.
+  date: 2023
+  parent:
+    type: periodical
+    title: Computer Vision and Image Understanding
+  volume: 233
+  doi: 10.1016/j.cviu.2023.103739
+
+spil2020:
+  type: article
+  title: Human Interaction Learning on 3D Skeleton Point Clouds for Video Violence Recognition
+  author:
+    - Su, Yukun
+    - Lin, Guosheng
+    - Zhu, Jinhui
+    - Wu, Qingyao
+  date: 2020
+  parent:
+    type: proceedings
+    title: European Conference on Computer Vision (ECCV)
+    publisher: Springer
+  doi: 10.1007/978-3-030-58548-8_5
+
+skp2023:
+  type: article
+  title: Unified Keypoint-based Action Recognition Framework via Structured Keypoint Pooling
+  author:
+    - Hachiuma, Ryo
+    - Sato, Fumiaki
+    - Sekii, Taiki
+  date: 2023
+  parent:
+    type: proceedings
+    title: IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)
+    publisher: IEEE
+  doi: 10.1109/CVPR52729.2023.02199

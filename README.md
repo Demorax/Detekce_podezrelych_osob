@@ -383,7 +383,27 @@ Kompletní dokumentace (průběh tréninku, datasety, anotační specifikace, ab
 
 ---
 
-## 5. Klasifikace chování ze skeletů
+## 5. Klasifikace chování
+
+### 5.1 Chování davu na MED (úloha 1 ze zadání)
+
+MED má oficiální anotaci chování po snímcích pro všech 31 videí (Panic, Fight, Congestion, Obstacle, Neutral;
+`data/Motion_Emotion/.../dataset_frames_abnormal_labeling.m`). Prostorově-temporální model:
+na každém vzorkovaném snímku (5/s) příznaky ResNet-18 + optický tok Farneback + detekce osob YOLO11x
+(`med_features.py`, `med_person_features.py`), nad nimi BiLSTM přes okno 3,2 s (`med_train.py`).
+Vyhodnocení 5 foldů **podle videí**, 3 seedy:
+
+| model | přesnost | prům. přesnost po třídách | normální vs. abnormální AUC |
+|---|---:|---:|---:|
+| optický tok, 1 snímek | 0,50 | 0,43 | 0,67 |
+| CNN + tok + osoby, 1 snímek | 0,69 | 0,51 | 0,80 |
+| **CNN + tok + osoby + BiLSTM** | **0,70** | **0,54** | **0,83** |
+| Rabiee et al. 2016 (článek k MED) | — | 0,39–0,44 | — |
+
+Časová složka pomáhá ve všech variantách. Slabé třídy jsou Fight (lokální událost, globální příznaky ji nevidí)
+a Congestion (plete se s Neutral). Detaily a celá ablace: `STAV_PRACE.md`, `med_results.json`.
+
+### 5.2 Chování jednotlivců ze skeletů
 
 **MED (vlastní anotace):** olabelováno je jen 196 framů ze 2 videí (140 chůze, 8 běh, 0 podezřelé, 48 neolabelovaných).
 MLP s „67 % accuracy“ (`clean_detekce_osob.ipynb`) ve skutečnosti predikuje vždy „chůzi“, takže jde o majoritní baseline.
@@ -399,6 +419,12 @@ trénovacích videí a oficiální val (400 videí) používá jen jako test (pr
 | **video** | **0,781 ± 0,006** | 0,752 | 0,808 |
 
 V 84 ze 400 videí není nikdo sledovaný 3 s, takže nevznikne žádné okno. Skeletové metody v literatuře hlásí na RWF-2000 zhruba 85–93 %.
+
+**Abnormální pózy jednotlivců na MED (úloha 2 ze zadání), bez anotací:** skelety se sledováním pro všech 31 videí
+(`med_skeletons.py`), GRU autoenkodér trajektorií učený jen na neutrálních úsecích, skóre = chyba rekonstrukce
+(`med_pose_anomaly.py`). AUC abnormální vs. neutrální snímky **0,70** (rychlostní baseline 0,68); autoenkodér jako jediný
+zachytí kongesci (0,64 vs. 0,53), paniku lépe rozpozná prostá rychlost (0,92). Slouží jako doplněk modelu davu (5.1), ne
+samostatně.
 
 ---
 

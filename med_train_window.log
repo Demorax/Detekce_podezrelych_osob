@@ -1,0 +1,6 @@
+T=8
+both + BiLSTM          acc 0.684  tř.acc 0.525  macro-F1 0.506 ± 0.011  abnorm. AUC 0.805  F1/třída Neut 0.82 Pani 0.66 Figh 0.36 Cong 0.18 Obst 0.51
+T=32
+both + BiLSTM          acc 0.665  tř.acc 0.545  macro-F1 0.514 ± 0.016  abnorm. AUC 0.779  F1/třída Neut 0.79 Pani 0.69 Figh 0.34 Cong 0.33 Obst 0.42
+T=48
+both + BiLSTM          acc 0.649  tř.acc 0.540  macro-F1 0.505 ± 0.018  abnorm. AUC 0.769  F1/třída Neut 0.78 Pani 0.68 Figh 0.37 Cong 0.34 Obst 0.35
