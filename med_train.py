@@ -56,11 +56,20 @@ def windows(x, y, T):
 
 
 class Net(nn.Module):
-    def __init__(self, d_in, temporal, hidden=64, drop=0.3):
+    def __init__(self, d_in, temporal, hidden=64, drop=0.3, arch='lstm'):
         super().__init__()
         self.temporal = temporal
+        self.arch = arch
         self.proj = nn.Sequential(nn.Dropout(0.1), nn.Linear(d_in, 128), nn.ReLU(), nn.Dropout(drop))
-        if temporal:
+        if temporal and arch == 'transformer':
+            # Transformer encoder nad oknem: učená poziční embedding, 2 vrstvy, 4 hlavy, mean-pool.
+            # Srovnatelná velikost s BiLSTM (~200 tis. vs ~100 tis. parametrů v časové části).
+            self.pos = nn.Parameter(torch.zeros(1, 64, 128))
+            layer = nn.TransformerEncoderLayer(128, nhead=4, dim_feedforward=256, dropout=drop,
+                                               batch_first=True, norm_first=True)
+            self.enc = nn.TransformerEncoder(layer, num_layers=2)
+            self.head = nn.Linear(128, len(CLASSES))
+        elif temporal:
             self.rnn = nn.LSTM(128, hidden, batch_first=True, bidirectional=True)
             self.head = nn.Linear(2 * hidden, len(CLASSES))
         else:
@@ -69,13 +78,16 @@ class Net(nn.Module):
 
     def forward(self, x):                 # x: (B, T, D); bez časového modelu T = 1
         h = self.proj(x)
+        if self.temporal and self.arch == 'transformer':
+            h = self.enc(h + self.pos[:, :h.shape[1]])
+            return self.head(h.mean(1))
         if self.temporal:
             h, _ = self.rnn(h)
             return self.head(h.mean(1))
         return self.head(h[:, 0])
 
 
-def run_fold(data, test_vids, temporal, T, seed):
+def run_fold(data, test_vids, temporal, T, seed, arch='lstm'):
     torch.manual_seed(seed); np.random.seed(seed)
     train_vids = [v for v in data if v not in test_vids]
     allx = np.concatenate([data[v][0] for v in train_vids])
@@ -94,7 +106,7 @@ def run_fold(data, test_vids, temporal, T, seed):
     xte, yte, ids = build(test_vids)
     w = torch.tensor(len(ytr) / (len(CLASSES) * np.maximum(np.bincount(ytr.numpy(), minlength=len(CLASSES)), 1)),
                      dtype=torch.float32, device=DEV)
-    net = Net(xtr.shape[-1], temporal).to(DEV)
+    net = Net(xtr.shape[-1], temporal, arch=arch).to(DEV)
     opt = torch.optim.AdamW(net.parameters(), lr=LR, weight_decay=WD)
     sched = torch.optim.lr_scheduler.CosineAnnealingLR(opt, EPOCHS)
     loss_fn = nn.CrossEntropyLoss(weight=w)
@@ -127,23 +139,24 @@ def evaluate(y, prob):
             'confusion': confusion_matrix(y, pred, labels=range(len(CLASSES))).tolist()}
 
 
-def experiment(features, temporal, T, seeds):
+def experiment(features, temporal, T, seeds, arch='lstm'):
     data = load(features)
     runs = []
     for s in seeds:
         ys, ps = [], []
         for fold in FOLDS:
-            y, p, _ = run_fold(data, fold, temporal, T, s)
+            y, p, _ = run_fold(data, fold, temporal, T, s, arch)
             ys.append(y); ps.append(p)
         runs.append(evaluate(np.concatenate(ys), np.concatenate(ps)))
     summ = {k: {'mean': float(np.mean([r[k] for r in runs])), 'std': float(np.std([r[k] for r in runs]))}
             for k in ('acc', 'mean_class_acc', 'macro_f1', 'abnormal_auc', 'abnormal_f1')}
     summ['f1'] = {c: float(np.mean([r['f1'][c] for r in runs])) for c in CLASSES}
-    name = f"{features}{' + BiLSTM' if temporal else ' (1 snímek)'}"
+    tname = {'lstm': 'BiLSTM', 'transformer': 'Transformer'}[arch]
+    name = f"{features}{(' + ' + tname + f' T={T}') if temporal else ' (1 snímek)'}"
     print(f"{name:<22} acc {summ['acc']['mean']:.3f}  tř.acc {summ['mean_class_acc']['mean']:.3f}  macro-F1 {summ['macro_f1']['mean']:.3f} ± "
           f"{summ['macro_f1']['std']:.3f}  abnorm. AUC {summ['abnormal_auc']['mean']:.3f}  F1/třída "
           + ' '.join(f"{c[:4]} {v:.2f}" for c, v in summ['f1'].items()), flush=True)
-    return {'name': name, 'features': features, 'temporal': temporal, 'window': T, 'summary': summ,
+    return {'name': name, 'features': features, 'temporal': temporal, 'arch': arch, 'window': T, 'summary': summ,
             'confusion_seed0': runs[0]['confusion']}
 
 
@@ -154,15 +167,25 @@ def main():
     ap.add_argument('--window', type=int, default=16)
     ap.add_argument('--seeds', type=int, nargs='+', default=[0, 1, 2])
     ap.add_argument('--all', action='store_true', help='celá ablační tabulka')
+    ap.add_argument('--arch', default='lstm', choices=['lstm', 'transformer'])
+    ap.add_argument('--compare-temporal', action='store_true',
+                    help='BiLSTM vs Transformer pro příznaky both/all a okna 16/32 -> med_temporal_results.json')
     a = ap.parse_args()
-    if a.all:
+    if a.compare_temporal:
+        res = [experiment(f, True, T, a.seeds, arch) for f in ('both', 'all') for T in (16, 32)
+               for arch in ('lstm', 'transformer')]
+        with open('med_temporal_results.json', 'w', encoding='utf-8') as fh:
+            json.dump({'classes': CLASSES, 'folds': FOLDS, 'epochs': EPOCHS, 'results': res}, fh,
+                      indent=1, ensure_ascii=False)
+        print('-> med_temporal_results.json')
+    elif a.all:
         res = [experiment(f, t, a.window, a.seeds) for f in ('flow', 'cnn', 'both', 'all') for t in (False, True)]
         with open('med_results.json', 'w', encoding='utf-8') as fh:
             json.dump({'classes': CLASSES, 'folds': FOLDS, 'epochs': EPOCHS, 'results': res}, fh,
                       indent=1, ensure_ascii=False)
         print('-> med_results.json')
     else:
-        experiment(a.features, a.temporal, a.window, a.seeds)
+        experiment(a.features, a.temporal, a.window, a.seeds, a.arch)
 
 
 if __name__ == '__main__':
