@@ -175,21 +175,29 @@ def main():
     ap.add_argument('--seeds', type=int, nargs='+', default=[0, 1, 2])
     ap.add_argument('--val-frac', type=float, default=0.15)
     ap.add_argument('--epochs', type=int, default=T.DEFAULT_EPOCHS)
+    # kratší okno = víc videí s aspoň jedním oknem (při 15 snímcích jich 84/400 nemá žádné);
+    # checkpoint je natrénovaný na 15, při jiné délce se proto vyhodnocuje jen --holdout
+    ap.add_argument('--seq-len', type=int, default=T.SEQUENCE_LENGTH)
+    ap.add_argument('--step', type=int, default=T.STEP_SIZE)
+    ap.add_argument('--out', default=OUT_JSON)
     args = ap.parse_args()
+    T.SEQUENCE_LENGTH, T.STEP_SIZE = args.seq_len, args.step
+    print(f'okno {T.SEQUENCE_LENGTH} snímků ({T.SEQUENCE_LENGTH / 5:.1f} s), krok {T.STEP_SIZE}')
 
     val = load_videos('val')
-    out = {}
+    out = {'seq_len': T.SEQUENCE_LENGTH, 'step': T.STEP_SIZE}
 
-    model = T.BiLSTMAttention(input_dim=T.N_KEYPOINTS * 4).to(T.DEVICE)
-    ckpt = torch.load(args.checkpoint, map_location=T.DEVICE)
-    model.load_state_dict(ckpt['model_state_dict'])
-    r = evaluate(model, val)
-    out['checkpoint'] = {'path': args.checkpoint, 'epoch': ckpt.get('epoch'), **r}
-    print(f"Checkpoint {args.checkpoint} (epocha {ckpt.get('epoch')}, vybrán na val -> optimistické):")
-    for k in ('window', 'video_mean', 'video_max_track', 'video_mean_covered'):
-        print(fmt(k, r[k]))
-    print(f"  videí bez okna: {r['videos_without_window']} / {len(val)} "
-          f"(z toho Fight {r['videos_without_window_fight']})")
+    if args.seq_len == 15:
+        model = T.BiLSTMAttention(input_dim=T.N_KEYPOINTS * 4).to(T.DEVICE)
+        ckpt = torch.load(args.checkpoint, map_location=T.DEVICE)
+        model.load_state_dict(ckpt['model_state_dict'])
+        r = evaluate(model, val)
+        out['checkpoint'] = {'path': args.checkpoint, 'epoch': ckpt.get('epoch'), **r}
+        print(f"Checkpoint {args.checkpoint} (epocha {ckpt.get('epoch')}, vybrán na val -> optimistické):")
+        for k in ('window', 'video_mean', 'video_max_track', 'video_mean_covered'):
+            print(fmt(k, r[k]))
+        print(f"  videí bez okna: {r['videos_without_window']} / {len(val)} "
+              f"(z toho Fight {r['videos_without_window_fight']})")
 
     if args.holdout:
         train = load_videos('train')
@@ -202,6 +210,7 @@ def main():
                   f"epocha {info['best_epoch']}/{info['epochs_run']}, select_acc={info['select_acc']:.3f}")
             for k in ('window', 'video_mean', 'video_max_track', 'video_mean_covered'):
                 print(fmt(k, r[k]))
+            print(f"  videí bez okna: {r['videos_without_window']} / {len(val)}")
         summ = {}
         for k in ('window', 'video_mean', 'video_max_track', 'video_mean_covered'):
             for metric in ('acc', 'macro_f1', 'fight_f1', 'roc_auc'):
@@ -213,9 +222,9 @@ def main():
         for k, v in summ.items():
             print(f"  {k:<28} {v['mean']:.3f} ± {v['std']:.3f}")
 
-    with open(OUT_JSON, 'w', encoding='utf-8') as f:
+    with open(args.out, 'w', encoding='utf-8') as f:
         json.dump(out, f, indent=1, ensure_ascii=False)
-    print(f'\n-> {OUT_JSON}')
+    print(f'\n-> {args.out}')
 
 
 if __name__ == '__main__':

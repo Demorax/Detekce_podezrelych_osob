@@ -422,7 +422,9 @@ trénovacích videí a oficiální val (400 videí) používá jen jako test (pr
 | okna (3 s) | 0,727 ± 0,003 | 0,679 | 0,789 |
 | **video** | **0,781 ± 0,006** | 0,752 | 0,808 |
 
-V 84 ze 400 videí není nikdo sledovaný 3 s, takže nevznikne žádné okno. Skeletové metody v literatuře hlásí na RWF-2000 zhruba 85–93 %.
+V 84 ze 400 videí není nikdo sledovaný 3 s, takže nevznikne žádné okno. Kratší okno 2 s s krokem 3 snímky
+(`eval_rwf_lstm.py --holdout --seq-len 10 --step 3`) sníží počet videí bez okna na 56 a zvýší přesnost po videích
+na **0,826 ± 0,005** (AUC 0,876). Skeletové metody v literatuře hlásí na RWF-2000 zhruba 85–93 %.
 
 **Abnormální pózy jednotlivců na MED (úloha 2 ze zadání), bez anotací:** skelety se sledováním pro všech 31 videí
 (`med_skeletons.py`), GRU autoenkodér trajektorií učený jen na neutrálních úsecích, skóre = chyba rekonstrukce

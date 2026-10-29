@@ -81,6 +81,23 @@ Body tabulky „Co chybí do odevzdání“, které šly udělat bez rozhodnutí
   Střízlivý výsledek: autoenkodér přidává proti rychlosti jen málo celkem, ale jediný zachytí kongesci (rychlost = náhoda).
   Rvačku nevidí ani jeden (skelety v bitce jsou nekvalitní, tracky se trhají). Pro text: doplněk k modelu davu, ne samostatný detektor.
   Text je v `docs/KAPITOLA_CHOVANI.md` (Y.5) a `docs/typst/kapitola_chovani.typ`.
+- **Bod 2: RWF s kratším oknem** (2026-10-29, `eval_rwf_lstm.py --holdout --seq-len L --step S`,
+  výsledky `rwf_lstm_eval_T*.json`, logy `rwf_T*.log`). Stejný model a protokol jako čistý odhad výše
+  (výběr epochy na 15 % trénovacích videí, val jen jako test, 3 seedy).
+
+  | okno | krok | val videí bez okna | přesnost po videích | F1 Fight | AUC | přesnost po oknech |
+  |---|---|---:|---:|---:|---:|---:|
+  | 15 (3 s) | 5 | 84 | 0,781 ± 0,006 | 0,752 | 0,808 | 0,727 |
+  | 15 (3 s) | 3 | 84 | 0,785 ± 0,009 | 0,757 | 0,819 | 0,729 |
+  | 10 (2 s) | 5 | 56 | 0,812 ± 0,005 | 0,800 | 0,871 | 0,721 |
+  | **10 (2 s)** | **3** | **56** | **0,826 ± 0,005** | **0,817** | **0,876** | 0,729 |
+  | 8 (1,6 s) | 3 | 46 | 0,826 ± 0,008 | 0,820 | 0,884 | 0,712 |
+
+  Zlepšení 0,78 → 0,83 dělá hlavně **pokrytí**: kratší okno dá předpověď víc videím (bez okna 84 → 56), samotná
+  přesnost po oknech se nemění (~0,72–0,73). Hustší okna (krok 3) přidají ~1,5 bodu. **Výhrada pro text:** délka okna
+  byla vybrána porovnáním na val (5 variant), takže 0,826 je mírně optimistické; varianty 10 a 8 jsou ale stejné,
+  takže závěr „kratší okno pomáhá kvůli pokrytí“ je robustní. Nová hlavní konfigurace RWF: okno 10, krok 3.
+  Literatura (skeletové metody) ~0,85–0,93, rozdíl se zmenšil z ~10 na ~5 bodů.
 - **Bod 7: Transformer vs. BiLSTM v modelu davu** (2026-10-29, `med_train.py --compare-temporal`,
   `med_temporal_results.json`). Transformer: 2 vrstvy, 4 hlavy, učená poziční embedding, ~350 tis. parametrů
   (BiLSTM ~175 tis.), jinak stejný protokol (5 foldů podle videí, 3 seedy, 25 epoch).

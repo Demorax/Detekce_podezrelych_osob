@@ -1,0 +1,431 @@
+{
+ "seq_len": 15,
+ "step": 3,
+ "checkpoint": {
+  "path": "best_lstm_pytorch.pt",
+  "epoch": 38,
+  "window": {
+   "n": 3275,
+   "acc": 0.7554198473282443,
+   "macro_f1": 0.7512903718506522,
+   "fight_precision": 0.8402948402948403,
+   "fight_recall": 0.6286764705882353,
+   "fight_f1": 0.7192429022082019,
+   "nonfight_recall": 0.8813146682897139,
+   "confusion": [
+    [
+     1448,
+     195
+    ],
+    [
+     606,
+     1026
+    ]
+   ],
+   "roc_auc": 0.7994249967181029
+  },
+  "video_mean": {
+   "n": 400,
+   "acc": 0.805,
+   "macro_f1": 0.802150974025974,
+   "fight_precision": 0.9013157894736842,
+   "fight_recall": 0.685,
+   "fight_f1": 0.7784090909090909,
+   "nonfight_recall": 0.925,
+   "confusion": [
+    [
+     185,
+     15
+    ],
+    [
+     63,
+     137
+    ]
+   ],
+   "roc_auc": 0.8161
+  },
+  "video_max_track": {
+   "n": 400,
+   "acc": 0.7925,
+   "macro_f1": 0.7924883274684201,
+   "fight_precision": 0.7881773399014779,
+   "fight_recall": 0.8,
+   "fight_f1": 0.794044665012407,
+   "nonfight_recall": 0.785,
+   "confusion": [
+    [
+     157,
+     43
+    ],
+    [
+     40,
+     160
+    ]
+   ],
+   "roc_auc": 0.8112999999999999
+  },
+  "videos_without_window": 84,
+  "videos_without_window_fight": 26,
+  "video_mean_covered": {
+   "n": 316,
+   "acc": 0.8354430379746836,
+   "macro_f1": 0.8352780785115683,
+   "fight_precision": 0.9013157894736842,
+   "fight_recall": 0.7873563218390804,
+   "fight_f1": 0.8404907975460123,
+   "nonfight_recall": 0.8943661971830986,
+   "confusion": [
+    [
+     127,
+     15
+    ],
+    [
+     37,
+     137
+    ]
+   ],
+   "roc_auc": 0.8822243807673628
+  }
+ },
+ "holdout": {
+  "val_frac": 0.15,
+  "runs": [
+   {
+    "seed": 0,
+    "select_acc": 0.7491982039769083,
+    "best_epoch": 6,
+    "epochs_run": 16,
+    "n_train_videos": 1366,
+    "n_select_videos": 241,
+    "window": {
+     "n": 3275,
+     "acc": 0.7203053435114504,
+     "macro_f1": 0.7120354016280142,
+     "fight_precision": 0.8290441176470589,
+     "fight_recall": 0.5526960784313726,
+     "fight_f1": 0.663235294117647,
+     "nonfight_recall": 0.8867924528301887,
+     "confusion": [
+      [
+       1457,
+       186
+      ],
+      [
+       730,
+       902
+      ]
+     ],
+     "roc_auc": 0.7875225257479742
+    },
+    "video_mean": {
+     "n": 400,
+     "acc": 0.7725,
+     "macro_f1": 0.7677845755369982,
+     "fight_precision": 0.8811188811188811,
+     "fight_recall": 0.63,
+     "fight_f1": 0.7346938775510204,
+     "nonfight_recall": 0.915,
+     "confusion": [
+      [
+       183,
+       17
+      ],
+      [
+       74,
+       126
+      ]
+     ],
+     "roc_auc": 0.8145500000000001
+    },
+    "video_max_track": {
+     "n": 400,
+     "acc": 0.7675,
+     "macro_f1": 0.7674636661978433,
+     "fight_precision": 0.7743589743589744,
+     "fight_recall": 0.755,
+     "fight_f1": 0.7645569620253164,
+     "nonfight_recall": 0.78,
+     "confusion": [
+      [
+       156,
+       44
+      ],
+      [
+       49,
+       151
+      ]
+     ],
+     "roc_auc": 0.812675
+    },
+    "videos_without_window": 84,
+    "videos_without_window_fight": 26,
+    "video_mean_covered": {
+     "n": 316,
+     "acc": 0.7943037974683544,
+     "macro_f1": 0.7943017375194031,
+     "fight_precision": 0.8811188811188811,
+     "fight_recall": 0.7241379310344828,
+     "fight_f1": 0.7949526813880127,
+     "nonfight_recall": 0.8802816901408451,
+     "confusion": [
+      [
+       125,
+       17
+      ],
+      [
+       48,
+       126
+      ]
+     ],
+     "roc_auc": 0.8797150720414441
+    }
+   },
+   {
+    "seed": 1,
+    "select_acc": 0.7990762124711316,
+    "best_epoch": 16,
+    "epochs_run": 26,
+    "n_train_videos": 1366,
+    "n_select_videos": 241,
+    "window": {
+     "n": 3275,
+     "acc": 0.7383206106870229,
+     "macro_f1": 0.7335548365776733,
+     "fight_precision": 0.8215767634854771,
+     "fight_recall": 0.6066176470588235,
+     "fight_f1": 0.6979203383856186,
+     "nonfight_recall": 0.8691418137553256,
+     "confusion": [
+      [
+       1428,
+       215
+      ],
+      [
+       642,
+       990
+      ]
+     ],
+     "roc_auc": 0.8051533988519326
+    },
+    "video_mean": {
+     "n": 400,
+     "acc": 0.795,
+     "macro_f1": 0.7929292929292929,
+     "fight_precision": 0.86875,
+     "fight_recall": 0.695,
+     "fight_f1": 0.7722222222222223,
+     "nonfight_recall": 0.895,
+     "confusion": [
+      [
+       179,
+       21
+      ],
+      [
+       61,
+       139
+      ]
+     ],
+     "roc_auc": 0.8243750000000001
+    },
+    "video_max_track": {
+     "n": 400,
+     "acc": 0.7825,
+     "macro_f1": 0.7824660103141117,
+     "fight_precision": 0.775609756097561,
+     "fight_recall": 0.795,
+     "fight_f1": 0.7851851851851852,
+     "nonfight_recall": 0.77,
+     "confusion": [
+      [
+       154,
+       46
+      ],
+      [
+       41,
+       159
+      ]
+     ],
+     "roc_auc": 0.816125
+    },
+    "videos_without_window": 84,
+    "videos_without_window_fight": 26,
+    "video_mean_covered": {
+     "n": 316,
+     "acc": 0.8227848101265823,
+     "macro_f1": 0.8222079331270346,
+     "fight_precision": 0.86875,
+     "fight_recall": 0.7988505747126436,
+     "fight_f1": 0.8323353293413174,
+     "nonfight_recall": 0.852112676056338,
+     "confusion": [
+      [
+       121,
+       21
+      ],
+      [
+       35,
+       139
+      ]
+     ],
+     "roc_auc": 0.895620851546058
+    }
+   },
+   {
+    "seed": 2,
+    "select_acc": 0.7161073825503356,
+    "best_epoch": 10,
+    "epochs_run": 20,
+    "n_train_videos": 1366,
+    "n_select_videos": 241,
+    "window": {
+     "n": 3275,
+     "acc": 0.7294656488549618,
+     "macro_f1": 0.7245614854438531,
+     "fight_precision": 0.8092868988391376,
+     "fight_recall": 0.5980392156862745,
+     "fight_f1": 0.6878083157152924,
+     "nonfight_recall": 0.8600121728545344,
+     "confusion": [
+      [
+       1413,
+       230
+      ],
+      [
+       656,
+       976
+      ]
+     ],
+     "roc_auc": 0.7922506951654673
+    },
+    "video_mean": {
+     "n": 400,
+     "acc": 0.7875,
+     "macro_f1": 0.7854605342032699,
+     "fight_precision": 0.8571428571428571,
+     "fight_recall": 0.69,
+     "fight_f1": 0.7645429362880887,
+     "nonfight_recall": 0.885,
+     "confusion": [
+      [
+       177,
+       23
+      ],
+      [
+       62,
+       138
+      ]
+     ],
+     "roc_auc": 0.8170000000000001
+    },
+    "video_max_track": {
+     "n": 400,
+     "acc": 0.7675,
+     "macro_f1": 0.7673240388043459,
+     "fight_precision": 0.7535545023696683,
+     "fight_recall": 0.795,
+     "fight_f1": 0.7737226277372263,
+     "nonfight_recall": 0.74,
+     "confusion": [
+      [
+       148,
+       52
+      ],
+      [
+       41,
+       159
+      ]
+     ],
+     "roc_auc": 0.8183500000000001
+    },
+    "videos_without_window": 84,
+    "videos_without_window_fight": 26,
+    "video_mean_covered": {
+     "n": 316,
+     "acc": 0.8132911392405063,
+     "macro_f1": 0.8126136991808633,
+     "fight_precision": 0.8571428571428571,
+     "fight_recall": 0.7931034482758621,
+     "fight_f1": 0.8238805970149253,
+     "nonfight_recall": 0.8380281690140845,
+     "confusion": [
+      [
+       119,
+       23
+      ],
+      [
+       36,
+       138
+      ]
+     ],
+     "roc_auc": 0.8836813987372512
+    }
+   }
+  ],
+  "summary": {
+   "window.acc": {
+    "mean": 0.7293638676844783,
+    "std": 0.007355054153746444
+   },
+   "window.macro_f1": {
+    "mean": 0.7233839078831802,
+    "std": 0.008824644915300295
+   },
+   "window.fight_f1": {
+    "mean": 0.6829879827395193,
+    "std": 0.014564563878715608
+   },
+   "window.roc_auc": {
+    "mean": 0.7949755399217914,
+    "std": 0.007451197031865457
+   },
+   "video_mean.acc": {
+    "mean": 0.785,
+    "std": 0.00935414346693488
+   },
+   "video_mean.macro_f1": {
+    "mean": 0.782058134223187,
+    "std": 0.010543448120450391
+   },
+   "video_mean.fight_f1": {
+    "mean": 0.7571530120204438,
+    "std": 0.01618749309294628
+   },
+   "video_mean.roc_auc": {
+    "mean": 0.8186416666666667,
+    "std": 0.004175640336789337
+   },
+   "video_max_track.acc": {
+    "mean": 0.7725,
+    "std": 0.007071067811865481
+   },
+   "video_max_track.macro_f1": {
+    "mean": 0.7724179051054336,
+    "std": 0.0071053119877901175
+   },
+   "video_max_track.fight_f1": {
+    "mean": 0.7744882583159094,
+    "std": 0.008438820625363774
+   },
+   "video_max_track.roc_auc": {
+    "mean": 0.8157166666666668,
+    "std": 0.002334731723822328
+   },
+   "video_mean_covered.acc": {
+    "mean": 0.810126582278481,
+    "std": 0.011840687932828942
+   },
+   "video_mean_covered.macro_f1": {
+    "mean": 0.8097077899424336,
+    "std": 0.011576475275296877
+   },
+   "video_mean_covered.fight_f1": {
+    "mean": 0.8170562025814184,
+    "std": 0.016006141769921503
+   },
+   "video_mean_covered.roc_auc": {
+    "mean": 0.8863391074415844,
+    "std": 0.006759981118324987
+   }
+  }
+ }
+}

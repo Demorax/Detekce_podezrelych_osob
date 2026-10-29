@@ -1,0 +1,42 @@
+okno 10 snímků (2.0 s), krok 5
+
+Holdout seed 0: výběr na 241 trénovacích videích, epocha 26/36, select_acc=0.728
+  window           n=3575  acc=0.727 macroF1=0.725 Fight P/R/F1=0.806/0.622/0.702 AUC=0.790  CM=[[1449, 277], [698, 1151]]
+  video_mean       n=400   acc=0.818 macroF1=0.817 Fight P/R/F1=0.851/0.770/0.808 AUC=0.872  CM=[[173, 27], [46, 154]]
+  video_max_track  n=400   acc=0.800 macroF1=0.798 Fight P/R/F1=0.748/0.905/0.819 AUC=0.885  CM=[[139, 61], [19, 181]]
+  video_mean_covered n=344   acc=0.820 macroF1=0.819 Fight P/R/F1=0.851/0.815/0.832 AUC=0.893  CM=[[128, 27], [35, 154]]
+  videí bez okna: 56 / 400
+
+Holdout seed 1: výběr na 241 trénovacích videích, epocha 19/29, select_acc=0.784
+  window           n=3575  acc=0.726 macroF1=0.724 Fight P/R/F1=0.798/0.629/0.703 AUC=0.781  CM=[[1431, 295], [686, 1163]]
+  video_mean       n=400   acc=0.812 macroF1=0.812 Fight P/R/F1=0.842/0.770/0.804 AUC=0.870  CM=[[171, 29], [46, 154]]
+  video_max_track  n=400   acc=0.792 macroF1=0.790 Fight P/R/F1=0.739/0.905/0.813 AUC=0.890  CM=[[136, 64], [19, 181]]
+  video_mean_covered n=344   acc=0.814 macroF1=0.813 Fight P/R/F1=0.842/0.815/0.828 AUC=0.890  CM=[[126, 29], [35, 154]]
+  videí bez okna: 56 / 400
+
+Holdout seed 2: výběr na 241 trénovacích videích, epocha 8/18, select_acc=0.689
+  window           n=3575  acc=0.709 macroF1=0.705 Fight P/R/F1=0.804/0.579/0.673 AUC=0.791  CM=[[1465, 261], [779, 1070]]
+  video_mean       n=400   acc=0.805 macroF1=0.804 Fight P/R/F1=0.863/0.725/0.788 AUC=0.870  CM=[[177, 23], [55, 145]]
+  video_max_track  n=400   acc=0.797 macroF1=0.796 Fight P/R/F1=0.749/0.895/0.815 AUC=0.886  CM=[[140, 60], [21, 179]]
+  video_mean_covered n=344   acc=0.805 macroF1=0.805 Fight P/R/F1=0.863/0.767/0.812 AUC=0.889  CM=[[132, 23], [44, 145]]
+  videí bez okna: 56 / 400
+
+Holdout souhrn (oficiální RWF val jako čistý test, průměr ± sd přes seedy):
+  window.acc                   0.721 ± 0.008
+  window.macro_f1              0.718 ± 0.009
+  window.fight_f1              0.693 ± 0.014
+  window.roc_auc               0.787 ± 0.005
+  video_mean.acc               0.812 ± 0.005
+  video_mean.macro_f1          0.811 ± 0.006
+  video_mean.fight_f1          0.800 ± 0.009
+  video_mean.roc_auc           0.871 ± 0.001
+  video_max_track.acc          0.797 ± 0.003
+  video_max_track.macro_f1     0.794 ± 0.003
+  video_max_track.fight_f1     0.816 ± 0.002
+  video_max_track.roc_auc      0.887 ± 0.002
+  video_mean_covered.acc       0.813 ± 0.006
+  video_mean_covered.macro_f1  0.812 ± 0.006
+  video_mean_covered.fight_f1  0.824 ± 0.009
+  video_mean_covered.roc_auc   0.890 ± 0.002
+
+-> rwf_lstm_eval_T10s5.json
