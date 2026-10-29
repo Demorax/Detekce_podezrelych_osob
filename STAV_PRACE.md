@@ -81,6 +81,21 @@ Body tabulky „Co chybí do odevzdání“, které šly udělat bez rozhodnutí
   Střízlivý výsledek: autoenkodér přidává proti rychlosti jen málo celkem, ale jediný zachytí kongesci (rychlost = náhoda).
   Rvačku nevidí ani jeden (skelety v bitce jsou nekvalitní, tracky se trhají). Pro text: doplněk k modelu davu, ne samostatný detektor.
   Text je v `docs/KAPITOLA_CHOVANI.md` (Y.5) a `docs/typst/kapitola_chovani.typ`.
+- **Bod 1: úloha 2 (anomální pózy) na ShanghaiTech standardním protokolem** (2026-10-29,
+  `shanghai_skeletons.py`, `shanghai_pose_anomaly.py`, výsledky `shanghai_pose_results.json`). Stejný GRU autoenkodér
+  jako na MED, trénink jen na 330 trénovacích (normálních) videích (129 040 oken po 12 snímcích), test 107 sekvencí,
+  40 791 snímků (42 % abnormálních), frame-level micro AUC:
+
+  | metoda | AUC |
+  |---|---:|
+  | baseline: rychlost 3 nejrychlejších osob | 0,712 |
+  | **GRU autoenkodér (tato práce)** | **0,743 ± 0,001** |
+  | MPED-RNN (Morais et al. 2019) | 0,734 |
+  | GEPC (Markovitz et al. 2020) | 0,761 |
+  | STG-NF (Hirschorn & Avidan 2023) | 0,859 |
+
+  Model je srovnatelný s metodou, ze které vychází (o 0,9 bodu lepší), bez ladění na ShanghaiTech (okno 12 a
+  architektura převzaté z MED). Literární hodnoty jsou z původních článků, ověřit při citaci.
 - **Bod 4: spojená pipeline / demo** (2026-10-29, `demo_pipeline.py`, modely `models/behavior/` z
   `train_demo_models.py`; demo videa 5, 10, 15 nebyla v tréninku modelů davu ani póz). Jeden průchod videem:
   osoby + skelety, YOLO objekty + zbraně v2 + statické předměty, tracker, ARMED, opuštění, chování davu

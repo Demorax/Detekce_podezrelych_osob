@@ -1,0 +1,7 @@
+train 330 videí, 129040 oken; test 107 sekvencí, 40791 snímků (42% abnorm.)
+baseline rychlost: AUC 0.712
+seed 0: AUC 0.744
+seed 1: AUC 0.742
+seed 2: AUC 0.742
+GRU autoenkodér: AUC 0.743 ± 0.001  (lit.: MPED-RNN 0,734, GEPC 0,761, STG-NF 0,859)
+exit=0
