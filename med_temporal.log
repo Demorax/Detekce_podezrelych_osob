@@ -1,0 +1,34 @@
+both + BiLSTM T=16     acc 0.695  tř.acc 0.529  macro-F1 0.506 ± 0.015  abnorm. AUC 0.815  F1/třída Neut 0.83 Pani 0.64 Figh 0.40 Cong 0.16 Obst 0.51
+C:\Users\tomas\anaconda3\envs\ocv412cuda\lib\site-packages\torch\nn\modules\transformer.py:282: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(f"enable_nested_tensor is True, but self.use_nested_tensor is False because {why_not_sparsity_fast_path}")
+C:\Users\tomas\anaconda3\envs\ocv412cuda\lib\site-packages\torch\nn\modules\transformer.py:282: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(f"enable_nested_tensor is True, but self.use_nested_tensor is False because {why_not_sparsity_fast_path}")
+C:\Users\tomas\anaconda3\envs\ocv412cuda\lib\site-packages\torch\nn\modules\transformer.py:282: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(f"enable_nested_tensor is True, but self.use_nested_tensor is False because {why_not_sparsity_fast_path}")
+both + Transformer T=16 acc 0.692  tř.acc 0.548  macro-F1 0.528 ± 0.018  abnorm. AUC 0.809  F1/třída Neut 0.82 Pani 0.70 Figh 0.36 Cong 0.25 Obst 0.52
+both + BiLSTM T=32     acc 0.665  tř.acc 0.545  macro-F1 0.514 ± 0.016  abnorm. AUC 0.779  F1/třída Neut 0.79 Pani 0.69 Figh 0.34 Cong 0.33 Obst 0.42
+C:\Users\tomas\anaconda3\envs\ocv412cuda\lib\site-packages\torch\nn\modules\transformer.py:282: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(f"enable_nested_tensor is True, but self.use_nested_tensor is False because {why_not_sparsity_fast_path}")
+C:\Users\tomas\anaconda3\envs\ocv412cuda\lib\site-packages\torch\nn\modules\transformer.py:282: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(f"enable_nested_tensor is True, but self.use_nested_tensor is False because {why_not_sparsity_fast_path}")
+C:\Users\tomas\anaconda3\envs\ocv412cuda\lib\site-packages\torch\nn\modules\transformer.py:282: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(f"enable_nested_tensor is True, but self.use_nested_tensor is False because {why_not_sparsity_fast_path}")
+both + Transformer T=32 acc 0.676  tř.acc 0.562  macro-F1 0.529 ± 0.016  abnorm. AUC 0.786  F1/třída Neut 0.80 Pani 0.65 Figh 0.30 Cong 0.42 Obst 0.46
+all + BiLSTM T=16      acc 0.699  tř.acc 0.538  macro-F1 0.522 ± 0.025  abnorm. AUC 0.825  F1/třída Neut 0.83 Pani 0.69 Figh 0.38 Cong 0.20 Obst 0.51
+C:\Users\tomas\anaconda3\envs\ocv412cuda\lib\site-packages\torch\nn\modules\transformer.py:282: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(f"enable_nested_tensor is True, but self.use_nested_tensor is False because {why_not_sparsity_fast_path}")
+C:\Users\tomas\anaconda3\envs\ocv412cuda\lib\site-packages\torch\nn\modules\transformer.py:282: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(f"enable_nested_tensor is True, but self.use_nested_tensor is False because {why_not_sparsity_fast_path}")
+C:\Users\tomas\anaconda3\envs\ocv412cuda\lib\site-packages\torch\nn\modules\transformer.py:282: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(f"enable_nested_tensor is True, but self.use_nested_tensor is False because {why_not_sparsity_fast_path}")
+all + Transformer T=16 acc 0.699  tř.acc 0.549  macro-F1 0.525 ± 0.005  abnorm. AUC 0.818  F1/třída Neut 0.83 Pani 0.67 Figh 0.42 Cong 0.20 Obst 0.50
+all + BiLSTM T=32      acc 0.666  tř.acc 0.550  macro-F1 0.519 ± 0.014  abnorm. AUC 0.783  F1/třída Neut 0.80 Pani 0.68 Figh 0.30 Cong 0.38 Obst 0.44
+C:\Users\tomas\anaconda3\envs\ocv412cuda\lib\site-packages\torch\nn\modules\transformer.py:282: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(f"enable_nested_tensor is True, but self.use_nested_tensor is False because {why_not_sparsity_fast_path}")
+C:\Users\tomas\anaconda3\envs\ocv412cuda\lib\site-packages\torch\nn\modules\transformer.py:282: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(f"enable_nested_tensor is True, but self.use_nested_tensor is False because {why_not_sparsity_fast_path}")
+C:\Users\tomas\anaconda3\envs\ocv412cuda\lib\site-packages\torch\nn\modules\transformer.py:282: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(f"enable_nested_tensor is True, but self.use_nested_tensor is False because {why_not_sparsity_fast_path}")
+all + Transformer T=32 acc 0.674  tř.acc 0.564  macro-F1 0.528 ± 0.008  abnorm. AUC 0.789  F1/třída Neut 0.80 Pani 0.63 Figh 0.33 Cong 0.41 Obst 0.46
+-> med_temporal_results.json
+exit=0

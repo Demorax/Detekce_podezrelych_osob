@@ -81,6 +81,21 @@ Body tabulky „Co chybí do odevzdání“, které šly udělat bez rozhodnutí
   Střízlivý výsledek: autoenkodér přidává proti rychlosti jen málo celkem, ale jediný zachytí kongesci (rychlost = náhoda).
   Rvačku nevidí ani jeden (skelety v bitce jsou nekvalitní, tracky se trhají). Pro text: doplněk k modelu davu, ne samostatný detektor.
   Text je v `docs/KAPITOLA_CHOVANI.md` (Y.5) a `docs/typst/kapitola_chovani.typ`.
+- **Bod 7: Transformer vs. BiLSTM v modelu davu** (2026-10-29, `med_train.py --compare-temporal`,
+  `med_temporal_results.json`). Transformer: 2 vrstvy, 4 hlavy, učená poziční embedding, ~350 tis. parametrů
+  (BiLSTM ~175 tis.), jinak stejný protokol (5 foldů podle videí, 3 seedy, 25 epoch).
+
+  | příznaky | okno | BiLSTM: prům. přesn. po tř. / macro-F1 / AUC | Transformer: prům. přesn. po tř. / macro-F1 / AUC |
+  |---|---|---|---|
+  | CNN + tok | 3,2 s | 0,529 / 0,506 / 0,815 | **0,548** / **0,528** / 0,809 |
+  | CNN + tok | 6,4 s | 0,545 / 0,514 / 0,779 | **0,562** / **0,529** / 0,786 |
+  | CNN + tok + osoby | 3,2 s | 0,538 / 0,522 / **0,825** | **0,549** / 0,525 / 0,818 |
+  | CNN + tok + osoby | 6,4 s | 0,550 / 0,519 / 0,783 | **0,564** / **0,528** / 0,789 |
+
+  Transformer je ve všech čtyřech konfiguracích o 1–2 body lepší v průměrné přesnosti po třídách (hlavně
+  Congestion a Panic), AUC normální/abnormální je srovnatelná (±0,01). Rozdíly jsou na hraně rozptylu mezi seedy
+  (sd ~0,015), takže závěr do textu: obě časové architektury dávají srovnatelné výsledky, Transformer mírně lepší
+  vyvážení tříd. Rychlost obou je zanedbatelná (~2–5 ms na okno, viz bod 6).
 - **Nová data + přenos modelu davu na cizí scény** (`anomaly_bench.py`, `umn_labels.py`, výsledky
   `anomaly_bench_results.json`; zdroje a licence `data/ZDROJE.md`, citace `docs/typst/reference_data.yaml`).
   Staženo 2026-10-28: UCSD Ped1/Ped2, CUHK Avenue (+GT masky), UMN. Frame-level AUC (v závorce normalizace po videích):
