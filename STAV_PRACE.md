@@ -81,6 +81,20 @@ Body tabulky „Co chybí do odevzdání“, které šly udělat bez rozhodnutí
   Střízlivý výsledek: autoenkodér přidává proti rychlosti jen málo celkem, ale jediný zachytí kongesci (rychlost = náhoda).
   Rvačku nevidí ani jeden (skelety v bitce jsou nekvalitní, tracky se trhají). Pro text: doplněk k modelu davu, ne samostatný detektor.
   Text je v `docs/KAPITOLA_CHOVANI.md` (Y.5) a `docs/typst/kapitola_chovani.typ`.
+- **Bod 4: spojená pipeline / demo** (2026-10-29, `demo_pipeline.py`, modely `models/behavior/` z
+  `train_demo_models.py`; demo videa 5, 10, 15 nebyla v tréninku modelů davu ani póz). Jeden průchod videem:
+  osoby + skelety, YOLO objekty + zbraně v2 + statické předměty, tracker, ARMED, opuštění, chování davu
+  (Transformer), rvačka ze skeletů (RWF model, okno 2 s), anomální póza (autoenkodér, práh p99).
+  Poplachy davu a rvačky s časovým potvrzením (1,6 s, resp. 0,6 s) a 10 s odstupem stejné třídy.
+  Výstup `demo_outputs/full/<video>_demo.mp4` (lokálně, ~125 MB) a `<video>_events.json` (v gitu).
+
+  | video | anotace MED | poplachy dema |
+  |---|---|---|
+  | 005 | neutrální 0–27 s, panika (bitka s tyčemi) 27–32 s | rvačka (skelety) 27,8 s, ARMED 4 osoby 28,4–29,2 s, panika 30,0 s; žádný falešný |
+  | 015 | neutrální 0–12 s, rvačka 12–45 s | rvačka 17,0 s (+5 s), 32,8 s, 43,4 s; kongesce 35,6 s (chybně); falešné opuštěné zavazadlo 10,8 s |
+  | 010 | neutrální 0–43, kongesce 43–47, překážka 47–70, panika 70–76 s | překážka 8,2 s (chybně), rvačka (skelety) 75,7 s při útěku, panika 77,1 s; kongesce a překážka nezachyceny |
+
+  Rychlý režim na RTX 3090 se sdíleným GPU: 0,95–1,3 s na vzorkovaný snímek (čisté měření rychlosti viz bod 6).
 - **Bod 3: detektor nově odložených nehybných předmětů** (2026-10-29, `static_object_detector.py`).
   Duální model pozadí (Porikli 2008) nad gradienty; počítá se jen nárůst hran proti dlouhodobému pozadí, osoby
   a přepálené oblasti se maskují. Vývoj podle pozorovaných chyb na CAVIAR (ne ladění na čísla):

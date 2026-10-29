@@ -46,6 +46,11 @@ FLOW_GAP = 3
 BEH = Path('models/behavior')
 CZ = {'Neutral': 'neutrální', 'Panic': 'panika', 'Fight': 'rvačka', 'Congestion': 'kongesce', 'Obstacle': 'překážka'}
 FIGHT_THR = 0.5
+# Časové potvrzení poplachů davu (stejný princip jako ARMED): třída musí vydržet CROWD_CONFIRM
+# vzorků (1,6 s) a stejná třída se znovu nahlásí nejdřív po CROWD_COOLDOWN_SEC.
+CROWD_CONFIRM = 8
+CROWD_COOLDOWN_SEC = 10.0
+FIGHT_CONFIRM = 3           # rvačka ze skeletů: skóre nad prahem 3 vzorky po sobě (0,6 s)
 
 
 class Behavior:
@@ -211,7 +216,8 @@ def main():
     recent = deque(maxlen=FLOW_GAP + 1)        # posledních pár snímků pro optický tok
     events, alerts, timings = [], [], []
     st = {'persons': [], 'objects': [], 'crowd': None, 'fight_scene': None, 'alerts': alerts}
-    armed_prev, fight_prev, crowd_prev = set(), False, 'Neutral'
+    armed_prev, fight_run, fight_last_alert = set(), 0, -1e9
+    crowd_run, crowd_last_alert = ('Neutral', 0), {}
     i = si = 0
     while True:
         ok, frame = cap.read()
@@ -259,14 +265,17 @@ def main():
             for tid in armed_now - armed_prev:
                 alerts.append({'t': round(t_sec, 1), 'type': f'ARMED osoba {tid}'})
             armed_prev = armed_now
-            if fight_scene is not None and fight_scene > FIGHT_THR and not fight_prev:
-                alerts.append({'t': round(t_sec, 1), 'type': 'rvačka'})
-            fight_prev = fight_scene is not None and fight_scene > FIGHT_THR
+            fight_run = fight_run + 1 if fight_scene is not None and fight_scene > FIGHT_THR else 0
+            if fight_run == FIGHT_CONFIRM and t_sec - fight_last_alert >= CROWD_COOLDOWN_SEC:
+                alerts.append({'t': round(t_sec, 1), 'type': 'rvačka (skelety)'})
+                fight_last_alert = t_sec
             if crowd is not None:
                 cname = MT.CLASSES[int(np.argmax(crowd))]
-                if cname != crowd_prev and cname != 'Neutral':
+                crowd_run = (cname, crowd_run[1] + 1 if crowd_run[0] == cname else 1)
+                if (cname != 'Neutral' and crowd_run[1] == CROWD_CONFIRM
+                        and t_sec - crowd_last_alert.get(cname, -1e9) >= CROWD_COOLDOWN_SEC):
                     alerts.append({'t': round(t_sec, 1), 'type': f'dav: {CZ[cname]}'})
-                crowd_prev = cname
+                    crowd_last_alert[cname] = t_sec
             objects = [{'box': np.asarray(o['box']).tolist(), 'label': o['label'], 'abandoned': bool(o.get('alerted'))}
                        for o in otr.values()]
             st = {'persons': persons, 'objects': objects, 'crowd': crowd, 'fight_scene': fight_scene, 'alerts': alerts}
