@@ -1,0 +1,10 @@
+{
+ "demo_videos_excluded_from_training": [
+  5,
+  10,
+  15
+ ],
+ "crowd": "med_train.Net(arch=transformer, T=16), příznaky all",
+ "pose_ae": "med_pose_anomaly.GRUAutoencoder, okno 12, práh p99 trénovací chyby",
+ "fight": "run_train_lstm.BiLSTMAttention, RWF-2000, okno 10, krok 3"
+}
