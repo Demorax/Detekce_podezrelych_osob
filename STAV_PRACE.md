@@ -81,6 +81,22 @@ Body tabulky „Co chybí do odevzdání“, které šly udělat bez rozhodnutí
   Střízlivý výsledek: autoenkodér přidává proti rychlosti jen málo celkem, ale jediný zachytí kongesci (rychlost = náhoda).
   Rvačku nevidí ani jeden (skelety v bitce jsou nekvalitní, tracky se trhají). Pro text: doplněk k modelu davu, ne samostatný detektor.
   Text je v `docs/KAPITOLA_CHOVANI.md` (Y.5) a `docs/typst/kapitola_chovani.typ`.
+- **Bod 3: detektor nově odložených nehybných předmětů** (2026-10-29, `static_object_detector.py`).
+  Duální model pozadí (Porikli 2008) nad gradienty; počítá se jen nárůst hran proti dlouhodobému pozadí, osoby
+  a přepálené oblasti se maskují. Vývoj podle pozorovaných chyb na CAVIAR (ne ladění na čísla):
+  jasová varianta hlásila světlou skvrnu od okna ve všech scénářích, varianta s absolutní změnou gradientu
+  hlásila „duchy“ na místech, odkud odešly osoby.
+  - **CAVIAR** (`eval_caviar_static.py`, osoby z GT, objekty z videa, 20 scénářů s videem): 0 falešných alertů
+    v 16 scénářích bez opuštění (jasová varianta 15); LeftBox a LeftBag_PickedUp včas (7,4 a 9,9 s), LeftBag
+    detekován, ale alert 19 s po události (0,6 s za tolerancí), LeftBag_AtChair taška 11 × 9 px nezachycena.
+    Horní mez s GT objekty je 4/4.
+  - **ABODA** (`run_aboda_static.py`, osoby YOLO11x jeden průchod, snímky alertů v `reference_img/aboda_static/`,
+    každý ověřen okem): **opuštěný předmět zachycen v 6 z 11 videí** (1, 3, 5, 6, 9, 10; dříve s COCO
+    zavazadly 1/11). Nezachyceno 2, 4, 7, 8; video 11 (dav) neověřitelné. Falešné alerty hlavně ve videích 7 a 8
+    (prudká změna osvětlení, noc/IR: 15 a 9), dále 1 ve videu 5 a 2 ve videu 6. Video 1 má teď jeden alert místo
+    čtyř (slučování tříd zavazadel + jiný zdroj objektů).
+  - Závěr do textu: detektor bez třídy objektu řeší hlavní slabinu YOLO (odložené zavazadlo nerozpozná),
+    slabinou modelu pozadí jsou prudké změny osvětlení. Nasazení v pipeline: oba zdroje objektů (YOLO + statický).
 - **Bod 2: RWF s kratším oknem** (2026-10-29, `eval_rwf_lstm.py --holdout --seq-len L --step S`,
   výsledky `rwf_lstm_eval_T*.json`, logy `rwf_T*.log`). Stejný model a protokol jako čistý odhad výše
   (výběr epochy na 15 % trénovacích videí, val jen jako test, 3 seedy).

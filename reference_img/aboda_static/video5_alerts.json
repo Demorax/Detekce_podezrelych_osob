@@ -1,0 +1,32 @@
+[
+ {
+  "frame": 402,
+  "object_id": 0,
+  "label": "static_object",
+  "box": [
+   133.0,
+   198.0,
+   172.0,
+   230.0
+  ],
+  "sec_alone": 5.0,
+  "previous_owner": 32,
+  "video_frame": 2412,
+  "time_sec": 80.48048048048048
+ },
+ {
+  "frame": 538,
+  "object_id": 3,
+  "label": "static_object",
+  "box": [
+   235.0,
+   59.0,
+   258.0,
+   85.0
+  ],
+  "sec_alone": 5.0,
+  "previous_owner": 34,
+  "video_frame": 3228,
+  "time_sec": 107.70770770770771
+ }
+]

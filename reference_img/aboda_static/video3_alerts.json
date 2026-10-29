@@ -1,0 +1,17 @@
+[
+ {
+  "frame": 371,
+  "object_id": 0,
+  "label": "static_object",
+  "box": [
+   212.0,
+   215.0,
+   256.0,
+   250.0
+  ],
+  "sec_alone": 5.0,
+  "previous_owner": 1,
+  "video_frame": 2226,
+  "time_sec": 74.27427427427428
+ }
+]

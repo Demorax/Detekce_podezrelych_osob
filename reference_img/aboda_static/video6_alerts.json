@@ -1,0 +1,47 @@
+[
+ {
+  "frame": 931,
+  "object_id": 31,
+  "label": "static_object",
+  "box": [
+   167.0,
+   131.0,
+   196.0,
+   145.0
+  ],
+  "sec_alone": 5.0,
+  "previous_owner": 18,
+  "video_frame": 5586,
+  "time_sec": 186.3863863863864
+ },
+ {
+  "frame": 984,
+  "object_id": 32,
+  "label": "static_object",
+  "box": [
+   140.0,
+   313.0,
+   190.0,
+   351.0
+  ],
+  "sec_alone": 5.0,
+  "previous_owner": 19,
+  "video_frame": 5904,
+  "time_sec": 196.996996996997
+ },
+ {
+  "frame": 999,
+  "object_id": 35,
+  "label": "static_object",
+  "box": [
+   55.0,
+   158.0,
+   203.0,
+   185.0
+  ],
+  "sec_alone": 5.0,
+  "previous_owner": 20,
+  "video_frame": 5994,
+  "time_sec": 200.0
+ }
+]

@@ -1,0 +1,14 @@
+C:\Users\tomas\anaconda3\envs\ocv412cuda\lib\site-packages\timm\models\layers\__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+video1: 1 alertů [56.1]
+video2: 0 alertů []
+video3: 1 alertů [74.3]
+video4: 0 alertů []
+video5: 2 alertů [80.5, 107.7]
+video6: 3 alertů [186.4, 197.0, 200.0]
+video7: 15 alertů [121.5, 121.5, 121.5, 131.3, 131.5, 132.5, 133.7, 133.9, 133.9, 133.9, 133.9, 133.9, 133.9, 133.9, 133.9]
+video8: 9 alertů [117.3, 118.3, 127.5, 127.9, 128.1, 128.1, 128.1, 128.5, 128.5]
+video9: 1 alertů [43.6]
+video10: 1 alertů [52.9]
+video11: 2 alertů [82.4, 135.0]
+exit=0
