@@ -1,0 +1,136 @@
+{
+ "video": "video11",
+ "alerts": 0,
+ "reason": "vlastník neodešel na >= 5 s (nebo track zanikl dřív)",
+ "sampled_frames_with_carry": 751,
+ "carry_tracks": 1098,
+ "carry_tracks_ge_2s": 120,
+ "labels": {
+  "backpack": 222,
+  "handbag": 762,
+  "suitcase": 114
+ },
+ "max_alone_sec": 3.2,
+ "tracks": [
+  {
+   "label": "handbag",
+   "first": 75,
+   "n_frames": 172,
+   "owner_frames": 172,
+   "max_alone_sec": 0.0,
+   "last": 250
+  },
+  {
+   "label": "suitcase",
+   "first": 402,
+   "n_frames": 126,
+   "owner_frames": 126,
+   "max_alone_sec": 0.0,
+   "last": 530
+  },
+  {
+   "label": "handbag",
+   "first": 34,
+   "n_frames": 116,
+   "owner_frames": 116,
+   "max_alone_sec": 0.0,
+   "last": 160
+  },
+  {
+   "label": "suitcase",
+   "first": 541,
+   "n_frames": 96,
+   "owner_frames": 96,
+   "max_alone_sec": 0.0,
+   "last": 637
+  },
+  {
+   "label": "handbag",
+   "first": 31,
+   "n_frames": 91,
+   "owner_frames": 91,
+   "max_alone_sec": 0.0,
+   "last": 127
+  },
+  {
+   "label": "handbag",
+   "first": 644,
+   "n_frames": 90,
+   "owner_frames": 90,
+   "max_alone_sec": 0.0,
+   "last": 735
+  },
+  {
+   "label": "suitcase",
+   "first": 305,
+   "n_frames": 80,
+   "owner_frames": 80,
+   "max_alone_sec": 0.0,
+   "last": 395
+  },
+  {
+   "label": "handbag",
+   "first": 198,
+   "n_frames": 74,
+   "owner_frames": 74,
+   "max_alone_sec": 0.0,
+   "last": 291
+  },
+  {
+   "label": "handbag",
+   "first": 172,
+   "n_frames": 71,
+   "owner_frames": 71,
+   "max_alone_sec": 0.0,
+   "last": 253
+  },
+  {
+   "label": "handbag",
+   "first": 285,
+   "n_frames": 71,
+   "owner_frames": 71,
+   "max_alone_sec": 0.0,
+   "last": 359
+  },
+  {
+   "label": "handbag",
+   "first": 426,
+   "n_frames": 61,
+   "owner_frames": 61,
+   "max_alone_sec": 0.0,
+   "last": 501
+  },
+  {
+   "label": "backpack",
+   "first": 242,
+   "n_frames": 58,
+   "owner_frames": 58,
+   "max_alone_sec": 0.0,
+   "last": 300
+  },
+  {
+   "label": "backpack",
+   "first": 264,
+   "n_frames": 56,
+   "owner_frames": 56,
+   "max_alone_sec": 0.0,
+   "last": 322
+  },
+  {
+   "label": "handbag",
+   "first": 122,
+   "n_frames": 50,
+   "owner_frames": 50,
+   "max_alone_sec": 0.0,
+   "last": 178
+  },
+  {
+   "label": "backpack",
+   "first": 701,
+   "n_frames": 50,
+   "owner_frames": 50,
+   "max_alone_sec": 0.0,
+   "last": 750
+  }
+ ]
+}

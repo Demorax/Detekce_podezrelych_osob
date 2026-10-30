@@ -109,7 +109,7 @@ Body tabulky „Co chybí do odevzdání“, které šly udělat bez rozhodnutí
   | 015 | neutrální 0–12 s, rvačka 12–45 s | rvačka 17,0 s (+5 s), 32,8 s, 43,4 s; kongesce 35,6 s (chybně); falešné opuštěné zavazadlo 10,8 s |
   | 010 | neutrální 0–43, kongesce 43–47, překážka 47–70, panika 70–76 s | překážka 8,2 s (chybně), rvačka (skelety) 75,7 s při útěku, panika 77,1 s; kongesce a překážka nezachyceny |
 
-  Rychlý režim na RTX 3090 se sdíleným GPU: 0,95–1,3 s na vzorkovaný snímek (čisté měření rychlosti viz bod 6).
+  Demo běželo v rychlém režimu na sdíleném GPU: 0,95–1,3 s na vzorkovaný snímek (čisté měření rychlosti viz bod 6).
 - **Bod 3: detektor nově odložených nehybných předmětů** (2026-10-29, `static_object_detector.py`).
   Duální model pozadí (Porikli 2008) nad gradienty; počítá se jen nárůst hran proti dlouhodobému pozadí, osoby
   a přepálené oblasti se maskují. Vývoj podle pozorovaných chyb na CAVIAR (ne ladění na čísla):
@@ -126,6 +126,33 @@ Body tabulky „Co chybí do odevzdání“, které šly udělat bez rozhodnutí
     čtyř (slučování tříd zavazadel + jiný zdroj objektů).
   - Závěr do textu: detektor bez třídy objektu řeší hlavní slabinu YOLO (odložené zavazadlo nerozpozná),
     slabinou modelu pozadí jsou prudké změny osvětlení. Nasazení v pipeline: oba zdroje objektů (YOLO + statický).
+- **Bod 5: ABODA starou cestou doběhla** (2026-10-30, `diagnose_aboda.py`, `reference_img/aboda_alerts_v2/`).
+  Plná pipeline s COCO zavazadly a opraveným trackerem: alert jen ve videu 1 (**1/11**), videa 8–11 bez alertu
+  (zavazadlo bez vlastníka max. 0,2 s, ve videu 11 s davem 3,2 s; nikde nedosáhne 5 s). Potvrzuje závěr bodu 3:
+  slabinou je detekce odloženého zavazadla, ne pravidla; statický detektor 6/11.
+- **Bod 6: rychlost zpracování** (2026-10-30, `speed_bench.py --frames 60`, volné RTX 3090, `speed_results.json`,
+  log `speed_bench.log`). Čas na jeden vzorkovaný snímek (ms), přesný = konfigurace výsledků práce
+  (RT-DETR, YOLO11x objekty, každý na 5 variantách snímku; ViTPose-Huge fp32), rychlý = jeden průchod + fp16.
+
+  | modul | MED 005 přesný | rychlý | MED 021 přesný | rychlý | ShanghaiTech přesný | rychlý |
+  |---|---:|---:|---:|---:|---:|---:|
+  | osoby (RT-DETR) | 187 | 30 | 185 | 30 | 192 | 30 |
+  | póza (ViTPose-H) | 286 | 140 | 567 | 252 | 128 | 61 |
+  | objekty (YOLO11x) | 203 | 32 | 199 | 33 | 208 | 33 |
+  | zbraně (YOLO11l) | 17 | 12 | 13 | 12 | 12 | 12 |
+  | příznaky davu (ResNet-18 + tok) | 14 | 14 | 14 | 14 | 14 | 14 |
+  | časové modely (dav, rvačka, AE) | 2 | 2 | 1 | 1 | 1 | 1 |
+  | **celkem** | **709** | **230** | **979** | **342** | **556** | **152** |
+  | **FPS** | **1,4** | **4,4** | **1,0** | **2,9** | **1,8** | **6,6** |
+  | osob na snímek | 9,6 | | 19,3 | | 4,0 | |
+  | recall osob rychlého vůči přesnému | | 0,99 | | 0,97 | | 0,87 |
+  | odchylka kloubů (px) | | 0,29 | | 0,51 | | 0,22 |
+
+  Rychlý režim je 3,1–3,7× rychlejší a na scénách MED zachová 97–99 % osob s odchylkou kloubů pod 1 px;
+  na ShanghaiTech (malé vzdálené postavy) ztratí 13 % osob, které přesný režim najde jen díky variantám snímku.
+  Úzké hrdlo je ViTPose-Huge (lineárně s počtem osob: ~30 ms na osobu ve fp32, ~13–15 ms ve fp16), v přesném režimu i opakovaná
+  detekce na 5 variantách. Časové modely a příznaky davu jsou zanedbatelné. Při vzorkování 5 snímků/s je rychlý
+  režim blízko reálného času u řídké scény (6,6 FPS), u davu ne (2,9 FPS); realtime zadání nevyžaduje.
 - **Bod 2: RWF s kratším oknem** (2026-10-29, `eval_rwf_lstm.py --holdout --seq-len L --step S`,
   výsledky `rwf_lstm_eval_T*.json`, logy `rwf_T*.log`). Stejný model a protokol jako čistý odhad výše
   (výběr epochy na 15 % trénovacích videí, val jen jako test, 3 seedy).
@@ -157,7 +184,7 @@ Body tabulky „Co chybí do odevzdání“, které šly udělat bez rozhodnutí
   Transformer je ve všech čtyřech konfiguracích o 1–2 body lepší v průměrné přesnosti po třídách (hlavně
   Congestion a Panic), AUC normální/abnormální je srovnatelná (±0,01). Rozdíly jsou na hraně rozptylu mezi seedy
   (sd ~0,015), takže závěr do textu: obě časové architektury dávají srovnatelné výsledky, Transformer mírně lepší
-  vyvážení tříd. Rychlost obou je zanedbatelná (~2–5 ms na okno, viz bod 6).
+  vyvážení tříd. Rychlost obou je zanedbatelná (BiLSTM 0,4–0,7 ms, Transformer 0,6–0,8 ms na okno, viz bod 6).
 - **Nová data + přenos modelu davu na cizí scény** (`anomaly_bench.py`, `umn_labels.py`, výsledky
   `anomaly_bench_results.json`; zdroje a licence `data/ZDROJE.md`, citace `docs/typst/reference_data.yaml`).
   Staženo 2026-10-28: UCSD Ped1/Ped2, CUHK Avenue (+GT masky), UMN. Frame-level AUC (v závorce normalizace po videích):

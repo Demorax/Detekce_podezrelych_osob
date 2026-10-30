@@ -1,0 +1,120 @@
+{
+ "MED 005 (bitka, hustý dav)": {
+  "přesný": {
+   "ms": {
+    "osoby": 186.66185454545507,
+    "poza": 286.31685636363676,
+    "objekty": 203.05383818181826,
+    "zbrane": 16.924423636364082,
+    "priznaky_davu": 14.250749090909533,
+    "model_davu_lstm": 0.6505963636359721,
+    "model_davu_transformer": 0.7518018181817158,
+    "model_rvacek": 0.6241872727274772,
+    "autoenkoder_poz": 0.4120945454545222
+   },
+   "total_ms": 708.8946000000017,
+   "fps": 1.4106469424368555
+  },
+  "rychlý": {
+   "ms": {
+    "osoby": 29.53846727272743,
+    "poza": 139.50395454545472,
+    "objekty": 32.33916909090882,
+    "zbrane": 12.214289090909023,
+    "priznaky_davu": 14.250749090909533,
+    "model_davu_lstm": 0.6505963636359721,
+    "model_davu_transformer": 0.7518018181817158,
+    "model_rvacek": 0.6241872727274772,
+    "autoenkoder_poz": 0.4120945454545222
+   },
+   "total_ms": 229.53350727272752,
+   "fps": 4.356662397058301
+  },
+  "kvalita_rychlého": {
+   "recall_osob_vs_presny": 0.9858761528326746,
+   "odchylka_kloubu_px": 0.28843577597290276,
+   "osob_na_snimek_presny": 9.581818181818182,
+   "osob_na_snimek_rychly": 9.781818181818181
+  },
+  "n_frames": 55
+ },
+ "MED 021 (klidná scéna)": {
+  "přesný": {
+   "ms": {
+    "osoby": 185.15135333333365,
+    "poza": 566.6884999999999,
+    "objekty": 199.1645716666665,
+    "zbrane": 12.518261666667266,
+    "priznaky_davu": 13.763324999999801,
+    "model_davu_lstm": 0.3981566666643251,
+    "model_davu_transformer": 0.6085349999994586,
+    "model_rvacek": 0.5443766666675268,
+    "autoenkoder_poz": 0.3519549999997669
+   },
+   "total_ms": 978.5804999999987,
+   "fps": 1.021888337239503
+  },
+  "rychlý": {
+   "ms": {
+    "osoby": 29.695133333332773,
+    "poza": 252.0951316666656,
+    "objekty": 32.66205333333142,
+    "zbrane": 12.188426666666174,
+    "priznaky_davu": 13.763324999999801,
+    "model_davu_lstm": 0.3981566666643251,
+    "model_davu_transformer": 0.6085349999994586,
+    "model_rvacek": 0.5443766666675268,
+    "autoenkoder_poz": 0.3519549999997669
+   },
+   "total_ms": 341.6985583333273,
+   "fps": 2.926556099263664
+  },
+  "kvalita_rychlého": {
+   "recall_osob_vs_presny": 0.9742951807251344,
+   "odchylka_kloubu_px": 0.51309262549233,
+   "osob_na_snimek_presny": 19.316666666666666,
+   "osob_na_snimek_rychly": 20.366666666666667
+  },
+  "n_frames": 60
+ },
+ "ShanghaiTech 01_0014 (málo osob)": {
+  "přesný": {
+   "ms": {
+    "osoby": 191.6138943396208,
+    "poza": 128.28137547169607,
+    "objekty": 208.43148113207522,
+    "zbrane": 12.249362264150099,
+    "priznaky_davu": 14.192458490567615,
+    "model_davu_lstm": 0.41222075471903236,
+    "model_davu_transformer": 0.6237169811328694,
+    "model_rvacek": 0.5473792452807055,
+    "autoenkoder_poz": 0.34923584905647725
+   },
+   "total_ms": 556.077407547166,
+   "fps": 1.7983107862823593
+  },
+  "rychlý": {
+   "ms": {
+    "osoby": 29.794067924529624,
+    "poza": 61.17708679245134,
+    "objekty": 32.639784905661216,
+    "zbrane": 12.4491433962259,
+    "priznaky_davu": 14.192458490567615,
+    "model_davu_lstm": 0.41222075471903236,
+    "model_davu_transformer": 0.6237169811328694,
+    "model_rvacek": 0.5473792452807055,
+    "autoenkoder_poz": 0.34923584905647725
+   },
+   "total_ms": 151.5613773584919,
+   "fps": 6.597987016406396
+  },
+  "kvalita_rychlého": {
+   "recall_osob_vs_presny": 0.8652740341419586,
+   "odchylka_kloubu_px": 0.21720061716975048,
+   "osob_na_snimek_presny": 4.0,
+   "osob_na_snimek_rychly": 3.4150943396226414
+  },
+  "n_frames": 53
+ },
+ "gpu": "NVIDIA GeForce RTX 3090"
+}

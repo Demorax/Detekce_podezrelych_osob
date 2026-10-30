@@ -1,0 +1,135 @@
+{
+ "video": "video8",
+ "alerts": 0,
+ "reason": "vlastník neodešel na >= 5 s (nebo track zanikl dřív)",
+ "sampled_frames_with_carry": 112,
+ "carry_tracks": 22,
+ "carry_tracks_ge_2s": 4,
+ "labels": {
+  "suitcase": 21,
+  "handbag": 1
+ },
+ "max_alone_sec": 0.20020020020020018,
+ "tracks": [
+  {
+   "label": "suitcase",
+   "first": 578,
+   "n_frames": 37,
+   "owner_frames": 36,
+   "max_alone_sec": 0.20020020020020018,
+   "last": 618
+  },
+  {
+   "label": "suitcase",
+   "first": 667,
+   "n_frames": 24,
+   "owner_frames": 0,
+   "max_alone_sec": 0.0,
+   "last": 705
+  },
+  {
+   "label": "suitcase",
+   "first": 629,
+   "n_frames": 15,
+   "owner_frames": 0,
+   "max_alone_sec": 0.0,
+   "last": 655
+  },
+  {
+   "label": "suitcase",
+   "first": 742,
+   "n_frames": 14,
+   "owner_frames": 0,
+   "max_alone_sec": 0.0,
+   "last": 763
+  },
+  {
+   "label": "suitcase",
+   "first": 712,
+   "n_frames": 6,
+   "owner_frames": 0,
+   "max_alone_sec": 0.0,
+   "last": 719
+  },
+  {
+   "label": "suitcase",
+   "first": 566,
+   "n_frames": 3,
+   "owner_frames": 3,
+   "max_alone_sec": 0.0,
+   "last": 571
+  },
+  {
+   "label": "suitcase",
+   "first": 591,
+   "n_frames": 3,
+   "owner_frames": 3,
+   "max_alone_sec": 0.0,
+   "last": 594
+  },
+  {
+   "label": "suitcase",
+   "first": 601,
+   "n_frames": 3,
+   "owner_frames": 3,
+   "max_alone_sec": 0.0,
+   "last": 605
+  },
+  {
+   "label": "suitcase",
+   "first": 726,
+   "n_frames": 3,
+   "owner_frames": 0,
+   "max_alone_sec": 0.0,
+   "last": 734
+  },
+  {
+   "label": "suitcase",
+   "first": 778,
+   "n_frames": 3,
+   "owner_frames": 0,
+   "max_alone_sec": 0.0,
+   "last": 784
+  },
+  {
+   "label": "suitcase",
+   "first": 790,
+   "n_frames": 3,
+   "owner_frames": 0,
+   "max_alone_sec": 0.0,
+   "last": 795
+  },
+  {
+   "label": "suitcase",
+   "first": 582,
+   "n_frames": 2,
+   "owner_frames": 2,
+   "max_alone_sec": 0.0,
+   "last": 585
+  },
+  {
+   "label": "handbag",
+   "first": 571,
+   "n_frames": 1,
+   "owner_frames": 1,
+   "max_alone_sec": 0.0,
+   "last": 571
+  },
+  {
+   "label": "suitcase",
+   "first": 582,
+   "n_frames": 1,
+   "owner_frames": 1,
+   "max_alone_sec": 0.0,
+   "last": 582
+  },
+  {
+   "label": "suitcase",
+   "first": 595,
+   "n_frames": 1,
+   "owner_frames": 1,
+   "max_alone_sec": 0.0,
+   "last": 595
+  }
+ ]
+}

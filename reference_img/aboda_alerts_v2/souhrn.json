@@ -67,5 +67,88 @@
    "suitcase": 4
   },
   "max_alone_sec": 0.0
+ },
+ {
+  "video": "video6",
+  "alerts": 0,
+  "reason": "zavazadlo bez vlastníka (nikdy osoba v radiu)",
+  "sampled_frames_with_carry": 32,
+  "carry_tracks": 21,
+  "carry_tracks_ge_2s": 0,
+  "labels": {
+   "handbag": 6,
+   "backpack": 5,
+   "suitcase": 10
+  },
+  "max_alone_sec": 0.20020020020020018
+ },
+ {
+  "video": "video7",
+  "alerts": 0,
+  "reason": "vlastník neodešel na >= 5 s (nebo track zanikl dřív)",
+  "sampled_frames_with_carry": 50,
+  "carry_tracks": 14,
+  "carry_tracks_ge_2s": 4,
+  "labels": {
+   "handbag": 8,
+   "backpack": 4,
+   "suitcase": 2
+  },
+  "max_alone_sec": 1.001001001001001
+ },
+ {
+  "video": "video8",
+  "alerts": 0,
+  "reason": "vlastník neodešel na >= 5 s (nebo track zanikl dřív)",
+  "sampled_frames_with_carry": 112,
+  "carry_tracks": 22,
+  "carry_tracks_ge_2s": 4,
+  "labels": {
+   "suitcase": 21,
+   "handbag": 1
+  },
+  "max_alone_sec": 0.20020020020020018
+ },
+ {
+  "video": "video9",
+  "alerts": 0,
+  "reason": "vlastník neodešel na >= 5 s (nebo track zanikl dřív)",
+  "sampled_frames_with_carry": 90,
+  "carry_tracks": 28,
+  "carry_tracks_ge_2s": 5,
+  "labels": {
+   "handbag": 15,
+   "backpack": 8,
+   "suitcase": 5
+  },
+  "max_alone_sec": 0.0
+ },
+ {
+  "video": "video10",
+  "alerts": 0,
+  "reason": "vlastník neodešel na >= 5 s (nebo track zanikl dřív)",
+  "sampled_frames_with_carry": 59,
+  "carry_tracks": 19,
+  "carry_tracks_ge_2s": 2,
+  "labels": {
+   "backpack": 6,
+   "handbag": 10,
+   "suitcase": 3
+  },
+  "max_alone_sec": 0.0
+ },
+ {
+  "video": "video11",
+  "alerts": 0,
+  "reason": "vlastník neodešel na >= 5 s (nebo track zanikl dřív)",
+  "sampled_frames_with_carry": 751,
+  "carry_tracks": 1098,
+  "carry_tracks_ge_2s": 120,
+  "labels": {
+   "backpack": 222,
+   "handbag": 762,
+   "suitcase": 114
+  },
+  "max_alone_sec": 3.2
  }
 ]
