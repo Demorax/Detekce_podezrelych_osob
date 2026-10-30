@@ -96,6 +96,21 @@ Body tabulky „Co chybí do odevzdání“, které šly udělat bez rozhodnutí
 
   Model je srovnatelný s metodou, ze které vychází (o 0,9 bodu lepší), bez ladění na ShanghaiTech (okno 12 a
   architektura převzaté z MED). Literární hodnoty jsou z původních článků, ověřit při citaci.
+
+  **Ablace rozšíření podle MPED-RNN** (2026-10-30, `shanghai_pose_anomaly.py --variants`,
+  `shanghai_pose_variants.json`, log `shanghai_variants.log`). Varianty pevně dané předem (ShanghaiTech nemá
+  validační sadu s anomáliemi, hlásí se všechny), 3 seedy:
+
+  | varianta | AUC |
+  |---|---:|
+  | základ (lokální skelet + rychlost) | **0,743 ± 0,001** |
+  | + globální větev: poloha a velikost boxu ve snímku | 0,741 ± 0,000 |
+  | + předpověď 6 dalších snímků (skóre = rekonstrukce + předpověď) | 0,717 ± 0,001 |
+  | + podmínění scénou (13 kamer) | 0,716 ± 0,000 |
+
+  Negativní výsledek: poloha ve snímku nic nepřidá a předpověď budoucnosti skóre zhorší o 2,5 bodu
+  (předpověď pohybu osoby je nejistá i u normálního chování, takže její chyba přidává do skóre šum).
+  Hlavní konfigurace zůstává základní model; nic se na testu dál neladilo.
 - **Bod 4: spojená pipeline / demo** (2026-10-29, `demo_pipeline.py`, modely `models/behavior/` z
   `train_demo_models.py`; demo videa 5, 10, 15 nebyla v tréninku modelů davu ani póz). Jeden průchod videem:
   osoby + skelety, YOLO objekty + zbraně v2 + statické předměty, tracker, ARMED, opuštění, chování davu
