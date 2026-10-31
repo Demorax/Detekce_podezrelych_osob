@@ -185,6 +185,24 @@ Body tabulky „Co chybí do odevzdání“, které šly udělat bez rozhodnutí
   byla vybrána porovnáním na val (5 variant), takže 0,826 je mírně optimistické; varianty 10 a 8 jsou ale stejné,
   takže závěr „kratší okno pomáhá kvůli pokrytí“ je robustní. Nová hlavní konfigurace RWF: okno 10, krok 3.
   Literatura (skeletové metody) ~0,85–0,93, rozdíl se zmenšil z ~10 na ~5 bodů.
+- **Úloha 3: model nad dvojicí osob** (2026-10-30, `rwf_pair.py`, výsledky `rwf_pair_results.json`, log `rwf_pair.log`).
+  Původní model rvaček vidí vždy jen jednu osobu, interakci tedy nemodeluje. Každé okno osoby A dostalo nejbližšího
+  souseda B ve stejných snímcích (překryv ≥ půl okna, nejmenší vzdálenost boků); soused existuje u 94 % val oken.
+  Okna, osoby i pokrytí videí jsou totožné s modelem jedné osoby (ověřeno, část vstupu za A je shodná), protokol
+  stejný (okno 10, krok 3, výběr epochy na 15 % trénovacích videí, val jako test, 3 seedy). Varianty dané předem:
+
+  | vstup | rozměr | přesnost po videích | F1 Fight | AUC | přesnost po oknech |
+  |---|---:|---:|---:|---:|---:|
+  | jedna osoba (dosavadní) | 56 | 0,826 ± 0,005 | 0,817 | 0,876 | 0,729 |
+  | A + celý skelet souseda v souřadnicích A | 113 | 0,820 ± 0,018 | 0,805 | 0,877 | 0,728 |
+  | **A + poloha a rychlost souseda vůči A** | 61 | **0,833 ± 0,001** | **0,823** | **0,883** | 0,724 |
+
+  Interakční informace pomůže jen málo: poloha a pohyb souseda přidají ~0,7 bodu a stabilizují výsledek (sd 0,001),
+  celá póza souseda nepřidá nic a zvýší rozptyl (2× víc vstupů, stejně dat). Přesnost po oknech se nemění (~0,72–0,73),
+  takže strop dává kvalita skeletů na RWF (nízké rozlišení, okluze, kamera z ruky) a pokrytí: 56/400 videí nemá žádné
+  okno (z toho 11 Fight) a počítá se jako NonFight; na pokrytých videích je přesnost 0,837. Do textu: úloha 3 je
+  řešena modelem nad dvojicí (A + relativní poloha/pohyb souseda) jako hlavní konfigurací; zisk proti jednotlivci
+  je malý, ale konzistentní ve všech 3 seedech (0,833 / 0,835 / 0,833 vs. 0,820 / 0,825 / 0,833).
 - **Bod 7: Transformer vs. BiLSTM v modelu davu** (2026-10-29, `med_train.py --compare-temporal`,
   `med_temporal_results.json`). Transformer: 2 vrstvy, 4 hlavy, učená poziční embedding, ~350 tis. parametrů
   (BiLSTM ~175 tis.), jinak stejný protokol (5 foldů podle videí, 3 seedy, 25 epoch).

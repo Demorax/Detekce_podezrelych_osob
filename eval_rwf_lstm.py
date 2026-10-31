@@ -72,11 +72,11 @@ class WinDataset(Dataset):
 
 
 @torch.no_grad()
-def predict(model, vids):
+def predict(model, vids, ds_cls=None):
     """Pravděpodobnost Fight pro každé okno, ve stejném pořadí jako WinDataset(vids)."""
     model.eval()
     probs = []
-    for x, _ in DataLoader(WinDataset(vids), batch_size=256, shuffle=False):
+    for x, _ in DataLoader((ds_cls or WinDataset)(vids), batch_size=256, shuffle=False):
         probs.append(torch.softmax(model(x.to(T.DEVICE)), 1)[:, 1].cpu().numpy())
     return np.concatenate(probs) if probs else np.zeros(0)
 
@@ -93,8 +93,8 @@ def metrics(y, p, prob=None):
     return m
 
 
-def evaluate(model, vids):
-    prob = predict(model, vids)
+def evaluate(model, vids, ds_cls=None):
+    prob = predict(model, vids, ds_cls)
     y_win = [v['label'] for v in vids for _ in v['wins']]
     res = {'window': metrics(y_win, (prob >= 0.5).astype(int), prob)}
     k = 0
@@ -122,7 +122,9 @@ def evaluate(model, vids):
     return res
 
 
-def train_holdout(seed, train_vids, val_frac, epochs):
+def train_holdout(seed, train_vids, val_frac, epochs, ds_cls=None, input_dim=None):
+    """ds_cls / input_dim: jiná reprezentace oken (rwf_pair.py), výchozí = jedna osoba."""
+    ds_cls = ds_cls or WinDataset
     random.seed(seed); np.random.seed(seed); torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
     by_cls = {0: [], 1: []}
@@ -135,15 +137,15 @@ def train_holdout(seed, train_vids, val_frac, epochs):
         n_sel = int(round(len(c) * val_frac))
         sel += c[:n_sel]; tr += c[n_sel:]
 
-    ds = WinDataset(tr, augment=True)
+    ds = ds_cls(tr, augment=True)
     counts = np.maximum(np.bincount([s[1] for s in ds.samples], minlength=2), 1)
     w = torch.tensor(len(ds) / (2 * counts), dtype=torch.float32, device=T.DEVICE)
     loss_fn = nn.CrossEntropyLoss(weight=w)
-    model = T.BiLSTMAttention(input_dim=T.N_KEYPOINTS * 4).to(T.DEVICE)
+    model = T.BiLSTMAttention(input_dim=input_dim or T.N_KEYPOINTS * 4).to(T.DEVICE)
     opt = torch.optim.AdamW(model.parameters(), lr=T.LR, weight_decay=T.WEIGHT_DECAY)
     sched = torch.optim.lr_scheduler.CosineAnnealingLR(opt, T_max=epochs)
     loader = DataLoader(ds, batch_size=T.BATCH_SIZE, shuffle=True, num_workers=0)
-    sel_loader = DataLoader(WinDataset(sel), batch_size=256, shuffle=False)
+    sel_loader = DataLoader(ds_cls(sel), batch_size=256, shuffle=False)
 
     best, best_state, stale, best_ep = -1.0, None, 0, 0
     for ep in range(1, epochs + 1):
