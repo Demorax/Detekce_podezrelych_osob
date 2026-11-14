@@ -10,6 +10,7 @@ Výstup: data/ShanghaiTech/skeletons/<split>/<seq>.pkl se strukturou jako MED/RW
 Použití:
     python shanghai_skeletons.py --split testing
     python shanghai_skeletons.py --split training
+    python shanghai_skeletons.py --split testing --step 2    # hustší vzorkování -> skeletons_step2/
 """
 import argparse
 import pickle
@@ -52,8 +53,9 @@ def sequences(split):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--split', choices=['testing', 'training'], required=True)
+    ap.add_argument('--step', type=int, default=STEP, help='vzorkovat každý N-tý snímek (výchozí 5)')
     a = ap.parse_args()
-    out_dir = OUT / a.split
+    out_dir = (OUT if a.step == STEP else OUT.with_name(f'{OUT.name}_step{a.step}')) / a.split
     out_dir.mkdir(parents=True, exist_ok=True)
     dev = 'cuda' if torch.cuda.is_available() else 'cpu'
     rtdetr = RTDETRDetector(_RTDETR_CONFIG, _RTDETR_MODEL, device=dev)
@@ -63,7 +65,7 @@ def main():
         if out.exists():
             continue
         t0 = time.time()
-        idx = list(range(0, n, STEP))
+        idx = list(range(0, n, a.step))
         sks, bbs = [], []
         for i in idx:
             frame = get(i)

@@ -114,6 +114,8 @@ def evaluate(model, vids, ds_cls=None):
     for name, pv in agg.items():
         pv = np.array(pv)
         res[f'video_{name}'] = metrics(y_vid, (pv >= 0.5).astype(int), pv)
+    res['video_ids'] = [v['id'] for v in vids]
+    res['video_prob_mean'] = [round(x, 5) for x in agg['mean']]
     res['videos_without_window'] = n_empty
     res['videos_without_window_fight'] = sum(1 for v in vids if not v['wins'] and v['label'] == 1)
     cov = [i for i, v in enumerate(vids) if v['wins']]

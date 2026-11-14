@@ -6,10 +6,12 @@ Na každém vzorkovaném snímku (5 snímků/s):
   2. objekty: YOLO11x COCO (zbraně, zavazadla) + vlastní detektor zbraní v2 (gun/knife/melee)
      + detektor nově odložených nehybných předmětů z modelu pozadí (static_object_detector.py),
   3. tracker osob a objektů, vlastnictví zavazadel, pravidlo opuštění, ARMED (zbraň u zápěstí),
-  4. chování davu: ResNet-18 + optický tok + osoby (YOLO11x) → Transformer nad posledními 16 snímky (3,2 s),
-     5 tříd MED (úloha 1 zadání),
-  5. rvačka: BiLSTM s attention nad posledními 10 skelety každé osoby (2 s), skóre scény = průměr osob
-     (úloha 3 zadání),
+  4. chování davu (úloha 1 zadání), 5 tříd MED nad posledními 16 vzorkovanými snímky (3,2 s): obrazový
+     MViT-v2-S doučený na MED bez demo videí (med_video.py --final, models/behavior/crowd_video.pt);
+     bez něj původní ResNet-18 + optický tok + osoby (YOLO11x) → Transformer,
+  5. rvačka (úloha 3 zadání): hlavní je obrazový MViT-v2-S doučený na RWF-2000 (rwf_video.py) nad 16 snímky
+     z posledních 5 s, vyhodnocovaný jednou za sekundu; poplach po VIDEO_FIGHT_CONFIRM potvrzeních po sobě.
+     Navíc BiLSTM s attention nad posledními 10 skelety každé osoby (2 s) jako odhad u jednotlivých osob,
   6. anomální póza: GRU autoenkodér nad posledními 12 skelety osoby, anomálie = chyba nad 99. percentilem
      normálních trénovacích oken (úloha 2 zadání).
 Modely chování: models/behavior/ (train_demo_models.py, demo videa 5, 10, 15 nebyla v tréninku).
@@ -51,6 +53,9 @@ FIGHT_THR = 0.5
 CROWD_CONFIRM = 8
 CROWD_COOLDOWN_SEC = 10.0
 FIGHT_CONFIRM = 3           # rvačka ze skeletů: skóre nad prahem 3 vzorky po sobě (0,6 s)
+VIDEO_FIGHT_SEC = 5.0       # obrazový model rvaček: okno jako klipy RWF-2000 (~5 s)
+VIDEO_FIGHT_EVERY = 5       # vyhodnotit každý 5. vzorek (1× za sekundu)
+VIDEO_FIGHT_CONFIRM = 2     # poplach po 2 vyhodnoceních nad prahem po sobě (2 s)
 
 
 class Behavior:
@@ -76,6 +81,60 @@ class Behavior:
         self.rm = torch.tensor([0.485, 0.456, 0.406], device=DEV).view(1, 3, 1, 1)
         self.rs = torch.tensor([0.229, 0.224, 0.225], device=DEV).view(1, 3, 1, 1)
         self.crowd_buf = deque(maxlen=self.c_T)
+        self.video_fight = None
+        if (BEH / 'fight_video.pt').exists():
+            from torchvision.models.video import mvit_v2_s
+            v = torch.load(BEH / 'fight_video.pt', map_location=DEV, weights_only=False)
+            self.video_fight = mvit_v2_s()
+            self.video_fight.head[-1] = torch.nn.Linear(self.video_fight.head[-1].in_features, 2)
+            self.video_fight.load_state_dict(v['state_dict'])
+            self.video_fight.eval().to(DEV)
+            self.v_n, self.v_size = v['frames'], v['size']
+            self.v_mean = torch.tensor(v['mean'], device=DEV).view(3, 1, 1, 1)
+            self.v_std = torch.tensor(v['std'], device=DEV).view(3, 1, 1, 1)
+        self.video_buf = deque(maxlen=int(VIDEO_FIGHT_SEC * SAMPLE_FPS))
+        self.crowd_video = None
+        if (BEH / 'crowd_video.pt').exists():
+            from torchvision.models.video import mvit_v2_s
+            c = torch.load(BEH / 'crowd_video.pt', map_location=DEV, weights_only=False)
+            self.crowd_video = mvit_v2_s()
+            self.crowd_video.head[-1] = torch.nn.Linear(self.crowd_video.head[-1].in_features, len(c['classes']))
+            self.crowd_video.load_state_dict(c['state_dict'])
+            self.crowd_video.eval().to(DEV)
+            self.cv_n, self.cv_size = c['frames'], c['size']
+            self.cv_mean = torch.tensor(c['mean'], device=DEV).view(3, 1, 1, 1)
+            self.cv_std = torch.tensor(c['std'], device=DEV).view(3, 1, 1, 1)
+            self.cv_buf = deque(maxlen=self.cv_n)
+
+    @torch.no_grad()
+    def crowd_video_step(self, frame):
+        """Obrazový model davu nad posledními 16 vzorkovanými snímky (začátek doplněn opakováním)."""
+        self.cv_buf.append(cv2.cvtColor(cv2.resize(frame, (self.cv_size, self.cv_size), interpolation=cv2.INTER_AREA),
+                                        cv2.COLOR_BGR2RGB))
+        if len(self.cv_buf) < self.cv_n // 2:
+            return None
+        buf = list(self.cv_buf)
+        clip = np.stack([buf[0]] * (self.cv_n - len(buf)) + buf)
+        x = torch.from_numpy(clip).to(DEV).permute(3, 0, 1, 2).float() / 255
+        with torch.autocast('cuda', dtype=torch.bfloat16):
+            logits = self.crowd_video(((x - self.cv_mean) / self.cv_std)[None])
+        return torch.softmax(logits.float(), 1)[0].cpu().numpy()
+
+    @torch.no_grad()
+    def video_fight_step(self, frame, evaluate):
+        """Uloží zmenšený snímek do bufferu; když evaluate, vrátí P(rvačka) z obrazového modelu."""
+        if self.video_fight is None:
+            return None
+        self.video_buf.append(cv2.cvtColor(cv2.resize(frame, (self.v_size, self.v_size)), cv2.COLOR_BGR2RGB))
+        if not evaluate or len(self.video_buf) < self.video_buf.maxlen // 2:
+            return None
+        buf = list(self.video_buf)
+        edges = np.linspace(0, len(buf), self.v_n + 1)
+        clip = np.stack([buf[min(int(k), len(buf) - 1)] for k in (edges[:-1] + edges[1:]) / 2])
+        x = torch.from_numpy(clip).to(DEV).permute(3, 0, 1, 2).float() / 255
+        with torch.autocast('cuda', dtype=torch.bfloat16):
+            logits = self.video_fight(((x - self.v_mean) / self.v_std)[None])
+        return float(torch.softmax(logits.float(), 1)[0, 1])
 
     @torch.no_grad()
     def crowd_step(self, frame, prev_frame, yolo_person_boxes):
@@ -169,6 +228,9 @@ def draw(frame, st, t_sec):
             cv2.rectangle(panel, (95, y - 12), (95 + int(140 * p), y - 2), (0, 200, 255) if k == top else (110, 110, 110), -1)
             tp.append((CZ[cname], (10, y - 1), (255, 255, 255), 13))
     y += 30
+    vf = st.get('fight_video')
+    tp.append((f'Rvačka (obraz, 5 s): {"-" if vf is None else f"{vf:.0%}"}', (10, y),
+               (0, 0, 255) if vf is not None and vf > FIGHT_THR else (200, 200, 200), 14)); y += 22
     fs = st['fight_scene']
     tp.append((f'Rvačka (skelety): {"-" if fs is None else f"{fs:.0%}"}', (10, y),
                (0, 0, 255) if fs is not None and fs > FIGHT_THR else (200, 200, 200), 14)); y += 22
@@ -215,8 +277,9 @@ def main():
     hist = {}                                  # tid -> deque[(sampled_idx, skeleton)]
     recent = deque(maxlen=FLOW_GAP + 1)        # posledních pár snímků pro optický tok
     events, alerts, timings = [], [], []
-    st = {'persons': [], 'objects': [], 'crowd': None, 'fight_scene': None, 'alerts': alerts}
+    st = {'persons': [], 'objects': [], 'crowd': None, 'fight_scene': None, 'fight_video': None, 'alerts': alerts}
     armed_prev, fight_run, fight_last_alert = set(), 0, -1e9
+    fight_video, vfight_run, vfight_last_alert = None, 0, -1e9
     crowd_run, crowd_last_alert = ('Neutral', 0), {}
     i = si = 0
     while True:
@@ -240,9 +303,19 @@ def main():
                                             min_ownership_frames=AOD.DEFAULT_MIN_OWNERSHIP_FRAMES):
                 alerts.append({'t': round(t_sec, 1), 'type': f'opuštěno: {al["label"]}', 'box': al['box']})
             # chování
-            yp = det.coco(frame, classes=[0], conf=0.25, imgsz=1280, device=DEV, verbose=False)[0]
-            yb = np.concatenate([yp.boxes.xyxy.cpu().numpy(), yp.boxes.conf.cpu().numpy()[:, None]], 1)
-            crowd = beh.crowd_step(frame, recent[0], yb)
+            if beh.crowd_video is not None:
+                crowd = beh.crowd_video_step(frame)
+            else:                              # osoby YOLO11x jen pro příznaky původního modelu davu
+                yp = det.coco(frame, classes=[0], conf=0.25, imgsz=1280, device=DEV, verbose=False)[0]
+                yb = np.concatenate([yp.boxes.xyxy.cpu().numpy(), yp.boxes.conf.cpu().numpy()[:, None]], 1)
+                crowd = beh.crowd_step(frame, recent[0], yb)
+            fv = beh.video_fight_step(frame, si % VIDEO_FIGHT_EVERY == 0)
+            if fv is not None:
+                fight_video = fv
+                vfight_run = vfight_run + 1 if fv > FIGHT_THR else 0
+                if vfight_run == VIDEO_FIGHT_CONFIRM and t_sec - vfight_last_alert >= CROWD_COOLDOWN_SEC:
+                    alerts.append({'t': round(t_sec, 1), 'type': 'rvačka (obraz)'})
+                    vfight_last_alert = t_sec
             persons, fights = [], []
             for tid, p in ptr.items():
                 sk = p.get('skeleton')
@@ -278,11 +351,12 @@ def main():
                     crowd_last_alert[cname] = t_sec
             objects = [{'box': np.asarray(o['box']).tolist(), 'label': o['label'], 'abandoned': bool(o.get('alerted'))}
                        for o in otr.values()]
-            st = {'persons': persons, 'objects': objects, 'crowd': crowd, 'fight_scene': fight_scene, 'alerts': alerts}
+            st = {'persons': persons, 'objects': objects, 'crowd': crowd, 'fight_scene': fight_scene,
+                  'fight_video': fight_video, 'alerts': alerts}
             torch.cuda.synchronize()
             timings.append(time.perf_counter() - t0)
             events.append({'t': round(t_sec, 2), 'crowd': None if crowd is None else dict(zip(MT.CLASSES, map(float, crowd))),
-                           'fight_scene': fight_scene, 'n_persons': len(persons), 'armed': sorted(armed_now),
+                           'fight_scene': fight_scene, 'fight_video': fight_video, 'n_persons': len(persons), 'armed': sorted(armed_now),
                            'pose_anomalous': [p['id'] for p in persons if p['pose_anom']],
                            'objects': [(o['label'], o['abandoned']) for o in objects]})
             si += 1

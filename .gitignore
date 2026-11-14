@@ -53,3 +53,4 @@ weapon_training/annotate_neg_hard/images/
 weapon_training/review_ambiguous/*.png
 weapon_training/armed_eval/video_*.json
 weapon_training/docs/demo/*.mp4
+med_video_frames/

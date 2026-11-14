@@ -7,7 +7,7 @@ popsané zvlášť v `weapon_training/docs/DATASETS.md`.
 | dataset | složka | použití | staženo | velikost | citace |
 |---|---|---|---|---|---|
 | Motion Emotion Dataset (MED) | `data/Motion_Emotion/` | hlavní dataset: chování davu, anotace zbraní, anomálie póz | 2025 (od vedoucího) | 31 MP4 | `med2016`, `medEmotion2016` |
-| RWF-2000 | `data/RWF-2000/` | rvačky ze skeletů | 2026-04-29 | 12 GB, 2 007 AVI | `rwf2000` |
+| RWF-2000 | `data/RWF-2000/` | rvačky ze skeletů a z obrazu (MViT-v2) | 2026-04-29, videa znovu 2026-10-31 | 12 GB, 2 000 AVI | `rwf2000` |
 | AVA (jen anotace) | `data/AVA/annotations/` | nepoužito (videa nestažena) | 2026-04-29 | 58 MB | `ava2018` |
 | CAVIAR | `data/CAVIAR/` | opuštěná zavazadla, GT boxy (XML) | 2026-05-09 | 216 MB, 28 scénářů | `caviar2004` |
 | ABODA | `data/ABODA/` | opuštěná zavazadla, plná pipeline | 2026-05-09 | 513 MB, 11 AVI | `aboda2015` |
@@ -16,7 +16,9 @@ popsané zvlášť v `weapon_training/docs/DATASETS.md`.
 | CUHK Avenue | `data/Avenue/` | přenos modelu davu na cizí scénu | 2026-10-28 | 813 MB + 0,9 MB GT | `avenue2013` |
 | UMN crowd | `data/UMN/` | přenos modelu davu (panika) | 2026-10-28 | 25 MB | `umn2009` |
 | ShanghaiTech Campus | `data/ShanghaiTech/shanghaitech/` | benchmark skeletové anomálie (úloha 2) | 2026-10-28 | 7,0 GB (330 train videí, 107 test sekvencí) | `shanghaitech2017` |
+| ShanghaiTech – referenční skelety STG-NF (AlphaPose, sledované osoby, 24 snímků/s) | `data/STG-NF/ShanghaiTech/` | úloha 2: srovnání kvality skeletů (ne hlavní výsledek) | 2026-11-01 | 2,6 GB (330 + 107 JSON, GT) | `stgnf2023`, `shanghaitech2017` |
 | COCO (předtrénované váhy YOLO/RT-DETR, ImageNet pro ResNet) | `models/` | detekce osob a objektů, příznaky | — | — | `coco2014`, `imagenet2009` |
+| Kinetics-400 (předtrénované váhy MViT-v2-S z torchvision, `mvit_v2_s-ae3be167.pth`) | `~/.cache/torch` | obrazový model rvaček a davu | 2026-10-31 | 132 MB | `kinetics2017`, `mvitv2_2022` |
 
 ## Podrobnosti
 
@@ -35,6 +37,9 @@ popsané zvlášť v `weapon_training/docs/DATASETS.md`.
 - Obsah: 2 000 klipů po 5 s (1 600 train / 400 val), rvačka / bez rvačky.
 - Poznámka: autoři dataset 2026 stáhli z veřejné distribuce (GDPR); kopie byla pořízena 2026-04-29,
   v práci uvést jako „dataset již není veřejně dostupný“. Použití jen pro výzkum.
+- Videa znovu stažena 2026-10-31 do `data/RWF-2000/videos/` (`download_rwf.py`, Hugging Face mirror
+  `DanJoshua/RWF-2000`, rozbaleno za běhu bez uložení archivu): 2 000 AVI, 27 názvů s ne-ASCII znaky přejmenováno,
+  mapování v `videos/sanitized_names.json`. Zdrojová YouTube id se mezi train a val nepřekrývají (ověřeno).
 
 ### CAVIAR
 - Autoři: EC Funded CAVIAR project/IST 2001 37540, Fisher et al. (University of Edinburgh / INRIA).
@@ -90,6 +95,16 @@ popsané zvlášť v `weapon_training/docs/DATASETS.md`.
 - Obsah ověřen: 330 trénovacích videí (všechny scény 01–13), 107 testovacích sekvencí, 40 791 testovacích
   snímků (17 326 abnormálních, `test_frame_mask/*.npy`), pixelové masky `test_pixel_mask/`.
 - Skelety: `shanghai_skeletons.py` -> `data/ShanghaiTech/skeletons/{training,testing}/`.
+
+### ShanghaiTech – referenční skelety STG-NF
+- Autoři: Hirschorn, Avidan (ICCV 2023), repozitář https://github.com/orhir/STG-NF (licence Creative Commons,
+  datasety mají vlastní licence).
+- Odkaz z README repozitáře: Google Drive `data.zip`
+  (https://drive.google.com/file/d/1o9h3Kh6zovW4FIHpNBGnYIRSbGCu-qPt), 1 333 217 246 B, stažen 2026-11-01.
+- Z archivu rozbalena jen část `ShanghaiTech/` (pose/train 330 videí, pose/test 107 sekvencí, každé
+  `*_alphapose-results.json` a `*_alphapose_tracked_person.json`; gt/test_frame_mask shodné s oficiálními maskami,
+  ověřeno), část UBnormal nerozbalena, archiv smazán.
+- Použití: `shanghai_stgnf_refposes.py` (tok nad cizími skelety jen pro oddělení vlivu skeletů a modelu).
 
 ### Roboflow Universe (datasety zbraní)
 - Viz `weapon_training/docs/DATASETS.md` (6 datasetů, licence CC BY 4.0 a další, odkazy a verze).

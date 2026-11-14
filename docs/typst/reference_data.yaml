@@ -160,3 +160,64 @@ imagenet2009:
     title: IEEE Conference on Computer Vision and Pattern Recognition (CVPR)
     publisher: IEEE
   doi: 10.1109/CVPR.2009.5206848
+
+kinetics2017:
+  type: article
+  title: The Kinetics Human Action Video Dataset
+  author:
+    - Kay, Will
+    - Carreira, Joao
+    - Simonyan, Karen
+    - Zhang, Brian
+    - Hillier, Chloe
+    - Vijayanarasimhan, Sudheendra
+    - Viola, Fabio
+    - Green, Tim
+    - Back, Trevor
+    - Natsev, Paul
+    - Suleyman, Mustafa
+    - Zisserman, Andrew
+  date: 2017
+  serial-number:
+    arxiv: "1705.06950"
+  url: https://arxiv.org/abs/1705.06950
+
+mvitv2_2022:
+  type: article
+  title: "MViTv2: Improved Multiscale Vision Transformers for Classification and Detection"
+  author:
+    - Li, Yanghao
+    - Wu, Chao-Yuan
+    - Fan, Haoqi
+    - Mangalam, Karttikeya
+    - Xiong, Bo
+    - Malik, Jitendra
+    - Feichtenhofer, Christoph
+  date: 2022
+  parent:
+    type: proceedings
+    title: IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)
+    publisher: IEEE
+  page-range: 4794-4804
+  doi: 10.1109/CVPR52688.2022.00476
+  serial-number:
+    arxiv: "2112.01526"
+  url: https://arxiv.org/abs/2112.01526
+
+stgnf2023:
+  # zdroj referenčních skeletů ShanghaiTech (AlphaPose) i reimplementovaného modelu toku
+  type: article
+  title: "Normalizing Flows for Human Pose Anomaly Detection"
+  author:
+    - Hirschorn, Or
+    - Avidan, Shai
+  date: 2023
+  parent:
+    type: proceedings
+    title: IEEE/CVF International Conference on Computer Vision (ICCV)
+    publisher: IEEE
+  page-range: 13499-13508
+  doi: 10.1109/ICCV51070.2023.01246
+  serial-number:
+    arxiv: "2211.10946"
+  url: https://github.com/orhir/STG-NF

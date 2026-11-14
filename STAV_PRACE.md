@@ -111,6 +111,43 @@ Body tabulky „Co chybí do odevzdání“, které šly udělat bez rozhodnutí
   Negativní výsledek: poloha ve snímku nic nepřidá a předpověď budoucnosti skóre zhorší o 2,5 bodu
   (předpověď pohybu osoby je nejistá i u normálního chování, takže její chyba přidává do skóre šum).
   Hlavní konfigurace zůstává základní model; nic se na testu dál neladilo.
+
+  **Normalizační tok podle STG-NF** (2026-11-01, `shanghai_stgnf.py`, `shanghai_stgnf_results.json`, log
+  `shanghai_stgnf.log`). Model i hodnocení převzaté z oficiálního kódu STG-NF (výchozí argumenty pro ShanghaiTech:
+  K=8 kroků toku se ST-GCN couplingem, prior N(3, 1), Adamax 5e-4, 8 epoch, zrcadlení; normalizace okna jako
+  `normalize_pose`, takže okno nese pózu i pohyb osoby). Stejná okna jako u autoenkodéru (12 vzorků po 5 snímcích/s).
+  Hodnocení snímků „STG-NF“ = maximum skóre přes osoby, snímky bez osoby nejnormálnější, gaussovské vyhlazení
+  sigma 1..6 (`smooth_scores`); „naše“ = průměr 3 nejvyšších, medián 5. Všechny kombinace pevně předem, 3 seedy:
+
+  | model | naše hodnocení | hodnocení STG-NF |
+  |---|---:|---:|
+  | GRU autoenkodér | 0,743 ± 0,001 | 0,760 ± 0,001 |
+  | tok (STG-NF) | 0,737 ± 0,002 | 0,787 ± 0,002 |
+  | autoenkodér + tok (součet z-skóre z trénovacích oken) | 0,744 ± 0,002 | **0,789 ± 0,003** |
+
+  Zlepšení 0,743 → 0,787 (tok) / 0,789 (fúze), tedy nad MPED-RNN (0,734) i GEPC (0,761). Zisk dělají obě části:
+  hodnocení snímků +1,7 bodu u autoenkodéru, tok dalších +2,7 bodu, a teprve spolu (tok potřebuje maximum
+  přes osoby, průměr 3 nejvyšších mu nesedí). Fúze přidá jen 0,2 bodu, takže hlavní model = tok (jednodušší,
+  368 parametrů). Zbývající rozdíl proti STG-NF (0,859) je hlavně v datech: oni mají AlphaPose skelety pro
+  všech 24 snímků/s a okno 24 snímků, my ViTPose po 5 snímcích/s (stejná pipeline jako zbytek práce).
+
+  **Skelety vs. snímková frekvence** (2026-11-01, `shanghai_stgnf_refposes.py`, `shanghai_stgnf_refposes_results.json`,
+  log `shanghai_stgnf_refposes.log`). Stejný tok nad referenčními skelety autorů STG-NF (AlphaPose, COCO 17 + krk,
+  `data/STG-NF/`, zdroj v `data/ZDROJE.md`), varianty předem, 3 seedy, hodnocení STG-NF:
+
+  | skelety | vzorkování, okno | AUC |
+  |---|---|---:|
+  | naše (ViTPose-H, CrowdPose 14) | 5 snímků/s, 12 vzorků | 0,787 ± 0,002 |
+  | referenční STG-NF (AlphaPose) | 5 snímků/s, 12 vzorků | 0,788 ± 0,013 |
+  | referenční STG-NF (AlphaPose) | 12 snímků/s, 12 vzorků (1 s) | 0,844 ± 0,005 |
+  | referenční STG-NF (AlphaPose) | 24 snímků/s, 24 snímků (výchozí STG-NF) | **0,844 ± 0,001** |
+  | STG-NF, článek | 24 snímků/s | 0,859 |
+
+  Závěry: (1) reimplementace je věrná (0,844 proti 0,859 v článku; zbytek mohou být detaily jako počet epoch
+  nebo seed), (2) naše skelety jsou při stejném vzorkování stejně dobré jako referenční (0,787 vs. 0,788, naše
+  s menším rozptylem), (3) celý zbývající rozdíl dělá snímková frekvence (+5,6 bodu z 5 na 24 snímků/s),
+  přitom 12 snímků/s stačí (0,844, varianta C, `shanghai_stgnf_refposes_c.json`) -> naše skelety znovu po 2 snímcích.
+  Referenční skelety slouží jen k tomuto rozboru, hlavní výsledek práce zůstává na vlastní pipeline.
 - **Bod 4: spojená pipeline / demo** (2026-10-29, `demo_pipeline.py`, modely `models/behavior/` z
   `train_demo_models.py`; demo videa 5, 10, 15 nebyla v tréninku modelů davu ani póz). Jeden průchod videem:
   osoby + skelety, YOLO objekty + zbraně v2 + statické předměty, tracker, ARMED, opuštění, chování davu
@@ -121,10 +158,27 @@ Body tabulky „Co chybí do odevzdání“, které šly udělat bez rozhodnutí
   | video | anotace MED | poplachy dema |
   |---|---|---|
   | 005 | neutrální 0–27 s, panika (bitka s tyčemi) 27–32 s | rvačka (skelety) 27,8 s, ARMED 4 osoby 28,4–29,2 s, panika 30,0 s; žádný falešný |
-  | 015 | neutrální 0–12 s, rvačka 12–45 s | rvačka 17,0 s (+5 s), 32,8 s, 43,4 s; kongesce 35,6 s (chybně); falešné opuštěné zavazadlo 10,8 s |
+  | 015 | neutrální 0–12 s, rvačka 12–45 s | dav: rvačka 17,0 s (+5 s), 32,8 s, 43,4 s; kongesce 35,6 s (chybně); falešné opuštěné zavazadlo 10,8 s |
   | 010 | neutrální 0–43, kongesce 43–47, překážka 47–70, panika 70–76 s | překážka 8,2 s (chybně), rvačka (skelety) 75,7 s při útěku, panika 77,1 s; kongesce a překážka nezachyceny |
 
   Demo běželo v rychlém režimu na sdíleném GPU: 0,95–1,3 s na vzorkovaný snímek (čisté měření rychlosti viz bod 6).
+
+  **Demo v2 s obrazovými modely** (2026-10-31, `demo_outputs/full_v2/`, logy `demo_v2_*.log`): dav = MViT-v2-S
+  doučený na MED bez demo videí (`med_video.py --final`, `models/behavior/crowd_video.pt`), rvačka navíc obrazový
+  MViT-v2-S z RWF-2000 (`fight_video.pt`) nad posledními 5 s, 1× za sekundu, poplach po 2 potvrzeních.
+  Ostatní moduly beze změny (skeletová skóre jsou s v1 identická).
+
+  | video | v1 (ruční příznaky davu) | v2 (obrazové modely) |
+  |---|---|---|
+  | 005 | rvačka (skelety) 27,8, ARMED 28,4–29,2, panika 30,0 | rvačka (skelety) 27,8, ARMED 28,4–29,2, **rvačka (obraz) 29,0**, panika **29,6** |
+  | 015 | dav: rvačka **17,0**, 32,8, 43,4; kongesce 35,6 (chybně); zavazadlo 10,8 (chybně) | rvačka (obraz) 27,0, 37,0; dav: rvačka 27,2; **žádná chybná třída davu**; zavazadlo 10,8 (chybně) |
+  | 010 | překážka 8,2 (chybně), panika 77,1; překážka nezachycena | **překážka 57,9 (správně)**, **panika 75,5**; rvačka (obraz) 27,0, 49,0 (chybně), 72,1 (při panice) |
+
+  Model davu v2 nemá žádnou chybnou třídu a zachytí překážku, kterou v1 neviděl; rvačku v 015 hlásí o 10 s později
+  než v1 (do 25 s ji model vidí jako Neutral). Obrazový model rvaček z RWF se na MED (shora snímaný dav, malé postavy)
+  přenáší jen částečně: rvačky v 005 a 015 zachytí, ale v 010 dává 2 falešné poplachy. Pro MED scény je proto
+  spolehlivější třída Fight modelu davu; RWF model je určený pro bližší kamery. Prahy ani potvrzení se podle dema
+  neladily. Rychlost v2 (rychlý režim, GPU sdílené jen s demem): 351–459 ms na vzorkovaný snímek.
 - **Bod 3: detektor nově odložených nehybných předmětů** (2026-10-29, `static_object_detector.py`).
   Duální model pozadí (Porikli 2008) nad gradienty; počítá se jen nárůst hran proti dlouhodobému pozadí, osoby
   a přepálené oblasti se maskují. Vývoj podle pozorovaných chyb na CAVIAR (ne ladění na čísla):
@@ -168,6 +222,10 @@ Body tabulky „Co chybí do odevzdání“, které šly udělat bez rozhodnutí
   Úzké hrdlo je ViTPose-Huge (lineárně s počtem osob: ~30 ms na osobu ve fp32, ~13–15 ms ve fp16), v přesném režimu i opakovaná
   detekce na 5 variantách. Časové modely a příznaky davu jsou zanedbatelné. Při vzorkování 5 snímků/s je rychlý
   režim blízko reálného času u řídké scény (6,6 FPS), u davu ne (2,9 FPS); realtime zadání nevyžaduje.
+  Obrazové modely MViT-v2-S (2026-10-31, samostatné měření na volné RTX 3090, náhodný vstup 16 × 224 × 224,
+  34,2 mil. parametrů): 22 ms na klip ve fp32 a 21 ms v bf16 při dávce 1, 12,6 ms na klip v bf16 při dávce 8.
+  Model se volá jednou za klip, ne na každý snímek: v demu dav každý vzorkovaný snímek, rvačka jednou za 5 s.
+  Proti ViTPose je to zanedbatelné.
 - **Bod 2: RWF s kratším oknem** (2026-10-29, `eval_rwf_lstm.py --holdout --seq-len L --step S`,
   výsledky `rwf_lstm_eval_T*.json`, logy `rwf_T*.log`). Stejný model a protokol jako čistý odhad výše
   (výběr epochy na 15 % trénovacích videí, val jen jako test, 3 seedy).
@@ -203,6 +261,42 @@ Body tabulky „Co chybí do odevzdání“, které šly udělat bez rozhodnutí
   okno (z toho 11 Fight) a počítá se jako NonFight; na pokrytých videích je přesnost 0,837. Do textu: úloha 3 je
   řešena modelem nad dvojicí (A + relativní poloha/pohyb souseda) jako hlavní konfigurací; zisk proti jednotlivci
   je malý, ale konzistentní ve všech 3 seedech (0,833 / 0,835 / 0,833 vs. 0,820 / 0,825 / 0,833).
+- **Úloha 3: obrazový prostorově-časový model** (2026-10-31, `rwf_video.py`, výsledky `rwf_video_results.json`,
+  log `rwf_video.log`, model `models/behavior/fight_video.pt` (seed 0, mimo git)). Skeletová cesta je omezená kvalitou
+  skeletů, proto doučený MViT-v2-S (multiscale vision transformer, předtrénovaný na Kinetics-400, torchvision) nad
+  16 snímky rovnoměrně z celého klipu, 224 × 224, celá síť doučená s novou hlavou Fight/NonFight (AdamW 1e-4,
+  max. 15 epoch, bf16). Videa znovu stažena (`download_rwf.py`), zdrojová YouTube id se mezi train a val nepřekrývají.
+  Protokol stejný jako u skeletů (výběr epochy na 15 % trénovacích videí, val jen jako test, 3 seedy):
+
+  | model | přesnost po videích | F1 Fight | AUC |
+  |---|---:|---:|---:|
+  | skelety, jedna osoba | 0,826 ± 0,005 | 0,817 | 0,876 |
+  | skelety, dvojice (A + poloha a pohyb souseda) | 0,833 ± 0,001 | 0,823 | 0,883 |
+  | **obraz: MViT-v2-S** | **0,949 ± 0,001** | **0,950** | **0,989** |
+  | fúze obraz + skelety dvojic (průměr pravděpodobností) | 0,947 ± 0,004 | 0,948 | 0,983 |
+
+  Obrazový model je o 12 bodů lepší než skelety a je na úrovni nejlepších publikovaných výsledků na RWF-2000
+  (literatura ~0,87–0,95; čísla ověřit při citaci). Pevná fúze se skelety nepomůže, skeletová větev nepřidává
+  informaci, kterou obraz nemá. Výběrová přesnost na 15 % trénovacích videí 0,96–0,97, nejlepší epocha 7–13.
+  Do textu: hlavní model úlohy 3 = MViT-v2-S (prostorová + časová analýza v jedné síti, zadání), skeletové modely
+  jako vysvětlitelná/odlehčená varianta a ablace (osoba vs. dvojice). Rychlost: viz bod 6 (~21 ms na klip).
+- **Úloha 1: obrazový prostorově-časový model davu** (2026-10-31, `med_video.py`, výsledky `med_video_results.json`
+  (seed 0) a `med_video_results_s12.json` (seedy 1, 2), logy `med_video.log`, `med_video_s12.log`; model pro demo
+  `models/behavior/crowd_video.pt` bez demo videí 5, 10, 15, mimo git). Stejný MViT-v2-S (Kinetics-400) jako
+  u RWF, 5 tříd MED, okno 16 snímků po 5 snímcích/s (3,2 s, stejné jako model davu T=16) se středem v labelovaném
+  snímku. Protokol shodný s `med_train.py`: 5 foldů podle videí, pevně 4 epochy (nic se neladí na testu), váhy tříd,
+  trénink na každém 2. okně, metriky přes sloučené predikce všech 31 videí, 3 seedy:
+
+  | model | přesnost | prům. přesnost po třídách | macro-F1 | AUC normální/abnormální |
+  |---|---:|---:|---:|---:|
+  | CNN + tok + osoby, Transformer T=16 (bod 7) | – | 0,549 | 0,525 | 0,818 |
+  | **obraz: MViT-v2-S** | **0,867 ± 0,006** | **0,814 ± 0,007** | **0,822 ± 0,010** | **0,937 ± 0,009** |
+
+  F1 po třídách: Neutral 0,916, Panic 0,887, Fight 0,727, Congestion 0,851 (± 0,033), Obstacle 0,730.
+  Nejtěžší je fold 5 (videa 8, 9, 11, 17, 26, 31; průměrná přesnost po třídách 0,70–0,78), ostatní foldy 0,82–0,91.
+  Zlepšení o ~27 bodů proti ručním příznakům, takže do textu: hlavní model úlohy 1 = MViT-v2-S, CNN + tok + osoby
+  jako výchozí srovnání a ablace časové části (bod 7). Výhrada: Kinetics-400 je předtrénování na cizích datech,
+  testovací videa MED v něm nejsou.
 - **Bod 7: Transformer vs. BiLSTM v modelu davu** (2026-10-29, `med_train.py --compare-temporal`,
   `med_temporal_results.json`). Transformer: 2 vrstvy, 4 hlavy, učená poziční embedding, ~350 tis. parametrů
   (BiLSTM ~175 tis.), jinak stejný protokol (5 foldů podle videí, 3 seedy, 25 epoch).
