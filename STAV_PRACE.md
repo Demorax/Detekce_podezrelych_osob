@@ -139,6 +139,7 @@ Body tabulky „Co chybí do odevzdání“, které šly udělat bez rozhodnutí
   |---|---|---:|
   | naše (ViTPose-H, CrowdPose 14) | 5 snímků/s, 12 vzorků | 0,787 ± 0,002 |
   | referenční STG-NF (AlphaPose) | 5 snímků/s, 12 vzorků | 0,788 ± 0,013 |
+  | naše (ViTPose-H, CrowdPose 14) | 12 snímků/s, 12 vzorků (1 s) | 0,826 ± 0,004 |
   | referenční STG-NF (AlphaPose) | 12 snímků/s, 12 vzorků (1 s) | 0,844 ± 0,005 |
   | referenční STG-NF (AlphaPose) | 24 snímků/s, 24 snímků (výchozí STG-NF) | **0,844 ± 0,001** |
   | STG-NF, článek | 24 snímků/s | 0,859 |
@@ -147,6 +148,23 @@ Body tabulky „Co chybí do odevzdání“, které šly udělat bez rozhodnutí
   nebo seed), (2) naše skelety jsou při stejném vzorkování stejně dobré jako referenční (0,787 vs. 0,788, naše
   s menším rozptylem), (3) celý zbývající rozdíl dělá snímková frekvence (+5,6 bodu z 5 na 24 snímků/s),
   přitom 12 snímků/s stačí (0,844, varianta C, `shanghai_stgnf_refposes_c.json`) -> naše skelety znovu po 2 snímcích.
+
+  **Naše skelety po 2 snímcích (12 snímků/s)** (2026-11-15, `shanghai_skeletons.py --step 2` ->
+  `data/ShanghaiTech/skeletons_step2/`, `shanghai_stgnf.py --skeletons data/ShanghaiTech/skeletons_step2
+  --train-stride 3`, `shanghai_stgnf_step2_results.json`, log `shanghai_stgnf_step2.log`; 131 317 trénovacích
+  oken, 40 791 testovacích snímků, 3 seedy):
+
+  | model | naše hodnocení | hodnocení STG-NF |
+  |---|---:|---:|
+  | GRU autoenkodér | 0,737 ± 0,001 | 0,751 ± 0,002 |
+  | tok (STG-NF) | 0,785 ± 0,005 | **0,826 ± 0,004** |
+  | autoenkodér + tok | 0,784 ± 0,004 | 0,821 ± 0,004 |
+
+  Tok si polepší 0,787 -> 0,826 (+3,9 bodu), autoenkodér z hustšího vzorkování nic nemá (0,760 -> 0,751) a
+  fúze už nepomáhá -> hlavní model úlohy 2 = tok na skeletech po 2 snímcích, **0,826**. Proti referenčním
+  skeletům při stejném vzorkování (0,844) zůstává 1,8 bodu: při 5 snímcích/s byly skelety rovnocenné, při
+  hustším vzorkování se projeví rozdíl (pravděpodobně plynulejší sledování a menší šum bodů AlphaPose mezi
+  sousedními snímky; neověřeno). Extrakce zpracuje 2,5x víc snímků než po 5.
   Referenční skelety slouží jen k tomuto rozboru, hlavní výsledek práce zůstává na vlastní pipeline.
 - **Bod 4: spojená pipeline / demo** (2026-10-29, `demo_pipeline.py`, modely `models/behavior/` z
   `train_demo_models.py`; demo videa 5, 10, 15 nebyla v tréninku modelů davu ani póz). Jeden průchod videem:
