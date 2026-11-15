@@ -279,6 +279,28 @@ Body tabulky „Co chybí do odevzdání“, které šly udělat bez rozhodnutí
   okno (z toho 11 Fight) a počítá se jako NonFight; na pokrytých videích je přesnost 0,837. Do textu: úloha 3 je
   řešena modelem nad dvojicí (A + relativní poloha/pohyb souseda) jako hlavní konfigurací; zisk proti jednotlivci
   je malý, ale konzistentní ve všech 3 seedech (0,833 / 0,835 / 0,833 vs. 0,820 / 0,825 / 0,833).
+- **RWF-2000 v literatuře, ověřeno 2026-11-15** (accuracy na oficiální val/test části, 400 videí, stejný protokol
+  jako u nás; ověřeno v textu článků, pokud není uvedeno jinak):
+
+  | metoda | vstup | acc. | zdroj |
+  |---|---|---:|---|
+  | I3D (podle Hachiuma 2023, tab. 4) | RGB + tok | 83,4 | arXiv 2303.15270 |
+  | Flow Gated Network (Cheng a kol., ICPR 2020) | RGB + tok | 87,25 | arXiv 1911.05913, DOI 10.1109/ICPR48806.2021.9412502 |
+  | SepConvLSTM-M (Islam a kol., IJCNN 2021, tab. I) | RGB + rozdíly snímků | 89,75 | arXiv 2102.10590, DOI 10.1109/IJCNN52387.2021.9534280 |
+  | SPIL (Su a kol., ECCV 2020) | skelety | 89,3 | podle Hachiuma 2023, tab. 4; DOI 10.1007/978-3-030-58548-8_5 |
+  | LG-SPIL (Su, Lin, Wu, arXiv 2023) | skelety | 90,0 | arXiv 2308.13866, tab. VI (*) |
+  | skelety + detekce změn (Garcia-Cobo, SanMiguel, CVIU 233, 2023) | skelety + pohyb | 90,25 | jen README autorů (*), DOI 10.1016/j.cviu.2023.103739 |
+  | Structured Keypoint Pooling (Hachiuma a kol., CVPR 2023, tab. 4) | skelety | 93,4 | arXiv 2303.15270 |
+  | CUE-Net (Senadeera a kol., CVPRW 2024) | RGB (UniformerV2) | 94,00 | arXiv 2404.18952 (abstrakt) |
+  | **naše MViT-v2-S** | RGB | **94,9 ± 0,1** | `rwf_video_results.json` |
+  | naše skelety, dvojice osob | skelety | 83,3 | `rwf_pair_results.json` |
+
+  (*) LG-SPIL tabulka VI přečtena jen přes výtah stránky, Garcia-Cobo plný text nedostupný (ScienceDirect 403) –
+  před citací v textu zkontrolovat v PDF. Obecné modely akcí podle Su 2023: TSN 81,5, 3D-ResNet101 82,6, ECO 83,7,
+  TEA 86,9, TIN 87,2; bodové sítě PointNet++ 78,2, DGCNN 80,6 (stejná výhrada). DIFEM 96,5 % stále neověřeno,
+  nepoužívat. Závěr: obrazový model je na úrovni nejlepších publikovaných (CUE-Net 94,00); naše skelety (83,3) jsou
+  pod skeletovými metodami (89–93), nad obecnými bodovými sítěmi. Pozor: CUE-Net a další nepoužívají seedy, my
+  průměr 3 seedů; rozdíl 0,9 bodu = 3–4 videa ze 400, tedy "srovnatelné", ne "lepší".
 - **Úloha 3: obrazový prostorově-časový model** (2026-10-31, `rwf_video.py`, výsledky `rwf_video_results.json`,
   log `rwf_video.log`, model `models/behavior/fight_video.pt` (seed 0, mimo git)). Skeletová cesta je omezená kvalitou
   skeletů, proto doučený MViT-v2-S (multiscale vision transformer, předtrénovaný na Kinetics-400, torchvision) nad
@@ -294,7 +316,7 @@ Body tabulky „Co chybí do odevzdání“, které šly udělat bez rozhodnutí
   | fúze obraz + skelety dvojic (průměr pravděpodobností) | 0,947 ± 0,004 | 0,948 | 0,983 |
 
   Obrazový model je o 12 bodů lepší než skelety a je na úrovni nejlepších publikovaných výsledků na RWF-2000
-  (literatura ~0,87–0,95; čísla ověřit při citaci). Pevná fúze se skelety nepomůže, skeletová větev nepřidává
+  (literatura 0,873–0,940, ověřeno 2026-11-15, viz tabulka výše). Pevná fúze se skelety nepomůže, skeletová větev nepřidává
   informaci, kterou obraz nemá. Výběrová přesnost na 15 % trénovacích videí 0,96–0,97, nejlepší epocha 7–13.
   Do textu: hlavní model úlohy 3 = MViT-v2-S (prostorová + časová analýza v jedné síti, zadání), skeletové modely
   jako vysvětlitelná/odlehčená varianta a ablace (osoba vs. dvojice). Rychlost: viz bod 6 (~21 ms na klip).
