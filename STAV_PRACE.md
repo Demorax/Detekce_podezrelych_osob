@@ -197,6 +197,31 @@ Body tabulky „Co chybí do odevzdání“, které šly udělat bez rozhodnutí
   přenáší jen částečně: rvačky v 005 a 015 zachytí, ale v 010 dává 2 falešné poplachy. Pro MED scény je proto
   spolehlivější třída Fight modelu davu; RWF model je určený pro bližší kamery. Prahy ani potvrzení se podle dema
   neladily. Rychlost v2 (rychlý režim, GPU sdílené jen s demem): 351–459 ms na vzorkovaný snímek.
+
+  **Falešné rvačky obrazového modelu RWF v MED – řešení** (2026-11-15, `med_fight_transfer.py`,
+  `med_fight_transfer_results.json`, log `med_fight_transfer.log`). Model `fight_video.pt` puštěný přesně jako
+  v demu (5 s, 1× za s, potvrzení 2×, odstup 10 s) na 28 MED videích mimo demo (model je nikdy neviděl):
+  AUC rvačka vs. ostatní jen 0,820 (na RWF 0,989) a je přesebevědomý – 99. percentil P na normálních oknech je
+  0,997. Pravidla pevně předem:
+
+  | pravidlo | falešné poplachy (28 videí) | zachycené rvačky | demo 005 / 010 / 015 |
+  |---|---:|---:|---|
+  | R0 obraz RWF, práh 0,5 (v2) | 20 (67,5/h) | 7/7 | 1 / 3 falešné / 2 správné |
+  | R1 obraz RWF, práh p99 normálních oken (0,997) | 3 (10,1/h) | 3/7 | 0 / 1 falešný / rvačka nezachycena |
+  | **R2 obraz RWF + souhlas modelu davu P(Fight) > 0,5** | **1 (3,4/h)** | **6/7** | **0 / 0 / 2 správné (27,0 s)** |
+  | R3 jen model davu, P(Fight) > 0,5 | 4 (13,5/h) | 6/7 | 0 / 0 / 1 správný (26,0 s) |
+
+  Hradlo modelu davu se na kalibračních videích bere z křížové validace (`med_video_results.json`, seed 0,
+  kauzální posun středu okna o 7 vzorků), v demu skutečné hodnoty (crowd_video.pt demo videa neviděl).
+  Samotná kalibrace prahu nestačí (ztratí 4 ze 7 rvaček i rvačku v 015), souhlas obou modelů ubere 95 %
+  falešných poplachů proti R0 a 75 % proti samotnému modelu davu za cenu jedné rvačky. Zavedeno do
+  `demo_pipeline.py` (`FIGHT_GATE`, vypnutí `--no-fight-gate` pro kamery typu RWF bez davu). Pozn.: v 005 je podle
+  GT panika, ne rvačka, takže i poplach v 29,0 s byl falešný. Výhrada: R2 vybráno ze 4 pravidel na stejných
+  28 videích (demo je nezávislé, ale jen 3 videa a 1 rvačka).
+  **Demo v3** (`demo_outputs/full_v3/`, logy `demo_v3_*.log`) s hradlem potvrzuje přehrání: 005 a 010 bez
+  poplachu „rvačka (obraz)“, 015 rvačka (obraz) 27,0 a 37,0 s, dav: rvačka 27,2 s; ostatní poplachy shodné s v2.
+  Zbývá: skeletový model rvaček hlásí rvačku při panice (005 27,8 s, 010 75,7 s) – útěk vypadá v pohybu skeletů
+  jako rvačka.
 - **Bod 3: detektor nově odložených nehybných předmětů** (2026-10-29, `static_object_detector.py`).
   Duální model pozadí (Porikli 2008) nad gradienty; počítá se jen nárůst hran proti dlouhodobému pozadí, osoby
   a přepálené oblasti se maskují. Vývoj podle pozorovaných chyb na CAVIAR (ne ladění na čísla):
