@@ -1,0 +1,5142 @@
+{
+ "video": "data/Motion_Emotion/015.mp4",
+ "mode": "fast",
+ "sampled_frames": 225,
+ "mean_ms_per_sampled_frame": 524.7735742222216,
+ "fps_processing": 1.9055837586374693,
+ "realtime_factor_at_5fps": 2.623867871111108,
+ "alerts": [
+  {
+   "t": 10.8,
+   "type": "opuštěno: suitcase",
+   "box": [
+    811.7514038085938,
+    122.3114242553711,
+    831.0499877929688,
+    142.70941162109375
+   ]
+  },
+  {
+   "t": 27.0,
+   "type": "rvačka (obraz)"
+  },
+  {
+   "t": 27.2,
+   "type": "dav: rvačka"
+  },
+  {
+   "t": 37.0,
+   "type": "rvačka (obraz)"
+  }
+ ],
+ "frames": [
+  {
+   "t": 0.0,
+   "crowd": null,
+   "fight_scene": null,
+   "fight_video": null,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 0.2,
+   "crowd": null,
+   "fight_scene": null,
+   "fight_video": null,
+   "n_persons": 25,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 0.4,
+   "crowd": null,
+   "fight_scene": null,
+   "fight_video": null,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 0.6,
+   "crowd": null,
+   "fight_scene": null,
+   "fight_video": null,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 0.8,
+   "crowd": null,
+   "fight_scene": null,
+   "fight_video": null,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 1.0,
+   "crowd": null,
+   "fight_scene": null,
+   "fight_video": null,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 1.2,
+   "crowd": null,
+   "fight_scene": null,
+   "fight_video": null,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 1.4,
+   "crowd": {
+    "Neutral": 0.9884344339370728,
+    "Panic": 0.0025878045707941055,
+    "Fight": 0.0025878045707941055,
+    "Congestion": 0.003678011940792203,
+    "Obstacle": 0.0027119959704577923
+   },
+   "fight_scene": null,
+   "fight_video": null,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 1.6,
+   "crowd": {
+    "Neutral": 0.9884567260742188,
+    "Panic": 0.0024887234903872013,
+    "Fight": 0.00275476579554379,
+    "Congestion": 0.0035233988892287016,
+    "Obstacle": 0.0027763715479522943
+   },
+   "fight_scene": null,
+   "fight_video": null,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 1.8,
+   "crowd": {
+    "Neutral": 0.9879732131958008,
+    "Panic": 0.0026896351482719183,
+    "Fight": 0.0027319907676428556,
+    "Congestion": 0.003719630418345332,
+    "Obstacle": 0.002885557245463133
+   },
+   "fight_scene": 0.31895760284817737,
+   "fight_video": null,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 2.0,
+   "crowd": {
+    "Neutral": 0.9889208078384399,
+    "Panic": 0.002284853020682931,
+    "Fight": 0.002692214911803603,
+    "Congestion": 0.003324441844597459,
+    "Obstacle": 0.0027776751667261124
+   },
+   "fight_scene": 0.3327173719351942,
+   "fight_video": null,
+   "n_persons": 25,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "suitcase",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 2.2,
+   "crowd": {
+    "Neutral": 0.988559901714325,
+    "Panic": 0.0024313258472830057,
+    "Fight": 0.0025679918471723795,
+    "Congestion": 0.003664137329906225,
+    "Obstacle": 0.0027766614221036434
+   },
+   "fight_scene": 0.33065425943244586,
+   "fight_video": null,
+   "n_persons": 25,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 2.4,
+   "crowd": {
+    "Neutral": 0.9890571236610413,
+    "Panic": 0.0022673849016427994,
+    "Fight": 0.00258943485096097,
+    "Congestion": 0.0032861637882888317,
+    "Obstacle": 0.002799846464768052
+   },
+   "fight_scene": 0.33518541197885166,
+   "fight_video": null,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 2.6,
+   "crowd": {
+    "Neutral": 0.989321231842041,
+    "Panic": 0.0022857780568301678,
+    "Fight": 0.0023399838246405125,
+    "Congestion": 0.003274226328358054,
+    "Obstacle": 0.002778799971565604
+   },
+   "fight_scene": 0.33301458864108374,
+   "fight_video": null,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 2.8,
+   "crowd": {
+    "Neutral": 0.9897146821022034,
+    "Panic": 0.0021148400846868753,
+    "Fight": 0.002377778757363558,
+    "Congestion": 0.003077074186876416,
+    "Obstacle": 0.002715508686378598
+   },
+   "fight_scene": 0.3199895513909204,
+   "fight_video": null,
+   "n_persons": 25,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 3.0,
+   "crowd": {
+    "Neutral": 0.9894505143165588,
+    "Panic": 0.002268286654725671,
+    "Fight": 0.0023957882076501846,
+    "Congestion": 0.0031492041889578104,
+    "Obstacle": 0.0027360760141164064
+   },
+   "fight_scene": 0.3159634492227009,
+   "fight_video": 0.0027149852830916643,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 3.2,
+   "crowd": {
+    "Neutral": 0.9897798299789429,
+    "Panic": 0.0021149793174117804,
+    "Fight": 0.0023594298399984837,
+    "Congestion": 0.0031135508324950933,
+    "Obstacle": 0.002632134361192584
+   },
+   "fight_scene": 0.31667076760814306,
+   "fight_video": 0.0027149852830916643,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 3.4,
+   "crowd": {
+    "Neutral": 0.9894350171089172,
+    "Panic": 0.002233085222542286,
+    "Fight": 0.002286040922626853,
+    "Congestion": 0.003352257888764143,
+    "Obstacle": 0.0026936146896332502
+   },
+   "fight_scene": 0.31827823462940397,
+   "fight_video": 0.0027149852830916643,
+   "n_persons": 25,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 3.6,
+   "crowd": {
+    "Neutral": 0.9892435073852539,
+    "Panic": 0.002215278334915638,
+    "Fight": 0.0023581513669341803,
+    "Congestion": 0.003404388902708888,
+    "Obstacle": 0.002778581576421857
+   },
+   "fight_scene": 0.308346259750818,
+   "fight_video": 0.0027149852830916643,
+   "n_persons": 23,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 3.8,
+   "crowd": {
+    "Neutral": 0.9893949627876282,
+    "Panic": 0.0021812673658132553,
+    "Fight": 0.0023956538643687963,
+    "Congestion": 0.003248987952247262,
+    "Obstacle": 0.0027790069580078125
+   },
+   "fight_scene": 0.30459216319852406,
+   "fight_video": 0.0027149852830916643,
+   "n_persons": 25,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 4.0,
+   "crowd": {
+    "Neutral": 0.9896429777145386,
+    "Panic": 0.002114686882123351,
+    "Fight": 0.002216172870248556,
+    "Congestion": 0.0033529624342918396,
+    "Obstacle": 0.002673214767128229
+   },
+   "fight_scene": 0.2974699104533476,
+   "fight_video": 0.002981032943353057,
+   "n_persons": 23,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 4.2,
+   "crowd": {
+    "Neutral": 0.9897288084030151,
+    "Panic": 0.0021650230046361685,
+    "Fight": 0.002182003343477845,
+    "Congestion": 0.003187222173437476,
+    "Obstacle": 0.0027368455193936825
+   },
+   "fight_scene": 0.28617264681002674,
+   "fight_video": 0.002981032943353057,
+   "n_persons": 22,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 4.4,
+   "crowd": {
+    "Neutral": 0.9896277189254761,
+    "Panic": 0.0021988926455378532,
+    "Fight": 0.0021312397439032793,
+    "Congestion": 0.003262471640482545,
+    "Obstacle": 0.0027796607464551926
+   },
+   "fight_scene": 0.2843034959891263,
+   "fight_video": 0.002981032943353057,
+   "n_persons": 21,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 4.6,
+   "crowd": {
+    "Neutral": 0.9900974035263062,
+    "Panic": 0.0020505660213530064,
+    "Fight": 0.0021322511602193117,
+    "Congestion": 0.002960337558761239,
+    "Obstacle": 0.002759338356554508
+   },
+   "fight_scene": 0.276752794490141,
+   "fight_video": 0.002981032943353057,
+   "n_persons": 23,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 4.8,
+   "crowd": {
+    "Neutral": 0.9891758561134338,
+    "Panic": 0.0022500099148601294,
+    "Fight": 0.002064725151285529,
+    "Congestion": 0.0032356048468500376,
+    "Obstacle": 0.0032737450674176216
+   },
+   "fight_scene": 0.2712983208544114,
+   "fight_video": 0.002981032943353057,
+   "n_persons": 22,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 5.01,
+   "crowd": {
+    "Neutral": 0.9899724721908569,
+    "Panic": 0.0020343514624983072,
+    "Fight": 0.0019564167596399784,
+    "Congestion": 0.003006576793268323,
+    "Obstacle": 0.003030157648026943
+   },
+   "fight_scene": 0.27833378314971924,
+   "fight_video": 0.002590979216620326,
+   "n_persons": 22,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 5.21,
+   "crowd": {
+    "Neutral": 0.9895472526550293,
+    "Panic": 0.002181603107601404,
+    "Fight": 0.0020817003678530455,
+    "Congestion": 0.003076553577557206,
+    "Obstacle": 0.003112819278612733
+   },
+   "fight_scene": 0.28889886538187665,
+   "fight_video": 0.002590979216620326,
+   "n_persons": 22,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 5.41,
+   "crowd": {
+    "Neutral": 0.9897247552871704,
+    "Panic": 0.0022689152974635363,
+    "Fight": 0.0021650141570717096,
+    "Congestion": 0.0030175887513905764,
+    "Obstacle": 0.002823710674419999
+   },
+   "fight_scene": 0.28952472304043014,
+   "fight_video": 0.002590979216620326,
+   "n_persons": 23,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 5.61,
+   "crowd": {
+    "Neutral": 0.989636242389679,
+    "Panic": 0.0022510571870952845,
+    "Fight": 0.0021479737479239702,
+    "Congestion": 0.002947422908619046,
+    "Obstacle": 0.0030173189006745815
+   },
+   "fight_scene": 0.2988150827586651,
+   "fight_video": 0.002590979216620326,
+   "n_persons": 23,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "suitcase",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 5.81,
+   "crowd": {
+    "Neutral": 0.9897346496582031,
+    "Panic": 0.0021650358103215694,
+    "Fight": 0.002216378226876259,
+    "Congestion": 0.0029247766360640526,
+    "Obstacle": 0.0029592530336230993
+   },
+   "fight_scene": 0.3004344779820669,
+   "fight_video": 0.002590979216620326,
+   "n_persons": 23,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "suitcase",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 6.01,
+   "crowd": {
+    "Neutral": 0.9900130033493042,
+    "Panic": 0.0020664725452661514,
+    "Fight": 0.0021487914491444826,
+    "Congestion": 0.0028802419546991587,
+    "Obstacle": 0.002891514915972948
+   },
+   "fight_scene": 0.2973111115750812,
+   "fight_video": 0.003824483836069703,
+   "n_persons": 23,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 6.21,
+   "crowd": {
+    "Neutral": 0.9895407557487488,
+    "Panic": 0.0021986993961036205,
+    "Fight": 0.00208168663084507,
+    "Congestion": 0.003017027862370014,
+    "Obstacle": 0.0031618180219084024
+   },
+   "fight_scene": 0.29492985010147094,
+   "fight_video": 0.003824483836069703,
+   "n_persons": 22,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 6.41,
+   "crowd": {
+    "Neutral": 0.9897101521492004,
+    "Panic": 0.002131417393684387,
+    "Fight": 0.002233706181868911,
+    "Congestion": 0.002823668997734785,
+    "Obstacle": 0.0031011938117444515
+   },
+   "fight_scene": 0.29789581581165914,
+   "fight_video": 0.003824483836069703,
+   "n_persons": 21,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 6.61,
+   "crowd": {
+    "Neutral": 0.9890086054801941,
+    "Panic": 0.0022321229334920645,
+    "Fight": 0.002080567181110382,
+    "Congestion": 0.002911236835643649,
+    "Obstacle": 0.0037674205377697945
+   },
+   "fight_scene": 0.3011865866811652,
+   "fight_video": 0.003824483836069703,
+   "n_persons": 23,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 6.81,
+   "crowd": {
+    "Neutral": 0.9891230463981628,
+    "Panic": 0.002215008484199643,
+    "Fight": 0.002113575814291835,
+    "Congestion": 0.0026303876657038927,
+    "Obstacle": 0.0039179506711661816
+   },
+   "fight_scene": 0.29177364986389875,
+   "fight_video": 0.003824483836069703,
+   "n_persons": 20,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 7.01,
+   "crowd": {
+    "Neutral": 0.9888829588890076,
+    "Panic": 0.0022144708782434464,
+    "Fight": 0.0019390556262806058,
+    "Congestion": 0.0027775687631219625,
+    "Obstacle": 0.004185944329947233
+   },
+   "fight_scene": 0.29032523185014725,
+   "fight_video": 0.0025509123224765062,
+   "n_persons": 24,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "suitcase",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 7.21,
+   "crowd": {
+    "Neutral": 0.9891154766082764,
+    "Panic": 0.0021977543365210295,
+    "Fight": 0.0020971118938177824,
+    "Congestion": 0.0026717898435890675,
+    "Obstacle": 0.0039179204031825066
+   },
+   "fight_scene": 0.3120202235877514,
+   "fight_video": 0.0025509123224765062,
+   "n_persons": 23,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 7.41,
+   "crowd": {
+    "Neutral": 0.9892983436584473,
+    "Panic": 0.002001448068767786,
+    "Fight": 0.001909795100800693,
+    "Congestion": 0.0027787357103079557,
+    "Obstacle": 0.004011572804301977
+   },
+   "fight_scene": 0.3179617440328002,
+   "fight_video": 0.0025509123224765062,
+   "n_persons": 25,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 7.61,
+   "crowd": {
+    "Neutral": 0.9896061420440674,
+    "Panic": 0.0020177732221782207,
+    "Fight": 0.001955692656338215,
+    "Congestion": 0.0028790582437068224,
+    "Obstacle": 0.0035413019359111786
+   },
+   "fight_scene": 0.31953002512454987,
+   "fight_video": 0.0025509123224765062,
+   "n_persons": 23,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 7.81,
+   "crowd": {
+    "Neutral": 0.9898257851600647,
+    "Panic": 0.0019561266526579857,
+    "Fight": 0.0018376110820099711,
+    "Congestion": 0.0028796971309930086,
+    "Obstacle": 0.003500821767374873
+   },
+   "fight_scene": 0.31690583129723865,
+   "fight_video": 0.0025509123224765062,
+   "n_persons": 22,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "suitcase",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 8.01,
+   "crowd": {
+    "Neutral": 0.9898300766944885,
+    "Panic": 0.002018229803070426,
+    "Fight": 0.001852031797170639,
+    "Congestion": 0.002715825103223324,
+    "Obstacle": 0.0035838568583130836
+   },
+   "fight_scene": 0.3298269281784693,
+   "fight_video": 0.002287227427586913,
+   "n_persons": 23,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 8.21,
+   "crowd": {
+    "Neutral": 0.9894815683364868,
+    "Panic": 0.002081562066450715,
+    "Fight": 0.002001818735152483,
+    "Congestion": 0.0029354728758335114,
+    "Obstacle": 0.003499604295939207
+   },
+   "fight_scene": 0.3340925183147192,
+   "fight_video": 0.002287227427586913,
+   "n_persons": 24,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "suitcase",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 8.41,
+   "crowd": {
+    "Neutral": 0.9896189570426941,
+    "Panic": 0.0020656499546021223,
+    "Fight": 0.0020656499546021223,
+    "Congestion": 0.0029358805622905493,
+    "Obstacle": 0.0033138184808194637
+   },
+   "fight_scene": 0.3232025280594826,
+   "fight_video": 0.002287227427586913,
+   "n_persons": 25,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 8.61,
+   "crowd": {
+    "Neutral": 0.9899644255638123,
+    "Panic": 0.0018235661555081606,
+    "Fight": 0.0019110809080302715,
+    "Congestion": 0.002959940116852522,
+    "Obstacle": 0.0033409753814339638
+   },
+   "fight_scene": 0.33069103260835014,
+   "fight_video": 0.002287227427586913,
+   "n_persons": 23,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 8.81,
+   "crowd": {
+    "Neutral": 0.9896383285522461,
+    "Panic": 0.0020496153738349676,
+    "Fight": 0.002017838880419731,
+    "Congestion": 0.0029017336200922728,
+    "Obstacle": 0.003392470069229603
+   },
+   "fight_scene": 0.3319033244624734,
+   "fight_video": 0.002287227427586913,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "suitcase",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 9.01,
+   "crowd": {
+    "Neutral": 0.9899110198020935,
+    "Panic": 0.0018377694068476558,
+    "Fight": 0.0019109778804704547,
+    "Congestion": 0.0028799453284591436,
+    "Obstacle": 0.003460333915427327
+   },
+   "fight_scene": 0.36078044421532574,
+   "fight_video": 0.00955939944833517,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 9.21,
+   "crowd": {
+    "Neutral": 0.9895656108856201,
+    "Panic": 0.0020019887015223503,
+    "Fight": 0.001955612562596798,
+    "Congestion": 0.002823256654664874,
+    "Obstacle": 0.0036535656545311213
+   },
+   "fight_scene": 0.339278054864783,
+   "fight_video": 0.00955939944833517,
+   "n_persons": 28,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 9.41,
+   "crowd": {
+    "Neutral": 0.9898457527160645,
+    "Panic": 0.0018233475275337696,
+    "Fight": 0.0018812267808243632,
+    "Congestion": 0.002879755338653922,
+    "Obstacle": 0.003569941269233823
+   },
+   "fight_scene": 0.3374445165197055,
+   "fight_video": 0.00955939944833517,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [
+    14
+   ],
+   "objects": []
+  },
+  {
+   "t": 9.61,
+   "crowd": {
+    "Neutral": 0.989313542842865,
+    "Panic": 0.001970448764041066,
+    "Fight": 0.001880215248093009,
+    "Congestion": 0.0029928619042038918,
+    "Obstacle": 0.0038429105188697577
+   },
+   "fight_scene": 0.3505655573680997,
+   "fight_video": 0.00955939944833517,
+   "n_persons": 24,
+   "armed": [],
+   "pose_anomalous": [
+    14
+   ],
+   "objects": [
+    [
+     "suitcase",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 9.81,
+   "crowd": {
+    "Neutral": 0.9898982048034668,
+    "Panic": 0.0018377455417066813,
+    "Fight": 0.0019109530840069056,
+    "Congestion": 0.0029597419779747725,
+    "Obstacle": 0.0033933608792722225
+   },
+   "fight_scene": 0.35954950418737197,
+   "fight_video": 0.00955939944833517,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [
+    14
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "suitcase",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 10.01,
+   "crowd": {
+    "Neutral": 0.9899231791496277,
+    "Panic": 0.001781249069608748,
+    "Fight": 0.0018092996906489134,
+    "Congestion": 0.0029714012052863836,
+    "Obstacle": 0.0035148693714290857
+   },
+   "fight_scene": 0.34892575442790985,
+   "fight_video": 0.007815889082849026,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [
+    14
+   ],
+   "objects": []
+  },
+  {
+   "t": 10.21,
+   "crowd": {
+    "Neutral": 0.990203857421875,
+    "Panic": 0.0016223054844886065,
+    "Fight": 0.0019416457507759333,
+    "Congestion": 0.0029033918399363756,
+    "Obstacle": 0.0033287550322711468
+   },
+   "fight_scene": 0.37623652031547145,
+   "fight_video": 0.007815889082849026,
+   "n_persons": 25,
+   "armed": [],
+   "pose_anomalous": [
+    14,
+    32
+   ],
+   "objects": [
+    [
+     "suitcase",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 10.41,
+   "crowd": {
+    "Neutral": 0.9901248216629028,
+    "Panic": 0.001622176030650735,
+    "Fight": 0.0018817571690306067,
+    "Congestion": 0.0028693373315036297,
+    "Obstacle": 0.0035018795169889927
+   },
+   "fight_scene": 0.3676440041316183,
+   "fight_video": 0.007815889082849026,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [
+    14,
+    32
+   ],
+   "objects": [
+    [
+     "suitcase",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 10.61,
+   "crowd": {
+    "Neutral": 0.990043044090271,
+    "Panic": 0.0016475854208692908,
+    "Fight": 0.0019873676355928183,
+    "Congestion": 0.003006791230291128,
+    "Obstacle": 0.0033152387477457523
+   },
+   "fight_scene": 0.3498042288579439,
+   "fight_video": 0.007815889082849026,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [
+    14,
+    32,
+    37
+   ],
+   "objects": [
+    [
+     "suitcase",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 10.81,
+   "crowd": {
+    "Neutral": 0.9898272752761841,
+    "Panic": 0.001596546615473926,
+    "Fight": 0.0018665522802621126,
+    "Congestion": 0.002879701554775238,
+    "Obstacle": 0.003829916240647435
+   },
+   "fight_scene": 0.3547701835632324,
+   "fight_video": 0.007815889082849026,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [
+    6,
+    32
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "suitcase",
+     true
+    ]
+   ]
+  },
+  {
+   "t": 11.01,
+   "crowd": {
+    "Neutral": 0.9900452494621277,
+    "Panic": 0.0015968981897458434,
+    "Fight": 0.0019873720593750477,
+    "Congestion": 0.003042240859940648,
+    "Obstacle": 0.0033282218500971794
+   },
+   "fight_scene": 0.333621084690094,
+   "fight_video": 0.01615283451974392,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [
+    32
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "suitcase",
+     true
+    ]
+   ]
+  },
+  {
+   "t": 11.21,
+   "crowd": {
+    "Neutral": 0.9898613691329956,
+    "Panic": 0.0016344640171155334,
+    "Fight": 0.0018376772059127688,
+    "Congestion": 0.0029251512605696917,
+    "Obstacle": 0.003741325344890356
+   },
+   "fight_scene": 0.32911407748858135,
+   "fight_video": 0.01615283451974392,
+   "n_persons": 24,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 11.41,
+   "crowd": {
+    "Neutral": 0.9900323152542114,
+    "Panic": 0.0015844503650441766,
+    "Fight": 0.0019873459823429585,
+    "Congestion": 0.0029486026614904404,
+    "Obstacle": 0.0034472655970603228
+   },
+   "fight_scene": 0.30552846391995747,
+   "fight_video": 0.01615283451974392,
+   "n_persons": 25,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 11.61,
+   "crowd": {
+    "Neutral": 0.9897567629814148,
+    "Panic": 0.0016342912567779422,
+    "Fight": 0.0019713316578418016,
+    "Congestion": 0.002747634658589959,
+    "Obstacle": 0.003889951389282942
+   },
+   "fight_scene": 0.31651709311538273,
+   "fight_video": 0.01615283451974392,
+   "n_persons": 24,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 11.81,
+   "crowd": {
+    "Neutral": 0.990044116973877,
+    "Panic": 0.0016220437828451395,
+    "Fight": 0.0020504556596279144,
+    "Congestion": 0.0030067944899201393,
+    "Obstacle": 0.0032766186632215977
+   },
+   "fight_scene": 0.28899072193437153,
+   "fight_video": 0.01615283451974392,
+   "n_persons": 25,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 12.01,
+   "crowd": {
+    "Neutral": 0.9900623559951782,
+    "Panic": 0.0016605401178821921,
+    "Fight": 0.0020029935985803604,
+    "Congestion": 0.0029718189034610987,
+    "Obstacle": 0.003302378114312887
+   },
+   "fight_scene": 0.27888093888759613,
+   "fight_video": 0.007695647422224283,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 12.21,
+   "crowd": {
+    "Neutral": 0.9903885722160339,
+    "Panic": 0.001548303640447557,
+    "Fight": 0.002003653673455119,
+    "Congestion": 0.0028701014816761017,
+    "Obstacle": 0.0031893467530608177
+   },
+   "fight_scene": 0.31667259178663554,
+   "fight_video": 0.007695647422224283,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 12.41,
+   "crowd": {
+    "Neutral": 0.9904677271842957,
+    "Panic": 0.001560571719892323,
+    "Fight": 0.0019421631004661322,
+    "Congestion": 0.002814813517034054,
+    "Obstacle": 0.003214617958292365
+   },
+   "fight_scene": 0.3303834468126297,
+   "fight_video": 0.007695647422224283,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 12.61,
+   "crowd": {
+    "Neutral": 0.990195095539093,
+    "Panic": 0.0016478385077789426,
+    "Fight": 0.002166043035686016,
+    "Congestion": 0.0029838501941412687,
+    "Obstacle": 0.0030072529334574938
+   },
+   "fight_scene": 0.35287378504872324,
+   "fight_video": 0.007695647422224283,
+   "n_persons": 30,
+   "armed": [],
+   "pose_anomalous": [
+    22
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 12.81,
+   "crowd": {
+    "Neutral": 0.9904751181602478,
+    "Panic": 0.0015484389150515199,
+    "Fight": 0.0020513483323156834,
+    "Congestion": 0.002881586318835616,
+    "Obstacle": 0.0030435617081820965
+   },
+   "fight_scene": 0.36057441485555547,
+   "fight_video": 0.007695647422224283,
+   "n_persons": 29,
+   "armed": [],
+   "pose_anomalous": [
+    22
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 13.01,
+   "crowd": {
+    "Neutral": 0.9904729723930359,
+    "Panic": 0.0015728198923170567,
+    "Fight": 0.0020999901462346315,
+    "Congestion": 0.002892858348786831,
+    "Obstacle": 0.0029614607337862253
+   },
+   "fight_scene": 0.3760245600167443,
+   "fight_video": 0.014063626527786255,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [
+    22
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 13.21,
+   "crowd": {
+    "Neutral": 0.99037766456604,
+    "Panic": 0.0016481423517689109,
+    "Fight": 0.002003631554543972,
+    "Congestion": 0.002915266901254654,
+    "Obstacle": 0.003055173670873046
+   },
+   "fight_scene": 0.3398883957415819,
+   "fight_video": 0.014063626527786255,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [
+    22
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 13.41,
+   "crowd": {
+    "Neutral": 0.989689826965332,
+    "Panic": 0.0017669706139713526,
+    "Fight": 0.002002239925786853,
+    "Congestion": 0.0033662449568510056,
+    "Obstacle": 0.0031746712047606707
+   },
+   "fight_scene": 0.34177795983850956,
+   "fight_video": 0.014063626527786255,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [
+    22
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 13.61,
+   "crowd": {
+    "Neutral": 0.9886986613273621,
+    "Panic": 0.0016325442120432854,
+    "Fight": 0.001879046787507832,
+    "Congestion": 0.003246701555326581,
+    "Obstacle": 0.00454295240342617
+   },
+   "fight_scene": 0.3533352083630032,
+   "fight_video": 0.014063626527786255,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [
+    22
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 13.81,
+   "crowd": {
+    "Neutral": 0.9903157353401184,
+    "Panic": 0.0015973345143720508,
+    "Fight": 0.001926753087900579,
+    "Congestion": 0.0028698905371129513,
+    "Obstacle": 0.003290345426648855
+   },
+   "fight_scene": 0.35524174045113954,
+   "fight_video": 0.014063626527786255,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [
+    22
+   ],
+   "objects": [
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 14.01,
+   "crowd": {
+    "Neutral": 0.9895529747009277,
+    "Panic": 0.0016339548164978623,
+    "Fight": 0.0017945482395589352,
+    "Congestion": 0.00305262953042984,
+    "Obstacle": 0.0039658574387431145
+   },
+   "fight_scene": 0.35503311455249786,
+   "fight_video": 0.01542455144226551,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [
+    22
+   ],
+   "objects": [
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 14.21,
+   "crowd": {
+    "Neutral": 0.9893191456794739,
+    "Panic": 0.0017801620997488499,
+    "Fight": 0.001880225958302617,
+    "Congestion": 0.003040009643882513,
+    "Obstacle": 0.003980438224971294
+   },
+   "fight_scene": 0.36067902110517025,
+   "fight_video": 0.01542455144226551,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [
+    22
+   ],
+   "objects": [
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 14.41,
+   "crowd": {
+    "Neutral": 0.9884518384933472,
+    "Panic": 0.0017104644794017076,
+    "Fight": 0.0018066104967147112,
+    "Congestion": 0.003271348774433136,
+    "Obstacle": 0.004759784322232008
+   },
+   "fight_scene": 0.358213385238367,
+   "fight_video": 0.01542455144226551,
+   "n_persons": 25,
+   "armed": [],
+   "pose_anomalous": [
+    22
+   ],
+   "objects": [
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 14.61,
+   "crowd": {
+    "Neutral": 0.9891736507415771,
+    "Panic": 0.0017660490702837706,
+    "Fight": 0.001909554353915155,
+    "Congestion": 0.003338306676596403,
+    "Obstacle": 0.0038124658167362213
+   },
+   "fight_scene": 0.3457339090459487,
+   "fight_video": 0.01542455144226551,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [
+    22
+   ],
+   "objects": []
+  },
+  {
+   "t": 14.81,
+   "crowd": {
+    "Neutral": 0.9880870580673218,
+    "Panic": 0.001723243622109294,
+    "Fight": 0.0019834411796182394,
+    "Congestion": 0.0035220810677856207,
+    "Obstacle": 0.00468426151201129
+   },
+   "fight_scene": 0.33649902659304004,
+   "fight_video": 0.01542455144226551,
+   "n_persons": 25,
+   "armed": [],
+   "pose_anomalous": [
+    22
+   ],
+   "objects": []
+  },
+  {
+   "t": 15.02,
+   "crowd": {
+    "Neutral": 0.9893026947975159,
+    "Panic": 0.0018510449444875121,
+    "Fight": 0.002048920141533017,
+    "Congestion": 0.0033257254399359226,
+    "Obstacle": 0.0034717421513050795
+   },
+   "fight_scene": 0.33271312341094017,
+   "fight_video": 0.014957087114453316,
+   "n_persons": 25,
+   "armed": [],
+   "pose_anomalous": [
+    22
+   ],
+   "objects": [
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 15.22,
+   "crowd": {
+    "Neutral": 0.9892523884773254,
+    "Panic": 0.0017118498217314482,
+    "Fight": 0.002032871823757887,
+    "Congestion": 0.0033647569362074137,
+    "Obstacle": 0.003638169728219509
+   },
+   "fight_scene": 0.3256557761203675,
+   "fight_video": 0.014957087114453316,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [
+    22
+   ],
+   "objects": []
+  },
+  {
+   "t": 15.42,
+   "crowd": {
+    "Neutral": 0.9898437261581421,
+    "Panic": 0.0017534926300868392,
+    "Fight": 0.0020500407554209232,
+    "Congestion": 0.003263183869421482,
+    "Obstacle": 0.0030895203817635775
+   },
+   "fight_scene": 0.3247041039168835,
+   "fight_video": 0.014957087114453316,
+   "n_persons": 25,
+   "armed": [],
+   "pose_anomalous": [
+    22
+   ],
+   "objects": []
+  },
+  {
+   "t": 15.62,
+   "crowd": {
+    "Neutral": 0.9888624548912048,
+    "Panic": 0.0017517542000859976,
+    "Fight": 0.002096575452014804,
+    "Congestion": 0.003566394792869687,
+    "Obstacle": 0.003722978290170431
+   },
+   "fight_scene": 0.3252225801348686,
+   "fight_video": 0.014957087114453316,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [
+    22
+   ],
+   "objects": []
+  },
+  {
+   "t": 15.82,
+   "crowd": {
+    "Neutral": 0.9882948398590088,
+    "Panic": 0.0018204906955361366,
+    "Fight": 0.0022656372748315334,
+    "Congestion": 0.003750024363398552,
+    "Obstacle": 0.0038690632209181786
+   },
+   "fight_scene": 0.322107457369566,
+   "fight_video": 0.014957087114453316,
+   "n_persons": 28,
+   "armed": [],
+   "pose_anomalous": [
+    22
+   ],
+   "objects": [
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 16.02,
+   "crowd": {
+    "Neutral": 0.9874035120010376,
+    "Panic": 0.0017355576856061816,
+    "Fight": 0.0035196447279304266,
+    "Congestion": 0.0032424484379589558,
+    "Obstacle": 0.004098839126527309
+   },
+   "fight_scene": 0.3220075279474258,
+   "fight_video": 0.00955939944833517,
+   "n_persons": 29,
+   "armed": [],
+   "pose_anomalous": [
+    22
+   ],
+   "objects": [
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 16.22,
+   "crowd": {
+    "Neutral": 0.985950767993927,
+    "Panic": 0.002106797182932496,
+    "Fight": 0.0033404529094696045,
+    "Congestion": 0.0035282212775200605,
+    "Obstacle": 0.005073724780231714
+   },
+   "fight_scene": 0.3276701749939668,
+   "fight_video": 0.00955939944833517,
+   "n_persons": 25,
+   "armed": [],
+   "pose_anomalous": [
+    22
+   ],
+   "objects": []
+  },
+  {
+   "t": 16.42,
+   "crowd": {
+    "Neutral": 0.9864249229431152,
+    "Panic": 0.0018601363990455866,
+    "Fight": 0.004341874271631241,
+    "Congestion": 0.003115141997113824,
+    "Obstacle": 0.004257894121110439
+   },
+   "fight_scene": 0.3516726642847061,
+   "fight_video": 0.00955939944833517,
+   "n_persons": 28,
+   "armed": [],
+   "pose_anomalous": [
+    22
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 16.62,
+   "crowd": {
+    "Neutral": 0.9875576496124268,
+    "Panic": 0.001966951647773385,
+    "Fight": 0.0030944491736590862,
+    "Congestion": 0.0031678318046033382,
+    "Obstacle": 0.0042131207883358
+   },
+   "fight_scene": 0.38094348734930944,
+   "fight_video": 0.00955939944833517,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [
+    22
+   ],
+   "objects": []
+  },
+  {
+   "t": 16.82,
+   "crowd": {
+    "Neutral": 0.9887393712997437,
+    "Panic": 0.0019087160471826792,
+    "Fight": 0.0029332709964364767,
+    "Congestion": 0.003159257350489497,
+    "Obstacle": 0.0032595430966466665
+   },
+   "fight_scene": 0.3804398531976499,
+   "fight_video": 0.00955939944833517,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 17.02,
+   "crowd": {
+    "Neutral": 0.9883811473846436,
+    "Panic": 0.0019229891477152705,
+    "Fight": 0.002978383796289563,
+    "Congestion": 0.0030252865981310606,
+    "Obstacle": 0.003692207857966423
+   },
+   "fight_scene": 0.3813971370458603,
+   "fight_video": 0.0018675659084692597,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [
+    48
+   ],
+   "objects": []
+  },
+  {
+   "t": 17.22,
+   "crowd": {
+    "Neutral": 0.9886525273323059,
+    "Panic": 0.0019235172076150775,
+    "Fight": 0.003208726644515991,
+    "Congestion": 0.0032592567149549723,
+    "Obstacle": 0.002956017618998885
+   },
+   "fight_scene": 0.38319904878735545,
+   "fight_video": 0.0018675659084692597,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [
+    48
+   ],
+   "objects": []
+  },
+  {
+   "t": 17.42,
+   "crowd": {
+    "Neutral": 0.9881934523582458,
+    "Panic": 0.0018780864775180817,
+    "Fight": 0.003257743315771222,
+    "Congestion": 0.0032832941506057978,
+    "Obstacle": 0.003387517062947154
+   },
+   "fight_scene": 0.3863670781254768,
+   "fight_video": 0.0018675659084692597,
+   "n_persons": 28,
+   "armed": [],
+   "pose_anomalous": [
+    48
+   ],
+   "objects": [
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 17.62,
+   "crowd": {
+    "Neutral": 0.9869610071182251,
+    "Panic": 0.0017898476216942072,
+    "Fight": 0.004752605687826872,
+    "Congestion": 0.0035456600598990917,
+    "Obstacle": 0.002950960071757436
+   },
+   "fight_scene": 0.3738521242683584,
+   "fight_video": 0.0018675659084692597,
+   "n_persons": 28,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 17.82,
+   "crowd": {
+    "Neutral": 0.985345184803009,
+    "Panic": 0.0017319397302344441,
+    "Fight": 0.005590769927948713,
+    "Congestion": 0.003444373607635498,
+    "Obstacle": 0.0038877702318131924
+   },
+   "fight_scene": 0.3555017992854118,
+   "fight_video": 0.0018675659084692597,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "backpack",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 18.02,
+   "crowd": {
+    "Neutral": 0.9516998529434204,
+    "Panic": 0.001986500807106495,
+    "Fight": 0.0360465906560421,
+    "Congestion": 0.005233732517808676,
+    "Obstacle": 0.005033231806010008
+   },
+   "fight_scene": 0.34762214372555417,
+   "fight_video": 0.008315779268741608,
+   "n_persons": 25,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 18.22,
+   "crowd": {
+    "Neutral": 0.8673661947250366,
+    "Panic": 0.0024746183771640062,
+    "Fight": 0.11377368122339249,
+    "Congestion": 0.006674362812191248,
+    "Obstacle": 0.00971114169806242
+   },
+   "fight_scene": 0.36063399612903596,
+   "fight_video": 0.008315779268741608,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "backpack",
+     false
+    ],
+    [
+     "baseball bat",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 18.42,
+   "crowd": {
+    "Neutral": 0.8651798367500305,
+    "Panic": 0.0023188290651887655,
+    "Fight": 0.11708935350179672,
+    "Congestion": 0.007254974916577339,
+    "Obstacle": 0.00815698690712452
+   },
+   "fight_scene": 0.3619184732437134,
+   "fight_video": 0.008315779268741608,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 18.62,
+   "crowd": {
+    "Neutral": 0.9136998653411865,
+    "Panic": 0.002229722449555993,
+    "Fight": 0.07045696675777435,
+    "Congestion": 0.006302457302808762,
+    "Obstacle": 0.007310978602617979
+   },
+   "fight_scene": 0.35229991163526264,
+   "fight_video": 0.008315779268741608,
+   "n_persons": 28,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "backpack",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 18.82,
+   "crowd": {
+    "Neutral": 0.9036781191825867,
+    "Panic": 0.002039537997916341,
+    "Fight": 0.07958182692527771,
+    "Congestion": 0.007637235801666975,
+    "Obstacle": 0.0070632887072861195
+   },
+   "fight_scene": 0.35419838428497313,
+   "fight_video": 0.008315779268741608,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 19.02,
+   "crowd": {
+    "Neutral": 0.9760448932647705,
+    "Panic": 0.0016370299272239208,
+    "Fight": 0.0140866469591856,
+    "Congestion": 0.004792740102857351,
+    "Obstacle": 0.0034386226907372475
+   },
+   "fight_scene": 0.34141975119709966,
+   "fight_video": 0.200557678937912,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 19.22,
+   "crowd": {
+    "Neutral": 0.9649143218994141,
+    "Panic": 0.0016183616826310754,
+    "Fight": 0.022960104048252106,
+    "Congestion": 0.005561063531786203,
+    "Obstacle": 0.0049461121670901775
+   },
+   "fight_scene": 0.33357445895671844,
+   "fight_video": 0.200557678937912,
+   "n_persons": 24,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 19.42,
+   "crowd": {
+    "Neutral": 0.9792865514755249,
+    "Panic": 0.0014722978230565786,
+    "Fight": 0.011309495195746422,
+    "Congestion": 0.004534997045993805,
+    "Obstacle": 0.0033965555485337973
+   },
+   "fight_scene": 0.32896093867327036,
+   "fight_video": 0.200557678937912,
+   "n_persons": 24,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 19.62,
+   "crowd": {
+    "Neutral": 0.9640782475471497,
+    "Panic": 0.0015918908175081015,
+    "Fight": 0.023807499557733536,
+    "Congestion": 0.0053433883003890514,
+    "Obstacle": 0.005178989842534065
+   },
+   "fight_scene": 0.3237980350852013,
+   "fight_video": 0.200557678937912,
+   "n_persons": 24,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 19.82,
+   "crowd": {
+    "Neutral": 0.9598415493965149,
+    "Panic": 0.0016871120315045118,
+    "Fight": 0.02898470312356949,
+    "Congestion": 0.005076290108263493,
+    "Obstacle": 0.004410357214510441
+   },
+   "fight_scene": 0.30461795982860385,
+   "fight_video": 0.200557678937912,
+   "n_persons": 24,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 20.02,
+   "crowd": {
+    "Neutral": 0.6423771381378174,
+    "Panic": 0.002427958184853196,
+    "Fight": 0.3332608640193939,
+    "Congestion": 0.011052709072828293,
+    "Obstacle": 0.010881353169679642
+   },
+   "fight_scene": 0.29668935920510975,
+   "fight_video": 0.023689471185207367,
+   "n_persons": 23,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 20.22,
+   "crowd": {
+    "Neutral": 0.7197752594947815,
+    "Panic": 0.0025160470977425575,
+    "Fight": 0.2606853246688843,
+    "Congestion": 0.008511677384376526,
+    "Obstacle": 0.008511677384376526
+   },
+   "fight_scene": 0.2947572554860796,
+   "fight_video": 0.023689471185207367,
+   "n_persons": 23,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 20.42,
+   "crowd": {
+    "Neutral": 0.17570646107196808,
+    "Panic": 0.0019367324421182275,
+    "Fight": 0.8061357736587524,
+    "Congestion": 0.0075411684811115265,
+    "Obstacle": 0.008679833263158798
+   },
+   "fight_scene": 0.296067197407995,
+   "fight_video": 0.023689471185207367,
+   "n_persons": 25,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 20.62,
+   "crowd": {
+    "Neutral": 0.9328222870826721,
+    "Panic": 0.001887191436253488,
+    "Fight": 0.0536641962826252,
+    "Congestion": 0.005858550779521465,
+    "Obstacle": 0.005767722148448229
+   },
+   "fight_scene": 0.29429285866873606,
+   "fight_video": 0.023689471185207367,
+   "n_persons": 25,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 20.82,
+   "crowd": {
+    "Neutral": 0.1086624339222908,
+    "Panic": 0.0018263303209096193,
+    "Fight": 0.8749648332595825,
+    "Congestion": 0.006035273429006338,
+    "Obstacle": 0.008511099964380264
+   },
+   "fight_scene": 0.29875613478097046,
+   "fight_video": 0.023689471185207367,
+   "n_persons": 24,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 21.02,
+   "crowd": {
+    "Neutral": 0.9878222346305847,
+    "Panic": 0.0014282362535595894,
+    "Fight": 0.004701334983110428,
+    "Congestion": 0.0036187467630952597,
+    "Obstacle": 0.002429511398077011
+   },
+   "fight_scene": 0.2952951504425569,
+   "fight_video": 0.03541072458028793,
+   "n_persons": 24,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 21.22,
+   "crowd": {
+    "Neutral": 0.9729011058807373,
+    "Panic": 0.001417695078998804,
+    "Fight": 0.016870979219675064,
+    "Congestion": 0.005045837257057428,
+    "Obstacle": 0.003764424240216613
+   },
+   "fight_scene": 0.3126801726492969,
+   "fight_video": 0.03541072458028793,
+   "n_persons": 24,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 21.42,
+   "crowd": {
+    "Neutral": 0.9895197153091431,
+    "Panic": 0.0015229621203616261,
+    "Fight": 0.0026520811952650547,
+    "Congestion": 0.0038137994706630707,
+    "Obstacle": 0.0024913998786360025
+   },
+   "fight_scene": 0.3176145059141246,
+   "fight_video": 0.03541072458028793,
+   "n_persons": 25,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "melee",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 21.62,
+   "crowd": {
+    "Neutral": 0.8807223439216614,
+    "Panic": 0.0018672979203984141,
+    "Fight": 0.10275061428546906,
+    "Congestion": 0.0075016082264482975,
+    "Obstacle": 0.007158084772527218
+   },
+   "fight_scene": 0.33764992315660824,
+   "fight_video": 0.03541072458028793,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 21.82,
+   "crowd": {
+    "Neutral": 0.9880785346031189,
+    "Panic": 0.0014064583228901029,
+    "Fight": 0.0044349320232868195,
+    "Congestion": 0.0033476620446890593,
+    "Obstacle": 0.0027322820387780666
+   },
+   "fight_scene": 0.33926566867601304,
+   "fight_video": 0.03541072458028793,
+   "n_persons": 24,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 22.02,
+   "crowd": {
+    "Neutral": 0.8677905201911926,
+    "Panic": 0.0019893846474587917,
+    "Fight": 0.1156218945980072,
+    "Congestion": 0.0067300014197826385,
+    "Obstacle": 0.007868167944252491
+   },
+   "fight_scene": 0.34882005907240365,
+   "fight_video": 0.01016965787857771,
+   "n_persons": 25,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 22.22,
+   "crowd": {
+    "Neutral": 0.9876541495323181,
+    "Panic": 0.0014391930308192968,
+    "Fight": 0.004627659916877747,
+    "Congestion": 0.003255965420976281,
+    "Obstacle": 0.0030230614356696606
+   },
+   "fight_scene": 0.32224831197943005,
+   "fight_video": 0.01016965787857771,
+   "n_persons": 24,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 22.42,
+   "crowd": {
+    "Neutral": 0.6995131373405457,
+    "Panic": 0.0028587505221366882,
+    "Fight": 0.2782471179962158,
+    "Congestion": 0.007531804498285055,
+    "Obstacle": 0.011849191039800644
+   },
+   "fight_scene": 0.3233103716657275,
+   "fight_video": 0.01016965787857771,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 22.62,
+   "crowd": {
+    "Neutral": 0.9881715178489685,
+    "Panic": 0.0016703677829355001,
+    "Fight": 0.004400833044201136,
+    "Congestion": 0.003024645149707794,
+    "Obstacle": 0.002732539316639304
+   },
+   "fight_scene": 0.3318302184343338,
+   "fight_video": 0.01016965787857771,
+   "n_persons": 25,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "backpack",
+     false
+    ],
+    [
+     "suitcase",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 22.82,
+   "crowd": {
+    "Neutral": 0.5868334174156189,
+    "Panic": 0.0027603735215961933,
+    "Fight": 0.3909153342247009,
+    "Congestion": 0.007216019555926323,
+    "Obstacle": 0.01227486226707697
+   },
+   "fight_scene": 0.35483403503894806,
+   "fight_video": 0.01016965787857771,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [
+    47
+   ],
+   "objects": []
+  },
+  {
+   "t": 23.02,
+   "crowd": {
+    "Neutral": 0.9878543019294739,
+    "Panic": 0.0014851788291707635,
+    "Fight": 0.004348165821284056,
+    "Congestion": 0.0034938491880893707,
+    "Obstacle": 0.0028183741960674524
+   },
+   "fight_scene": 0.34816188365221024,
+   "fight_video": 0.029535336419939995,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [
+    47
+   ],
+   "objects": [
+    [
+     "backpack",
+     false
+    ],
+    [
+     "suitcase",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 23.22,
+   "crowd": {
+    "Neutral": 0.8269899487495422,
+    "Panic": 0.0025115939788520336,
+    "Fight": 0.15417757630348206,
+    "Congestion": 0.006989122834056616,
+    "Obstacle": 0.009331703186035156
+   },
+   "fight_scene": 0.3526878364029385,
+   "fight_video": 0.029535336419939995,
+   "n_persons": 25,
+   "armed": [],
+   "pose_anomalous": [
+    47
+   ],
+   "objects": [
+    [
+     "backpack",
+     false
+    ],
+    [
+     "suitcase",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 23.42,
+   "crowd": {
+    "Neutral": 0.9892382621765137,
+    "Panic": 0.001397151150740683,
+    "Fight": 0.0034445009659975767,
+    "Congestion": 0.0030755929183214903,
+    "Obstacle": 0.0028444586787372828
+   },
+   "fight_scene": 0.35961224635442096,
+   "fight_video": 0.029535336419939995,
+   "n_persons": 28,
+   "armed": [],
+   "pose_anomalous": [
+    47
+   ],
+   "objects": [
+    [
+     "backpack",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 23.62,
+   "crowd": {
+    "Neutral": 0.9832125306129456,
+    "Panic": 0.0014552827924489975,
+    "Fight": 0.00875080469995737,
+    "Congestion": 0.002894175471737981,
+    "Obstacle": 0.003687275340780616
+   },
+   "fight_scene": 0.362264178338505,
+   "fight_video": 0.029535336419939995,
+   "n_persons": 29,
+   "armed": [],
+   "pose_anomalous": [
+    47,
+    60
+   ],
+   "objects": []
+  },
+  {
+   "t": 23.82,
+   "crowd": {
+    "Neutral": 0.9896069169044495,
+    "Panic": 0.001571444678120315,
+    "Fight": 0.0030647441744804382,
+    "Congestion": 0.0031251907348632812,
+    "Obstacle": 0.0026316745206713676
+   },
+   "fight_scene": 0.3579150980169123,
+   "fight_video": 0.029535336419939995,
+   "n_persons": 30,
+   "armed": [],
+   "pose_anomalous": [
+    47,
+    60
+   ],
+   "objects": [
+    [
+     "suitcase",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 24.02,
+   "crowd": {
+    "Neutral": 0.9897246360778809,
+    "Panic": 0.0015963810728862882,
+    "Fight": 0.0026319874450564384,
+    "Congestion": 0.0032122062984853983,
+    "Obstacle": 0.00283476198092103
+   },
+   "fight_scene": 0.3722205026583238,
+   "fight_video": 0.016657039523124695,
+   "n_persons": 29,
+   "armed": [],
+   "pose_anomalous": [
+    47,
+    60
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 24.22,
+   "crowd": {
+    "Neutral": 0.9601359367370605,
+    "Panic": 0.0015853813383728266,
+    "Fight": 0.029565442353487015,
+    "Congestion": 0.004016907885670662,
+    "Obstacle": 0.0046962411142885685
+   },
+   "fight_scene": 0.36902830228209493,
+   "fight_video": 0.016657039523124695,
+   "n_persons": 28,
+   "armed": [],
+   "pose_anomalous": [
+    60
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 24.42,
+   "crowd": {
+    "Neutral": 0.9220579862594604,
+    "Panic": 0.002147078514099121,
+    "Fight": 0.06274683773517609,
+    "Congestion": 0.005070721730589867,
+    "Obstacle": 0.007977364584803581
+   },
+   "fight_scene": 0.350157973520896,
+   "fight_video": 0.016657039523124695,
+   "n_persons": 23,
+   "armed": [],
+   "pose_anomalous": [
+    60
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 24.62,
+   "crowd": {
+    "Neutral": 0.11828260868787766,
+    "Panic": 0.0020193266682326794,
+    "Fight": 0.8671952486038208,
+    "Congestion": 0.005116403102874756,
+    "Obstacle": 0.007386390585452318
+   },
+   "fight_scene": 0.35525309791167575,
+   "fight_video": 0.016657039523124695,
+   "n_persons": 25,
+   "armed": [],
+   "pose_anomalous": [
+    60,
+    61
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 24.82,
+   "crowd": {
+    "Neutral": 0.7612671852111816,
+    "Panic": 0.003311775391921401,
+    "Fight": 0.21472527086734772,
+    "Congestion": 0.008391101844608784,
+    "Obstacle": 0.012304738163948059
+   },
+   "fight_scene": 0.3754046976566315,
+   "fight_video": 0.016657039523124695,
+   "n_persons": 23,
+   "armed": [],
+   "pose_anomalous": [
+    61
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 25.03,
+   "crowd": {
+    "Neutral": 0.2604418396949768,
+    "Panic": 0.0026343318168073893,
+    "Fight": 0.7191029787063599,
+    "Congestion": 0.007563372142612934,
+    "Obstacle": 0.010257452726364136
+   },
+   "fight_scene": 0.3780637575047357,
+   "fight_video": 0.04054073989391327,
+   "n_persons": 23,
+   "armed": [],
+   "pose_anomalous": [
+    61
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 25.23,
+   "crowd": {
+    "Neutral": 0.8983976244926453,
+    "Panic": 0.0028594026807695627,
+    "Fight": 0.08226845413446426,
+    "Congestion": 0.006494302302598953,
+    "Obstacle": 0.009980296716094017
+   },
+   "fight_scene": 0.38453838548489977,
+   "fight_video": 0.04054073989391327,
+   "n_persons": 23,
+   "armed": [],
+   "pose_anomalous": [
+    61
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 25.43,
+   "crowd": {
+    "Neutral": 0.09641359001398087,
+    "Panic": 0.0019699775148183107,
+    "Fight": 0.8866028785705566,
+    "Congestion": 0.006115549243986607,
+    "Obstacle": 0.008898071944713593
+   },
+   "fight_scene": 0.3876223127047221,
+   "fight_video": 0.04054073989391327,
+   "n_persons": 28,
+   "armed": [],
+   "pose_anomalous": [
+    61
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 25.63,
+   "crowd": {
+    "Neutral": 0.8573874235153198,
+    "Panic": 0.002904873574152589,
+    "Fight": 0.1225571408867836,
+    "Congestion": 0.006101760547608137,
+    "Obstacle": 0.011048861779272556
+   },
+   "fight_scene": 0.33605941260854405,
+   "fight_video": 0.04054073989391327,
+   "n_persons": 23,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 25.83,
+   "crowd": {
+    "Neutral": 0.03772716224193573,
+    "Panic": 0.00152111379429698,
+    "Fight": 0.9504569172859192,
+    "Congestion": 0.0040390328504145145,
+    "Obstacle": 0.00625577662140131
+   },
+   "fight_scene": 0.3285098808507125,
+   "fight_video": 0.04054073989391327,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 26.03,
+   "crowd": {
+    "Neutral": 0.0763397291302681,
+    "Panic": 0.002018553204834461,
+    "Fight": 0.9084646105766296,
+    "Congestion": 0.004408925771713257,
+    "Obstacle": 0.008768195286393166
+   },
+   "fight_scene": 0.3433668235173592,
+   "fight_video": 0.6863700151443481,
+   "n_persons": 21,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 26.23,
+   "crowd": {
+    "Neutral": 0.02037654258310795,
+    "Panic": 0.0013920682249590755,
+    "Fight": 0.9703584313392639,
+    "Congestion": 0.003236655378714204,
+    "Obstacle": 0.004636295139789581
+   },
+   "fight_scene": 0.334034793652021,
+   "fight_video": 0.6863700151443481,
+   "n_persons": 22,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 26.43,
+   "crowd": {
+    "Neutral": 0.06815741956233978,
+    "Panic": 0.0018594068242236972,
+    "Fight": 0.91908860206604,
+    "Congestion": 0.0040931710973382,
+    "Obstacle": 0.0068014273419976234
+   },
+   "fight_scene": 0.3336962725107486,
+   "fight_video": 0.6863700151443481,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "backpack",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ],
+    [
+     "suitcase",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 26.63,
+   "crowd": {
+    "Neutral": 0.019922027364373207,
+    "Panic": 0.0013504255330190063,
+    "Fight": 0.9712119102478027,
+    "Congestion": 0.003290517022833228,
+    "Obstacle": 0.004225107375532389
+   },
+   "fight_scene": 0.334661959537438,
+   "fight_video": 0.6863700151443481,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 26.83,
+   "crowd": {
+    "Neutral": 0.03288663178682327,
+    "Panic": 0.0016056603053584695,
+    "Fight": 0.9573413729667664,
+    "Congestion": 0.003372729988768697,
+    "Obstacle": 0.004793616011738777
+   },
+   "fight_scene": 0.35025024016698203,
+   "fight_video": 0.6863700151443481,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 27.03,
+   "crowd": {
+    "Neutral": 0.022928858175873756,
+    "Panic": 0.00154818594455719,
+    "Fight": 0.9673726558685303,
+    "Congestion": 0.0033815489150583744,
+    "Obstacle": 0.004768747836351395
+   },
+   "fight_scene": 0.3497399161259333,
+   "fight_video": 0.685949444770813,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 27.23,
+   "crowd": {
+    "Neutral": 0.02935316599905491,
+    "Panic": 0.001537536969408393,
+    "Fight": 0.9607187509536743,
+    "Congestion": 0.003229635301977396,
+    "Obstacle": 0.0051609426736831665
+   },
+   "fight_scene": 0.3683201065286994,
+   "fight_video": 0.685949444770813,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 27.43,
+   "crowd": {
+    "Neutral": 0.015165562741458416,
+    "Panic": 0.001379286521114409,
+    "Fight": 0.9765893816947937,
+    "Congestion": 0.0028746796306222677,
+    "Obstacle": 0.003991097677499056
+   },
+   "fight_scene": 0.38264117340246834,
+   "fight_video": 0.685949444770813,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 27.63,
+   "crowd": {
+    "Neutral": 0.023753410205245018,
+    "Panic": 0.0015484545147046447,
+    "Fight": 0.9675405025482178,
+    "Congestion": 0.0029155828524380922,
+    "Obstacle": 0.004242147784680128
+   },
+   "fight_scene": 0.36055114226681845,
+   "fight_video": 0.685949444770813,
+   "n_persons": 22,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 27.83,
+   "crowd": {
+    "Neutral": 0.019178560003638268,
+    "Panic": 0.0014616621192544699,
+    "Fight": 0.9722123742103577,
+    "Congestion": 0.0031430674716830254,
+    "Obstacle": 0.00400437181815505
+   },
+   "fight_scene": 0.3667278747473444,
+   "fight_video": 0.685949444770813,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [
+    24
+   ],
+   "objects": [
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 28.03,
+   "crowd": {
+    "Neutral": 0.030837353318929672,
+    "Panic": 0.0016343198949471116,
+    "Fight": 0.959321916103363,
+    "Congestion": 0.003327310085296631,
+    "Obstacle": 0.004879177547991276
+   },
+   "fight_scene": 0.3745449910561244,
+   "fight_video": 0.4843800961971283,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [
+    24
+   ],
+   "objects": []
+  },
+  {
+   "t": 28.23,
+   "crowd": {
+    "Neutral": 0.017973681911826134,
+    "Panic": 0.0013968519633635879,
+    "Fight": 0.9736930131912231,
+    "Congestion": 0.002957135671749711,
+    "Obstacle": 0.0039792610332369804
+   },
+   "fight_scene": 0.3954952996638086,
+   "fight_video": 0.4843800961971283,
+   "n_persons": 25,
+   "armed": [],
+   "pose_anomalous": [
+    24
+   ],
+   "objects": [
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 28.43,
+   "crowd": {
+    "Neutral": 0.0149369603022933,
+    "Panic": 0.0012761882971972227,
+    "Fight": 0.9770157337188721,
+    "Congestion": 0.0028093138244003057,
+    "Obstacle": 0.003961767069995403
+   },
+   "fight_scene": 0.3989546390043365,
+   "fight_video": 0.4843800961971283,
+   "n_persons": 25,
+   "armed": [],
+   "pose_anomalous": [
+    24
+   ],
+   "objects": []
+  },
+  {
+   "t": 28.63,
+   "crowd": {
+    "Neutral": 0.02070085145533085,
+    "Panic": 0.0012876656837761402,
+    "Fight": 0.9705190658569336,
+    "Congestion": 0.0032371911220252514,
+    "Obstacle": 0.004255207255482674
+   },
+   "fight_scene": 0.37887612455769587,
+   "fight_video": 0.4843800961971283,
+   "n_persons": 29,
+   "armed": [],
+   "pose_anomalous": [
+    17,
+    24
+   ],
+   "objects": []
+  },
+  {
+   "t": 28.83,
+   "crowd": {
+    "Neutral": 0.02092543989419937,
+    "Panic": 0.0012864712625741959,
+    "Fight": 0.9696188569068909,
+    "Congestion": 0.003389400662854314,
+    "Obstacle": 0.004779820796102285
+   },
+   "fight_scene": 0.35287435683939194,
+   "fight_video": 0.4843800961971283,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [
+    24
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 29.03,
+   "crowd": {
+    "Neutral": 0.0455651581287384,
+    "Panic": 0.0013921677600592375,
+    "Fight": 0.9405709505081177,
+    "Congestion": 0.006746251601725817,
+    "Obstacle": 0.005725469905883074
+   },
+   "fight_scene": 0.3292799925102907,
+   "fight_video": 0.35197898745536804,
+   "n_persons": 24,
+   "armed": [],
+   "pose_anomalous": [
+    76
+   ],
+   "objects": [
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 29.23,
+   "crowd": {
+    "Neutral": 0.021688271313905716,
+    "Panic": 0.0012452667579054832,
+    "Fight": 0.9683559536933899,
+    "Congestion": 0.003746837843209505,
+    "Obstacle": 0.004963753744959831
+   },
+   "fight_scene": 0.3163058976916706,
+   "fight_video": 0.35197898745536804,
+   "n_persons": 29,
+   "armed": [],
+   "pose_anomalous": [
+    60
+   ],
+   "objects": []
+  },
+  {
+   "t": 29.43,
+   "crowd": {
+    "Neutral": 0.05502058565616608,
+    "Panic": 0.001466248882934451,
+    "Fight": 0.9306026697158813,
+    "Congestion": 0.006833041552454233,
+    "Obstacle": 0.006077433004975319
+   },
+   "fight_scene": 0.31661811295677633,
+   "fight_video": 0.35197898745536804,
+   "n_persons": 29,
+   "armed": [],
+   "pose_anomalous": [
+    60
+   ],
+   "objects": []
+  },
+  {
+   "t": 29.63,
+   "crowd": {
+    "Neutral": 0.018175771459937096,
+    "Panic": 0.0012117695296183228,
+    "Fight": 0.9722195863723755,
+    "Congestion": 0.0036746456753462553,
+    "Obstacle": 0.00471833860501647
+   },
+   "fight_scene": 0.3435104677551671,
+   "fight_video": 0.35197898745536804,
+   "n_persons": 29,
+   "armed": [],
+   "pose_anomalous": [
+    60
+   ],
+   "objects": []
+  },
+  {
+   "t": 29.83,
+   "crowd": {
+    "Neutral": 0.03328585624694824,
+    "Panic": 0.0014119565021246672,
+    "Fight": 0.9539405703544617,
+    "Congestion": 0.005370461381971836,
+    "Obstacle": 0.0059911832213401794
+   },
+   "fight_scene": 0.3348604738712311,
+   "fight_video": 0.35197898745536804,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [
+    60
+   ],
+   "objects": []
+  },
+  {
+   "t": 30.03,
+   "crowd": {
+    "Neutral": 0.011372850276529789,
+    "Panic": 0.0011126738972961903,
+    "Fight": 0.9804542660713196,
+    "Congestion": 0.003295979928225279,
+    "Obstacle": 0.003764127381145954
+   },
+   "fight_scene": 0.31812448015338496,
+   "fight_video": 0.257951945066452,
+   "n_persons": 25,
+   "armed": [],
+   "pose_anomalous": [
+    60
+   ],
+   "objects": []
+  },
+  {
+   "t": 30.23,
+   "crowd": {
+    "Neutral": 0.029423752799630165,
+    "Panic": 0.0012727465946227312,
+    "Fight": 0.9592744708061218,
+    "Congestion": 0.005073291249573231,
+    "Obstacle": 0.004955768585205078
+   },
+   "fight_scene": 0.31849183220612376,
+   "fight_video": 0.257951945066452,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [
+    60
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 30.43,
+   "crowd": {
+    "Neutral": 0.016930971294641495,
+    "Panic": 0.0011221846798434854,
+    "Fight": 0.9735044240951538,
+    "Congestion": 0.004369516856968403,
+    "Obstacle": 0.0040728370659053326
+   },
+   "fight_scene": 0.31949689322047764,
+   "fight_video": 0.257951945066452,
+   "n_persons": 25,
+   "armed": [],
+   "pose_anomalous": [
+    68
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 30.63,
+   "crowd": {
+    "Neutral": 0.14458799362182617,
+    "Panic": 0.001998982625082135,
+    "Fight": 0.8320465087890625,
+    "Congestion": 0.012683406472206116,
+    "Obstacle": 0.00868318509310484
+   },
+   "fight_scene": 0.3319665872388416,
+   "fight_video": 0.257951945066452,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [
+    68
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 30.83,
+   "crowd": {
+    "Neutral": 0.04438699409365654,
+    "Panic": 0.0014492868212983012,
+    "Fight": 0.9343223571777344,
+    "Congestion": 0.013643443584442139,
+    "Obstacle": 0.006197813432663679
+   },
+   "fight_scene": 0.3417268113957511,
+   "fight_video": 0.257951945066452,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [
+    68,
+    79
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 31.03,
+   "crowd": {
+    "Neutral": 0.279603511095047,
+    "Panic": 0.002677637618035078,
+    "Fight": 0.6759945154190063,
+    "Congestion": 0.0298173725605011,
+    "Obstacle": 0.011906953528523445
+   },
+   "fight_scene": 0.3441711427135901,
+   "fight_video": 0.031143832951784134,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [
+    68
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 31.23,
+   "crowd": {
+    "Neutral": 0.03197088465094566,
+    "Panic": 0.0013668130850419402,
+    "Fight": 0.9527540802955627,
+    "Congestion": 0.008947623893618584,
+    "Obstacle": 0.004960687831044197
+   },
+   "fight_scene": 0.3391832591671693,
+   "fight_video": 0.031143832951784134,
+   "n_persons": 24,
+   "armed": [],
+   "pose_anomalous": [
+    68
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 31.43,
+   "crowd": {
+    "Neutral": 0.048806458711624146,
+    "Panic": 0.0015325379790738225,
+    "Fight": 0.9281330704689026,
+    "Congestion": 0.016094662249088287,
+    "Obstacle": 0.005433318670839071
+   },
+   "fight_scene": 0.36146599760181025,
+   "fight_video": 0.031143832951784134,
+   "n_persons": 29,
+   "armed": [],
+   "pose_anomalous": [
+    17,
+    68
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 31.63,
+   "crowd": {
+    "Neutral": 0.012395123951137066,
+    "Panic": 0.0011636718409135938,
+    "Fight": 0.9784360527992249,
+    "Congestion": 0.004531058482825756,
+    "Obstacle": 0.003474082797765732
+   },
+   "fight_scene": 0.3395800333884027,
+   "fight_video": 0.031143832951784134,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [
+    17,
+    68
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 31.83,
+   "crowd": {
+    "Neutral": 0.02655601315200329,
+    "Panic": 0.001256682095117867,
+    "Fight": 0.9620822668075562,
+    "Congestion": 0.006234120111912489,
+    "Obstacle": 0.0038708532229065895
+   },
+   "fight_scene": 0.3482366171148088,
+   "fight_video": 0.031143832951784134,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [
+    17,
+    68
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 32.03,
+   "crowd": {
+    "Neutral": 0.010441094636917114,
+    "Panic": 0.0011145432945340872,
+    "Fight": 0.9821016192436218,
+    "Congestion": 0.0034063193015754223,
+    "Obstacle": 0.0029364307411015034
+   },
+   "fight_scene": 0.40082417577505114,
+   "fight_video": 0.006797531619668007,
+   "n_persons": 28,
+   "armed": [],
+   "pose_anomalous": [
+    17,
+    68
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 32.23,
+   "crowd": {
+    "Neutral": 0.04513181373476982,
+    "Panic": 0.0013106523547321558,
+    "Fight": 0.9426074624061584,
+    "Congestion": 0.006155832204967737,
+    "Obstacle": 0.004794166889041662
+   },
+   "fight_scene": 0.4096172586792991,
+   "fight_video": 0.006797531619668007,
+   "n_persons": 28,
+   "armed": [],
+   "pose_anomalous": [
+    17,
+    68
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 32.43,
+   "crowd": {
+    "Neutral": 0.01813090220093727,
+    "Panic": 0.0010532860178500414,
+    "Fight": 0.9726649522781372,
+    "Congestion": 0.004298064392060041,
+    "Obstacle": 0.00385275948792696
+   },
+   "fight_scene": 0.4350260130383752,
+   "fight_video": 0.006797531619668007,
+   "n_persons": 28,
+   "armed": [],
+   "pose_anomalous": [
+    2,
+    17,
+    25,
+    65,
+    68
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 32.63,
+   "crowd": {
+    "Neutral": 0.0598074309527874,
+    "Panic": 0.0014120409032329917,
+    "Fight": 0.9246461391448975,
+    "Congestion": 0.008189464919269085,
+    "Obstacle": 0.005944914184510708
+   },
+   "fight_scene": 0.45616153898564255,
+   "fight_video": 0.006797531619668007,
+   "n_persons": 28,
+   "armed": [],
+   "pose_anomalous": [
+    2,
+    17,
+    25,
+    65,
+    76
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 32.83,
+   "crowd": {
+    "Neutral": 0.04918651655316353,
+    "Panic": 0.0013629916356876493,
+    "Fight": 0.9353605508804321,
+    "Congestion": 0.008614372462034225,
+    "Obstacle": 0.005475628189742565
+   },
+   "fight_scene": 0.4530200752474013,
+   "fight_video": 0.006797531619668007,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [
+    2,
+    17,
+    25,
+    65,
+    76
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 33.03,
+   "crowd": {
+    "Neutral": 0.5167341828346252,
+    "Panic": 0.003853921312838793,
+    "Fight": 0.2831469774246216,
+    "Congestion": 0.18281342089176178,
+    "Obstacle": 0.01345150638371706
+   },
+   "fight_scene": 0.44417999188105267,
+   "fight_video": 0.03258974477648735,
+   "n_persons": 28,
+   "armed": [],
+   "pose_anomalous": [
+    2,
+    17,
+    25,
+    46,
+    65,
+    76
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 33.23,
+   "crowd": {
+    "Neutral": 0.12575364112854004,
+    "Panic": 0.0019700811244547367,
+    "Fight": 0.8460468649864197,
+    "Congestion": 0.019134869799017906,
+    "Obstacle": 0.007094535510987043
+   },
+   "fight_scene": 0.40787913858890534,
+   "fight_video": 0.03258974477648735,
+   "n_persons": 28,
+   "armed": [],
+   "pose_anomalous": [
+    2,
+    17,
+    25,
+    46,
+    65,
+    76
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 33.43,
+   "crowd": {
+    "Neutral": 0.5392563939094543,
+    "Panic": 0.004417189862579107,
+    "Fight": 0.1778278946876526,
+    "Congestion": 0.2669512629508972,
+    "Obstacle": 0.011547178961336613
+   },
+   "fight_scene": 0.4027812959005435,
+   "fight_video": 0.03258974477648735,
+   "n_persons": 28,
+   "armed": [],
+   "pose_anomalous": [
+    17,
+    25,
+    65,
+    76
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 33.63,
+   "crowd": {
+    "Neutral": 0.07906302809715271,
+    "Panic": 0.0018092305399477482,
+    "Fight": 0.8942869305610657,
+    "Congestion": 0.019000478088855743,
+    "Obstacle": 0.0058402675203979015
+   },
+   "fight_scene": 0.39215490460395813,
+   "fight_video": 0.03258974477648735,
+   "n_persons": 31,
+   "armed": [],
+   "pose_anomalous": [
+    25,
+    65,
+    76
+   ],
+   "objects": [
+    [
+     "backpack",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 33.83,
+   "crowd": {
+    "Neutral": 0.28952303528785706,
+    "Panic": 0.003423744346946478,
+    "Fight": 0.5668585300445557,
+    "Congestion": 0.1294827163219452,
+    "Obstacle": 0.01071194838732481
+   },
+   "fight_scene": 0.3589788917452097,
+   "fight_video": 0.03258974477648735,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [
+    25
+   ],
+   "objects": [
+    [
+     "backpack",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 34.03,
+   "crowd": {
+    "Neutral": 0.02484889328479767,
+    "Panic": 0.0012566358782351017,
+    "Fight": 0.9620468616485596,
+    "Congestion": 0.008323336020112038,
+    "Obstacle": 0.003524322295561433
+   },
+   "fight_scene": 0.3476625512475553,
+   "fight_video": 0.5997195839881897,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [
+    25
+   ],
+   "objects": [
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 34.23,
+   "crowd": {
+    "Neutral": 0.13890913128852844,
+    "Panic": 0.0023530093021690845,
+    "Fight": 0.7993669509887695,
+    "Congestion": 0.05006450414657593,
+    "Obstacle": 0.009306333027780056
+   },
+   "fight_scene": 0.35062407837672666,
+   "fight_video": 0.5997195839881897,
+   "n_persons": 29,
+   "armed": [],
+   "pose_anomalous": [
+    25
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 34.43,
+   "crowd": {
+    "Neutral": 0.049689751118421555,
+    "Panic": 0.0015848445473238826,
+    "Fight": 0.9302805662155151,
+    "Congestion": 0.013166474178433418,
+    "Obstacle": 0.005278337746858597
+   },
+   "fight_scene": 0.34982710650988985,
+   "fight_video": 0.5997195839881897,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [
+    25
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 34.63,
+   "crowd": {
+    "Neutral": 0.1533433347940445,
+    "Panic": 0.0024592760019004345,
+    "Fight": 0.7848495244979858,
+    "Congestion": 0.05062903091311455,
+    "Obstacle": 0.008718891069293022
+   },
+   "fight_scene": 0.36814292669296267,
+   "fight_video": 0.5997195839881897,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 34.83,
+   "crowd": {
+    "Neutral": 0.08410421758890152,
+    "Panic": 0.0018009362975135446,
+    "Fight": 0.89018714427948,
+    "Congestion": 0.017767468467354774,
+    "Obstacle": 0.006140272598713636
+   },
+   "fight_scene": 0.3564668140913311,
+   "fight_video": 0.5997195839881897,
+   "n_persons": 30,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 35.04,
+   "crowd": {
+    "Neutral": 0.18475064635276794,
+    "Panic": 0.0027834593784064054,
+    "Fight": 0.7250165939331055,
+    "Congestion": 0.07626707851886749,
+    "Obstacle": 0.011182159185409546
+   },
+   "fight_scene": 0.3551804738886216,
+   "fight_video": 0.030908960849046707,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 35.24,
+   "crowd": {
+    "Neutral": 0.04388474300503731,
+    "Panic": 0.0014051729813218117,
+    "Fight": 0.934639036655426,
+    "Congestion": 0.01464223861694336,
+    "Obstacle": 0.0054288264364004135
+   },
+   "fight_scene": 0.3703501277110156,
+   "fight_video": 0.030908960849046707,
+   "n_persons": 30,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 35.44,
+   "crowd": {
+    "Neutral": 0.28260910511016846,
+    "Panic": 0.004191786982119083,
+    "Fight": 0.5490157604217529,
+    "Congestion": 0.15305286645889282,
+    "Obstacle": 0.011130506172776222
+   },
+   "fight_scene": 0.37240782730719624,
+   "fight_video": 0.030908960849046707,
+   "n_persons": 33,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 35.64,
+   "crowd": {
+    "Neutral": 0.18208791315555573,
+    "Panic": 0.002830425975844264,
+    "Fight": 0.7488601207733154,
+    "Congestion": 0.0572965070605278,
+    "Obstacle": 0.008925074711441994
+   },
+   "fight_scene": 0.3977798959788154,
+   "fight_video": 0.030908960849046707,
+   "n_persons": 29,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 35.84,
+   "crowd": {
+    "Neutral": 0.21517029404640198,
+    "Panic": 0.0029748089145869017,
+    "Fight": 0.7166265249252319,
+    "Congestion": 0.056819915771484375,
+    "Obstacle": 0.008408493362367153
+   },
+   "fight_scene": 0.4015958414358251,
+   "fight_video": 0.030908960849046707,
+   "n_persons": 33,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "backpack",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 36.04,
+   "crowd": {
+    "Neutral": 0.07776208966970444,
+    "Panic": 0.001985131995752454,
+    "Fight": 0.8934231996536255,
+    "Congestion": 0.021720653399825096,
+    "Obstacle": 0.00510897021740675
+   },
+   "fight_scene": 0.3924327807293998,
+   "fight_video": 0.5521775484085083,
+   "n_persons": 29,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "backpack",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 36.24,
+   "crowd": {
+    "Neutral": 0.09305943548679352,
+    "Panic": 0.0020883274264633656,
+    "Fight": 0.8692349195480347,
+    "Congestion": 0.029714548960328102,
+    "Obstacle": 0.0059027946554124355
+   },
+   "fight_scene": 0.36616526105824637,
+   "fight_video": 0.5521775484085083,
+   "n_persons": 28,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 36.44,
+   "crowd": {
+    "Neutral": 0.11372798681259155,
+    "Panic": 0.0022877287119627,
+    "Fight": 0.8403425216674805,
+    "Congestion": 0.03717533499002457,
+    "Obstacle": 0.006466416176408529
+   },
+   "fight_scene": 0.3689544275403023,
+   "fight_video": 0.5521775484085083,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [
+    71,
+    82
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 36.64,
+   "crowd": {
+    "Neutral": 0.04704321175813675,
+    "Panic": 0.0017887827707454562,
+    "Fight": 0.926612377166748,
+    "Congestion": 0.019419951364398003,
+    "Obstacle": 0.005135734099894762
+   },
+   "fight_scene": 0.35278775294621784,
+   "fight_video": 0.5521775484085083,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [
+    71
+   ],
+   "objects": []
+  },
+  {
+   "t": 36.84,
+   "crowd": {
+    "Neutral": 0.10663652420043945,
+    "Panic": 0.00239300774410367,
+    "Fight": 0.8519697189331055,
+    "Congestion": 0.031215360388159752,
+    "Obstacle": 0.0077853091061115265
+   },
+   "fight_scene": 0.3756665848195553,
+   "fight_video": 0.5521775484085083,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [
+    71
+   ],
+   "objects": []
+  },
+  {
+   "t": 37.04,
+   "crowd": {
+    "Neutral": 0.06738457828760147,
+    "Panic": 0.002252360340207815,
+    "Fight": 0.9086669683456421,
+    "Congestion": 0.015573524869978428,
+    "Obstacle": 0.006122549995779991
+   },
+   "fight_scene": 0.388196920355161,
+   "fight_video": 0.9246877431869507,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [
+    25,
+    71
+   ],
+   "objects": []
+  },
+  {
+   "t": 37.24,
+   "crowd": {
+    "Neutral": 0.044576480984687805,
+    "Panic": 0.0018615792505443096,
+    "Fight": 0.9346528053283691,
+    "Congestion": 0.013809150084853172,
+    "Obstacle": 0.00509998481720686
+   },
+   "fight_scene": 0.3533744141459465,
+   "fight_video": 0.9246877431869507,
+   "n_persons": 24,
+   "armed": [],
+   "pose_anomalous": [
+    71
+   ],
+   "objects": [
+    [
+     "backpack",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 37.44,
+   "crowd": {
+    "Neutral": 0.040682338178157806,
+    "Panic": 0.001766632660292089,
+    "Fight": 0.9441879987716675,
+    "Congestion": 0.00856085680425167,
+    "Obstacle": 0.004802205134183168
+   },
+   "fight_scene": 0.3619171644632633,
+   "fight_video": 0.9246877431869507,
+   "n_persons": 25,
+   "armed": [],
+   "pose_anomalous": [
+    71
+   ],
+   "objects": [
+    [
+     "backpack",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 37.64,
+   "crowd": {
+    "Neutral": 0.011530245654284954,
+    "Panic": 0.0012200354831293225,
+    "Fight": 0.9788514375686646,
+    "Congestion": 0.005258350633084774,
+    "Obstacle": 0.0031399044673889875
+   },
+   "fight_scene": 0.4383875618378321,
+   "fight_video": 0.9246877431869507,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [
+    71
+   ],
+   "objects": [
+    [
+     "backpack",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 37.84,
+   "crowd": {
+    "Neutral": 0.010346927680075169,
+    "Panic": 0.0013014088617637753,
+    "Fight": 0.9808773398399353,
+    "Congestion": 0.004471940454095602,
+    "Obstacle": 0.0030023185536265373
+   },
+   "fight_scene": 0.43510548075040184,
+   "fight_video": 0.9246877431869507,
+   "n_persons": 25,
+   "armed": [],
+   "pose_anomalous": [
+    71
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 38.04,
+   "crowd": {
+    "Neutral": 0.009828520007431507,
+    "Panic": 0.0013223745627328753,
+    "Fight": 0.9812271595001221,
+    "Congestion": 0.004688224755227566,
+    "Obstacle": 0.0029338160529732704
+   },
+   "fight_scene": 0.42672545995031086,
+   "fight_video": 0.9950946569442749,
+   "n_persons": 25,
+   "armed": [],
+   "pose_anomalous": [
+    71,
+    89
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 38.24,
+   "crowd": {
+    "Neutral": 0.009938330389559269,
+    "Panic": 0.0014081791741773486,
+    "Fight": 0.9815888404846191,
+    "Congestion": 0.004106659907847643,
+    "Obstacle": 0.002957915887236595
+   },
+   "fight_scene": 0.46632485277950764,
+   "fight_video": 0.9950946569442749,
+   "n_persons": 28,
+   "armed": [],
+   "pose_anomalous": [
+    71,
+    89
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 38.44,
+   "crowd": {
+    "Neutral": 0.009420273825526237,
+    "Panic": 0.001453135279007256,
+    "Fight": 0.9817615747451782,
+    "Congestion": 0.004406578838825226,
+    "Obstacle": 0.002958436729386449
+   },
+   "fight_scene": 0.4543506159232213,
+   "fight_video": 0.9950946569442749,
+   "n_persons": 23,
+   "armed": [],
+   "pose_anomalous": [
+    36,
+    89
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 38.64,
+   "crowd": {
+    "Neutral": 0.01203014887869358,
+    "Panic": 0.0013623256236314774,
+    "Fight": 0.9797704219818115,
+    "Congestion": 0.0037910034880042076,
+    "Obstacle": 0.0030461568385362625
+   },
+   "fight_scene": 0.45916565564962536,
+   "fight_video": 0.9950946569442749,
+   "n_persons": 28,
+   "armed": [],
+   "pose_anomalous": [
+    36,
+    80,
+    89
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 38.84,
+   "crowd": {
+    "Neutral": 0.008677041158080101,
+    "Panic": 0.0013254795921966434,
+    "Fight": 0.9835311770439148,
+    "Congestion": 0.0037465551868081093,
+    "Obstacle": 0.0027197073213756084
+   },
+   "fight_scene": 0.45323008724621366,
+   "fight_video": 0.9950946569442749,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [
+    36,
+    80
+   ],
+   "objects": [
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 39.04,
+   "crowd": {
+    "Neutral": 0.009349900297820568,
+    "Panic": 0.0013248034520074725,
+    "Fight": 0.9830294251441956,
+    "Congestion": 0.0033566774800419807,
+    "Obstacle": 0.0029392049182206392
+   },
+   "fight_scene": 0.4660306466477258,
+   "fight_video": 0.995866060256958,
+   "n_persons": 29,
+   "armed": [],
+   "pose_anomalous": [
+    36,
+    80,
+    89
+   ],
+   "objects": [
+    [
+     "backpack",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 39.24,
+   "crowd": {
+    "Neutral": 0.0067872717045247555,
+    "Panic": 0.0012678400380536914,
+    "Fight": 0.985909640789032,
+    "Congestion": 0.0033929157070815563,
+    "Obstacle": 0.002642405452206731
+   },
+   "fight_scene": 0.4779757738113403,
+   "fight_video": 0.995866060256958,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [
+    36,
+    80,
+    89
+   ],
+   "objects": [
+    [
+     "backpack",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 39.44,
+   "crowd": {
+    "Neutral": 0.008251724764704704,
+    "Panic": 0.001285370672121644,
+    "Fight": 0.9840455055236816,
+    "Congestion": 0.0033339979127049446,
+    "Obstacle": 0.0030834439676254988
+   },
+   "fight_scene": 0.44742817282676695,
+   "fight_video": 0.995866060256958,
+   "n_persons": 30,
+   "armed": [],
+   "pose_anomalous": [
+    36,
+    80
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 39.64,
+   "crowd": {
+    "Neutral": 0.007039988413453102,
+    "Panic": 0.001327951904386282,
+    "Fight": 0.985365629196167,
+    "Congestion": 0.0034986871760338545,
+    "Obstacle": 0.002767689526081085
+   },
+   "fight_scene": 0.44581364281475544,
+   "fight_video": 0.995866060256958,
+   "n_persons": 30,
+   "armed": [],
+   "pose_anomalous": [
+    36,
+    46,
+    80,
+    82
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 39.84,
+   "crowd": {
+    "Neutral": 0.010266735218465328,
+    "Panic": 0.0013652410125359893,
+    "Fight": 0.9818670749664307,
+    "Congestion": 0.0033266174141317606,
+    "Obstacle": 0.003174280282109976
+   },
+   "fight_scene": 0.4193785392186221,
+   "fight_video": 0.995866060256958,
+   "n_persons": 31,
+   "armed": [],
+   "pose_anomalous": [
+    80,
+    82
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 40.04,
+   "crowd": {
+    "Neutral": 0.006455255672335625,
+    "Panic": 0.0013295181561261415,
+    "Fight": 0.9865278601646423,
+    "Congestion": 0.0030432972125709057,
+    "Obstacle": 0.0026440625078976154
+   },
+   "fight_scene": 0.43208275297108817,
+   "fight_video": 0.9977830052375793,
+   "n_persons": 29,
+   "armed": [],
+   "pose_anomalous": [
+    80,
+    82
+   ],
+   "objects": [
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 40.24,
+   "crowd": {
+    "Neutral": 0.010458850301802158,
+    "Panic": 0.001365220290608704,
+    "Fight": 0.9818521738052368,
+    "Congestion": 0.003174231853336096,
+    "Obstacle": 0.003149529919028282
+   },
+   "fight_scene": 0.4256610969702403,
+   "fight_video": 0.9977830052375793,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [
+    80
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 40.44,
+   "crowd": {
+    "Neutral": 0.008433196693658829,
+    "Panic": 0.0013901914935559034,
+    "Fight": 0.9843106269836426,
+    "Congestion": 0.0032071382738649845,
+    "Obstacle": 0.002658810932189226
+   },
+   "fight_scene": 0.4893667862603539,
+   "fight_video": 0.9977830052375793,
+   "n_persons": 30,
+   "armed": [],
+   "pose_anomalous": [
+    10,
+    80
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 40.64,
+   "crowd": {
+    "Neutral": 0.011484125629067421,
+    "Panic": 0.0014290091348811984,
+    "Fight": 0.980665385723114,
+    "Congestion": 0.003072852734476328,
+    "Obstacle": 0.003348605241626501
+   },
+   "fight_scene": 0.48030758069621193,
+   "fight_video": 0.9977830052375793,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [
+    10,
+    89
+   ],
+   "objects": [
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 40.84,
+   "crowd": {
+    "Neutral": 0.01361613068729639,
+    "Panic": 0.0014485056744888425,
+    "Fight": 0.9786337614059448,
+    "Congestion": 0.003420913126319647,
+    "Obstacle": 0.0028806976042687893
+   },
+   "fight_scene": 0.4388872765004635,
+   "fight_video": 0.9977830052375793,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [
+    54,
+    89
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 41.04,
+   "crowd": {
+    "Neutral": 0.02383081056177616,
+    "Panic": 0.001596564892679453,
+    "Fight": 0.9669089317321777,
+    "Congestion": 0.0037121244240552187,
+    "Obstacle": 0.003951536025851965
+   },
+   "fight_scene": 0.429127927337374,
+   "fight_video": 0.9886682629585266,
+   "n_persons": 28,
+   "armed": [],
+   "pose_anomalous": [
+    89
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 41.24,
+   "crowd": {
+    "Neutral": 0.027029892429709435,
+    "Panic": 0.0015189769910648465,
+    "Fight": 0.9640682935714722,
+    "Congestion": 0.004064993467181921,
+    "Obstacle": 0.003317750757560134
+   },
+   "fight_scene": 0.4340558777684751,
+   "fight_video": 0.9886682629585266,
+   "n_persons": 31,
+   "armed": [],
+   "pose_anomalous": [
+    77,
+    90
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 41.44,
+   "crowd": {
+    "Neutral": 0.052786972373723984,
+    "Panic": 0.0016705273883417249,
+    "Fight": 0.9356714487075806,
+    "Congestion": 0.005185943562537432,
+    "Obstacle": 0.004685109946876764
+   },
+   "fight_scene": 0.4288102971470874,
+   "fight_video": 0.9886682629585266,
+   "n_persons": 30,
+   "armed": [],
+   "pose_anomalous": [
+    77,
+    90
+   ],
+   "objects": []
+  },
+  {
+   "t": 41.64,
+   "crowd": {
+    "Neutral": 0.05242012068629265,
+    "Panic": 0.0016204891726374626,
+    "Fight": 0.9364564418792725,
+    "Congestion": 0.0053970529697835445,
+    "Obstacle": 0.004105860833078623
+   },
+   "fight_scene": 0.4174111103234084,
+   "fight_video": 0.9886682629585266,
+   "n_persons": 31,
+   "armed": [],
+   "pose_anomalous": [
+    77
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 41.84,
+   "crowd": {
+    "Neutral": 0.09204947203397751,
+    "Panic": 0.0020178118720650673,
+    "Fight": 0.8940517902374268,
+    "Congestion": 0.006564663257449865,
+    "Obstacle": 0.005316225811839104
+   },
+   "fight_scene": 0.3996052159504457,
+   "fight_video": 0.9886682629585266,
+   "n_persons": 29,
+   "armed": [],
+   "pose_anomalous": [
+    77
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 42.04,
+   "crowd": {
+    "Neutral": 0.05088236927986145,
+    "Panic": 0.0016743984306231141,
+    "Fight": 0.9378396272659302,
+    "Congestion": 0.0051575107499957085,
+    "Obstacle": 0.004446052014827728
+   },
+   "fight_scene": 0.40264757301496423,
+   "fight_video": 0.9968763589859009,
+   "n_persons": 29,
+   "armed": [],
+   "pose_anomalous": [
+    77
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 42.24,
+   "crowd": {
+    "Neutral": 0.09075610339641571,
+    "Panic": 0.0020849360153079033,
+    "Fight": 0.8953710794448853,
+    "Congestion": 0.0064220549538731575,
+    "Obstacle": 0.005365828517824411
+   },
+   "fight_scene": 0.4275885924049046,
+   "fight_video": 0.9968763589859009,
+   "n_persons": 28,
+   "armed": [],
+   "pose_anomalous": [
+    77
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 42.44,
+   "crowd": {
+    "Neutral": 0.04496411606669426,
+    "Panic": 0.0017366508254781365,
+    "Fight": 0.9427804946899414,
+    "Congestion": 0.006253920029848814,
+    "Obstacle": 0.004264803137630224
+   },
+   "fight_scene": 0.4347154368524966,
+   "fight_video": 0.9968763589859009,
+   "n_persons": 29,
+   "armed": [],
+   "pose_anomalous": [
+    77
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 42.64,
+   "crowd": {
+    "Neutral": 0.1787683665752411,
+    "Panic": 0.002630939008668065,
+    "Fight": 0.7887629866600037,
+    "Congestion": 0.022906102240085602,
+    "Obstacle": 0.006931601092219353
+   },
+   "fight_scene": 0.40870768220528314,
+   "fight_video": 0.9968763589859009,
+   "n_persons": 29,
+   "armed": [],
+   "pose_anomalous": [
+    77
+   ],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 42.84,
+   "crowd": {
+    "Neutral": 0.3774576783180237,
+    "Panic": 0.004940768703818321,
+    "Fight": 0.47343796491622925,
+    "Congestion": 0.1335393190383911,
+    "Obstacle": 0.010624323040246964
+   },
+   "fight_scene": 0.4320369155510612,
+   "fight_video": 0.9968763589859009,
+   "n_persons": 28,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 43.04,
+   "crowd": {
+    "Neutral": 0.24589376151561737,
+    "Panic": 0.0025263475254178047,
+    "Fight": 0.7227219343185425,
+    "Congestion": 0.02260521985590458,
+    "Obstacle": 0.006252769846469164
+   },
+   "fight_scene": 0.4274052723000447,
+   "fight_video": 0.9948603510856628,
+   "n_persons": 29,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ],
+    [
+     "suitcase",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 43.24,
+   "crowd": {
+    "Neutral": 0.1931096613407135,
+    "Panic": 0.0026079663075506687,
+    "Fight": 0.7697537541389465,
+    "Congestion": 0.027657553553581238,
+    "Obstacle": 0.006871075369417667
+   },
+   "fight_scene": 0.4506195280700922,
+   "fight_video": 0.9948603510856628,
+   "n_persons": 29,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 43.44,
+   "crowd": {
+    "Neutral": 0.3922383189201355,
+    "Panic": 0.002684500301256776,
+    "Fight": 0.5796906352043152,
+    "Congestion": 0.018202466890215874,
+    "Obstacle": 0.0071840956807136536
+   },
+   "fight_scene": 0.39542573264666964,
+   "fight_video": 0.9948603510856628,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 43.64,
+   "crowd": {
+    "Neutral": 0.43633049726486206,
+    "Panic": 0.0030332966707646847,
+    "Fight": 0.5263150334358215,
+    "Congestion": 0.026930075138807297,
+    "Obstacle": 0.007391088642179966
+   },
+   "fight_scene": 0.3897589919241992,
+   "fight_video": 0.9948603510856628,
+   "n_persons": 28,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 43.84,
+   "crowd": {
+    "Neutral": 0.6377257108688354,
+    "Panic": 0.0027743270620703697,
+    "Fight": 0.33084774017333984,
+    "Congestion": 0.02139970287680626,
+    "Obstacle": 0.007252496201545
+   },
+   "fight_scene": 0.39190415066221485,
+   "fight_video": 0.9948603510856628,
+   "n_persons": 27,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": []
+  },
+  {
+   "t": 44.04,
+   "crowd": {
+    "Neutral": 0.258736789226532,
+    "Panic": 0.002477806992828846,
+    "Fight": 0.7088357210159302,
+    "Congestion": 0.022257663309574127,
+    "Obstacle": 0.007692042272537947
+   },
+   "fight_scene": 0.3761393881979443,
+   "fight_video": 0.970687747001648,
+   "n_persons": 26,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 44.24,
+   "crowd": {
+    "Neutral": 0.11761683970689774,
+    "Panic": 0.001828269218094647,
+    "Fight": 0.8623141646385193,
+    "Congestion": 0.012991654686629772,
+    "Obstacle": 0.00524910306558013
+   },
+   "fight_scene": 0.3761308320931026,
+   "fight_video": 0.970687747001648,
+   "n_persons": 29,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ],
+    [
+     "suitcase",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 44.44,
+   "crowd": {
+    "Neutral": 0.06745756417512894,
+    "Panic": 0.0016756248660385609,
+    "Fight": 0.9096511006355286,
+    "Congestion": 0.016660841181874275,
+    "Obstacle": 0.004554820712655783
+   },
+   "fight_scene": 0.36833831667900085,
+   "fight_video": 0.970687747001648,
+   "n_persons": 29,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ],
+    [
+     "suitcase",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 44.64,
+   "crowd": {
+    "Neutral": 0.2004045695066452,
+    "Panic": 0.0020751338452100754,
+    "Fight": 0.7742545008659363,
+    "Congestion": 0.016514593735337257,
+    "Obstacle": 0.006751152221113443
+   },
+   "fight_scene": 0.35088355200631277,
+   "fight_video": 0.970687747001648,
+   "n_persons": 30,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ],
+    [
+     "suitcase",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ]
+   ]
+  },
+  {
+   "t": 44.84,
+   "crowd": {
+    "Neutral": 0.12572070956230164,
+    "Panic": 0.002302655251696706,
+    "Fight": 0.8327120542526245,
+    "Congestion": 0.033150408416986465,
+    "Obstacle": 0.006114270072430372
+   },
+   "fight_scene": 0.3521382646127181,
+   "fight_video": 0.970687747001648,
+   "n_persons": 32,
+   "armed": [],
+   "pose_anomalous": [],
+   "objects": [
+    [
+     "handbag",
+     false
+    ],
+    [
+     "handbag",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ],
+    [
+     "backpack",
+     false
+    ]
+   ]
+  }
+ ]
+}

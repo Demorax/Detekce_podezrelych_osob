@@ -220,8 +220,28 @@ Body tabulky „Co chybí do odevzdání“, které šly udělat bez rozhodnutí
   28 videích (demo je nezávislé, ale jen 3 videa a 1 rvačka).
   **Demo v3** (`demo_outputs/full_v3/`, logy `demo_v3_*.log`) s hradlem potvrzuje přehrání: 005 a 010 bez
   poplachu „rvačka (obraz)“, 015 rvačka (obraz) 27,0 a 37,0 s, dav: rvačka 27,2 s; ostatní poplachy shodné s v2.
-  Zbývá: skeletový model rvaček hlásí rvačku při panice (005 27,8 s, 010 75,7 s) – útěk vypadá v pohybu skeletů
-  jako rvačka.
+  Skeletový model rvaček hlásil rvačku při panice (005 27,8 s, 010 75,7 s) – útěk vypadá v pohybu skeletů
+  jako rvačka; řešení níže.
+
+  **Falešné rvačky skeletového modelu RWF v MED** (2026-11-15, `med_fight_skeleton_transfer.py`,
+  `med_fight_skeleton_transfer_results.json`, log `med_fight_skeleton_transfer.log`). Skóre scény přesně jako
+  v demu (průměr P přes osoby s 10 souvislými skelety, potvrzení 3 vzorky, odstup 10 s) na skeletech MED
+  (`med_skeletons.py`, stejná pipeline) na 28 videích mimo demo: AUC rvačka vs. ostatní 0,841. Pravidla předem:
+
+  | pravidlo | falešné poplachy (28 videí) | zachycené rvačky | demo 005 / 010 / 015 |
+  |---|---:|---:|---|
+  | S0 skelety, práh 0,5 (v3) | 16 (54,0/h) | 6/7 | 1 falešný / 1 falešný / – |
+  | S1 skelety, práh p99 (0,832) | 5 (16,9/h) | 0/7 | – / – / – |
+  | **S2 skelety + souhlas modelu davu** | **2 (6,7/h)** | **5/7** | **– / – / –** |
+  | S3 jen model davu (potvrzení 3 vzorky) | 8 (27,0/h) | 6/7 | – / – / 2 správné |
+
+  Stejný závěr jako u obrazu: práh nepomůže (p99 ztratí všechny rvačky), souhlas s modelem davu ubere 88 %
+  falešných poplachů za cenu jedné rvačky. Hradlo `FIGHT_GATE` v `demo_pipeline.py` platí teď pro oba modely
+  rvaček. Rvačku v 015 skeletový model nezachytí ani bez hradla (malé postavy v davu) – hlásí ji obraz a dav.
+  Celkově jsou na MED oba modely z RWF jen potvrzením modelu davu; samostatně dávají smysl u bližších kamer.
+  **Demo v4** (`demo_outputs/full_v4/`, logy `demo_v4_*.log`, hradlo pro oba modely rvaček): 005 ARMED 28,4–33,6,
+  dav: panika 29,6; 010 dav: překážka 57,9, dav: panika 75,5; 015 zavazadlo 10,8 (chybně), rvačka (obraz) 27,0 a
+  37,0, dav: rvačka 27,2. Žádná falešná rvačka; jediný zbývající chybný poplach je zavazadlo v 015.
 - **Bod 3: detektor nově odložených nehybných předmětů** (2026-10-29, `static_object_detector.py`).
   Duální model pozadí (Porikli 2008) nad gradienty; počítá se jen nárůst hran proti dlouhodobému pozadí, osoby
   a přepálené oblasti se maskují. Vývoj podle pozorovaných chyb na CAVIAR (ne ladění na čísla):

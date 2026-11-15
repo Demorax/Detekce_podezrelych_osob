@@ -14,6 +14,8 @@ Na každém vzorkovaném snímku (5 snímků/s):
      Ve scénách davu (MED) se model z RWF přenáší špatně (AUC 0,82, 67 falešných poplachů za hodinu), proto
      vyhodnocení počítá jen při souhlasu modelu davu, P(Fight) > FIGHT_THR v tomtéž vzorku (med_fight_transfer.py:
      3,4 falešného/h, 6/7 rvaček). Pro bližší kamery typu RWF bez davu --no-fight-gate.
+     Stejné hradlo platí pro skeletový model rvaček (útěk při panice v něm vypadá jako rvačka;
+     med_fight_skeleton_transfer.py: 54 -> 6,7 falešného/h, 6/7 -> 5/7 rvaček).
      Navíc BiLSTM s attention nad posledními 10 skelety každé osoby (2 s) jako odhad u jednotlivých osob,
   6. anomální póza: GRU autoenkodér nad posledními 12 skelety osoby, anomálie = chyba nad 99. percentilem
      normálních trénovacích oken (úloha 2 zadání).
@@ -59,7 +61,7 @@ FIGHT_CONFIRM = 3           # rvačka ze skeletů: skóre nad prahem 3 vzorky po
 VIDEO_FIGHT_SEC = 5.0       # obrazový model rvaček: okno jako klipy RWF-2000 (~5 s)
 VIDEO_FIGHT_EVERY = 5       # vyhodnotit každý 5. vzorek (1× za sekundu)
 VIDEO_FIGHT_CONFIRM = 2     # poplach po 2 vyhodnoceních nad prahem po sobě (2 s)
-FIGHT_GATE = True           # obrazový model rvaček jen při souhlasu modelu davu (viz med_fight_transfer.py)
+FIGHT_GATE = True           # modely rvaček z RWF jen při souhlasu modelu davu (med_fight_*transfer.py)
 
 
 class Behavior:
@@ -255,7 +257,7 @@ def main():
     ap.add_argument('--abandon-sec', type=float, default=AOD.DEFAULT_ABANDON_SEC)
     ap.add_argument('--max-sec', type=float, default=None)
     ap.add_argument('--no-fight-gate', action='store_true',
-                    help='poplach obrazového modelu rvaček bez souhlasu modelu davu (kamery typu RWF-2000)')
+                    help='poplachy modelů rvaček bez souhlasu modelu davu (kamery typu RWF-2000)')
     a = ap.parse_args()
     out = Path(a.out); out.mkdir(parents=True, exist_ok=True)
     name = Path(a.video).stem
@@ -315,11 +317,11 @@ def main():
                 yp = det.coco(frame, classes=[0], conf=0.25, imgsz=1280, device=DEV, verbose=False)[0]
                 yb = np.concatenate([yp.boxes.xyxy.cpu().numpy(), yp.boxes.conf.cpu().numpy()[:, None]], 1)
                 crowd = beh.crowd_step(frame, recent[0], yb)
+            agree = (a.no_fight_gate or not FIGHT_GATE
+                     or (crowd is not None and crowd[MT.CLASSES.index('Fight')] > FIGHT_THR))
             fv = beh.video_fight_step(frame, si % VIDEO_FIGHT_EVERY == 0)
             if fv is not None:
                 fight_video = fv
-                agree = (a.no_fight_gate or not FIGHT_GATE
-                         or (crowd is not None and crowd[MT.CLASSES.index('Fight')] > FIGHT_THR))
                 vfight_run = vfight_run + 1 if fv > FIGHT_THR and agree else 0
                 if vfight_run == VIDEO_FIGHT_CONFIRM and t_sec - vfight_last_alert >= CROWD_COOLDOWN_SEC:
                     alerts.append({'t': round(t_sec, 1), 'type': 'rvačka (obraz)'})
@@ -346,7 +348,7 @@ def main():
             for tid in armed_now - armed_prev:
                 alerts.append({'t': round(t_sec, 1), 'type': f'ARMED osoba {tid}'})
             armed_prev = armed_now
-            fight_run = fight_run + 1 if fight_scene is not None and fight_scene > FIGHT_THR else 0
+            fight_run = fight_run + 1 if fight_scene is not None and fight_scene > FIGHT_THR and agree else 0
             if fight_run == FIGHT_CONFIRM and t_sec - fight_last_alert >= CROWD_COOLDOWN_SEC:
                 alerts.append({'t': round(t_sec, 1), 'type': 'rvačka (skelety)'})
                 fight_last_alert = t_sec
